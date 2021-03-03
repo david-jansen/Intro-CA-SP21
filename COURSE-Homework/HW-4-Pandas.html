@@ -1,0 +1,2006 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HW 4 – Practice with Pandas &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/COURSE-Homework/HW-4-Pandas.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/COURSE-Homework/HW-4-Pandas.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="HW 4 – Practice with Pandas" />
+<meta property="og:description" content="HW 4 – Practice with Pandas  Download relevant files here  Follow the instructions in the assignment below. Then save your file as “Your-Last-Name-HW-4-Pandas.i" />
+<meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/favicon.ico" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Cultural Analytics & Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  How To
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../How-To-Interact-With-This-Book.html">
+   Interact With This Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Course
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../course-schedule-2021.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../syllabus.html">
+   Course Syllabus
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Book
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Command-Line/01-The-Command-Line.html">
+   1. The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../02-Python/00-Python.html">
+   2. Python Basics
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/01-Installation.html">
+     Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/02-How-to-Use-Jupyter-Notebooks.html">
+     How to Use Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/03-Anatomy-Python-Script.html">
+     Anatomy of a Python Script
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/04-Variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/05-Data-Types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/06-String-Methods.html">
+     String Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/07-Files-Character-Encoding.html">
+     Files and Character Encoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/08-Comparisons-Conditionals.html">
+     Comparisons &amp; Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/09-Lists-Loops-Part1.html">
+     Lists &amp; Loops — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/10-Lists-Loops-Part2.html">
+     Lists &amp; Loops — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/11-Dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/12-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/13-Common-Python-Errors.html">
+     Common Python Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/14-What-Were-Not-Covering.html">
+     What We’re Not Covering
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../03-Data-Analysis/00-Data-Analysis.html">
+   3. Data Analysis (Pandas)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/01-Pandas-Basics-Part1.html">
+     Pandas Basics — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/02-Pandas-Basics-Part2.html">
+     Pandas Basics — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/03-Pandas-Basics-Part3.html">
+     Pandas Basics — Part 3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/04-Pandas-Merge-Datasets.html">
+     Pandas — Merge Datasets
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../04-Data-Collection/00-Data-Collection.html">
+   4. Data Collection (Web Scraping, APIs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/01-User-Ethics-Legal-Concerns.html">
+     User Ethics &amp; Legal Concerns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/02-Web-Scraping-Part1.html">
+     Web Scraping — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/03-Web-Scraping-Part2.html">
+     Web Scraping — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/04-Git-GitHub.html">
+     Git and GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/05-APIs.html">
+     Application Programming Interfaces (APIs)
+    </a>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/06-Song-Genius-Data-Collection.html">
+     Song Genius Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/07-Genius-API.html">
+       Song Genius API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/08-LyricsGenius.html">
+       Song Lyrics Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/09-Song-Lyrics-Analysis.html">
+       Song Lyrics Analysis
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/10-Twitter-Data-Collection-Home.html">
+     Twitter Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/11-Twitter-API-Setup.html">
+       Twitter API Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/12-Twitter-Data-Collection.html">
+       Twitter Data Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/13-Twitter-Data-Analysis.html">
+       Twitter Data Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/14-Twitter-Data-Sharing.html">
+       Twitter Data Sharing
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/15-Reddit-Data-Collection-With-PSAW.html">
+     Reddit Data Collection
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../05-Text-Analysis/00-Text-Analysis.html">
+   5. Text Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/01-TF-IDF.html">
+     TF-IDF
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/02-TF-IDF-HathiTrust.html">
+       TF-IDF with HathiTrust Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/03-TF-IDF-Scikit-Learn.html">
+       TF-IDF with Scikit-Learn
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/04-Topic-Modeling.html">
+     Topic Modeling
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/05-Topic-Modeling-Overview.html">
+       Topic Modeling — Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/06-Topic-Modeling-Set-Up.html">
+       Topic Modeling — Set Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/07-Topic-Modeling-Text-Files.html">
+       Topic Modeling — Text Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/08-Topic-Modeling-CSV.html">
+       Topic Modeling — CSV Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/09-Topic-Modeling-Time-Series.html">
+       Topic Modeling — Time Series
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/10-Named-Entity-Recognition.html">
+     Named Entity Recognition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html">
+     Part-of-Speech Tagging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html#keyword-extraction">
+     Keyword Extraction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../06-Network-Analysis/00-Network-Analysis-Home.html">
+   6. Network Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/01-Network-Analysis.html">
+     Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/02-Making-Network-Viz-with-Bokeh.html">
+     Make an Interactive Network Visualization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  00-Datasets
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-Datasets/Datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Extra Materials
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Jupyter-Tips-Tricks.html">
+   Jupyter Tips and Tricks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Randomize-Students.html">
+   Make Random Student Groups
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/COURSE-Homework/HW-4-Pandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2FCOURSE-Homework/HW-4-Pandas.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/COURSE-Homework/HW-4-Pandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   HW 4 – Practice with Pandas
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-reading">
+   Required Reading
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-pandas">
+   Import Pandas
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-in-csv-file">
+   Read in CSV File
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#display-the-data">
+   Display the Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examine-the-data">
+   Examine the Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rename-column">
+   Rename Column
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#select-and-count-columns">
+   Select and Count Columns
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filter-data">
+   Filter Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sort-data">
+   Sort Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#groupby-and-plot">
+   Groupby and Plot
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#think-intentionally-with-the-data">
+   Think Intentionally With The Data
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="hw-4-practice-with-pandas">
+<h1>HW 4 – Practice with Pandas<a class="headerlink" href="#hw-4-practice-with-pandas" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://melaniewalsh.org/Pandas.zip">Download relevant files here</a></p>
+<p>Follow the instructions in the assignment below. Then save your file as “Your-Last-Name-HW-4-Pandas.ipynb” and submit it to Canvas by Tuesday at 9am.</p>
+<a class="reference internal image-reference" href="../_images/Intra-American.png"><img alt="../_images/Intra-American.png" src="../_images/Intra-American.png" style="width: 100%;" /></a>
+<blockquote>
+<div><p>Computation
+could not, it seemed, capture the violent quandary that was the nation’s
+history of and relationship to human bondage. Contemporary encounters
+with digital technology have inherited this tension, with researchers
+struggling to appreciate the inhumanity of bondage and the attendant
+dehumanization of black lives while also responding to the need for critical,
+rigorous, and engaged histories of slavery as histories of the present (18).</p>
+</div></blockquote>
+<blockquote>
+<div><p>[D]isplaying data
+alone could not and did not offer the atonement descendants of slaves
+sought or capture the inhumanity of this archive’s formation. Culling
+the lives of women and children from the data set required approaching
+the data with intention. It required a methodology attuned to black life
+and to dismantling the methods used to create the manifests in the first
+place, then designing and launching an interface responsive to the desire
+of descendants of slaves for reparation and redress (65).</p>
+</div></blockquote>
+<blockquote>
+<div><p>Jessica Marie Johnson, <a class="reference external" href="https://read.dukeupress.edu/social-text/article/36/4%20(137)/57/137032/Markup-BodiesBlack-Life-Studies-and-Slavery-Death">“Markup Bodies: Black [Life] Studies and Slavery [Death] Studies at the Digital Crossroads”</a></p>
+</div></blockquote>
+<p>The dataset that you’re going to be working with in this homework assignment is taken from <a class="reference external" href="https://www.slavevoyages.org/american/database">The Intra-American Slave Trade Database</a>, part of the <a class="reference external" href="https://www.slavevoyages.org/"><em>Slave Voyages</em> project</a>. This dataset was filtered to include only North American disembarkation locations and to include data about the percentage of men, women, and children on the voyages. Some column names have been altered or modified.</p>
+</div>
+<div class="section" id="required-reading">
+<h1>Required Reading<a class="headerlink" href="#required-reading" title="Permalink to this headline">¶</a></h1>
+<p>Before beginning this homework assignment, read through the short <a class="reference external" href="https://www.slavevoyages.org/american/about">“Introduction”</a> to the Intra-American Slave Trade Database as well as the post <a class="reference external" href="https://www.slavevoyages.org/voyage/essays">“Voyages and Applied History”</a>. You will return to answer some questions about these readings at the end of the assignment.</p>
+</div>
+<div class="section" id="import-pandas">
+<h1>Import Pandas<a class="headerlink" href="#import-pandas" title="Permalink to this headline">¶</a></h1>
+<p><strong>1.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="read-in-csv-file">
+<h1>Read in CSV File<a class="headerlink" href="#read-in-csv-file" title="Permalink to this headline">¶</a></h1>
+<p><strong>2.</strong></p>
+<p>Make a dataframe called <code class="docutils literal notranslate"><span class="pre">slave_intra_american_df</span></code> and read in the CSV file “Slave-Voyages-Intra-American-North-America.csv”. Note that the rows in this CSV file are separated by tabs <code class="docutils literal notranslate"><span class="pre">\t</span></code>, not commas. They will thus require a different delimiter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="display-the-data">
+<h1>Display the Data<a class="headerlink" href="#display-the-data" title="Permalink to this headline">¶</a></h1>
+<p><strong>3.</strong></p>
+<p>Display the first 15 rows of the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>voyage_id</th>
+      <th>vessel_name</th>
+      <th>flag</th>
+      <th>place_of_slave_purchase</th>
+      <th>place_of_slave_disembarkation</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>year_of_arrival</th>
+      <th>percent_men</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>captain's_name</th>
+      <th>resistance_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100026</td>
+      <td>Desire</td>
+      <td>Great Britain</td>
+      <td>Providence Island</td>
+      <td>Boston</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1638</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pierce, William</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100027</td>
+      <td>Rebecca</td>
+      <td>Great Britain</td>
+      <td>Jamaica, port unspecified</td>
+      <td>Boston</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1706</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pitts, John</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100028</td>
+      <td>Dolphin</td>
+      <td>Great Britain</td>
+      <td>St. Kitts, port unspecified</td>
+      <td>Boston</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1726</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Millekin, Benjamin</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100029</td>
+      <td>Orange Tree</td>
+      <td>Great Britain</td>
+      <td>Speightstown</td>
+      <td>Boston</td>
+      <td>21</td>
+      <td>20</td>
+      <td>1733</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sheffield, John</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100031</td>
+      <td>Saint Anthoni</td>
+      <td>Spain / Uruguay</td>
+      <td>Jamaica, port unspecified</td>
+      <td>New York</td>
+      <td>44</td>
+      <td>44</td>
+      <td>1652</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Peres, Silvester</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>100032</td>
+      <td>Spera Mundi</td>
+      <td>Netherlands</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>5</td>
+      <td>4</td>
+      <td>1659</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pietersen, Jan</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>100033</td>
+      <td>Musch [Sparrow}</td>
+      <td>Netherlands</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>40</td>
+      <td>40</td>
+      <td>1664</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pietersen Groot, Jan</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>100034</td>
+      <td>Gideon</td>
+      <td>Netherlands</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>300</td>
+      <td>291</td>
+      <td>1664</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Gilde, Simon Cornelissen</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>100035</td>
+      <td>Berry</td>
+      <td>Great Britain</td>
+      <td>Jamaica, port unspecified</td>
+      <td>New York</td>
+      <td>48</td>
+      <td>46</td>
+      <td>1711</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Scott, Walter</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>100036</td>
+      <td></td>
+      <td>Great Britain</td>
+      <td>Jamaica, port unspecified</td>
+      <td>New York</td>
+      <td>92</td>
+      <td>90</td>
+      <td>1714</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Vial, Nathaniel</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>100037</td>
+      <td>William and Mary</td>
+      <td>Great Britain</td>
+      <td>Barbados, port unspecified</td>
+      <td>Delaware River</td>
+      <td>4</td>
+      <td>3</td>
+      <td>1761</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>0.666667</td>
+      <td>Nicholson, George</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>100039</td>
+      <td>Molly</td>
+      <td>Great Britain</td>
+      <td>Barbados, port unspecified</td>
+      <td>Charleston</td>
+      <td>100</td>
+      <td>100</td>
+      <td>1752</td>
+      <td>0.480000</td>
+      <td>0.2</td>
+      <td>0.320000</td>
+      <td>Watts, Richard</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>100040</td>
+      <td>Molly</td>
+      <td>Great Britain</td>
+      <td>Barbados, port unspecified</td>
+      <td>Charleston</td>
+      <td>12</td>
+      <td>11</td>
+      <td>1753</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Watts</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>100044</td>
+      <td>Nancy</td>
+      <td>Great Britain</td>
+      <td>Kingston</td>
+      <td>South Carolina, port unspecified</td>
+      <td>11</td>
+      <td>11</td>
+      <td>1765</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Jardine, William</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>100045</td>
+      <td>Vulcan</td>
+      <td>Great Britain</td>
+      <td>Kingston</td>
+      <td>South Carolina, port unspecified</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1765</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Barger, Nicholas</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Look at a random sample of 7 rows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>voyage_id</th>
+      <th>vessel_name</th>
+      <th>flag</th>
+      <th>place_of_slave_purchase</th>
+      <th>place_of_slave_disembarkation</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>year_of_arrival</th>
+      <th>percent_men</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>captain's_name</th>
+      <th>resistance_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2275</th>
+      <td>106673</td>
+      <td>Sally</td>
+      <td>U.S.A.</td>
+      <td>Jamaica, port unspecified</td>
+      <td>Brunswick</td>
+      <td>6</td>
+      <td>5</td>
+      <td>1786</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Jocelin, Amaziah</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3039</th>
+      <td>107520</td>
+      <td>Wheel of Fortune</td>
+      <td>Great Britain</td>
+      <td>Rhode Island, port unspecified</td>
+      <td>New York</td>
+      <td>3</td>
+      <td>2</td>
+      <td>1725</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Bush, Jesper</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1258</th>
+      <td>101312</td>
+      <td>Ann</td>
+      <td>Great Britain</td>
+      <td>Barbados, port unspecified</td>
+      <td>Hampton</td>
+      <td>19</td>
+      <td>18</td>
+      <td>1749</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Miller, Mason</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1886</th>
+      <td>103963</td>
+      <td></td>
+      <td>Great Britain</td>
+      <td>Americas, port unspecified</td>
+      <td>Cecil County</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1701</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>Gray, Thomas</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2687</th>
+      <td>107149</td>
+      <td>Hope</td>
+      <td>Great Britain</td>
+      <td>Jamaica, port unspecified</td>
+      <td>Perth Amboy</td>
+      <td>33</td>
+      <td>32</td>
+      <td>1734</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Bedford, John</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>100117</td>
+      <td>Palmer</td>
+      <td>Great Britain</td>
+      <td>Jamaica, port unspecified</td>
+      <td>Charleston</td>
+      <td>7</td>
+      <td>6</td>
+      <td>1727</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Palmer, Robert</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3366</th>
+      <td>107851</td>
+      <td>Hester</td>
+      <td>Great Britain</td>
+      <td>St. Thomas</td>
+      <td>New York</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1737</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Garretson, Nicholas</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="examine-the-data">
+<h1>Examine the Data<a class="headerlink" href="#examine-the-data" title="Permalink to this headline">¶</a></h1>
+<p><strong>4.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3575, 13)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>How many rows does this dataset include?</strong></p>
+<p><strong>#</strong> Type Your Answer Here</p>
+<p>Check the data types of the columns in your dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>voyage_id                          int64
+vessel_name                       object
+flag                              object
+place_of_slave_purchase           object
+place_of_slave_disembarkation     object
+total_embarked                     int64
+total_disembarked                  int64
+year_of_arrival                    int64
+percent_men                      float64
+percent_women                    float64
+percent_children                 float64
+captain&#39;s_name                    object
+resistance_label                  object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rename-column">
+<h1>Rename Column<a class="headerlink" href="#rename-column" title="Permalink to this headline">¶</a></h1>
+<p><strong>5.</strong></p>
+<p>Rename the “flag” column as “national_affiliation.” Don’t forget to assign it to your original <code class="docutils literal notranslate"><span class="pre">slave_intra_american_df</span></code> dataframe so that the renamed column is saved. Display the first 5 rows of the <code class="docutils literal notranslate"><span class="pre">slave_intra_american_df</span></code> to check your work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>voyage_id</th>
+      <th>vessel_name</th>
+      <th>national_affiliation</th>
+      <th>place_of_slave_purchase</th>
+      <th>place_of_slave_disembarkation</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>year_of_arrival</th>
+      <th>percent_men</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>captain's_name</th>
+      <th>resistance_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100026</td>
+      <td>Desire</td>
+      <td>Great Britain</td>
+      <td>Providence Island</td>
+      <td>Boston</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1638</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pierce, William</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100027</td>
+      <td>Rebecca</td>
+      <td>Great Britain</td>
+      <td>Jamaica, port unspecified</td>
+      <td>Boston</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1706</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pitts, John</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100028</td>
+      <td>Dolphin</td>
+      <td>Great Britain</td>
+      <td>St. Kitts, port unspecified</td>
+      <td>Boston</td>
+      <td>8</td>
+      <td>7</td>
+      <td>1726</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Millekin, Benjamin</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100029</td>
+      <td>Orange Tree</td>
+      <td>Great Britain</td>
+      <td>Speightstown</td>
+      <td>Boston</td>
+      <td>21</td>
+      <td>20</td>
+      <td>1733</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sheffield, John</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100031</td>
+      <td>Saint Anthoni</td>
+      <td>Spain / Uruguay</td>
+      <td>Jamaica, port unspecified</td>
+      <td>New York</td>
+      <td>44</td>
+      <td>44</td>
+      <td>1652</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Peres, Silvester</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="select-and-count-columns">
+<h1>Select and Count Columns<a class="headerlink" href="#select-and-count-columns" title="Permalink to this headline">¶</a></h1>
+<p><strong>6.</strong></p>
+<p>Select and display the column “place_of_slave_disembarkation”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0            Boston
+1            Boston
+2            Boston
+3            Boston
+4          New York
+           ...     
+3570    New Orleans
+3571    New Orleans
+3572    New Orleans
+3573    New Orleans
+3574     Charleston
+Name: place_of_slave_disembarkation, Length: 3575, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>7.</strong></p>
+<p>Count the values in the column “place_of_slave_disembarkation”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Charleston                          875
+New York                            664
+Hampton                             334
+Savannah                            182
+Lower James River                   149
+Virginia, port unspecified          145
+New Orleans                         135
+North Carolina, port unspecified    126
+Philadelphia                        102
+South Carolina, port unspecified     90
+Upper James River                    75
+York River                           68
+Annapolis                            60
+Brunswick                            53
+Georgia, port unspecified            51
+Rappahannock                         43
+Cecil County                         42
+Patuxent                             36
+Maryland, port unspecified           29
+Louisiana                            27
+Perth Amboy                          26
+Boston                               26
+Oxford                               25
+Roanoke                              22
+St. Augustine                        21
+Sunbury                              16
+Potomac river                        15
+Mississippi                          15
+New Bern                             13
+Cape Fear                            11
+North Potomac                        10
+Beaufort                              9
+New London                            8
+Florida, port unspecified             7
+South Potomac                         7
+Pensacola                             7
+Georgetown                            7
+Pocomoke                              7
+Providence                            6
+Piscataqua                            6
+Accomac                               4
+Halifax                               3
+Carolinas                             3
+Mobile                                2
+USA, location unspecified             2
+Kittery Point                         1
+Newfoundland                          1
+Pennsylvania, port unspecified        1
+Amelia Island                         1
+Wilmington                            1
+Delaware River                        1
+Choptank                              1
+Nova Scotia                           1
+St. Mary&#39;s River                      1
+Rhode Island, port unspecified        1
+Pamunkey                              1
+Name: place_of_slave_disembarkation, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="filter-data">
+<h1>Filter Data<a class="headerlink" href="#filter-data" title="Permalink to this headline">¶</a></h1>
+<p><strong>8.</strong></p>
+<p>Filter the dataset and display only the rows that included “New York” as their “place_of_slave_disembarkation”. Save this data into a new variable called <code class="docutils literal notranslate"><span class="pre">new_york</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>voyage_id</th>
+      <th>vessel_name</th>
+      <th>national_affiliation</th>
+      <th>place_of_slave_purchase</th>
+      <th>place_of_slave_disembarkation</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>year_of_arrival</th>
+      <th>percent_men</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>captain's_name</th>
+      <th>resistance_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>100031</td>
+      <td>Saint Anthoni</td>
+      <td>Spain / Uruguay</td>
+      <td>Jamaica, port unspecified</td>
+      <td>New York</td>
+      <td>44</td>
+      <td>44</td>
+      <td>1652</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Peres, Silvester</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>100032</td>
+      <td>Spera Mundi</td>
+      <td>Netherlands</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>5</td>
+      <td>4</td>
+      <td>1659</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pietersen, Jan</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>100033</td>
+      <td>Musch [Sparrow}</td>
+      <td>Netherlands</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>40</td>
+      <td>40</td>
+      <td>1664</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pietersen Groot, Jan</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>100034</td>
+      <td>Gideon</td>
+      <td>Netherlands</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>300</td>
+      <td>291</td>
+      <td>1664</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Gilde, Simon Cornelissen</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>100035</td>
+      <td>Berry</td>
+      <td>Great Britain</td>
+      <td>Jamaica, port unspecified</td>
+      <td>New York</td>
+      <td>48</td>
+      <td>46</td>
+      <td>1711</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Scott, Walter</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3501</th>
+      <td>111475</td>
+      <td>Speedwell</td>
+      <td>NaN</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1741</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Bayer, Samuel</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3502</th>
+      <td>111608</td>
+      <td>Don Charlos</td>
+      <td>NaN</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1745</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>Kip, Abraham</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3503</th>
+      <td>111628</td>
+      <td>Jamaica Packet</td>
+      <td>NaN</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1746</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Righton, James</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3504</th>
+      <td>111773</td>
+      <td>Ranger</td>
+      <td>NaN</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1755</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Bethel, Benjamin</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3505</th>
+      <td>111935</td>
+      <td></td>
+      <td>NaN</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>3</td>
+      <td>2</td>
+      <td>1766</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>664 rows × 13 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sort-data">
+<h1>Sort Data<a class="headerlink" href="#sort-data" title="Permalink to this headline">¶</a></h1>
+<p><strong>9.</strong></p>
+<p>Sort your smaller <code class="docutils literal notranslate"><span class="pre">new_york</span></code> dataframe by the “year_of_arrival”, from the latest date to the earliest date</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>voyage_id</th>
+      <th>vessel_name</th>
+      <th>national_affiliation</th>
+      <th>place_of_slave_purchase</th>
+      <th>place_of_slave_disembarkation</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>year_of_arrival</th>
+      <th>percent_men</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>captain's_name</th>
+      <th>resistance_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3505</th>
+      <td>111935</td>
+      <td></td>
+      <td>NaN</td>
+      <td>Curacao</td>
+      <td>New York</td>
+      <td>3</td>
+      <td>2</td>
+      <td>1766</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3470</th>
+      <td>107956</td>
+      <td>Abraham</td>
+      <td>Great Britain</td>
+      <td>Barbados, port unspecified</td>
+      <td>New York</td>
+      <td>9</td>
+      <td>8</td>
+      <td>1764</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Henderson, John</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3469</th>
+      <td>107955</td>
+      <td>Hawk</td>
+      <td>Great Britain</td>
+      <td>Barbados, port unspecified</td>
+      <td>New York</td>
+      <td>6</td>
+      <td>5</td>
+      <td>1763</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Jenkins, Charles</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3468</th>
+      <td>107954</td>
+      <td>General Monckton</td>
+      <td>Great Britain</td>
+      <td>Montserrat, port unspecified</td>
+      <td>New York</td>
+      <td>5</td>
+      <td>4</td>
+      <td>1763</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Campbell, Andrew</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2726</th>
+      <td>107193</td>
+      <td>Stamford</td>
+      <td>Great Britain</td>
+      <td>Boston</td>
+      <td>New York</td>
+      <td>6</td>
+      <td>6</td>
+      <td>1762</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Wimble, William</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100031</td>
+      <td>Saint Anthoni</td>
+      <td>Spain / Uruguay</td>
+      <td>Jamaica, port unspecified</td>
+      <td>New York</td>
+      <td>44</td>
+      <td>44</td>
+      <td>1652</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Peres, Silvester</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3229</th>
+      <td>107713</td>
+      <td>Tamandare</td>
+      <td>Netherlands</td>
+      <td>Brazil, port unspecified</td>
+      <td>New York</td>
+      <td>13</td>
+      <td>12</td>
+      <td>1646</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3471</th>
+      <td>107958</td>
+      <td>La Garce</td>
+      <td>France</td>
+      <td>Americas, port unspecified</td>
+      <td>New York</td>
+      <td>59</td>
+      <td>57</td>
+      <td>1642</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3230</th>
+      <td>107714</td>
+      <td></td>
+      <td>Great Britain</td>
+      <td>Prize (unknown place)</td>
+      <td>New York</td>
+      <td>4</td>
+      <td>3</td>
+      <td>1636</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Ax, [Samuel?]</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3495</th>
+      <td>107994</td>
+      <td>Bruynvisch</td>
+      <td>Netherlands</td>
+      <td>Pernambuco, port unspecified</td>
+      <td>New York</td>
+      <td>52</td>
+      <td>50</td>
+      <td>1630</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>664 rows × 13 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="groupby-and-plot">
+<h1>Groupby and Plot<a class="headerlink" href="#groupby-and-plot" title="Permalink to this headline">¶</a></h1>
+<p><strong>10.</strong></p>
+<p>Calculate how many enslaved people were transported by each nation. Group your <code class="docutils literal notranslate"><span class="pre">new_york</span></code> dataframe by “national_affiliation” and then calculate the sum of “total_disembarked”. Then save this data into a variable called <code class="docutils literal notranslate"><span class="pre">national_totals</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>national_affiliation
+France               57
+Great Britain      3486
+Netherlands         397
+Spain / Uruguay      44
+Name: total_disembarked, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>11.</strong></p>
+<p>Make a bar chart out of the <code class="docutils literal notranslate"><span class="pre">national_totals</span></code> data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1226c2890&gt;
+</pre></div>
+</div>
+<img alt="../_images/HW-4-Pandas_56_1.png" src="../_images/HW-4-Pandas_56_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="think-intentionally-with-the-data">
+<h1>Think Intentionally With The Data<a class="headerlink" href="#think-intentionally-with-the-data" title="Permalink to this headline">¶</a></h1>
+<p><strong>12.</strong></p>
+<p>Re-read or re-skim the short <a class="reference external" href="https://www.slavevoyages.org/american/about">“Introduction”</a> to the Intra-American Slave Trade Database as well as the post <a class="reference external" href="https://www.slavevoyages.org/voyage/essays">“Voyages and Applied History”</a>. Drawing on these readings and your experience working with the data above, write a 100-word response about how you or another researcher might use this data <em>intentionally</em> — in a way that resists the dehumanizing quantification that created it in the first place and contributes to efforts toward justice.</p>
+<p><strong>#</strong> Type Your 100-Word Response Here</p>
+<p>…</p>
+<p>…</p>
+<p>…</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./COURSE-Homework"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://melaniewalsh.org/">Melanie Walsh</a><br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <div>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a>. The code is licensed under a <a href="https://choosealicense.com/licenses/gpl-3.0/#">GNU General Public License v3.0</a>.
+</div>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-86905362-3', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

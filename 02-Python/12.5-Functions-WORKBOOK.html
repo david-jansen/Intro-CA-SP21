@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Functions &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    <title>Functions — Workbook &#8212; Introduction to Cultural Analytics &amp; Python</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -56,22 +56,20 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/02-Python/12-Functions.html" />
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/02-Python/12.5-Functions-WORKBOOK.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Common Python Errors" href="13-Common-Python-Errors.html" />
-    <link rel="prev" title="Dictionaries" href="11-Dictionaries.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
-<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/02-Python/12-Functions.html" />
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/02-Python/12.5-Functions-WORKBOOK.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Functions" />
-<meta property="og:description" content="Functions  Note: You can explore the associated workbook for this chapter in the cloud.  A function is way of bundling up code to perform specific tasks. It’s k" />
+<meta property="og:title"       content="Functions — Workbook" />
+<meta property="og:description" content="Functions — Workbook  A function is way of bundling up code to perform specific tasks. It’s kind of like making a little Python wind-up toy that runs on command" />
 <meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
 
 <meta name="twitter:card" content="summary" />
@@ -134,17 +132,17 @@
   The Book
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Command-Line/01-The-Command-Line.html">
    1. The Command Line
   </a>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="00-Python.html">
    2. Python Basics
   </a>
-  <ul class="current collapse-ul">
+  <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="01-Installation.html">
      Installation
@@ -200,8 +198,8 @@
      Dictionaries
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-Functions.html">
      Functions
     </a>
    </li>
@@ -505,7 +503,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/02-Python/12-Functions.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/02-Python/12.5-Functions-WORKBOOK.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -525,7 +523,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F02-Python/12-Functions.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F02-Python/12.5-Functions-WORKBOOK.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -546,7 +544,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/02-Python/12-Functions.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/02-Python/12.5-Functions-WORKBOOK.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -579,23 +577,18 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-parameters-arguments">
-   Add Parameters/Arguments
+  <a class="reference internal nav-link" href="#exercise-1-fahrenheit-calculator">
+   Exercise 1 — Fahrenheit Calculator
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#keyword-arguments">
-   Keyword Arguments
+  <a class="reference internal nav-link" href="#exercise-2-is-it-warm-outside-calculator">
+   Exercise 2 — Is It Warm Outside? Calculator
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#return-values">
-   Return Values
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#your-turn">
-   Your Turn!
+  <a class="reference internal nav-link" href="#exercise-3-chinese-zodiac-calculator">
+   Exercise 3 — Chinese Zodiac Calculator
   </a>
  </li>
 </ul>
@@ -609,53 +602,51 @@
         
               <div>
                 
-  <div class="section" id="functions">
-<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
-<p><em>Note: You can explore the <a class="reference external" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/02-Python/12.5-Functions-WORKBOOK.ipynb">associated workbook</a> for this chapter in the cloud.</em></p>
+  <div class="section" id="functions-workbook">
+<h1>Functions — Workbook<a class="headerlink" href="#functions-workbook" title="Permalink to this headline">¶</a></h1>
 <p>A <em>function</em> is way of bundling up code to perform specific tasks. It’s kind of like making a little Python wind-up toy that runs on command.</p>
-<img alt="https://www.tintoyarcade.com/image/cache/data/product/Images_5100_5199/TTA5100-Penguin-Windup-01-1000x1000.jpg" class="center" src="https://www.tintoyarcade.com/image/cache/data/product/Images_5100_5199/TTA5100-Penguin-Windup-01-1000x1000.jpg" />
-<p>Functions are useful because they can help make your code more organized and save you from repetition. If you have to do some task over and over again, you don’t want to write out the same code over and over again from scratch.</p>
 <p>We’ve encountered built-in Python functions many times already, including:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">print()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">len()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">type()</span></code></p></li>
 </ul>
-<p>These functions contain bundled up code that perform specific tasks whenever we call them.</p>
 <div class="section" id="define-a-function">
 <h2>Define a Function<a class="headerlink" href="#define-a-function" title="Permalink to this headline">¶</a></h2>
 <p>To make your own function, you use the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code>, short for <em>define</em>, followed by your desired name for the function, parentheses (<code class="docutils literal notranslate"><span class="pre">()</span></code>) and a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>).</p>
-<p>Then, on the following lines, you indent one tab over and write some code that you want your function to perform.</p>
+<p>Finally, you complete the function with a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sing_beyonce_lyrics</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Okay, okay, ladies, now let&#39;s get in formation, &#39;cause I slay&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Okay, ladies, now let&#39;s get in formation, &#39;cause I slay&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prove to me you got some coordination, &#39;cause I slay&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Slay trick, or you get eliminated&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sing_a_song</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ok ladies now let&#39;s get in formation 🎵&quot;</span><span class="p">)</span>
     <span class="k">return</span> 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Finally, you complete the function with a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. Sometimes you will want to <code class="docutils literal notranslate"><span class="pre">return</span></code> a specific value but here we’re not returning anything.</p>
-<p>If you don’t indent the line following the definition of the function, you will get an error. Behold the importance of the indent:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sing_beyonce_lyrics</span><span class="p">():</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Okay, okay, ladies, now let&#39;s get in formation, &#39;cause I slay&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Okay, ladies, now let&#39;s get in formation, &#39;cause I slay&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prove to me you got some coordination, &#39;cause I slay&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Slay trick, or you get eliminated&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sing_happy_birthday</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Happy Birthday dear </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-44-84eb5910ae83&gt;&quot;</span><span class="gt">, line </span><span class="mi">2</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Okay, okay, ladies, now let&#39;s get in formation, &#39;cause I slay&quot;</span><span class="p">)</span>
-        <span class="o">^</span>
-<span class="ne">IndentationError</span>: expected an indented block
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_year</span><span class="p">(</span><span class="n">album_release</span><span class="p">):</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">album_release</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">year</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dog_years_age</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
+    <span class="n">dog_age</span> <span class="o">=</span> <span class="n">age</span> <span class="o">*</span> <span class="mi">7</span>
+    <span class="k">return</span> <span class="n">dog_age</span>
 </pre></div>
 </div>
 </div>
@@ -666,271 +657,181 @@
 <p>To use or “call” a function, you simply type the name of the function with parentheses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_beyonce_lyrics</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_a_song</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_happy_birthday</span><span class="p">(</span><span class="s2">&quot;Beyonce&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_year</span><span class="p">(</span><span class="s2">&quot;Released October 25, 2007 &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_year</span><span class="p">(</span><span class="s2">&quot;Released June 17, 2016&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dog_years_age</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-1-fahrenheit-calculator">
+<h2>Exercise 1 — Fahrenheit Calculator<a class="headerlink" href="#exercise-1-fahrenheit-calculator" title="Permalink to this headline">¶</a></h2>
+<p>In 2018, there was a <a class="reference external" href="https://en.wikipedia.org/wiki/2018_British_Isles_heat_wave">heat wave</a> in Scotland and Northern Ireland. Temperatures rose above 30 degrees Celsius. You want to know…is that a lot?</p>
+<p><img alt="" src="https://i.pinimg.com/originals/62/9c/24/629c24707ded09d6fbe294e5de9e73a3.gif" /></p>
+<p>To convert Celsius to Fahrenheit, you can use the following formula:</p>
+<p><code class="docutils literal notranslate"><span class="pre">(0°C</span> <span class="pre">×</span> <span class="pre">9/5)</span> <span class="pre">+</span> <span class="pre">32</span> <span class="pre">=</span> <span class="pre">32°F</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">celsius</span> <span class="o">=</span> <span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Okay, okay, ladies, now let&#39;s get in formation, &#39;cause I slay
-Okay, ladies, now let&#39;s get in formation, &#39;cause I slay
-Prove to me you got some coordination, &#39;cause I slay
-Slay trick, or you get eliminated
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>86.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make a function called <code class="docutils literal notranslate"><span class="pre">make_fahrenheit()</span></code> that will take in any temperature in Celsius and return the converted temperature in degrees Fahrenheit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_fahrenheit</span><span class="o">...</span><span class="c1">#Your Code Here 👇</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sing_happy_birthday</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday dear human life form&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="k">return</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_fahrenheit</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A few weeks ago, the UK experienced a <a class="reference external" href="https://www.independent.co.uk/news/uk/home-news/uk-weather-rain-wind-snow-ice-freezing-b1802005.html">cold snap</a>. Temperatures plummeted to -8 degrees Celsius. You want to know: uhhh, is that a little?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_fahrenheit</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-2-is-it-warm-outside-calculator">
+<h2>Exercise 2 — Is It Warm Outside? Calculator<a class="headerlink" href="#exercise-2-is-it-warm-outside-calculator" title="Permalink to this headline">¶</a></h2>
+<p>Let’s make a new function <code class="docutils literal notranslate"><span class="pre">is_it_warm()</span></code> that builds on our <code class="docutils literal notranslate"><span class="pre">make_fahrenheit()</span></code> function. This function will convert Celsius to Fahrenehit but it will also print out a statement about whether it is warm outside.</p>
+<p>Of course, what one person thinks is warm will be different from what another person thinks is warm. So this function will take in 2 arguments: the temperature in Celsius and the threshold for what is considered a warm temperature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_it_warm</span><span class="p">(</span><span class="c1">#Your Code here</span>
+    <span class="c1">#Your code here</span>
+    <span class="c1">#Your code here</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The temperature is </span><span class="si">{</span><span class="n">converted_temp</span><span class="si">}</span><span class="s2">°F. Thus, it is warm outside.&quot;</span><span class="p">)</span>
+    <span class="c1">#Your Code Here</span>
+        <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_happy_birthday</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_it_warm</span><span class="p">(</span><span class="n">celsius_temp</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">my_threshold</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Happy Birthday to you
-Happy Birthday to you
-Happy Birthday dear human life form
-Happy Birthday to you
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature is 50.0°F. Thus, it is NOT warm outside.
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="add-parameters-arguments">
-<h2>Add Parameters/Arguments<a class="headerlink" href="#add-parameters-arguments" title="Permalink to this headline">¶</a></h2>
-<p>You can add “parameters” to your functions—or values that are required by your function—by putting parameter names inside the parentheses.</p>
-<p>For example, if we want to personalize our birthday song function to include a specific person’s name, we can add the parameter <code class="docutils literal notranslate"><span class="pre">personalized_name</span></code> inside the parentheses, which will require a personalized name to be passed to the function. The thing you pass to the function is called an “argument.”</p>
-<ul class="simple">
-<li><p>parameter = <code class="docutils literal notranslate"><span class="pre">personalized_name</span></code> (thing that requires a value for the function)</p></li>
-<li><p>argument = “Beyonce” (actual value passed to function)</p></li>
-</ul>
-<p>Since parameters and arguments are so interrelated, they’re sometimes confused for each other. You can read <a class="reference external" href="https://docs.python.org/3.3/faq/programming.html#faq-argument-vs-parameter">Python’s official distinction here</a>.</p>
+<div class="section" id="exercise-3-chinese-zodiac-calculator">
+<h2>Exercise 3 — Chinese Zodiac Calculator<a class="headerlink" href="#exercise-3-chinese-zodiac-calculator" title="Permalink to this headline">¶</a></h2>
+<p>Make a function called <code class="docutils literal notranslate"><span class="pre">chinese_zodiac()</span></code> that will take in someone’s birth year and then report their corresponding Chinese zodiac. Make sure to run the cell below, which establishes the list of eligible years for each Chinese zodiac sign.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sing_personalized_happy_birthday</span><span class="p">(</span><span class="n">personalized_name</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Happy Birthday dear </span><span class="si">{</span><span class="n">personalized_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="k">return</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rat_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1924</span><span class="p">,</span> <span class="mi">1936</span><span class="p">,</span> <span class="mi">1948</span><span class="p">,</span> <span class="mi">1960</span><span class="p">,</span> <span class="mi">1972</span><span class="p">,</span> <span class="mi">1984</span><span class="p">,</span> <span class="mi">1996</span><span class="p">,</span> <span class="mi">2008</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2032</span><span class="p">]</span>
+<span class="n">ox_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1925</span><span class="p">,</span> <span class="mi">1937</span><span class="p">,</span> <span class="mi">1949</span><span class="p">,</span> <span class="mi">1961</span><span class="p">,</span> <span class="mi">1973</span><span class="p">,</span> <span class="mi">1985</span><span class="p">,</span> <span class="mi">1997</span><span class="p">,</span> <span class="mi">2009</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">2033</span><span class="p">]</span>
+<span class="n">tiger_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1926</span><span class="p">,</span> <span class="mi">1938</span><span class="p">,</span> <span class="mi">1950</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="mi">1974</span><span class="p">,</span> <span class="mi">1986</span><span class="p">,</span> <span class="mi">1998</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">2034</span><span class="p">]</span>
+<span class="n">rabbit_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1927</span><span class="p">,</span> <span class="mi">1939</span><span class="p">,</span> <span class="mi">1951</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="mi">1975</span><span class="p">,</span> <span class="mi">1987</span><span class="p">,</span> <span class="mi">1999</span><span class="p">,</span> <span class="mi">2011</span><span class="p">,</span> <span class="mi">2023</span><span class="p">,</span> <span class="mi">2035</span><span class="p">]</span>
+<span class="n">dragon_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1928</span><span class="p">,</span> <span class="mi">1940</span><span class="p">,</span> <span class="mi">1952</span><span class="p">,</span> <span class="mi">1964</span><span class="p">,</span> <span class="mi">1976</span><span class="p">,</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2012</span><span class="p">,</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">2036</span><span class="p">]</span>
+<span class="n">snake_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1929</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span> <span class="mi">1953</span><span class="p">,</span> <span class="mi">1965</span><span class="p">,</span> <span class="mi">1977</span><span class="p">,</span> <span class="mi">1989</span><span class="p">,</span> <span class="mi">2001</span><span class="p">,</span> <span class="mi">2013</span><span class="p">,</span> <span class="mi">2025</span><span class="p">,</span> <span class="mi">2037</span><span class="p">]</span>
+<span class="n">hrose_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1930</span><span class="p">,</span> <span class="mi">1942</span><span class="p">,</span> <span class="mi">1954</span><span class="p">,</span> <span class="mi">1966</span><span class="p">,</span> <span class="mi">1978</span><span class="p">,</span> <span class="mi">1990</span><span class="p">,</span> <span class="mi">2002</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2026</span><span class="p">,</span> <span class="mi">2038</span><span class="p">]</span>
+<span class="n">sheep_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1931</span><span class="p">,</span> <span class="mi">1943</span><span class="p">,</span> <span class="mi">1955</span><span class="p">,</span> <span class="mi">1967</span><span class="p">,</span> <span class="mi">1979</span><span class="p">,</span> <span class="mi">1991</span><span class="p">,</span> <span class="mi">2003</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2027</span><span class="p">,</span> <span class="mi">2039</span><span class="p">]</span>
+<span class="n">monkey_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1932</span><span class="p">,</span> <span class="mi">1944</span><span class="p">,</span> <span class="mi">1956</span><span class="p">,</span> <span class="mi">1968</span><span class="p">,</span> <span class="mi">1980</span><span class="p">,</span> <span class="mi">1992</span><span class="p">,</span> <span class="mi">2004</span><span class="p">,</span> <span class="mi">2016</span><span class="p">,</span> <span class="mi">2028</span><span class="p">,</span> <span class="mi">2040</span><span class="p">]</span>
+<span class="n">rooster_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1933</span><span class="p">,</span> <span class="mi">1945</span><span class="p">,</span> <span class="mi">1957</span><span class="p">,</span> <span class="mi">1969</span><span class="p">,</span> <span class="mi">1981</span><span class="p">,</span> <span class="mi">1993</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2029</span><span class="p">,</span> <span class="mi">2041</span><span class="p">]</span>
+<span class="n">dog_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1934</span><span class="p">,</span> <span class="mi">1946</span><span class="p">,</span> <span class="mi">1958</span><span class="p">,</span> <span class="mi">1970</span><span class="p">,</span> <span class="mi">1982</span><span class="p">,</span> <span class="mi">1994</span><span class="p">,</span> <span class="mi">2006</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2030</span><span class="p">,</span> <span class="mi">2042</span><span class="p">]</span>
+<span class="n">pig_years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1935</span><span class="p">,</span> <span class="mi">1947</span><span class="p">,</span> <span class="mi">1959</span><span class="p">,</span> <span class="mi">1971</span><span class="p">,</span> <span class="mi">1983</span><span class="p">,</span> <span class="mi">1995</span><span class="p">,</span> <span class="mi">2007</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2031</span><span class="p">,</span> <span class="mi">2043</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We’re using whatever name gets passed to the function inside an f-string: <code class="docutils literal notranslate"><span class="pre">f&quot;Happy</span> <span class="pre">Birthday</span> <span class="pre">dear</span> <span class="pre">{personalized_name}&quot;</span></code></p>
-<p>Once you set a parameter that requires an argument, you have to pass something inside the function for the function to run. So if we run <code class="docutils literal notranslate"><span class="pre">sing_personalized_happy_birthday()</span></code> as we did with <code class="docutils literal notranslate"><span class="pre">sing_happy_birthday()</span></code>, it won’t work.</p>
+<p>🐀 Rat<br />
+🐂 Ox<br />
+🐅 Tiger<br />
+🐇 Rabbit<br />
+🐉 Dragon<br />
+🐍 Snake<br />
+🐎 Horse<br />
+🐑 Sheep / 🐐 Goat / 🐏 Ram<br />
+🐒 Monkey<br />
+🐓 Rooster<br />
+🐕 Dog<br />
+🐖 Pig</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_personalized_happy_birthday</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">chinese_zodiac</span> <span class="c1">#Your Code Here 👇</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chinese_zodiac</span><span class="p">(</span><span class="mi">2008</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-21-c1982126dedb&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sing_personalized_happy_birthday</span><span class="p">()</span>
-
-<span class="ne">TypeError</span>: sing_personalized_happy_birthday() missing 1 required positional argument: &#39;name&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>This error is telling us that we have to pass in a value or “argument.”</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_personalized_happy_birthday</span><span class="p">(</span><span class="s2">&quot;Beyonce&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Happy Birthday to you
-Happy Birthday to you
-Happy Birthday dear Beyonce
-Happy Birthday to you
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>You were born in the year of the Rat 🐀
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_personalized_happy_birthday</span><span class="p">(</span><span class="s2">&quot;Carly Rae Jepsen&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Happy Birthday to you
-Happy Birthday to you
-Happy Birthday dear Carly Rae Jepsen
-Happy Birthday to you
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chinese_zodiac</span><span class="p">(</span><span class="c1">#Enter your birth year!)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_personalized_happy_birthday</span><span class="p">(</span><span class="c1">#Insert Your Name Here)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="keyword-arguments">
-<h2>Keyword Arguments<a class="headerlink" href="#keyword-arguments" title="Permalink to this headline">¶</a></h2>
-<p>There’s another way that you can require arguments in a function, which is with <em>keyword arguments</em>. Before we were using “positional arguments,” where the function automatically knew that “Beyonce” was the <code class="docutils literal notranslate"><span class="pre">personalized_name</span></code> argument simply because “Beyonce” was in the right position. (There was only one argument required, so, duh.)</p>
-<p>But you can also explicitly define your arguments with keyword arguments that use an <code class="docutils literal notranslate"><span class="pre">=</span></code> sign, which can become more useful if you have multiple parameters. This can also be a way of setting default values in your functions.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sing_keyword_happy_birthday</span><span class="p">(</span><span class="n">to_name</span><span class="o">=</span><span class="s1">&#39;Beyonce&#39;</span><span class="p">,</span> <span class="n">from_name</span><span class="o">=</span><span class="s1">&#39;Info 1350&#39;</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Happy Birthday dear </span><span class="si">{</span><span class="n">to_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday to you&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sincerely, </span><span class="se">\n</span><span class="si">{</span><span class="n">from_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">return</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<p>For example, if we don’t pass in any arguments into this function, it will use the default arguments.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_keyword_happy_birthday</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Happy Birthday to you
-Happy Birthday to you
-Happy Birthday dear Beyonce
-Happy Birthday to you
-
-Sincerely, 
-Info 1350
-</pre></div>
-</div>
-</div>
-</div>
-<p>But if we set the keyword arguments to different values—even if we switch the order or position of the arguments!—the function will know which arguments they’re supposed to be.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sing_keyword_happy_birthday</span><span class="p">(</span><span class="n">from_name</span><span class="o">=</span><span class="s2">&quot;Big Bird&quot;</span><span class="p">,</span> <span class="n">to_name</span><span class="o">=</span><span class="s2">&quot;Cookie Monster&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Happy Birthday to you
-Happy Birthday to you
-Happy Birthday dear Cookie Monster
-Happy Birthday to you
-
-Sincerely, 
-Big Bird
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="return-values">
-<h2>Return Values<a class="headerlink" href="#return-values" title="Permalink to this headline">¶</a></h2>
-<p>In all of the examples above, we weren’t returning any specific value, just using <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements. But sometimes you want a specific value out of your function. For example, if we want to make a function that transforms a bit of text into very loud-sounding text, then we’ll want to <code class="docutils literal notranslate"><span class="pre">return</span></code> that loud-sounding text.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_text_shouty</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">shouty_text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">shouty_text</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_text_shouty</span><span class="p">(</span><span class="s2">&quot;I like tacos&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;I LIKE TACOS&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_text_shoutier</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">shouty_text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-    <span class="n">shoutier_text</span> <span class="o">=</span> <span class="n">shouty_text</span> <span class="o">+</span> <span class="s1">&#39;!!!&#39;</span>
-    <span class="k">return</span> <span class="n">shoutier_text</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_text_shoutier</span><span class="p">(</span><span class="s2">&quot;I like tacos&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;I LIKE TACOS!!!&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_dog_years_age</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
-    <span class="n">dog_years_age</span> <span class="o">=</span> <span class="n">age</span> <span class="o">*</span> <span class="mi">7</span>
-    <span class="k">return</span> <span class="n">dog_years_age</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_dog_years_age</span><span class="p">(</span><span class="mi">52</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>364
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="your-turn">
-<h2>Your Turn!<a class="headerlink" href="#your-turn" title="Permalink to this headline">¶</a></h2>
-<p>Make a function called <code class="docutils literal notranslate"><span class="pre">make_text_whispery</span></code> that transforms text to lower case</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Your Code Here</span>
-    <span class="n">whispery_text</span> <span class="o">=</span> <span class="c1">#Your Code Here</span>
-    <span class="k">return</span> <span class="c1">#Your Code Here</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now insert the string “I AM WHISPERING” into <code class="docutils literal notranslate"><span class="pre">make_text_whispery</span></code></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Your Code Here</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;i am whispering&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chinese_zodiac</span><span class="p">(</span><span class="c1">#Enter your partner&#39;s birth year!)</span>
 </pre></div>
 </div>
 </div>
@@ -966,8 +867,6 @@ Big Bird
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="11-Dictionaries.html" title="previous page">Dictionaries</a>
-    <a class='right-next' id="next-link" href="13-Common-Python-Errors.html" title="next page">Common Python Errors</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

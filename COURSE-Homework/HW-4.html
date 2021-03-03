@@ -69,7 +69,7 @@
 <meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/COURSE-Homework/HW-4.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="HW 4 — Build Your Own Word Frequency Counter" />
-<meta property="og:description" content="HW 4 — Build Your Own Word Frequency Counter  Student Name: Your name here&lt;br /&gt; Net ID: Your ID here (Double-click this cell to type)  Assignment Overview  In " />
+<meta property="og:description" content="HW 4 — Build Your Own Word Frequency Counter  Student Name: Your name here&lt;br /&gt; Net ID: Your ID here (Double-click this cell to type)    In this homework assig" />
 <meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
 
 <meta name="twitter:card" content="summary" />
@@ -567,33 +567,8 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assignment-overview">
-   Assignment Overview
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#start-small">
    Start Small
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#build-up">
-   Build Up
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#apply-to-all">
-   Apply to All
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#make-a-string-a-number">
-   Make a String a Number
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#check-the-decades">
-   Check the Decades
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -617,57 +592,114 @@
 <p>Student Name: Your name here<br />
 Net ID: Your ID here
 (Double-click this cell to type)</p>
-<div class="section" id="assignment-overview">
-<h2>Assignment Overview<a class="headerlink" href="#assignment-overview" title="Permalink to this headline">¶</a></h2>
-<p>In this homework assignment, we will be modeling how you might begin to work on a larger data-driven project.</p>
-<p>Imagine that we want to visualize everyone’s favorite musical albums by the decade they were released (such as in the imaginary chart below).</p>
-<p>To make this chart, we would need to know the year that each album was released, and we would need to aggregate the years by decade.</p>
-<p>One method for getting the album release year information would be to programmatically extract this information from the web, such as from Genius.com web pages (pictured below) — in other words, to write a Python script that would automatically extract this information.</p>
-<p><img alt="" src="../_images/Purple-Rain-Prince1.png" /></p>
-<p>Typically, when extracting data from the web, you need to extract whole sections of the web page, such as <code class="docutils literal notranslate"><span class="pre">'Released</span> <span class="pre">June</span> <span class="pre">25,</span> <span class="pre">1984'</span></code> rather than just <code class="docutils literal notranslate"><span class="pre">'1984'</span></code>, which means that we have to do further manipulations with Python in order to get the text in the correct format.</p>
-<p>The rest of this homework assignment picks up at this point in the imagined project. We figured out how to extract a specific section of Genius album web pages, but now we need to clean and manipulate the data to extract the 4-digit years from all of these examples and then categorize them by decade.</p>
-<p>The assignment will slowly build toward the following end goal.</p>
-<p><strong>End goal:</strong> Iterate through the list <code class="docutils literal notranslate"><span class="pre">album_years</span></code>, extract the 4-digit year from each item in the list, and then categorize each year by decade.</p>
+<hr class="docutils" />
+<p>In this homework assignment, you will be building your own word frequency counter function, which will return the top 15 most frequent words in any text file. You will test this word frequency counter on two sample files: F. Scott Fitzgerald’s <em>The Great Gatsby</em> and Trump’s tweets from 2016 to early 2020.</p>
+<p>Your word frequency counter must split the text into individual words, make the words lowercase, remove stopwords, count words by frequency, and then return the top 15 most frequent words.</p>
+<p>This assignment will slowly build toward the following end goal.</p>
+<p><strong>End goal:</strong> Calculate top 15 most frequent words in a text file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">album_years</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Released June 25, 1984&#39;</span><span class="p">,</span> <span class="s1">&#39;Released October 25, 2007 &#39;</span><span class="p">,</span> \
-               <span class="s1">&#39;Released Monday July 21, 2017&#39;</span><span class="p">,</span> <span class="s1">&#39; Released May 18, 2018&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>End goal code structure and output</strong>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Your code here</span>
-    <span class="c1">#Your code here</span>
-    <span class="c1">#Your code here</span>
-    <span class="c1">#Your code here</span>
-        <span class="c1">#Your code here</span>
-    <span class="c1">#Your code here</span>
-        <span class="c1">#Your code here</span>
-    <span class="c1">#Your code here</span>
-        <span class="c1">#Your code here</span>
-    <span class="c1">#Your code here</span>
-        <span class="c1">#Your code here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;The-Yellow-Wallpaper_Charlotte-Perkins-Gilman.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+<span class="n">tokenize_and_count</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1980s
-2000s
-2010s
-2010s
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;john&#39;, 45),
+ (&#39;one&#39;, 33),
+ (&#39;said&#39;, 30),
+ (&#39;would&#39;, 27),
+ (&#39;get&#39;, 24),
+ (&#39;see&#39;, 24),
+ (&#39;room&#39;, 24),
+ (&#39;pattern&#39;, 24),
+ (&#39;paper&#39;, 23),
+ (&#39;like&#39;, 21),
+ (&#39;little&#39;, 20),
+ (&#39;much&#39;, 16),
+ (&#39;good&#39;, 16),
+ (&#39;think&#39;, 16),
+ (&#39;well&#39;, 15)]
 </pre></div>
 </div>
 </div>
 </div>
-<p><em>Note: This assignment will include sample outputs like the one above to demonstrate what your outputs should look like.</em></p>
-</div>
 <div class="section" id="start-small">
 <h2>Start Small<a class="headerlink" href="#start-small" title="Permalink to this headline">¶</a></h2>
-<p>A great way to approach a complicated coding challenge is to start small.</p>
-<p>If our end goal is to extract the 4-digit years from all these examples at the same time —  <code class="docutils literal notranslate"><span class="pre">'Released</span> <span class="pre">June</span> <span class="pre">25,</span> <span class="pre">1984',</span> <span class="pre">'Released</span> <span class="pre">October</span> <span class="pre">25,</span> <span class="pre">2007</span> <span class="pre">',</span> <span class="pre">'Released</span> <span class="pre">Monday</span> <span class="pre">July</span> <span class="pre">21,</span> <span class="pre">2017',</span> <span class="pre">'</span> <span class="pre">Released</span> <span class="pre">May</span> <span class="pre">18,</span> <span class="pre">2018'</span></code> — we might begin by considering just one of these examples.</p>
+<p>Before we tackle an entire novel, we will build up our code by practicing on a single line of text from <em>The Great Gatsby</em>. The first thing we need to do is figure out how to make the text lowercase and split it into individual words.</p>
+<p><strong>1:</strong> Make all the words in <code class="docutils literal notranslate"><span class="pre">first_line</span></code> lowercase and then assign this string to the variable <code class="docutils literal notranslate"><span class="pre">first_line_lowercase</span></code>. (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_line</span> <span class="o">=</span> <span class="s2">&quot;In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since.&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_line_lowercase</span> <span class="o">...</span> <span class="c1">#Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">first_line_lowercase</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>in my younger and more vulnerable years my father gave me some advice that i’ve been turning over in my mind ever since.
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>2:</strong> Now split the string <code class="docutils literal notranslate"><span class="pre">first_line_lowercase</span></code> into a list of individual words (without puncutation) by using the <a class="reference external" href="https://info1350.github.io/Intro-CA-SP21/04-Data-Collection/03-Web-Scraping-Part2.html#regular-expressions">regular expressions</a> <code class="docutils literal notranslate"><span class="pre">re.split()</span></code> method. Then assign this list to the variable <code class="docutils literal notranslate"><span class="pre">split_words</span></code>. (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;\W+&#39;</span><span class="p">,</span> <span class="s2">&quot;This is a sample string; feel free to copy this construction.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;This&#39;,
+ &#39;is&#39;,
+ &#39;a&#39;,
+ &#39;sample&#39;,
+ &#39;string&#39;,
+ &#39;feel&#39;,
+ &#39;free&#39;,
+ &#39;to&#39;,
+ &#39;copy&#39;,
+ &#39;this&#39;,
+ &#39;construction&#39;,
+ &#39;&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_words</span> <span class="o">...</span> <span class="c1">#Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">split_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;in&#39;, &#39;my&#39;, &#39;younger&#39;, &#39;and&#39;, &#39;more&#39;, &#39;vulnerable&#39;, &#39;years&#39;, &#39;my&#39;, &#39;father&#39;, &#39;gave&#39;, &#39;me&#39;, &#39;some&#39;, &#39;advice&#39;, &#39;that&#39;, &#39;i&#39;, &#39;ve&#39;, &#39;been&#39;, &#39;turning&#39;, &#39;over&#39;, &#39;in&#39;, &#39;my&#39;, &#39;mind&#39;, &#39;ever&#39;, &#39;since&#39;, &#39;&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>3:</strong> Next we want to filter out “stopwords” — commonly used words that are removed as a pre-processing step in text analysis that so we can focus on more meaningful words.</p>
+<p>Make a new list called <code class="docutils literal notranslate"><span class="pre">clean_words</span></code> that consists of all the words in <code class="docutils literal notranslate"><span class="pre">split_words</span></code> if they do not appear in the list <code class="docutils literal notranslate"><span class="pre">stopwords</span></code>. (5 points)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="s1">&#39;my&#39;</span><span class="p">,</span> <span class="s1">&#39;myself&#39;</span><span class="p">,</span> <span class="s1">&#39;we&#39;</span><span class="p">,</span> <span class="s1">&#39;our&#39;</span><span class="p">,</span> <span class="s1">&#39;ours&#39;</span><span class="p">,</span> <span class="s1">&#39;ourselves&#39;</span><span class="p">,</span> <span class="s1">&#39;you&#39;</span><span class="p">,</span> <span class="s1">&#39;your&#39;</span><span class="p">,</span> <span class="s1">&#39;yours&#39;</span><span class="p">,</span>
@@ -681,307 +713,145 @@ Net ID: Your ID here
  <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;under&#39;</span><span class="p">,</span> <span class="s1">&#39;again&#39;</span><span class="p">,</span> <span class="s1">&#39;further&#39;</span><span class="p">,</span> <span class="s1">&#39;then&#39;</span><span class="p">,</span> <span class="s1">&#39;once&#39;</span><span class="p">,</span> <span class="s1">&#39;here&#39;</span><span class="p">,</span>
  <span class="s1">&#39;there&#39;</span><span class="p">,</span> <span class="s1">&#39;when&#39;</span><span class="p">,</span> <span class="s1">&#39;where&#39;</span><span class="p">,</span> <span class="s1">&#39;why&#39;</span><span class="p">,</span> <span class="s1">&#39;how&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;any&#39;</span><span class="p">,</span> <span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="s1">&#39;each&#39;</span><span class="p">,</span> <span class="s1">&#39;few&#39;</span><span class="p">,</span> <span class="s1">&#39;more&#39;</span><span class="p">,</span>
  <span class="s1">&#39;most&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="s1">&#39;some&#39;</span><span class="p">,</span> <span class="s1">&#39;such&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;nor&#39;</span><span class="p">,</span> <span class="s1">&#39;not&#39;</span><span class="p">,</span> <span class="s1">&#39;only&#39;</span><span class="p">,</span> <span class="s1">&#39;own&#39;</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="s1">&#39;so&#39;</span><span class="p">,</span>
- <span class="s1">&#39;than&#39;</span><span class="p">,</span> <span class="s1">&#39;too&#39;</span><span class="p">,</span> <span class="s1">&#39;very&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;will&#39;</span><span class="p">,</span> <span class="s1">&#39;just&#39;</span><span class="p">,</span> <span class="s1">&#39;don&#39;</span><span class="p">,</span> <span class="s1">&#39;should&#39;</span><span class="p">,</span> <span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="s1">&#39;ll&#39;</span><span class="p">,</span> <span class="s1">&#39;amp&#39;</span><span class="p">]</span>
+ <span class="s1">&#39;than&#39;</span><span class="p">,</span> <span class="s1">&#39;too&#39;</span><span class="p">,</span> <span class="s1">&#39;very&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;will&#39;</span><span class="p">,</span> <span class="s1">&#39;just&#39;</span><span class="p">,</span> <span class="s1">&#39;don&#39;</span><span class="p">,</span> <span class="s1">&#39;should&#39;</span><span class="p">,</span> <span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="s1">&#39;ll&#39;</span><span class="p">,</span> <span class="s1">&#39;amp&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gatsby</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;In my younger and more vulnerable years my father gave me some advice</span>
-<span class="s2">that I’ve been turning over in my mind ever since.</span>
-
-<span class="s2">“Whenever you feel like criticizing anyone,” he told me, “just</span>
-<span class="s2">remember that all the people in this world haven’t had the advantages</span>
-<span class="s2">that you’ve had.”</span>
-
-<span class="s2">He didn’t say any more, but we’ve always been unusually communicative</span>
-<span class="s2">in a reserved way, and I understood that he meant a great deal more</span>
-<span class="s2">than that.&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_words</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+        <span class="c1">#Your Code Here</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;\W+&quot;</span><span class="p">,</span> <span class="n">gatsby</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">clean_words</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;In&#39;,
- &#39;my&#39;,
- &#39;younger&#39;,
- &#39;and&#39;,
- &#39;more&#39;,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;younger&#39;, &#39;vulnerable&#39;, &#39;years&#39;, &#39;father&#39;, &#39;gave&#39;, &#39;advice&#39;, &#39;turning&#39;, &#39;mind&#39;, &#39;ever&#39;, &#39;since&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>4:</strong> Let’s bundle the first three questions together into a single function called <code class="docutils literal notranslate"><span class="pre">tokenize</span></code>. This is a vocabulary term in text analysis that means to split text into individual units or “tokens.”</p>
+<p>Write a function called <code class="docutils literal notranslate"><span class="pre">tokenize()</span></code> that takes in any string, makes the string lowercase, splits the string into individual words (without puncutation), removes any stopwords, and finally returns the remaining words. (6 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">any_text</span><span class="p">):</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+        <span class="c1">#Your Code Here</span>
+            <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenize</span><span class="p">(</span><span class="n">first_line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;younger&#39;,
  &#39;vulnerable&#39;,
  &#39;years&#39;,
- &#39;my&#39;,
  &#39;father&#39;,
  &#39;gave&#39;,
- &#39;me&#39;,
- &#39;some&#39;,
  &#39;advice&#39;,
- &#39;that&#39;,
- &#39;I&#39;,
- &#39;ve&#39;,
- &#39;been&#39;,
  &#39;turning&#39;,
- &#39;over&#39;,
- &#39;in&#39;,
- &#39;my&#39;,
  &#39;mind&#39;,
  &#39;ever&#39;,
- &#39;since&#39;,
- &#39;Whenever&#39;,
- &#39;you&#39;,
- &#39;feel&#39;,
- &#39;like&#39;,
- &#39;criticizing&#39;,
- &#39;anyone&#39;,
- &#39;he&#39;,
- &#39;told&#39;,
- &#39;me&#39;,
- &#39;just&#39;,
- &#39;remember&#39;,
- &#39;that&#39;,
- &#39;all&#39;,
- &#39;the&#39;,
- &#39;people&#39;,
- &#39;in&#39;,
- &#39;this&#39;,
- &#39;world&#39;,
- &#39;haven&#39;,
- &#39;t&#39;,
- &#39;had&#39;,
- &#39;the&#39;,
- &#39;advantages&#39;,
- &#39;that&#39;,
- &#39;you&#39;,
- &#39;ve&#39;,
- &#39;had&#39;,
- &#39;He&#39;,
- &#39;didn&#39;,
- &#39;t&#39;,
- &#39;say&#39;,
- &#39;any&#39;,
- &#39;more&#39;,
- &#39;but&#39;,
- &#39;we&#39;,
- &#39;ve&#39;,
- &#39;always&#39;,
- &#39;been&#39;,
- &#39;unusually&#39;,
- &#39;communicative&#39;,
- &#39;in&#39;,
- &#39;a&#39;,
- &#39;reserved&#39;,
- &#39;way&#39;,
- &#39;and&#39;,
- &#39;I&#39;,
- &#39;understood&#39;,
- &#39;that&#39;,
- &#39;he&#39;,
- &#39;meant&#39;,
- &#39;a&#39;,
- &#39;great&#39;,
- &#39;deal&#39;,
- &#39;more&#39;,
- &#39;than&#39;,
- &#39;that&#39;,
- &#39;&#39;]
+ &#39;since&#39;]
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>1.</strong> Print out the words in the string but only if they do not appear in the list <code class="docutils literal notranslate"><span class="pre">stopwords</span></code>.</p>
-<p>(2 points)</p>
+<p><strong>4:</strong> Let’s add one more wrinkle to the previous function before we run it on <em>The Great Gatsby</em>.</p>
+<p>Make a function called <code class="docutils literal notranslate"><span class="pre">tokenize_and_count()</span></code> that tokenizes the words in any string (lowercases, splits, removes stopwrods) and then prints out the top 15 most frequent words. See below for a refresher on the <code class="docutils literal notranslate"><span class="pre">Counter</span></code> function. (5 points)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purple_rain</span> <span class="o">=</span> <span class="s2">&quot;June 25, 1984&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purple_rain</span><span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;kiwi&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;kumquat&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;kiwi&#39;</span><span class="p">,</span> <span class="s1">&#39;kiwi&#39;</span><span class="p">]</span>
+<span class="n">Counter</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1984&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;kiwi&#39;, 3), (&#39;apple&#39;, 2)]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;\W+&quot;</span><span class="p">,</span> <span class="s2">&quot;I went to the store.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize_and_count</span><span class="p">(</span><span class="n">any_text</span><span class="p">):</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+        <span class="c1">#Your Code Here</span>
+            <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here  </span>
+    <span class="k">return</span> <span class="n">most_frequent_words</span> 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;I&#39;, &#39;went&#39;, &#39;to&#39;, &#39;the&#39;, &#39;store&#39;, &#39;&#39;]
+</div>
+<p><strong>5:</strong> Finally, open and read the file “The-Great-Gatsby_Fitzgerald.txt” and assign to the variable <code class="docutils literal notranslate"><span class="pre">gatsby_text</span></code>. Then print out the top 15 words from <em>The Great Gatsby</em> with your <code class="docutils literal notranslate"><span class="pre">tokenize_and_count()</span></code> function.  (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gatsby_text</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;The-Great-Gatsby_Fitzgerald.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="c1">#Your Code Here</span>
+<span class="n">tokenize_and_count</span><span class="p">(</span><span class="n">gatsby_text</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>6:</strong> Then open and read the file “Trump-Tweets_2016-2020.txt” and assign to the variable <code class="docutils literal notranslate"><span class="pre">trump_text</span></code>. Then print out the top 15 words from Trump’s tweets with your <code class="docutils literal notranslate"><span class="pre">tokenize_and_count()</span></code> function.  (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trump_text</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Trump-Tweets_2016-2020.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="c1">#Your Code Here</span>
+<span class="n">tokenize_and_count</span><span class="p">(</span><span class="n">trump_text</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Bonus!</strong> For 2 bonus points, rewrite the <code class="docutils literal notranslate"><span class="pre">tokenize_and_count()</span></code> function so that it accepts a keyword argument for the number of most frequent words to return. Then run it on Trump’s tweets and configure it to return 30 words.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here</span>
+        <span class="c1">#Your Code Here</span>
+            <span class="c1">#Your Code Here</span>
+    <span class="c1">#Your Code Here  </span>
+    <span class="k">return</span> <span class="n">most_frequent_words</span> 
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;\d</span><span class="si">{4}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Released June 25, 1984&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1984&#39;
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="build-up">
-<h2>Build Up<a class="headerlink" href="#build-up" title="Permalink to this headline">¶</a></h2>
-<p>Great! We were able to extract the 4-digit year from one example. But will this approach work on all the examples?</p>
-<p>Let’s figure out a bit of code that will work on multiple examples with slightly different formatting.</p>
-<p><strong>2.</strong> Extract the 4-digit year from the variables <code class="docutils literal notranslate"><span class="pre">purple_rain</span></code> and <code class="docutils literal notranslate"><span class="pre">blackout</span></code> using the exact same code. (2 points)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purple_rain</span> <span class="o">=</span> <span class="s2">&quot;June 25, 1984&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purple_rain</span><span class="o">...</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1984&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blackout</span> <span class="o">=</span> <span class="s2">&quot;October 25, 2007 &quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blackout</span><span class="o">...</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2007&#39;
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="apply-to-all">
-<h2>Apply to All<a class="headerlink" href="#apply-to-all" title="Permalink to this headline">¶</a></h2>
-<p>Now we’re cooking! Let’s apply this code to each item in the list.</p>
-<p><strong>3.</strong> Use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to consider each item in the list <code class="docutils literal notranslate"><span class="pre">album_years</span></code>, extract the 4-digit year into a variable called <code class="docutils literal notranslate"><span class="pre">year</span></code>, and then <code class="docutils literal notranslate"><span class="pre">print()</span></code> out <code class="docutils literal notranslate"><span class="pre">year</span></code>. (4 points)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">album_years</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Released June 25, 1984&#39;</span><span class="p">,</span> <span class="s1">&#39;Released October 25, 2007 &#39;</span><span class="p">,</span> \
-               <span class="s1">&#39;Released Monday July 21, 2017&#39;</span><span class="p">,</span> <span class="s1">&#39; Released May 18, 2018&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="c1">#Your code here</span>
-    <span class="n">year</span> <span class="o">...</span> <span class="c1">#Your code here</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1984
-2007
-2017
-2018
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="make-a-string-a-number">
-<h2>Make a String a Number<a class="headerlink" href="#make-a-string-a-number" title="Permalink to this headline">¶</a></h2>
-<p>Now that we have all the years isolated, we need to categorize them by decade. A good method for doing so is to use comparison operators such as <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>,<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, or <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>.</p>
-<p>To use comparison operators, however, we first need to convert our strings to numbers. You can convert a string to an integer by using <a class="reference external" href="https://realpython.com/convert-python-string-to-int/#converting-a-python-string-to-an-int"><code class="docutils literal notranslate"><span class="pre">int()</span></code></a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;500&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;500&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>4.</strong> Add a line to your code from Q 4 where you convert the year to an integer and assign it to the variable <code class="docutils literal notranslate"><span class="pre">year_number</span></code>. (2 points)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="c1">#Your code here</span>
-    <span class="n">year</span> <span class="o">...</span> <span class="c1">#Your code here</span>
-    <span class="n">year_number</span> <span class="o">...</span> <span class="c1">#Your code here</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="check-the-decades">
-<h2>Check the Decades<a class="headerlink" href="#check-the-decades" title="Permalink to this headline">¶</a></h2>
-<p>We’re almost to our end goal! All we have to do now is print out a corresponding decade (e.g., “1980s”) for each album release year.</p>
-<p><strong>5.</strong> Use <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">elif</span></code> statements as well as comparison operators (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>,<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, or <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>) to test whether each <code class="docutils literal notranslate"><span class="pre">year_number</span></code> falls within the 1980s, 1990s, 2000s, and 2010s. (10 points)</p>
-<p><em>Hint: you will also need to use the logical opeartor <a class="reference external" href="https://info1350.github.io/Intro-CA-SP21/02-Python/08-Comparisons-Conditionals.html#and">and</a></em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="c1">#Your code here</span>
-    <span class="n">year</span> <span class="o">...</span> <span class="c1">#Your code here</span>
-    <span class="n">year_number</span> <span class="o">...</span> <span class="c1">#Your code here</span>
-    <span class="k">if</span> <span class="o">...</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1980s&quot;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="o">...</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1990s&quot;</span><span class="p">)</span>
-    <span class="c1"># Your code here</span>
-        <span class="c1"># Your code here</span>
-    <span class="c1"># Your code here</span>
-        <span class="c1"># Your code here</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1980s
-2000s
-2010s
-2010s
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Trump-Tweets_2016-2020.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="c1">#Your Code Here</span>
+<span class="c1">#Your Code Here</span>
 </pre></div>
 </div>
 </div>
@@ -991,13 +861,10 @@ Net ID: Your ID here
 <h2>When You’re Finished<a class="headerlink" href="#when-youre-finished" title="Permalink to this headline">¶</a></h2>
 <p>When you’re finished, you should:</p>
 <ol class="simple">
-<li><p>Save your Jupyter notebook with your last name (Right-click the file and select “Rename”)</p></li>
+<li><p>Save your Jupyter notebook with your last name. To save your notebook, you can select File -&gt; Save Notebook or File -&gt; Save Notebook As…</p></li>
+<li><p>Upload the Jupyter notebook file (.ipynb) to Gradescope. You can do so by locating your file on your computer and then dragging and dropping it into Gradescope.</p></li>
 </ol>
-<p><img alt="" src="../_images/JB-Rename.png" />
-<img alt="" src="../_images/JB-Your-Last-Name.png" /></p>
-<ol class="simple">
-<li><p>Upload the Jupyter notebook file (.ipynb) to Gradescope.</p></li>
-</ol>
+<p><img alt="" src="../_images/submit-hw-gradescope.gif" /></p>
 </div>
 </div>
 
