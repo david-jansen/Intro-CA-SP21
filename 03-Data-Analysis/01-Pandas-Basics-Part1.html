@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pandas Basics — Part 1 &#8212; Introduction to Cultural Analytics &amp; Python</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
     
   <link rel="stylesheet"
@@ -31,12 +31,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -45,7 +44,6 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/tabs.js"></script>
     <script src="../_static/custom.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
@@ -71,7 +69,7 @@
 <meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/03-Data-Analysis/01-Pandas-Basics-Part1.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Pandas Basics — Part 1" />
-<meta property="og:description" content="Pandas Basics — Part 1  In this lesson, we’re going to introduce some of the basics of Pandas, a powerful Python library for working with tabular data like CSV " />
+<meta property="og:description" content="Pandas Basics — Part 1  Note: You can explore the associated workbook for this chapter in the cloud.  In this lesson, we’re going to introduce some of the basic" />
 <meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
 
 <meta name="twitter:card" content="summary" />
@@ -664,6 +662,7 @@
                 
   <div class="section" id="pandas-basics-part-1">
 <h1>Pandas Basics — Part 1<a class="headerlink" href="#pandas-basics-part-1" title="Permalink to this headline">¶</a></h1>
+<p><em>Note: You can explore the <a class="reference external" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/03-Data-Analysis/01.5-Pandas-Basics-Part1-WORKBOOK.ipynb">associated workbook</a> for this chapter in the cloud.</em></p>
 <p>In this lesson, we’re going to introduce some of the basics of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html">Pandas</a>, a powerful Python library for working with tabular data like CSV files.</p>
 <p>We will cover how to:</p>
 <ul class="simple">
@@ -2034,7 +2033,7 @@ Name: profession, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x112db7f10&gt;
 </pre></div>
 </div>
-<img alt="../_images/01-Pandas-Basics-Part1_53_1.png" src="../_images/01-Pandas-Basics-Part1_53_1.png" />
+<img alt="../_images/01-Pandas-Basics-Part1_54_1.png" src="../_images/01-Pandas-Basics-Part1_54_1.png" />
 </div>
 </div>
 <p>We specify the title with the <code class="docutils literal notranslate"><span class="pre">title=</span></code> parameter and the kind of plot by altering the <code class="docutils literal notranslate"><span class="pre">kind=</span></code> parameter:</p>
@@ -2056,7 +2055,7 @@ Name: profession, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01-Pandas-Basics-Part1_55_0.png" src="../_images/01-Pandas-Basics-Part1_55_0.png" />
+<img alt="../_images/01-Pandas-Basics-Part1_56_0.png" src="../_images/01-Pandas-Basics-Part1_56_0.png" />
 </div>
 </div>
 <p>To make a pie chart, we can set <code class="docutils literal notranslate"><span class="pre">kind='pie'</span></code></p>
@@ -2070,7 +2069,7 @@ Name: profession, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1130ee590&gt;
 </pre></div>
 </div>
-<img alt="../_images/01-Pandas-Basics-Part1_57_1.png" src="../_images/01-Pandas-Basics-Part1_57_1.png" />
+<img alt="../_images/01-Pandas-Basics-Part1_58_1.png" src="../_images/01-Pandas-Basics-Part1_58_1.png" />
 </div>
 </div>
 </div>
@@ -2464,7 +2463,7 @@ Name: profession, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x113785a90&gt;
 </pre></div>
 </div>
-<img alt="../_images/01-Pandas-Basics-Part1_70_1.png" src="../_images/01-Pandas-Basics-Part1_70_1.png" />
+<img alt="../_images/01-Pandas-Basics-Part1_71_1.png" src="../_images/01-Pandas-Basics-Part1_71_1.png" />
 </div>
 </div>
 <p>There’s a lot we can do with filters beyond exact value matches with an equals operator <code class="docutils literal notranslate"><span class="pre">==</span></code>.</p>
@@ -2716,7 +2715,7 @@ Name: profession, dtype: int64
     </div>
 
     
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
 
 
     
