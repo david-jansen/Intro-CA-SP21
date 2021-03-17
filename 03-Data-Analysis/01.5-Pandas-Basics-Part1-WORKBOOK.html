@@ -868,6 +868,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       False
+1       False
+2       False
+3       False
+4       False
+        ...  
+9593    False
+9594     True
+9595    False
+9596    False
+9597    False
+Name: sent_to, Length: 9598, dtype: bool
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -875,6 +891,209 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date_in</th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>age</th>
+      <th>gender</th>
+      <th>disease</th>
+      <th>profession</th>
+      <th>children</th>
+      <th>sent_to</th>
+      <th>sender1</th>
+      <th>sender2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>249</th>
+      <td>1847-05-17</td>
+      <td>Elizabeth</td>
+      <td>Cauley</td>
+      <td>Elizabeth Cauley</td>
+      <td>24.0</td>
+      <td>f</td>
+      <td>recent emigrant</td>
+      <td>married</td>
+      <td>Son Walter 4 mo</td>
+      <td>Hospital Ward 38</td>
+      <td>moses g. leonard</td>
+      <td>peter c. johnston</td>
+    </tr>
+    <tr>
+      <th>330</th>
+      <td>1847-03-22</td>
+      <td>Sarah</td>
+      <td>Corrigan</td>
+      <td>Sarah Corrigan</td>
+      <td>21.0</td>
+      <td>f</td>
+      <td>recent emigrant</td>
+      <td>married</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>george w. anderson</td>
+      <td>peter c. johnston</td>
+    </tr>
+    <tr>
+      <th>367</th>
+      <td>1847-06-13</td>
+      <td>Bridget</td>
+      <td>Reynolds</td>
+      <td>Bridget Reynolds</td>
+      <td>20.0</td>
+      <td>f</td>
+      <td>pregnant</td>
+      <td>married</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>moses g. leonard</td>
+      <td>oscar s. field</td>
+    </tr>
+    <tr>
+      <th>499</th>
+      <td>1847-06-09</td>
+      <td>Rose</td>
+      <td>Dinns</td>
+      <td>Rose Dinns</td>
+      <td>22.0</td>
+      <td>f</td>
+      <td>pregnant</td>
+      <td>married</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>moses g. leonard</td>
+      <td>peter c. johnston</td>
+    </tr>
+    <tr>
+      <th>698</th>
+      <td>1847-08-21</td>
+      <td>Bridget</td>
+      <td>Redding</td>
+      <td>Bridget Redding</td>
+      <td>25.0</td>
+      <td>f</td>
+      <td>pregnant</td>
+      <td>married</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>william w. lyons</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>8506</th>
+      <td>1847-06-14</td>
+      <td>Mary</td>
+      <td>Keeler</td>
+      <td>Mary Keeler</td>
+      <td>44.0</td>
+      <td>f</td>
+      <td>pregnant</td>
+      <td>cook</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>moses g. leonard</td>
+      <td>oscar s. field</td>
+    </tr>
+    <tr>
+      <th>8541</th>
+      <td>1847-06-17</td>
+      <td>Mary</td>
+      <td>Smith</td>
+      <td>Mary Smith</td>
+      <td>23.0</td>
+      <td>f</td>
+      <td>pregnant</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>moses g. leonard</td>
+      <td>peter c. johnston</td>
+    </tr>
+    <tr>
+      <th>8581</th>
+      <td>1847-06-19</td>
+      <td>Martha</td>
+      <td>McConnelly</td>
+      <td>Martha McConnelly</td>
+      <td>35.0</td>
+      <td>f</td>
+      <td>pregnant</td>
+      <td>spinster</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>moses g. leonard</td>
+      <td>peter c. johnston</td>
+    </tr>
+    <tr>
+      <th>8714</th>
+      <td>1847-06-26</td>
+      <td>Jane</td>
+      <td>Davis</td>
+      <td>Jane Davis</td>
+      <td>18.0</td>
+      <td>f</td>
+      <td>pregnant</td>
+      <td>married</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>moses g. leonard</td>
+      <td>edward witherell</td>
+    </tr>
+    <tr>
+      <th>9594</th>
+      <td>1847-06-17</td>
+      <td>Mary</td>
+      <td>Smith</td>
+      <td>Mary Smith</td>
+      <td>47.0</td>
+      <td>f</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Hospital Ward 38</td>
+      <td>[blank]</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>62 rows × 12 columns</p>
+</div></div></div>
 </div>
 </div>
 </div>
@@ -1753,6 +1972,104 @@ Name: profession, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bellevue_women</span> <span class="o">=</span> <span class="n">bellevue_df</span><span class="p">[</span><span class="n">bellevue_df</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bellevue_men</span> <span class="o">=</span> <span class="n">bellevue_df</span><span class="p">[</span><span class="n">bellevue_df</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;m&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bellevue_women</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date_in&#39;</span><span class="p">)[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date_in
+1846-01-02     1
+1846-01-03     8
+1846-01-05     2
+1846-01-06     2
+1846-01-07     5
+              ..
+1847-12-27     1
+1847-12-28     6
+1847-12-29    11
+1847-12-30     5
+1847-12-31     8
+Name: first_name, Length: 630, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">women_by_year</span> <span class="o">=</span> <span class="n">bellevue_women</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date_in&#39;</span><span class="p">)[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">men_by_year</span> <span class="o">=</span> <span class="n">bellevue_men</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date_in&#39;</span><span class="p">)[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Bellevue Women Arrivals By Year&#39;</span><span class="p">,</span>
+                  <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;# Women&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8b17f499d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_61_1.png" src="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_61_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Bellevue Women Arrivals By Year&#39;</span><span class="p">,</span>
+                  <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;# Women&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;aqua&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Bellevue Women Arrivals By Year&#39;</span><span class="p">,</span>
+                  <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;# Men&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Bellevue_Arrivals_By_Year.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8b17f906d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_62_1.png" src="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_62_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bellevue_men</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_in&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8b16003d10&gt;
+</pre></div>
+</div>
+<img alt="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_63_1.png" src="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_63_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_professions</span> <span class="o">=</span> <span class="n">bellevue_df</span><span class="p">[</span><span class="s1">&#39;profession&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1760,15 +2077,29 @@ Name: profession, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_professions</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_professions</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Bellevue Almshouse Professions&#39;</span><span class="p">,</span>
+                     <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;professions&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fb9738955d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fa36eca68d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_57_1.png" src="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_57_1.png" />
+<img alt="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_65_1.png" src="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_65_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">top_professions</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Bellevue Almshouse Professions&#39;</span><span class="p">,</span>
+                     <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;professions&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Bellevue-Almshouse-Chart.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_66_0.png" src="../_images/01.5-Pandas-Basics-Part1-WORKBOOK_66_0.png" />
 </div>
 </div>
 <div class="cell docutils container">

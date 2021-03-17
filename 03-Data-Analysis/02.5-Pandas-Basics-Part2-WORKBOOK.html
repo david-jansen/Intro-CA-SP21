@@ -688,8 +688,223 @@
 sought or capture the inhumanity of this archive’s formation.”</p>
 <p>— Jessica Marie Johnson, <a href="https://read.dukeupress.edu/social-text/article/36/4%20(137)/57/137032/Markup-BodiesBlack-Life-Studies-and-Slavery-Death">“Markup Bodies”</a></p>
 <p>The dataset that we’re going to be working with in this lesson is taken from <a class="reference external" href="https://www.slavevoyages.org/voyage/database">The Trans-Atlantic Slave Trade Database</a>, part of the <a class="reference external" href="https://www.slavevoyages.org/"><em>Slave Voyages</em> project</a>. The larger database includes information about 35,000 slave-trading voyages from 1514-1866. The dataset we’re working with here was filtered to include the 20,000 voyages that landed in the Americas. The data was filtered to also include the percentage of enslaved men, women, and children on the voyages.</p>
-</div>
 <hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Avatar&#39;</span><span class="p">,</span> <span class="s1">&#39;Neytiri&#39;</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2800</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Avatar&#39;</span><span class="p">,</span> <span class="s1">&#39;Jake&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2800</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;The Avengers&#39;</span><span class="p">,</span> <span class="s1">&#39;Loki&#39;</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">1518</span><span class="p">],[</span><span class="s1">&#39;The Avengers&#39;</span><span class="p">,</span> <span class="s1">&#39;Thor&#39;</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">1518</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;My College Short Film&#39;</span><span class="p">,</span> <span class="s1">&#39;Myself&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;My College Short Film&#39;</span><span class="p">,</span> <span class="s1">&#39;My Mom&#39;</span><span class="p">,</span> <span class="mi">900</span><span class="p">]]</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Film&#39;</span><span class="p">,</span> <span class="s1">&#39;Character&#39;</span><span class="p">,</span> <span class="s1">&#39;Words Spoken&#39;</span><span class="p">,</span><span class="s1">&#39;Box Office Gross (Millions)&#39;</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Film</th>
+      <th>Character</th>
+      <th>Words Spoken</th>
+      <th>Box Office Gross (Millions)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Avatar</td>
+      <td>Neytiri</td>
+      <td>2000</td>
+      <td>2800.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Avatar</td>
+      <td>Jake</td>
+      <td>500</td>
+      <td>2800.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Avengers</td>
+      <td>Loki</td>
+      <td>700</td>
+      <td>1518.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Avengers</td>
+      <td>Thor</td>
+      <td>800</td>
+      <td>1518.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>My College Short Film</td>
+      <td>Myself</td>
+      <td>100</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>My College Short Film</td>
+      <td>My Mom</td>
+      <td>900</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Film&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Words Spoken</th>
+      <th>Box Office Gross (Millions)</th>
+    </tr>
+    <tr>
+      <th>Film</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Avatar</th>
+      <td>2500</td>
+      <td>5600.0</td>
+    </tr>
+    <tr>
+      <th>My College Short Film</th>
+      <td>1000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>The Avengers</th>
+      <td>1500</td>
+      <td>3036.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Film&#39;</span><span class="p">)[</span><span class="s1">&#39;Words Spoken&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Film
+Avatar                   1250
+My College Short Film     500
+The Avengers              750
+Name: Words Spoken, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Film&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Character</th>
+      <th>Words Spoken</th>
+      <th>Box Office Gross (Millions)</th>
+    </tr>
+    <tr>
+      <th>Film</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Avatar</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>My College Short Film</th>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>The Avengers</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
 <div class="section" id="import-pandas">
 <h2>Import Pandas<a class="headerlink" href="#import-pandas" title="Permalink to this headline">¶</a></h2>
 <p>To use the Pandas library, we first need to <code class="docutils literal notranslate"><span class="pre">import</span></code> it.</p>
@@ -727,6 +942,233 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>flag</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1525</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Hispaniola, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Maria de Bogoña</td>
+      <td>Monteiro, Pero</td>
+      <td>46473</td>
+      <td>[u'ANTT,CC,Parte II, maco 131, doc 54&lt;&gt;&lt;i&gt;Inst...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11297</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11298</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1526</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>Caribbean (colony unspecified)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Anton</td>
+      <td>Leon, Juan de</td>
+      <td>42631</td>
+      <td>[u'Chaunus, 3: 162-63&lt;&gt;&lt;p&gt;Chaunus, &lt;em&gt;xxxxxx&lt;...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20736</th>
+      <td>1864</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>488.0</td>
+      <td>465.0</td>
+      <td>NaN</td>
+      <td>Polaca</td>
+      <td>NaN</td>
+      <td>46554</td>
+      <td>[u'AHNM, Ultramar, Leg. 3551, 6&lt;&gt;&lt;i&gt;Archivo Hi...</td>
+    </tr>
+    <tr>
+      <th>20737</th>
+      <td>1865</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Isla de Pinas</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>152.0</td>
+      <td>145.0</td>
+      <td>Slave insurrection</td>
+      <td>Gato</td>
+      <td>NaN</td>
+      <td>4394</td>
+      <td>[u'IUP,ST,50/B/137&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20738</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Mariel</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>780.0</td>
+      <td>650.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4395</td>
+      <td>[u'IUP,ST,50/B/144&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20739</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Congo River</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1265.0</td>
+      <td>1004.0</td>
+      <td>NaN</td>
+      <td>Cicerón</td>
+      <td>Mesquita</td>
+      <td>5052</td>
+      <td>[u'IUP,ST,50/A/23-4&lt;&gt;Great Britain, &lt;i&gt;Irish U...</td>
+    </tr>
+    <tr>
+      <th>20740</th>
+      <td>1866</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>851.0</td>
+      <td>700.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4998</td>
+      <td>[u'IUP,ST,50/B/220&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+  </tbody>
+</table>
+<p>20741 rows × 14 columns</p>
+</div></div></div>
 </div>
 <p>This creates a Pandas <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#DataFrame">DataFrame object</a> — often abbreviated as <em>df</em>, e.g., <em>slave_voyages_df</em>. A DataFrame looks and acts a lot like a spreadsheet. But it has special powers and functions that we will discuss in the next few lessons.</p>
 </div>
@@ -739,11 +1181,245 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>flag</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1525</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Hispaniola, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Maria de Bogoña</td>
+      <td>Monteiro, Pero</td>
+      <td>46473</td>
+      <td>[u'ANTT,CC,Parte II, maco 131, doc 54&lt;&gt;&lt;i&gt;Inst...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11297</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11298</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1526</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>Caribbean (colony unspecified)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Anton</td>
+      <td>Leon, Juan de</td>
+      <td>42631</td>
+      <td>[u'Chaunus, 3: 162-63&lt;&gt;&lt;p&gt;Chaunus, &lt;em&gt;xxxxxx&lt;...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1526</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>San Domingo (a) Santo Domingo</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>Santa Maria de Guadalupe</td>
+      <td>Pabon, Francisco</td>
+      <td>42679</td>
+      <td>[u'Chaunus, 3: 162-63&lt;&gt;&lt;p&gt;Chaunus, &lt;em&gt;xxxxxx&lt;...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1526</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Spanish Caribbean, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>46474</td>
+      <td>[u'ANTT,CC,Parte II, maco 131, doc 54&lt;&gt;&lt;i&gt;Inst...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1527</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Puerto Rico, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>325.0</td>
+      <td>260.0</td>
+      <td>NaN</td>
+      <td>Concepción</td>
+      <td>Díaz, Alonso</td>
+      <td>99027</td>
+      <td>[u'SuedBadillo,57,75,76&lt;&gt;&lt;p&gt;SuedBadillo, &lt;em&gt;x...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1532</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Spanish Caribbean, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Antônio</td>
+      <td>Afonso, Martim</td>
+      <td>11293</td>
+      <td>[u'Ryder,66&lt;&gt;Ryder, A. F. C., &lt;i&gt;Benin&lt;/i&gt;&lt;i&gt; ...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1532</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>25.0</td>
+      <td>20.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>de Illanes, Manuel</td>
+      <td>28994</td>
+      <td>[u'Tanodi, 321-22&lt;&gt;Tanodi, Aurelio, &lt;i&gt;Documen...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Generate information about all the columns in the data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 20741 entries, 0 to 20740
+Data columns (total 14 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   year_of_arrival    20741 non-null  int64  
+ 1   flag               19583 non-null  object 
+ 2   place_of_purchase  20663 non-null  object 
+ 3   place_of_landing   20741 non-null  object 
+ 4   percent_women      2894 non-null   float64
+ 5   percent_children   2927 non-null   float64
+ 6   percent_men        2894 non-null   float64
+ 7   total_embarked     20722 non-null  float64
+ 8   total_disembarked  20719 non-null  float64
+ 9   resistance_label   372 non-null    object 
+ 10  vessel_name        20741 non-null  object 
+ 11  captain&#39;s_name     19396 non-null  object 
+ 12  voyage_id          20741 non-null  int64  
+ 13  sources            20741 non-null  object 
+dtypes: float64(5), int64(2), object(7)
+memory usage: 2.2+ MB
 </pre></div>
 </div>
 </div>
@@ -777,12 +1453,42 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd3447d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd344350&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd837c10&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd8782d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd8ae950&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd8d8b10&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd91ca50&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd947b90&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffd95c090&gt;]],
+      dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_30_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_30_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffdb05910&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffdb40a10&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffdb7c150&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffdccf690&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffdd05d10&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffdd48310&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffdd7ba10&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffddb1fd0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fbffddbe090&gt;]],
+      dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_31_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_31_1.png" />
 </div>
 </div>
 <p>Generate descriptive statistics for all the columns in the data</p>
@@ -792,6 +1498,118 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>voyage_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>20741.000000</td>
+      <td>2894.000000</td>
+      <td>2927.000000</td>
+      <td>2894.000000</td>
+      <td>20722.000000</td>
+      <td>20719.000000</td>
+      <td>20741.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1752.014850</td>
+      <td>0.274198</td>
+      <td>0.231582</td>
+      <td>0.496648</td>
+      <td>295.050381</td>
+      <td>251.573966</td>
+      <td>42783.741671</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>59.702189</td>
+      <td>0.116513</td>
+      <td>0.149508</td>
+      <td>0.140324</td>
+      <td>147.997690</td>
+      <td>128.050439</td>
+      <td>32401.785320</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1520.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>112.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1724.000000</td>
+      <td>0.195265</td>
+      <td>0.115380</td>
+      <td>0.407460</td>
+      <td>194.000000</td>
+      <td>163.000000</td>
+      <td>17862.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1765.000000</td>
+      <td>0.264110</td>
+      <td>0.215100</td>
+      <td>0.497890</td>
+      <td>282.000000</td>
+      <td>241.000000</td>
+      <td>31916.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1792.000000</td>
+      <td>0.346150</td>
+      <td>0.321900</td>
+      <td>0.586765</td>
+      <td>368.000000</td>
+      <td>313.000000</td>
+      <td>78283.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1866.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>2024.000000</td>
+      <td>1700.000000</td>
+      <td>900206.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -799,6 +1617,232 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>flag</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>20741.000000</td>
+      <td>19583</td>
+      <td>20663</td>
+      <td>20741</td>
+      <td>2894.000000</td>
+      <td>2927.000000</td>
+      <td>2894.000000</td>
+      <td>20722.000000</td>
+      <td>20719.000000</td>
+      <td>372</td>
+      <td>20741</td>
+      <td>19396</td>
+      <td>20741.000000</td>
+      <td>20741</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>NaN</td>
+      <td>8</td>
+      <td>156</td>
+      <td>187</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>5849</td>
+      <td>12233</td>
+      <td>NaN</td>
+      <td>13754</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>NaN</td>
+      <td>Great Britain</td>
+      <td>Africa., port unspecified</td>
+      <td>Barbados, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Slave insurrection</td>
+      <td></td>
+      <td>Smith, John</td>
+      <td>NaN</td>
+      <td>[u'mettas,I&lt;&gt;Mettas, Jean,  &lt;i&gt;R\xe9pertoire d...</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>NaN</td>
+      <td>10536</td>
+      <td>5999</td>
+      <td>2038</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>330</td>
+      <td>712</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>1134</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1752.014850</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.274198</td>
+      <td>0.231582</td>
+      <td>0.496648</td>
+      <td>295.050381</td>
+      <td>251.573966</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>42783.741671</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>59.702189</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.116513</td>
+      <td>0.149508</td>
+      <td>0.140324</td>
+      <td>147.997690</td>
+      <td>128.050439</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>32401.785320</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1520.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>112.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1724.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.195265</td>
+      <td>0.115380</td>
+      <td>0.407460</td>
+      <td>194.000000</td>
+      <td>163.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17862.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1765.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.264110</td>
+      <td>0.215100</td>
+      <td>0.497890</td>
+      <td>282.000000</td>
+      <td>241.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>31916.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1792.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.346150</td>
+      <td>0.321900</td>
+      <td>0.586765</td>
+      <td>368.000000</td>
+      <td>313.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>78283.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1866.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>2024.000000</td>
+      <td>1700.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>900206.000000</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="missing-data">
@@ -812,6 +1856,22 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="p">[</span><span class="s1">&#39;percent_women&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        False
+1        False
+2        False
+3        False
+4        False
+         ...  
+20736    False
+20737    False
+20738    False
+20739    False
+20740    False
+Name: percent_women, Length: 20741, dtype: bool
 </pre></div>
 </div>
 </div>
@@ -830,6 +1890,13 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     17847
+False     2894
+Name: percent_women, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <p>To quickly transform these numbers into percentages, we can set the <code class="docutils literal notranslate"><span class="pre">normalize=</span></code> parameter to True.</p>
 <div class="cell docutils container">
@@ -838,11 +1905,37 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True     0.86047
+False    0.13953
+Name: percent_women, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>Because the <code class="docutils literal notranslate"><span class="pre">.count()</span></code> method always excludes NaN values, we can also count the number of values in each column and divide by the total number of rows in each column (<code class="docutils literal notranslate"><span class="pre">len()</span></code>) to find the percentage of not blank data in every column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">slave_voyages_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year_of_arrival      1.000000
+flag                 0.944169
+place_of_purchase    0.996239
+place_of_landing     1.000000
+percent_women        0.139530
+percent_children     0.141121
+percent_men          0.139530
+total_embarked       0.999084
+total_disembarked    0.998939
+resistance_label     0.017935
+vessel_name          1.000000
+captain&#39;s_name       0.935153
+voyage_id            1.000000
+sources              1.000000
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -857,6 +1950,14 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-18-8bcdd0675cab&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="n">slave_voyages_df</span><span class="o">...</span>
+                      <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
@@ -907,6 +2008,233 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>flag</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1525</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Hispaniola, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Maria de Bogoña</td>
+      <td>Monteiro, Pero</td>
+      <td>46473</td>
+      <td>[u'ANTT,CC,Parte II, maco 131, doc 54&lt;&gt;&lt;i&gt;Inst...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11297</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11298</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1526</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>Caribbean (colony unspecified)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Anton</td>
+      <td>Leon, Juan de</td>
+      <td>42631</td>
+      <td>[u'Chaunus, 3: 162-63&lt;&gt;&lt;p&gt;Chaunus, &lt;em&gt;xxxxxx&lt;...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20736</th>
+      <td>1864</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>488.0</td>
+      <td>465.0</td>
+      <td>NaN</td>
+      <td>Polaca</td>
+      <td>NaN</td>
+      <td>46554</td>
+      <td>[u'AHNM, Ultramar, Leg. 3551, 6&lt;&gt;&lt;i&gt;Archivo Hi...</td>
+    </tr>
+    <tr>
+      <th>20737</th>
+      <td>1865</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Isla de Pinas</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>152.0</td>
+      <td>145.0</td>
+      <td>Slave insurrection</td>
+      <td>Gato</td>
+      <td>NaN</td>
+      <td>4394</td>
+      <td>[u'IUP,ST,50/B/137&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20738</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Mariel</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>780.0</td>
+      <td>650.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4395</td>
+      <td>[u'IUP,ST,50/B/144&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20739</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Congo River</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1265.0</td>
+      <td>1004.0</td>
+      <td>NaN</td>
+      <td>Cicerón</td>
+      <td>Mesquita</td>
+      <td>5052</td>
+      <td>[u'IUP,ST,50/A/23-4&lt;&gt;Great Britain, &lt;i&gt;Irish U...</td>
+    </tr>
+    <tr>
+      <th>20740</th>
+      <td>1866</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>851.0</td>
+      <td>700.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4998</td>
+      <td>[u'IUP,ST,50/B/220&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+  </tbody>
+</table>
+<p>20741 rows × 14 columns</p>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="what-was-the-highest-percentage-of-women-aboard-the-voyages">
@@ -917,6 +2245,233 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>flag</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1525</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Hispaniola, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Maria de Bogoña</td>
+      <td>Monteiro, Pero</td>
+      <td>46473</td>
+      <td>[u'ANTT,CC,Parte II, maco 131, doc 54&lt;&gt;&lt;i&gt;Inst...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11297</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11298</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1526</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>Caribbean (colony unspecified)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Anton</td>
+      <td>Leon, Juan de</td>
+      <td>42631</td>
+      <td>[u'Chaunus, 3: 162-63&lt;&gt;&lt;p&gt;Chaunus, &lt;em&gt;xxxxxx&lt;...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20736</th>
+      <td>1864</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>488.0</td>
+      <td>465.0</td>
+      <td>NaN</td>
+      <td>Polaca</td>
+      <td>NaN</td>
+      <td>46554</td>
+      <td>[u'AHNM, Ultramar, Leg. 3551, 6&lt;&gt;&lt;i&gt;Archivo Hi...</td>
+    </tr>
+    <tr>
+      <th>20737</th>
+      <td>1865</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Isla de Pinas</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>152.0</td>
+      <td>145.0</td>
+      <td>Slave insurrection</td>
+      <td>Gato</td>
+      <td>NaN</td>
+      <td>4394</td>
+      <td>[u'IUP,ST,50/B/137&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20738</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Mariel</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>780.0</td>
+      <td>650.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4395</td>
+      <td>[u'IUP,ST,50/B/144&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20739</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Congo River</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1265.0</td>
+      <td>1004.0</td>
+      <td>NaN</td>
+      <td>Cicerón</td>
+      <td>Mesquita</td>
+      <td>5052</td>
+      <td>[u'IUP,ST,50/A/23-4&lt;&gt;Great Britain, &lt;i&gt;Irish U...</td>
+    </tr>
+    <tr>
+      <th>20740</th>
+      <td>1866</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>851.0</td>
+      <td>700.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4998</td>
+      <td>[u'IUP,ST,50/B/220&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+  </tbody>
+</table>
+<p>20741 rows × 14 columns</p>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="what-was-the-average-percentage-of-children-aboard-the-voyages">
@@ -927,6 +2482,233 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>flag</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1525</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Hispaniola, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Maria de Bogoña</td>
+      <td>Monteiro, Pero</td>
+      <td>46473</td>
+      <td>[u'ANTT,CC,Parte II, maco 131, doc 54&lt;&gt;&lt;i&gt;Inst...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11297</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11298</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1526</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>Caribbean (colony unspecified)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Anton</td>
+      <td>Leon, Juan de</td>
+      <td>42631</td>
+      <td>[u'Chaunus, 3: 162-63&lt;&gt;&lt;p&gt;Chaunus, &lt;em&gt;xxxxxx&lt;...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20736</th>
+      <td>1864</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>488.0</td>
+      <td>465.0</td>
+      <td>NaN</td>
+      <td>Polaca</td>
+      <td>NaN</td>
+      <td>46554</td>
+      <td>[u'AHNM, Ultramar, Leg. 3551, 6&lt;&gt;&lt;i&gt;Archivo Hi...</td>
+    </tr>
+    <tr>
+      <th>20737</th>
+      <td>1865</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Isla de Pinas</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>152.0</td>
+      <td>145.0</td>
+      <td>Slave insurrection</td>
+      <td>Gato</td>
+      <td>NaN</td>
+      <td>4394</td>
+      <td>[u'IUP,ST,50/B/137&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20738</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Mariel</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>780.0</td>
+      <td>650.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4395</td>
+      <td>[u'IUP,ST,50/B/144&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20739</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Congo River</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1265.0</td>
+      <td>1004.0</td>
+      <td>NaN</td>
+      <td>Cicerón</td>
+      <td>Mesquita</td>
+      <td>5052</td>
+      <td>[u'IUP,ST,50/A/23-4&lt;&gt;Great Britain, &lt;i&gt;Irish U...</td>
+    </tr>
+    <tr>
+      <th>20740</th>
+      <td>1866</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>851.0</td>
+      <td>700.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4998</td>
+      <td>[u'IUP,ST,50/B/220&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+  </tbody>
+</table>
+<p>20741 rows × 14 columns</p>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="what-was-the-highest-percentage-of-children-aboard-the-voyages">
@@ -937,6 +2719,233 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>flag</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1525</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Hispaniola, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Maria de Bogoña</td>
+      <td>Monteiro, Pero</td>
+      <td>46473</td>
+      <td>[u'ANTT,CC,Parte II, maco 131, doc 54&lt;&gt;&lt;i&gt;Inst...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11297</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11298</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1526</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>Caribbean (colony unspecified)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Anton</td>
+      <td>Leon, Juan de</td>
+      <td>42631</td>
+      <td>[u'Chaunus, 3: 162-63&lt;&gt;&lt;p&gt;Chaunus, &lt;em&gt;xxxxxx&lt;...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20736</th>
+      <td>1864</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>488.0</td>
+      <td>465.0</td>
+      <td>NaN</td>
+      <td>Polaca</td>
+      <td>NaN</td>
+      <td>46554</td>
+      <td>[u'AHNM, Ultramar, Leg. 3551, 6&lt;&gt;&lt;i&gt;Archivo Hi...</td>
+    </tr>
+    <tr>
+      <th>20737</th>
+      <td>1865</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Isla de Pinas</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>152.0</td>
+      <td>145.0</td>
+      <td>Slave insurrection</td>
+      <td>Gato</td>
+      <td>NaN</td>
+      <td>4394</td>
+      <td>[u'IUP,ST,50/B/137&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20738</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Mariel</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>780.0</td>
+      <td>650.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4395</td>
+      <td>[u'IUP,ST,50/B/144&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20739</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Congo River</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1265.0</td>
+      <td>1004.0</td>
+      <td>NaN</td>
+      <td>Cicerón</td>
+      <td>Mesquita</td>
+      <td>5052</td>
+      <td>[u'IUP,ST,50/A/23-4&lt;&gt;Great Britain, &lt;i&gt;Irish U...</td>
+    </tr>
+    <tr>
+      <th>20740</th>
+      <td>1866</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>851.0</td>
+      <td>700.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4998</td>
+      <td>[u'IUP,ST,50/B/220&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+  </tbody>
+</table>
+<p>20741 rows × 14 columns</p>
+</div></div></div>
 </div>
 </div>
 </div>
@@ -949,6 +2958,233 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>national_affiliation</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1525</td>
+      <td>Portugal / Brazil</td>
+      <td>Sao Tome</td>
+      <td>Hispaniola, unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Maria de Bogoña</td>
+      <td>Monteiro, Pero</td>
+      <td>46473</td>
+      <td>[u'ANTT,CC,Parte II, maco 131, doc 54&lt;&gt;&lt;i&gt;Inst...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11297</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1526</td>
+      <td>Spain / Uruguay</td>
+      <td>Cape Verde Islands</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>Carega, Esteban (?)</td>
+      <td>11298</td>
+      <td>[u'Pike,60-1,172&lt;&gt;Pike, Ruth, &lt;i&gt;Enterprise&lt;/i...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1526</td>
+      <td>NaN</td>
+      <td>Cape Verde Islands</td>
+      <td>Caribbean (colony unspecified)</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>359.0</td>
+      <td>287.0</td>
+      <td>NaN</td>
+      <td>S Anton</td>
+      <td>Leon, Juan de</td>
+      <td>42631</td>
+      <td>[u'Chaunus, 3: 162-63&lt;&gt;&lt;p&gt;Chaunus, &lt;em&gt;xxxxxx&lt;...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20736</th>
+      <td>1864</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>488.0</td>
+      <td>465.0</td>
+      <td>NaN</td>
+      <td>Polaca</td>
+      <td>NaN</td>
+      <td>46554</td>
+      <td>[u'AHNM, Ultramar, Leg. 3551, 6&lt;&gt;&lt;i&gt;Archivo Hi...</td>
+    </tr>
+    <tr>
+      <th>20737</th>
+      <td>1865</td>
+      <td>Spain / Uruguay</td>
+      <td>Africa., port unspecified</td>
+      <td>Isla de Pinas</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>152.0</td>
+      <td>145.0</td>
+      <td>Slave insurrection</td>
+      <td>Gato</td>
+      <td>NaN</td>
+      <td>4394</td>
+      <td>[u'IUP,ST,50/B/137&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20738</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Mariel</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>780.0</td>
+      <td>650.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4395</td>
+      <td>[u'IUP,ST,50/B/144&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+    <tr>
+      <th>20739</th>
+      <td>1865</td>
+      <td>NaN</td>
+      <td>Congo River</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1265.0</td>
+      <td>1004.0</td>
+      <td>NaN</td>
+      <td>Cicerón</td>
+      <td>Mesquita</td>
+      <td>5052</td>
+      <td>[u'IUP,ST,50/A/23-4&lt;&gt;Great Britain, &lt;i&gt;Irish U...</td>
+    </tr>
+    <tr>
+      <th>20740</th>
+      <td>1866</td>
+      <td>NaN</td>
+      <td>Africa., port unspecified</td>
+      <td>Cuba, port unspecified</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>851.0</td>
+      <td>700.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>4998</td>
+      <td>[u'IUP,ST,50/B/220&lt;&gt;Great Britain, &lt;i&gt;Irish Un...</td>
+    </tr>
+  </tbody>
+</table>
+<p>20741 rows × 14 columns</p>
+</div></div></div>
 </div>
 <p>Renaming the “flag” column as above will only momentarily change that column’s name, however. If we display our DataFrame, we will see that the column name has <em>not</em> changed permamently.</p>
 <div class="cell docutils container">
@@ -957,6 +3193,62 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>flag</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>To save changes in the DataFrame, we need to reassign the DataFrame to the same variable.</p>
 <div class="cell docutils container">
@@ -972,6 +3264,62 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year_of_arrival</th>
+      <th>national_affiliation</th>
+      <th>place_of_purchase</th>
+      <th>place_of_landing</th>
+      <th>percent_women</th>
+      <th>percent_children</th>
+      <th>percent_men</th>
+      <th>total_embarked</th>
+      <th>total_disembarked</th>
+      <th>resistance_label</th>
+      <th>vessel_name</th>
+      <th>captain's_name</th>
+      <th>voyage_id</th>
+      <th>sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1520</td>
+      <td>NaN</td>
+      <td>Portuguese Guinea</td>
+      <td>San Juan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>324.0</td>
+      <td>259.0</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="groupby-columns">
@@ -988,7 +3336,10 @@ sought or capture the inhumanity of this archive’s formation.”</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fdd2d0c2150&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-27-8bcdd0675cab&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="n">slave_voyages_df</span><span class="o">...</span>
+                      <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
@@ -1054,6 +3405,7 @@ sought or capture the inhumanity of this archive’s formation.”</p>
       <th>vessel_name</th>
       <th>captain's_name</th>
       <th>voyage_id</th>
+      <th>sources</th>
       <th>total_women</th>
       <th>total_men</th>
     </tr>
@@ -1074,6 +3426,7 @@ sought or capture the inhumanity of this archive’s formation.”</p>
       <td></td>
       <td>NaN</td>
       <td>42987</td>
+      <td>[u'AGI,Patronato 175, r.9&lt;&gt;&lt;p&gt;&lt;em&gt;AG!&lt;/em&gt; (Se...</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -1118,11 +3471,34 @@ Name: percent_women, dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbffde4c5d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_86_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_86_1.png" />
+</div>
 </div>
 <p>To make a time series, we would typically want to convert our date column into datetime values rather than integers. Since we’re only working with year information, however, we can make some simple time series plots just by grouping by the year column and performing calculations on those year groupings.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[</span><span class="s1">&#39;total_women&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year_of_arrival
+1520    0.0
+1525    0.0
+1526    0.0
+1527    0.0
+1532    0.0
+       ... 
+1862    0.0
+1863    0.0
+1864    0.0
+1865    0.0
+1866    0.0
+Name: total_women, Length: 330, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1140,12 +3516,24 @@ Name: percent_women, dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbffdff65d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_90_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_90_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbffe1bd090&gt;
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_91_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_91_1.png" />
 </div>
 </div>
 <p>We can plot multiple columns at the same time by using two square brackets. For example, we can compare the total number of women and men aboard the voyages.</p>
@@ -1158,10 +3546,30 @@ Name: percent_women, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<span class="n">total_men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbffefacf10&gt;
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_94_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_94_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axis</span> <span class="o">=</span> <span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
 <span class="n">total_men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbffdc14110&gt;
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_95_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_95_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1171,12 +3579,33 @@ Name: percent_women, dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbffebe7c90&gt;
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_96_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_96_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_embarked_by_year</span> <span class="o">=</span> <span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[</span><span class="s1">&#39;total_embarked&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Women&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<span class="n">total_men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Men&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">total_embarked_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Embarked&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbfff31da10&gt;
+</pre></div>
+</div>
+<img alt="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_98_1.png" src="../_images/02.5-Pandas-Basics-Part2-WORKBOOK_98_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
