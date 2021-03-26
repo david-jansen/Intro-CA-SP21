@@ -696,6 +696,16 @@
    Make Time Series with Groupby
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#save-plots">
+   Save Plots
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prevent-labels-from-getting-cut-off">
+   Prevent Labels From Getting Cut Off
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -2331,10 +2341,10 @@ Name: percent_women, Length: 20741, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;year_of_arrival&#39;, &#39;national_affiliation&#39;, &#39;place_of_purchase&#39;,
-       &#39;place_of_landing&#39;, &#39;percent_women&#39;, &#39;percent_children&#39;, &#39;percent_men&#39;,
-       &#39;total_embarked&#39;, &#39;total_disembarked&#39;, &#39;resistance_label&#39;,
-       &#39;vessel_name&#39;, &#39;captain&#39;s_name&#39;, &#39;voyage_id&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;year_of_arrival&#39;, &#39;flag&#39;, &#39;place_of_purchase&#39;, &#39;place_of_landing&#39;,
+       &#39;percent_women&#39;, &#39;percent_children&#39;, &#39;percent_men&#39;, &#39;total_embarked&#39;,
+       &#39;total_disembarked&#39;, &#39;resistance_label&#39;, &#39;vessel_name&#39;,
+       &#39;captain&#39;s_name&#39;, &#39;voyage_id&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
@@ -3735,64 +3745,157 @@ Name: percent_women, dtype: int64
 </div>
 </div>
 <p>Datetime values allow us to do special things that we can’t do with regular integers and floats, such as extract just the year, month, week, day, or second from any date or aggregate based on any of the above.</p>
-<p>Since we’re only working with year information, however, we can make some simple time series plots just by grouping by the year column and performing calculations on those year groupings, such as calculating the average percentage of enslaved women aboard the voyages over time.</p>
+<p>However, we can also make some simple time series plots just by grouping by the year column and performing calculations on those year groupings, such as calculating the average percentage of enslaved women aboard the voyages over time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[</span><span class="s1">&#39;percent_women&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>\
-<span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Average Percentage of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[</span><span class="s1">&#39;total_women&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdd2beb51d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year_of_arrival
+1520    0.0
+1525    0.0
+1526    0.0
+1527    0.0
+1532    0.0
+       ... 
+1862    0.0
+1863    0.0
+1864    0.0
+1865    0.0
+1866    0.0
+Name: total_women, Length: 330, dtype: float64
 </pre></div>
 </div>
-<img alt="../_images/02-Pandas-Basics-Part2_119_1.png" src="../_images/02-Pandas-Basics-Part2_119_1.png" />
 </div>
 </div>
-<p>We can do the same thing with the total number of women, this time taking the sum for every year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[</span><span class="s1">&#39;total_women&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>\
-<span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_women_by_year</span> <span class="o">=</span> <span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[</span><span class="s1">&#39;total_women&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdd2c112310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbc383adb50&gt;
 </pre></div>
 </div>
 <img alt="../_images/02-Pandas-Basics-Part2_121_1.png" src="../_images/02-Pandas-Basics-Part2_121_1.png" />
 </div>
 </div>
-<p>We can plot multiple columns at the same time by using two square brackets. For example, we can compare the total number of women and men aboard the voyages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[[</span><span class="s1">&#39;total_women&#39;</span><span class="p">,</span> <span class="s1">&#39;total_men&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>\
-<span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women and Men on Voyages&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdd2c0a6550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbc39cfa110&gt;
 </pre></div>
 </div>
-<img alt="../_images/02-Pandas-Basics-Part2_123_1.png" src="../_images/02-Pandas-Basics-Part2_123_1.png" />
+<img alt="../_images/02-Pandas-Basics-Part2_122_1.png" src="../_images/02-Pandas-Basics-Part2_122_1.png" />
+</div>
+</div>
+<p>We can put different plots on the same axes by assigning one of the plots to the variable <code class="docutils literal notranslate"><span class="pre">ax</span></code>, short for axes, and then using <code class="docutils literal notranslate"><span class="pre">ax=ax</span></code> in the other plot to explicitly put it on the same axes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_men_by_year</span> <span class="o">=</span> <span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[</span><span class="s1">&#39;total_men&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                              <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<span class="n">total_men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbc39ec9c90&gt;
+</pre></div>
+</div>
+<img alt="../_images/02-Pandas-Basics-Part2_125_1.png" src="../_images/02-Pandas-Basics-Part2_125_1.png" />
+</div>
+</div>
+<p>We can change the labels in a legend by using the <code class="docutils literal notranslate"><span class="pre">label=</span></code> parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Women&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<span class="n">total_men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Men&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbc3a004710&gt;
+</pre></div>
+</div>
+<img alt="../_images/02-Pandas-Basics-Part2_127_1.png" src="../_images/02-Pandas-Basics-Part2_127_1.png" />
 </div>
 </div>
 <p>Finally, we can also add in the total number of enslaved people who embarked on the voyages, offering a perspective of how much gender information we have about the voyages compared to the total number of voyages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[[</span><span class="s1">&#39;total_women&#39;</span><span class="p">,</span>  <span class="s1">&#39;total_men&#39;</span><span class="p">,</span> <span class="s1">&#39;total_embarked&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>\
-<span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s1">Total Number of Enslaved People on Voyages&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_embarked_by_year</span> <span class="o">=</span> <span class="n">slave_voyages_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year_of_arrival&#39;</span><span class="p">)[</span><span class="s1">&#39;total_embarked&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Women&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<span class="n">total_men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Men&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">total_embarked_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Embarked&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdd2c448f90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbc3a0f8f10&gt;
 </pre></div>
 </div>
-<img alt="../_images/02-Pandas-Basics-Part2_125_1.png" src="../_images/02-Pandas-Basics-Part2_125_1.png" />
+<img alt="../_images/02-Pandas-Basics-Part2_130_1.png" src="../_images/02-Pandas-Basics-Part2_130_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="save-plots">
+<h2>Save Plots<a class="headerlink" href="#save-plots" title="Permalink to this headline">¶</a></h2>
+<p>To save a plot as an image file or PDF file, we can again assign the plot to a variable called <code class="docutils literal notranslate"><span class="pre">ax</span></code>, short for axes.</p>
+<p>Then we can use <code class="docutils literal notranslate"><span class="pre">ax.figure.savefig('FILE-NAME.png')</span></code> or <code class="docutils literal notranslate"><span class="pre">ax.figure.savefig('FILE-NAME.pdf')</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Women&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<span class="n">total_men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Men&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">total_embarked_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Embarked&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Trans-Atlantic-Slave-Trade_Gender-Info.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prevent-labels-from-getting-cut-off">
+<h2>Prevent Labels From Getting Cut Off<a class="headerlink" href="#prevent-labels-from-getting-cut-off" title="Permalink to this headline">¶</a></h2>
+<p>If labels are getting cut off in your image, you can explicitly import <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> (the data viz Python library that Pandas <code class="docutils literal notranslate"><span class="pre">.plot()</span></code>s are built on) and use the <code class="docutils literal notranslate"><span class="pre">tight_layout()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">total_women_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Women&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trans-Atlantic Slave Trade (Americas):</span><span class="se">\n</span><span class="s2">Total Number of Enslaved Women on Voyages&quot;</span><span class="p">)</span>
+<span class="n">total_men_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Men&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">total_embarked_by_year</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Embarked&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Trans-Atlantic-Slave-Trade_Gender-Info.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

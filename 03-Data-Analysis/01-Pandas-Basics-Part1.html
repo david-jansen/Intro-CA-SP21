@@ -649,6 +649,11 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-info">
+   Get Info
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#calculate-summary-statistics">
    Calculate Summary Statistics
   </a>
@@ -664,13 +669,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#make-plots">
-   Make Plots
+  <a class="reference internal nav-link" href="#make-and-save-plots">
+   Make and Save Plots
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#filter-data">
-   Filter Data
+  <a class="reference internal nav-link" href="#filter-subset-data">
+   Filter/Subset Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -754,7 +759,7 @@
 <p>To read in a CSV file, we will use the function <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> and insert the name of our desired file path.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bellevue_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/bellevue_almshouse_modified.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date_in&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bellevue_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/bellevue_almshouse_modified.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -769,7 +774,6 @@
 </div>
 <p>This creates a Pandas <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#dataframe">DataFrame object</a> — often abbreviated as <em>df</em>, e.g., <em>bellevue_df</em>. A DataFrame looks and acts a lot like a spreadsheet. But it has special powers and functions that we will discuss in the next few lessons.</p>
 <p>When reading in the CSV file, we also specified the <code class="docutils literal notranslate"><span class="pre">encoding</span></code> and <code class="docutils literal notranslate"><span class="pre">delimiter</span></code>. The <code class="docutils literal notranslate"><span class="pre">delimiter</span></code> specifies the character that separates or “delimits” the columns in our dataset. For CSV files, the delimiter will most often be a comma. (CSV is short for <em>Comma Separated Values</em>.) Sometimes, however, the delimiter of a CSV file might be a tab (<code class="docutils literal notranslate"><span class="pre">\t</span></code>) or, more rarely, another character.</p>
-<p>We also included the <code class="docutils literal notranslate"><span class="pre">parse_dates</span></code> parameter to specify which column contains date information.</p>
 </div>
 <div class="section" id="display-data">
 <h2>Display Data<a class="headerlink" href="#display-data" title="Permalink to this headline">¶</a></h2>
@@ -1218,113 +1222,113 @@
   </thead>
   <tbody>
     <tr>
-      <th>6967</th>
-      <td>1847-10-05</td>
-      <td>Ann</td>
-      <td>Terrill</td>
-      <td>30.0</td>
-      <td>sickness</td>
-      <td>widow</td>
-      <td>w</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1357</th>
-      <td>1847-03-09</td>
-      <td>John</td>
-      <td>Butler</td>
-      <td>22.0</td>
-      <td>recent emigrant</td>
-      <td>laborer</td>
-      <td>m</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>8669</th>
-      <td>1847-06-24</td>
-      <td>Eliza</td>
-      <td>McDermott</td>
-      <td>30.0</td>
-      <td>sickness</td>
-      <td>married</td>
-      <td>w</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>7724</th>
-      <td>1847-12-18</td>
-      <td>Margaret</td>
-      <td>Johnston</td>
-      <td>20.0</td>
+      <th>5768</th>
+      <td>1847-10-27</td>
+      <td>Elizabeth</td>
+      <td>Phinney</td>
+      <td>40.0</td>
       <td>destitution</td>
-      <td>widow</td>
+      <td>seamstress</td>
       <td>w</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>784</th>
+      <th>441</th>
       <td>1847-03-01</td>
-      <td>Bridget</td>
-      <td>May</td>
-      <td>30.0</td>
+      <td>Catherine</td>
+      <td>Mullin</td>
+      <td>1.0</td>
       <td>recent emigrant</td>
-      <td>married</td>
+      <td>NaN</td>
       <td>w</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>319</th>
-      <td>1847-04-19</td>
-      <td>Hulet</td>
-      <td>Linet</td>
-      <td>23.0</td>
-      <td>recent emigrant</td>
-      <td>laborer</td>
-      <td>m</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5398</th>
-      <td>1847-04-10</td>
-      <td>Fancis</td>
-      <td>Boyle</td>
-      <td>59.0</td>
-      <td>destitution</td>
-      <td>laborer</td>
-      <td>m</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5885</th>
-      <td>1847-07-12</td>
-      <td>Margaret</td>
-      <td>Canadin</td>
+      <th>1397</th>
+      <td>1847-04-30</td>
+      <td>Mary Anne</td>
+      <td>Graham</td>
       <td>30.0</td>
       <td>sickness</td>
-      <td>married</td>
+      <td>widow</td>
       <td>w</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>3308</th>
-      <td>1846-05-06</td>
-      <td>Jeremiah</td>
-      <td>Murphy</td>
-      <td>25.0</td>
+      <th>7170</th>
+      <td>1847-10-22</td>
+      <td>Ellen</td>
+      <td>Reynolds</td>
+      <td>18.0</td>
+      <td>sickness</td>
+      <td>spinster</td>
+      <td>w</td>
       <td>NaN</td>
-      <td>mason</td>
+    </tr>
+    <tr>
+      <th>8203</th>
+      <td>1847-05-19</td>
+      <td>Richard</td>
+      <td>Hennesy</td>
+      <td>63.0</td>
+      <td>destitution</td>
+      <td>baker</td>
       <td>m</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>6110</th>
-      <td>1847-07-27</td>
+      <th>1708</th>
+      <td>1847-03-13</td>
       <td>Patrick</td>
-      <td>Tinnen</td>
-      <td>30.0</td>
-      <td>destitution</td>
+      <td>Kane</td>
+      <td>52.0</td>
+      <td>recent emigrant</td>
       <td>laborer</td>
       <td>m</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4026</th>
+      <td>1846-08-05</td>
+      <td>Henry</td>
+      <td>Reddy</td>
+      <td>33.0</td>
+      <td>NaN</td>
+      <td>peddler</td>
+      <td>m</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3108</th>
+      <td>1846-01-07</td>
+      <td>Rhoda (Johanna)</td>
+      <td>Dunn</td>
+      <td>24.0</td>
+      <td>NaN</td>
+      <td>widow</td>
+      <td>w</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5313</th>
+      <td>1847-03-22</td>
+      <td>Terence</td>
+      <td>Smith</td>
+      <td>37.0</td>
+      <td>sickness</td>
+      <td>laborer</td>
+      <td>m</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8043</th>
+      <td>1846-08-03</td>
+      <td>Eliza</td>
+      <td>Duffy</td>
+      <td>22.0</td>
+      <td>NaN</td>
+      <td>spinster</td>
+      <td>w</td>
       <td>NaN</td>
     </tr>
   </tbody>
@@ -1332,6 +1336,58 @@
 </div></div></div>
 </div>
 </div>
+</div>
+<div class="section" id="get-info">
+<h2>Get Info<a class="headerlink" href="#get-info" title="Permalink to this headline">¶</a></h2>
+<p>To get important info about all the columns in the DataFrame, we can use <code class="docutils literal notranslate"><span class="pre">.info()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bellevue_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 9584 entries, 0 to 9583
+Data columns (total 8 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   date_in     9584 non-null   object 
+ 1   first_name  9580 non-null   object 
+ 2   last_name   9584 non-null   object 
+ 3   age         9534 non-null   float64
+ 4   disease     6497 non-null   object 
+ 5   profession  8565 non-null   object 
+ 6   gender      9584 non-null   object 
+ 7   children    37 non-null     object 
+dtypes: float64(1), object(7)
+memory usage: 599.1+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>This report will tell us how many non-null, or non-blank, values are in each column, as well as what <em>type</em> of data is in each column.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p><strong>Pandas Data Type</strong></p></th>
+<th class="text-align:center head"><p><strong>Explanation</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td class="text-align:center"><p>string</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">float64</span></code></p></td>
+<td class="text-align:center"><p>float</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">int64</span></code></p></td>
+<td class="text-align:center"><p>integer</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">datetime64</span></code></p></td>
+<td class="text-align:center"><p>date time</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="calculate-summary-statistics">
 <h2>Calculate Summary Statistics<a class="headerlink" href="#calculate-summary-statistics" title="Permalink to this headline">¶</a></h2>
@@ -1911,7 +1967,7 @@ person1[&#39;name&#39;] —&gt; &quot;Mary Gallagher&quot;
 </div>
 <div class="section" id="count-values">
 <h2>Count Values<a class="headerlink" href="#count-values" title="Permalink to this headline">¶</a></h2>
-<p>To count the values in a column, we can use the <code class="docutils literal notranslate"><span class="pre">.value_counts()</span></code> method.</p>
+<p>To count the number of <em>unique</em> values in a column, we can use the <code class="docutils literal notranslate"><span class="pre">.value_counts()</span></code> method.</p>
 <div class="sidebar">
 <p class="sidebar-title">On Bellevue Almshouse “Diseases”</p>
 <blockquote>
@@ -2054,8 +2110,8 @@ Name: profession, dtype: int64
 </div>
 <p>In a similar vein, consider what these “professions” reflect about New York City in the 1840s.</p>
 </div>
-<div class="section" id="make-plots">
-<h2>Make Plots<a class="headerlink" href="#make-plots" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="make-and-save-plots">
+<h2>Make and Save Plots<a class="headerlink" href="#make-and-save-plots" title="Permalink to this headline">¶</a></h2>
 <p>Pandas makes it easy to create plots and data visualizations. We can make a simple plot by adding <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> to any DataFrame or Series object that has appropriate numeric data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2067,7 +2123,7 @@ Name: profession, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x112db7f10&gt;
 </pre></div>
 </div>
-<img alt="../_images/01-Pandas-Basics-Part1_54_1.png" src="../_images/01-Pandas-Basics-Part1_54_1.png" />
+<img alt="../_images/01-Pandas-Basics-Part1_58_1.png" src="../_images/01-Pandas-Basics-Part1_58_1.png" />
 </div>
 </div>
 <p>We specify the title with the <code class="docutils literal notranslate"><span class="pre">title=</span></code> parameter and the kind of plot by altering the <code class="docutils literal notranslate"><span class="pre">kind=</span></code> parameter:</p>
@@ -2089,7 +2145,7 @@ Name: profession, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01-Pandas-Basics-Part1_56_0.png" src="../_images/01-Pandas-Basics-Part1_56_0.png" />
+<img alt="../_images/01-Pandas-Basics-Part1_60_0.png" src="../_images/01-Pandas-Basics-Part1_60_0.png" />
 </div>
 </div>
 <p>To make a pie chart, we can set <code class="docutils literal notranslate"><span class="pre">kind='pie'</span></code></p>
@@ -2103,12 +2159,23 @@ Name: profession, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1130ee590&gt;
 </pre></div>
 </div>
-<img alt="../_images/01-Pandas-Basics-Part1_58_1.png" src="../_images/01-Pandas-Basics-Part1_58_1.png" />
+<img alt="../_images/01-Pandas-Basics-Part1_62_1.png" src="../_images/01-Pandas-Basics-Part1_62_1.png" />
+</div>
+</div>
+<p>To save a plot as an image file or PDF file, we can assign the plot to a variable called <code class="docutils literal notranslate"><span class="pre">ax</span></code>, short for axes.</p>
+<p>Then we can use <code class="docutils literal notranslate"><span class="pre">ax.figure.savefig('FILE-NAME.png')</span></code> or <code class="docutils literal notranslate"><span class="pre">ax.figure.savefig('FILE-NAME.pdf')</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">bellevue_df</span><span class="p">[</span><span class="s1">&#39;profession&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;pie&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Bellevue Almshouse:</span><span class="se">\n</span><span class="s1">Most Frequent &quot;Professions&quot;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Bellevue-professions_pie-chart.pdf&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="filter-data">
-<h2>Filter Data<a class="headerlink" href="#filter-data" title="Permalink to this headline">¶</a></h2>
+<p>If your plot is being cut off in the image, see Pandas Basics Part 2 (“Prevent Labels From Getting Cut Off”).</p>
+</div>
+<div class="section" id="filter-subset-data">
+<h2>Filter/Subset Data<a class="headerlink" href="#filter-subset-data" title="Permalink to this headline">¶</a></h2>
 <p>We can filter a Pandas DataFrame to select only certain values. Filtering data by certain values is similar to selecting columns.</p>
 <p>We type the name of the DataFrame followed by square brackets and then, instead of inserting a column name, we insert a True/False condition. For example, to select only rows that contain the value “teacher,” we insert the condition <code class="docutils literal notranslate"><span class="pre">bellevue_df['profession']</span> <span class="pre">==</span> <span class="pre">'teacher'</span></code></p>
 <div class="cell docutils container">
@@ -2497,7 +2564,7 @@ Name: profession, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x113785a90&gt;
 </pre></div>
 </div>
-<img alt="../_images/01-Pandas-Basics-Part1_71_1.png" src="../_images/01-Pandas-Basics-Part1_71_1.png" />
+<img alt="../_images/01-Pandas-Basics-Part1_78_1.png" src="../_images/01-Pandas-Basics-Part1_78_1.png" />
 </div>
 </div>
 <p>There’s a lot we can do with filters beyond exact value matches with an equals operator <code class="docutils literal notranslate"><span class="pre">==</span></code>.</p>
