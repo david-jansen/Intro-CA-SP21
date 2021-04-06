@@ -1,0 +1,2996 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reddit Data Collection — Workbook &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/04-Data-Collection/05.5-Reddit-Data-Collection-WORKBOOK-SOLUTIONS.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/04-Data-Collection/05.5-Reddit-Data-Collection-WORKBOOK-SOLUTIONS.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Reddit Data Collection — Workbook" />
+<meta property="og:description" content="Reddit Data Collection — Workbook  Don’t forget to rename this notebook if you want to save changes!  In this lesson, we’re going to introduce learn how to coll" />
+<meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/favicon.ico" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Cultural Analytics & Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  How To
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../How-To-Interact-With-This-Book.html">
+   Interact With This Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Course
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../course-schedule-2021.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../syllabus.html">
+   Course Syllabus
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Book
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Command-Line/01-The-Command-Line.html">
+   1. The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../02-Python/00-Python.html">
+   2. Python Basics
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/01-Installation.html">
+     Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/02-How-to-Use-Jupyter-Notebooks.html">
+     How to Use Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/03-Anatomy-Python-Script.html">
+     Anatomy of a Python Script
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/04-Variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/05-Data-Types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/06-String-Methods.html">
+     String Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/07-Files-Character-Encoding.html">
+     Files and Character Encoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/08-Comparisons-Conditionals.html">
+     Comparisons &amp; Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/09-Lists-Loops-Part1.html">
+     Lists &amp; Loops — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/10-Lists-Loops-Part2.html">
+     Lists &amp; Loops — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/11-Dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/12-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/13-Common-Python-Errors.html">
+     Common Python Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/14-What-Were-Not-Covering.html">
+     What We’re Not Covering
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../03-Data-Analysis/00-Data-Analysis.html">
+   3. Data Analysis (Pandas)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/01-Pandas-Basics-Part1.html">
+     Pandas Basics — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/02-Pandas-Basics-Part2.html">
+     Pandas Basics — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/03-Pandas-Basics-Part3.html">
+     Pandas Basics — Part 3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/04-Pandas-Merge-Datasets.html">
+     Pandas — Merge Datasets
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="00-Data-Collection.html">
+   4. Data Collection (Web Scraping, APIs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-User-Ethics-Legal-Concerns.html">
+     User Ethics &amp; Legal Concerns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-Web-Scraping-Part1.html">
+     Web Scraping — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-Web-Scraping-Part2.html">
+     Web Scraping — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-Git-GitHub.html">
+     Git and GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-APIs.html">
+     Application Programming Interfaces (APIs)
+    </a>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="06-Song-Genius-Data-Collection.html">
+     Song Genius Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="07-Genius-API.html">
+       Song Genius API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="08-LyricsGenius.html">
+       Song Lyrics Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="09-Song-Lyrics-Analysis.html">
+       Song Lyrics Analysis
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="10-Twitter-Data-Collection-Home.html">
+     Twitter Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="11-Twitter-API-Setup.html">
+       Twitter API Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="12-Twitter-Data-Collection.html">
+       Twitter Data Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="13-Twitter-Data-Analysis.html">
+       Twitter Data Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="14-Twitter-Data-Sharing.html">
+       Twitter Data Sharing
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15-Reddit-Data-Collection-With-PSAW.html">
+     Reddit Data Collection
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../05-Text-Analysis/00-Text-Analysis.html">
+   5. Text Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/01-TF-IDF.html">
+     TF-IDF
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/02-TF-IDF-HathiTrust.html">
+       TF-IDF with HathiTrust Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/03-TF-IDF-Scikit-Learn.html">
+       TF-IDF with Scikit-Learn
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/04-Topic-Modeling.html">
+     Topic Modeling
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/05-Topic-Modeling-Overview.html">
+       Topic Modeling — Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/06-Topic-Modeling-Set-Up.html">
+       Topic Modeling — Set Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/07-Topic-Modeling-Text-Files.html">
+       Topic Modeling — Text Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/08-Topic-Modeling-CSV.html">
+       Topic Modeling — CSV Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/09-Topic-Modeling-Time-Series.html">
+       Topic Modeling — Time Series
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/10-Named-Entity-Recognition.html">
+     Named Entity Recognition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html">
+     Part-of-Speech Tagging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html#keyword-extraction">
+     Keyword Extraction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../06-Network-Analysis/00-Network-Analysis-Home.html">
+   6. Network Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/01-Network-Analysis.html">
+     Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/02-Making-Network-Viz-with-Bokeh.html">
+     Make an Interactive Network Visualization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../07-Mapping/01-Mapping-Home.html">
+   7. Mapping
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html">
+     Mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#geocoding-with-geopy">
+     Geocoding with GeoPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#making-interactive-maps">
+     Making Interactive Maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/03-Custom-Maps.html">
+     Custom Map Backgrounds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/04-Publish-Your-Map.html">
+     Publish Your Map on the Web
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Datasets
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-Datasets/Datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Extra Materials
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Jupyter-Tips-Tricks.html">
+   Jupyter Tips and Tricks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Randomize-Students.html">
+   Make Random Student Groups
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04-Data-Collection/05.5-Reddit-Data-Collection-WORKBOOK-SOLUTIONS.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F04-Data-Collection/05.5-Reddit-Data-Collection-WORKBOOK-SOLUTIONS.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/04-Data-Collection/05.5-Reddit-Data-Collection-WORKBOOK-SOLUTIONS.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-psaw">
+   Install PSAW
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collect-reddit-submissions-for-a-subreddit">
+   Collect Reddit submissions for a subreddit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examine-data">
+   Examine Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#your-turn">
+   Your Turn!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collect-reddit-submissions-based-on-search-keyword">
+   Collect Reddit submissions based on search keyword
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonus">
+   Bonus
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collect-reddit-comments-based-on-search-keyword">
+     Collect Reddit
+     <em>
+      comments
+     </em>
+     based on search keyword
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collect-reddit-submissions-comments-based-on-multiple-search-keywords">
+     Collect Reddit submissions/comments based on multiple search keywords
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collect-reddit-submissions-comments-with-start-and-end-dates">
+   Collect Reddit submissions/comments with start and end dates
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reddit-data-collection-workbook">
+<h1>Reddit Data Collection — Workbook<a class="headerlink" href="#reddit-data-collection-workbook" title="Permalink to this headline">¶</a></h1>
+<p><em>Don’t forget to rename this notebook if you want to save changes!</em></p>
+<p>In this lesson, we’re going to introduce learn how to collect Reddit posts with the API wrapper known as PSAW.</p>
+<blockquote>
+<div><p>Why do people use Pushshift’s API instead of the official Reddit API?</p>
+</div></blockquote>
+<blockquote>
+<div><p>In short, Pushshift makes it
+much easier for researchers to query and retrieve historical
+Reddit data, provides extended functionality by providing fulltext search against comments and submissions, and has larger
+single query limits.</p>
+</div></blockquote>
+<blockquote>
+<div><p>— Jason Baumgartner, et al., <a class="reference external" href="https://arxiv.org/pdf/2001.08435.pdf">“The Pushshift Reddit Dataset”</a></p>
+</div></blockquote>
+<div class="section" id="install-psaw">
+<h2>Install PSAW<a class="headerlink" href="#install-psaw" title="Permalink to this headline">¶</a></h2>
+<p>First, we’re going to install the PSAW package with pip. The <code class="docutils literal notranslate"><span class="pre">!</span></code> allows us to run a command that is normally for the command line or Terminal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install psaw
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psaw
+  Downloading psaw-0.0.12-py3-none-any.whl (15 kB)
+Requirement already satisfied: Click in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from psaw) (7.1.2)
+Requirement already satisfied: requests in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from psaw) (2.23.0)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;psaw) (2.9)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;psaw) (2020.4.5.2)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;psaw) (1.25.9)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;psaw) (3.0.4)
+Installing collected packages: psaw
+Successfully installed psaw-0.0.12
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we will import pandas and set the default display options.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_colwidth</span> <span class="o">=</span>  <span class="mi">400</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we will import a specific part of the PSAW package, PushshiftAPI.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">psaw</span> <span class="kn">import</span> <span class="n">PushshiftAPI</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we will “initialize” the PushshiftAPI, so we can work with it below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">PushshiftAPI</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="collect-reddit-submissions-for-a-subreddit">
+<h2>Collect Reddit submissions for a subreddit<a class="headerlink" href="#collect-reddit-submissions-for-a-subreddit" title="Permalink to this headline">¶</a></h2>
+<p>The way PSAW works is a little unique. First, we will set up an API request generator</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_request_generator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_submissions</span><span class="p">(</span><span class="n">subreddit</span><span class="o">=</span><span class="s1">&#39;TodayILearned&#39;</span><span class="p">,</span>
+                                               <span class="n">score</span> <span class="o">=</span> <span class="s2">&quot;&gt;10000&quot;</span><span class="p">,</span>
+                                               <span class="n">limit</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Grab data for each Reddit submission and make into a DataFrame</p>
+<p>The cell below should take a while to run. It’s searching through Reddit’s entire history. It’s ok if you periodically get errors while it’s running.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_submissions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">api_request_generator</span><span class="p">:</span>
+    <span class="n">all_submissions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">d_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How would we calculate the length of the list <code class="docutils literal notranslate"><span class="pre">all_submissions</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">all_submissions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+<p>How would we examine the first item in the list <code class="docutils literal notranslate"><span class="pre">all_submissions</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_submissions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;all_awardings&#39;: [{&#39;award_sub_type&#39;: &#39;APPRECIATION&#39;,
+   &#39;award_type&#39;: &#39;global&#39;,
+   &#39;awardings_required_to_grant_benefits&#39;: None,
+   &#39;coin_price&#39;: 250,
+   &#39;coin_reward&#39;: 100,
+   &#39;count&#39;: 1,
+   &#39;days_of_drip_extension&#39;: 0,
+   &#39;days_of_premium&#39;: 0,
+   &#39;description&#39;: &#39;When a thing immediately combusts your brain. Gives %{coin_symbol}100 Coins to both the author and the community.&#39;,
+   &#39;end_date&#39;: None,
+   &#39;giver_coin_reward&#39;: None,
+   &#39;icon_format&#39;: None,
+   &#39;icon_height&#39;: 2048,
+   &#39;icon_url&#39;: &#39;https://i.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png&#39;,
+   &#39;icon_width&#39;: 2048,
+   &#39;id&#39;: &#39;award_9583d210-a7d0-4f3c-b0c7-369ad579d3d4&#39;,
+   &#39;is_enabled&#39;: True,
+   &#39;is_new&#39;: False,
+   &#39;name&#39;: &#39;Mind Blown&#39;,
+   &#39;penny_donate&#39;: None,
+   &#39;penny_price&#39;: None,
+   &#39;resized_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=16&amp;amp;height=16&amp;amp;auto=webp&amp;amp;s=3429167a3ea031ab4a4574baf47b2140c7b59aa8&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=32&amp;amp;height=32&amp;amp;auto=webp&amp;amp;s=835353c87c6a5d516662bb681d0d50647e7ab44f&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=48&amp;amp;height=48&amp;amp;auto=webp&amp;amp;s=a925fdb8ed532e7261b0dbc820e691423cba8ee6&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=64&amp;amp;height=64&amp;amp;auto=webp&amp;amp;s=1d86da7e5837d52fec767aeb6a762caff5f7cef0&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=128&amp;amp;height=128&amp;amp;auto=webp&amp;amp;s=e3254651db548741c58f331e91395b55a557573d&#39;,
+     &#39;width&#39;: 128}],
+   &#39;resized_static_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=16&amp;amp;height=16&amp;amp;auto=webp&amp;amp;s=3429167a3ea031ab4a4574baf47b2140c7b59aa8&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=32&amp;amp;height=32&amp;amp;auto=webp&amp;amp;s=835353c87c6a5d516662bb681d0d50647e7ab44f&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=48&amp;amp;height=48&amp;amp;auto=webp&amp;amp;s=a925fdb8ed532e7261b0dbc820e691423cba8ee6&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=64&amp;amp;height=64&amp;amp;auto=webp&amp;amp;s=1d86da7e5837d52fec767aeb6a762caff5f7cef0&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png?width=128&amp;amp;height=128&amp;amp;auto=webp&amp;amp;s=e3254651db548741c58f331e91395b55a557573d&#39;,
+     &#39;width&#39;: 128}],
+   &#39;start_date&#39;: None,
+   &#39;static_icon_height&#39;: 2048,
+   &#39;static_icon_url&#39;: &#39;https://i.redd.it/award_images/t5_22cerq/wa987k0p4v541_MindBlown.png&#39;,
+   &#39;static_icon_width&#39;: 2048,
+   &#39;subreddit_coin_reward&#39;: 100,
+   &#39;subreddit_id&#39;: None,
+   &#39;tiers_by_required_awardings&#39;: None},
+  {&#39;award_sub_type&#39;: &#39;GLOBAL&#39;,
+   &#39;award_type&#39;: &#39;global&#39;,
+   &#39;awardings_required_to_grant_benefits&#39;: None,
+   &#39;coin_price&#39;: 150,
+   &#39;coin_reward&#39;: 0,
+   &#39;count&#39;: 4,
+   &#39;days_of_drip_extension&#39;: 0,
+   &#39;days_of_premium&#39;: 0,
+   &#39;description&#39;: &#39;Thank you stranger. Shows the award.&#39;,
+   &#39;end_date&#39;: None,
+   &#39;giver_coin_reward&#39;: None,
+   &#39;icon_format&#39;: None,
+   &#39;icon_height&#39;: 2048,
+   &#39;icon_url&#39;: &#39;https://i.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png&#39;,
+   &#39;icon_width&#39;: 2048,
+   &#39;id&#39;: &#39;award_f44611f1-b89e-46dc-97fe-892280b13b82&#39;,
+   &#39;is_enabled&#39;: True,
+   &#39;is_new&#39;: False,
+   &#39;name&#39;: &#39;Helpful&#39;,
+   &#39;penny_donate&#39;: None,
+   &#39;penny_price&#39;: None,
+   &#39;resized_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=16&amp;amp;height=16&amp;amp;auto=webp&amp;amp;s=a5662dfbdb402bf67866c050aa76c31c147c2f45&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=32&amp;amp;height=32&amp;amp;auto=webp&amp;amp;s=a6882eb3f380e8e88009789f4d0072e17b8c59f1&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=48&amp;amp;height=48&amp;amp;auto=webp&amp;amp;s=e50064b090879e8a0b55e433f6ee61d5cb5fbe1d&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=64&amp;amp;height=64&amp;amp;auto=webp&amp;amp;s=8e5bb2e76683cb6b161830bcdd9642049d6adc11&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=128&amp;amp;height=128&amp;amp;auto=webp&amp;amp;s=eda4a9246f95f42ee6940cc0ec65306fd20de878&#39;,
+     &#39;width&#39;: 128}],
+   &#39;resized_static_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=16&amp;amp;height=16&amp;amp;auto=webp&amp;amp;s=a5662dfbdb402bf67866c050aa76c31c147c2f45&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=32&amp;amp;height=32&amp;amp;auto=webp&amp;amp;s=a6882eb3f380e8e88009789f4d0072e17b8c59f1&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=48&amp;amp;height=48&amp;amp;auto=webp&amp;amp;s=e50064b090879e8a0b55e433f6ee61d5cb5fbe1d&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=64&amp;amp;height=64&amp;amp;auto=webp&amp;amp;s=8e5bb2e76683cb6b161830bcdd9642049d6adc11&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png?width=128&amp;amp;height=128&amp;amp;auto=webp&amp;amp;s=eda4a9246f95f42ee6940cc0ec65306fd20de878&#39;,
+     &#39;width&#39;: 128}],
+   &#39;start_date&#39;: None,
+   &#39;static_icon_height&#39;: 2048,
+   &#39;static_icon_url&#39;: &#39;https://i.redd.it/award_images/t5_22cerq/klvxk1wggfd41_Helpful.png&#39;,
+   &#39;static_icon_width&#39;: 2048,
+   &#39;subreddit_coin_reward&#39;: 0,
+   &#39;subreddit_id&#39;: None,
+   &#39;tiers_by_required_awardings&#39;: None},
+  {&#39;award_sub_type&#39;: &#39;GLOBAL&#39;,
+   &#39;award_type&#39;: &#39;global&#39;,
+   &#39;awardings_required_to_grant_benefits&#39;: None,
+   &#39;coin_price&#39;: 125,
+   &#39;coin_reward&#39;: 0,
+   &#39;count&#39;: 2,
+   &#39;days_of_drip_extension&#39;: 0,
+   &#39;days_of_premium&#39;: 0,
+   &#39;description&#39;: &#39;When you come across a feel-good thing.&#39;,
+   &#39;end_date&#39;: None,
+   &#39;giver_coin_reward&#39;: None,
+   &#39;icon_format&#39;: None,
+   &#39;icon_height&#39;: 2048,
+   &#39;icon_url&#39;: &#39;https://i.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png&#39;,
+   &#39;icon_width&#39;: 2048,
+   &#39;id&#39;: &#39;award_5f123e3d-4f48-42f4-9c11-e98b566d5897&#39;,
+   &#39;is_enabled&#39;: True,
+   &#39;is_new&#39;: False,
+   &#39;name&#39;: &#39;Wholesome&#39;,
+   &#39;penny_donate&#39;: None,
+   &#39;penny_price&#39;: None,
+   &#39;resized_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=16&amp;amp;height=16&amp;amp;auto=webp&amp;amp;s=92932f465d58e4c16b12b6eac4ca07d27e3d11c0&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=32&amp;amp;height=32&amp;amp;auto=webp&amp;amp;s=d11484a208d68a318bf9d4fcf371171a1cb6a7ef&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=48&amp;amp;height=48&amp;amp;auto=webp&amp;amp;s=febdf28b6f39f7da7eb1365325b85e0bb49a9f63&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=64&amp;amp;height=64&amp;amp;auto=webp&amp;amp;s=b4406a2d88bf86fa3dc8a45aacf7e0c7bdccc4fb&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=128&amp;amp;height=128&amp;amp;auto=webp&amp;amp;s=19555b13e3e196b62eeb9160d1ac1d1b372dcb0b&#39;,
+     &#39;width&#39;: 128}],
+   &#39;resized_static_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=16&amp;amp;height=16&amp;amp;auto=webp&amp;amp;s=92932f465d58e4c16b12b6eac4ca07d27e3d11c0&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=32&amp;amp;height=32&amp;amp;auto=webp&amp;amp;s=d11484a208d68a318bf9d4fcf371171a1cb6a7ef&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=48&amp;amp;height=48&amp;amp;auto=webp&amp;amp;s=febdf28b6f39f7da7eb1365325b85e0bb49a9f63&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=64&amp;amp;height=64&amp;amp;auto=webp&amp;amp;s=b4406a2d88bf86fa3dc8a45aacf7e0c7bdccc4fb&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=128&amp;amp;height=128&amp;amp;auto=webp&amp;amp;s=19555b13e3e196b62eeb9160d1ac1d1b372dcb0b&#39;,
+     &#39;width&#39;: 128}],
+   &#39;start_date&#39;: None,
+   &#39;static_icon_height&#39;: 2048,
+   &#39;static_icon_url&#39;: &#39;https://i.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png&#39;,
+   &#39;static_icon_width&#39;: 2048,
+   &#39;subreddit_coin_reward&#39;: 0,
+   &#39;subreddit_id&#39;: None,
+   &#39;tiers_by_required_awardings&#39;: None},
+  {&#39;award_sub_type&#39;: &#39;GLOBAL&#39;,
+   &#39;award_type&#39;: &#39;global&#39;,
+   &#39;awardings_required_to_grant_benefits&#39;: None,
+   &#39;coin_price&#39;: 100,
+   &#39;coin_reward&#39;: 0,
+   &#39;count&#39;: 2,
+   &#39;days_of_drip_extension&#39;: 0,
+   &#39;days_of_premium&#39;: 0,
+   &#39;description&#39;: &quot;Shows the Silver Award... and that&#39;s it.&quot;,
+   &#39;end_date&#39;: None,
+   &#39;giver_coin_reward&#39;: None,
+   &#39;icon_format&#39;: None,
+   &#39;icon_height&#39;: 512,
+   &#39;icon_url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_512.png&#39;,
+   &#39;icon_width&#39;: 512,
+   &#39;id&#39;: &#39;gid_1&#39;,
+   &#39;is_enabled&#39;: True,
+   &#39;is_new&#39;: False,
+   &#39;name&#39;: &#39;Silver&#39;,
+   &#39;penny_donate&#39;: None,
+   &#39;penny_price&#39;: None,
+   &#39;resized_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_16.png&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_32.png&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_48.png&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_64.png&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_128.png&#39;,
+     &#39;width&#39;: 128}],
+   &#39;resized_static_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_16.png&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_32.png&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_48.png&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_64.png&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_128.png&#39;,
+     &#39;width&#39;: 128}],
+   &#39;start_date&#39;: None,
+   &#39;static_icon_height&#39;: 512,
+   &#39;static_icon_url&#39;: &#39;https://www.redditstatic.com/gold/awards/icon/silver_512.png&#39;,
+   &#39;static_icon_width&#39;: 512,
+   &#39;subreddit_coin_reward&#39;: 0,
+   &#39;subreddit_id&#39;: None,
+   &#39;tiers_by_required_awardings&#39;: None},
+  {&#39;award_sub_type&#39;: &#39;GLOBAL&#39;,
+   &#39;award_type&#39;: &#39;global&#39;,
+   &#39;awardings_required_to_grant_benefits&#39;: None,
+   &#39;coin_price&#39;: 80,
+   &#39;coin_reward&#39;: 0,
+   &#39;count&#39;: 2,
+   &#39;days_of_drip_extension&#39;: 0,
+   &#39;days_of_premium&#39;: 0,
+   &#39;description&#39;: &#39;Everything is better with a good hug&#39;,
+   &#39;end_date&#39;: None,
+   &#39;giver_coin_reward&#39;: 0,
+   &#39;icon_format&#39;: &#39;PNG&#39;,
+   &#39;icon_height&#39;: 2048,
+   &#39;icon_url&#39;: &#39;https://i.redd.it/award_images/t5_q0gj4/ks45ij6w05f61_oldHugz.png&#39;,
+   &#39;icon_width&#39;: 2048,
+   &#39;id&#39;: &#39;award_8352bdff-3e03-4189-8a08-82501dd8f835&#39;,
+   &#39;is_enabled&#39;: True,
+   &#39;is_new&#39;: False,
+   &#39;name&#39;: &#39;Hugz&#39;,
+   &#39;penny_donate&#39;: 0,
+   &#39;penny_price&#39;: 0,
+   &#39;resized_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/ks45ij6w05f61_oldHugz.png?width=16&amp;amp;height=16&amp;amp;auto=webp&amp;amp;s=73a23bf7f08b633508dedf457f2704c522b94a04&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/ks45ij6w05f61_oldHugz.png?width=32&amp;amp;height=32&amp;amp;auto=webp&amp;amp;s=50f2f16e71d2929e3d7275060af3ad6b851dbfb1&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/ks45ij6w05f61_oldHugz.png?width=48&amp;amp;height=48&amp;amp;auto=webp&amp;amp;s=ca487311563425e195699a4d7e4c57a98cbfde8b&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/ks45ij6w05f61_oldHugz.png?width=64&amp;amp;height=64&amp;amp;auto=webp&amp;amp;s=7b4eedcffb1c09a826e7837532c52979760f1d2b&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/ks45ij6w05f61_oldHugz.png?width=128&amp;amp;height=128&amp;amp;auto=webp&amp;amp;s=e4d5ab237eb71a9f02bb3bf9ad5ee43741918d6c&#39;,
+     &#39;width&#39;: 128}],
+   &#39;resized_static_icons&#39;: [{&#39;height&#39;: 16,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/fpm0r5ryq1361_PolarHugs.png?width=16&amp;amp;height=16&amp;amp;auto=webp&amp;amp;s=69997ace3ef4ffc099b81d774c2c8f1530602875&#39;,
+     &#39;width&#39;: 16},
+    {&#39;height&#39;: 32,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/fpm0r5ryq1361_PolarHugs.png?width=32&amp;amp;height=32&amp;amp;auto=webp&amp;amp;s=e9519d1999ef9dce5c8a9f59369cb92f52d95319&#39;,
+     &#39;width&#39;: 32},
+    {&#39;height&#39;: 48,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/fpm0r5ryq1361_PolarHugs.png?width=48&amp;amp;height=48&amp;amp;auto=webp&amp;amp;s=f076c6434fb2d2f9075991810fd845c40fa73fc6&#39;,
+     &#39;width&#39;: 48},
+    {&#39;height&#39;: 64,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/fpm0r5ryq1361_PolarHugs.png?width=64&amp;amp;height=64&amp;amp;auto=webp&amp;amp;s=85527145e0c4b754306a30df29e584fd16187636&#39;,
+     &#39;width&#39;: 64},
+    {&#39;height&#39;: 128,
+     &#39;url&#39;: &#39;https://preview.redd.it/award_images/t5_q0gj4/fpm0r5ryq1361_PolarHugs.png?width=128&amp;amp;height=128&amp;amp;auto=webp&amp;amp;s=b8843cdf82c3b741d7af057c14076dcd2621e811&#39;,
+     &#39;width&#39;: 128}],
+   &#39;start_date&#39;: None,
+   &#39;static_icon_height&#39;: 2048,
+   &#39;static_icon_url&#39;: &#39;https://i.redd.it/award_images/t5_q0gj4/fpm0r5ryq1361_PolarHugs.png&#39;,
+   &#39;static_icon_width&#39;: 2048,
+   &#39;subreddit_coin_reward&#39;: 0,
+   &#39;subreddit_id&#39;: None,
+   &#39;tiers_by_required_awardings&#39;: None}],
+ &#39;allow_live_comments&#39;: True,
+ &#39;author&#39;: &#39;HBombBrohan&#39;,
+ &#39;author_flair_css_class&#39;: None,
+ &#39;author_flair_richtext&#39;: [],
+ &#39;author_flair_text&#39;: None,
+ &#39;author_flair_type&#39;: &#39;text&#39;,
+ &#39;author_fullname&#39;: &#39;t2_8lhmp&#39;,
+ &#39;author_patreon_flair&#39;: False,
+ &#39;author_premium&#39;: False,
+ &#39;awarders&#39;: [],
+ &#39;can_mod_post&#39;: False,
+ &#39;contest_mode&#39;: False,
+ &#39;created_utc&#39;: 1614910685,
+ &#39;domain&#39;: &#39;youtube.com&#39;,
+ &#39;full_link&#39;: &#39;https://www.reddit.com/r/todayilearned/comments/ly1ndi/til_that_ring_was_on_shark_tank_and_walked_away/&#39;,
+ &#39;gildings&#39;: {&#39;gid_1&#39;: 2},
+ &#39;id&#39;: &#39;ly1ndi&#39;,
+ &#39;is_crosspostable&#39;: True,
+ &#39;is_meta&#39;: False,
+ &#39;is_original_content&#39;: False,
+ &#39;is_reddit_media_domain&#39;: False,
+ &#39;is_robot_indexable&#39;: True,
+ &#39;is_self&#39;: False,
+ &#39;is_video&#39;: False,
+ &#39;link_flair_background_color&#39;: &#39;&#39;,
+ &#39;link_flair_richtext&#39;: [],
+ &#39;link_flair_text_color&#39;: &#39;dark&#39;,
+ &#39;link_flair_type&#39;: &#39;text&#39;,
+ &#39;locked&#39;: False,
+ &#39;media&#39;: {&#39;oembed&#39;: {&#39;author_name&#39;: &#39;CNBC&#39;,
+   &#39;author_url&#39;: &#39;https://www.youtube.com/user/cnbc&#39;,
+   &#39;height&#39;: 200,
+   &#39;html&#39;: &#39;&amp;lt;iframe width=&quot;356&quot; height=&quot;200&quot; src=&quot;https://www.youtube.com/embed/zcEDiOwv6Ro?feature=oembed&amp;amp;enablejsapi=1&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;&#39;,
+   &#39;provider_name&#39;: &#39;YouTube&#39;,
+   &#39;provider_url&#39;: &#39;https://www.youtube.com/&#39;,
+   &#39;thumbnail_height&#39;: 360,
+   &#39;thumbnail_url&#39;: &#39;https://i.ytimg.com/vi/zcEDiOwv6Ro/hqdefault.jpg&#39;,
+   &#39;thumbnail_width&#39;: 480,
+   &#39;title&#39;: &quot;Kevin O&#39;Leary On Missing Out On Ring On &#39;Shark Tank&#39; | CNBC&quot;,
+   &#39;type&#39;: &#39;video&#39;,
+   &#39;version&#39;: &#39;1.0&#39;,
+   &#39;width&#39;: 356},
+  &#39;type&#39;: &#39;youtube.com&#39;},
+ &#39;media_embed&#39;: {&#39;content&#39;: &#39;&amp;lt;iframe width=&quot;356&quot; height=&quot;200&quot; src=&quot;https://www.youtube.com/embed/zcEDiOwv6Ro?feature=oembed&amp;amp;enablejsapi=1&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;&#39;,
+  &#39;height&#39;: 200,
+  &#39;scrolling&#39;: False,
+  &#39;width&#39;: 356},
+ &#39;media_only&#39;: False,
+ &#39;no_follow&#39;: False,
+ &#39;num_comments&#39;: 2139,
+ &#39;num_crossposts&#39;: 7,
+ &#39;over_18&#39;: False,
+ &#39;parent_whitelist_status&#39;: &#39;all_ads&#39;,
+ &#39;permalink&#39;: &#39;/r/todayilearned/comments/ly1ndi/til_that_ring_was_on_shark_tank_and_walked_away/&#39;,
+ &#39;pinned&#39;: False,
+ &#39;post_hint&#39;: &#39;rich:video&#39;,
+ &#39;preview&#39;: {&#39;enabled&#39;: False,
+  &#39;images&#39;: [{&#39;id&#39;: &#39;ZVT3Cem7gAr3XAKRSrsSM1GWHPRslusPnNJpZSDnlEw&#39;,
+    &#39;resolutions&#39;: [{&#39;height&#39;: 81,
+      &#39;url&#39;: &#39;https://external-preview.redd.it/fEUSuPksYizwXYSD9_UReKBBlQOnRtBA2C4YvguNXpw.jpg?width=108&amp;amp;crop=smart&amp;amp;auto=webp&amp;amp;s=b95e1f45ca24c95af0b1bff801f23a163c526780&#39;,
+      &#39;width&#39;: 108},
+     {&#39;height&#39;: 162,
+      &#39;url&#39;: &#39;https://external-preview.redd.it/fEUSuPksYizwXYSD9_UReKBBlQOnRtBA2C4YvguNXpw.jpg?width=216&amp;amp;crop=smart&amp;amp;auto=webp&amp;amp;s=24ba60938f7fc81accdf104871d12e728db39325&#39;,
+      &#39;width&#39;: 216},
+     {&#39;height&#39;: 240,
+      &#39;url&#39;: &#39;https://external-preview.redd.it/fEUSuPksYizwXYSD9_UReKBBlQOnRtBA2C4YvguNXpw.jpg?width=320&amp;amp;crop=smart&amp;amp;auto=webp&amp;amp;s=c1c0a302181dafa204ac360d2c933345fb4a91bc&#39;,
+      &#39;width&#39;: 320}],
+    &#39;source&#39;: {&#39;height&#39;: 360,
+     &#39;url&#39;: &#39;https://external-preview.redd.it/fEUSuPksYizwXYSD9_UReKBBlQOnRtBA2C4YvguNXpw.jpg?auto=webp&amp;amp;s=9cc3a5a1acaa87d1917465c552b76a6a4b3ddb96&#39;,
+     &#39;width&#39;: 480},
+    &#39;variants&#39;: {}}]},
+ &#39;pwls&#39;: 6,
+ &#39;retrieved_on&#39;: 1615028188,
+ &#39;score&#39;: 56030,
+ &#39;secure_media&#39;: {&#39;oembed&#39;: {&#39;author_name&#39;: &#39;CNBC&#39;,
+   &#39;author_url&#39;: &#39;https://www.youtube.com/user/cnbc&#39;,
+   &#39;height&#39;: 200,
+   &#39;html&#39;: &#39;&amp;lt;iframe width=&quot;356&quot; height=&quot;200&quot; src=&quot;https://www.youtube.com/embed/zcEDiOwv6Ro?feature=oembed&amp;amp;enablejsapi=1&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;&#39;,
+   &#39;provider_name&#39;: &#39;YouTube&#39;,
+   &#39;provider_url&#39;: &#39;https://www.youtube.com/&#39;,
+   &#39;thumbnail_height&#39;: 360,
+   &#39;thumbnail_url&#39;: &#39;https://i.ytimg.com/vi/zcEDiOwv6Ro/hqdefault.jpg&#39;,
+   &#39;thumbnail_width&#39;: 480,
+   &#39;title&#39;: &quot;Kevin O&#39;Leary On Missing Out On Ring On &#39;Shark Tank&#39; | CNBC&quot;,
+   &#39;type&#39;: &#39;video&#39;,
+   &#39;version&#39;: &#39;1.0&#39;,
+   &#39;width&#39;: 356},
+  &#39;type&#39;: &#39;youtube.com&#39;},
+ &#39;secure_media_embed&#39;: {&#39;content&#39;: &#39;&amp;lt;iframe width=&quot;356&quot; height=&quot;200&quot; src=&quot;https://www.youtube.com/embed/zcEDiOwv6Ro?feature=oembed&amp;amp;enablejsapi=1&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;&#39;,
+  &#39;height&#39;: 200,
+  &#39;media_domain_url&#39;: &#39;https://www.redditmedia.com/mediaembed/ly1ndi&#39;,
+  &#39;scrolling&#39;: False,
+  &#39;width&#39;: 356},
+ &#39;selftext&#39;: &#39;&#39;,
+ &#39;send_replies&#39;: True,
+ &#39;spoiler&#39;: False,
+ &#39;stickied&#39;: False,
+ &#39;subreddit&#39;: &#39;todayilearned&#39;,
+ &#39;subreddit_id&#39;: &#39;t5_2qqjc&#39;,
+ &#39;subreddit_subscribers&#39;: 24986494,
+ &#39;subreddit_type&#39;: &#39;public&#39;,
+ &#39;thumbnail&#39;: &#39;https://b.thumbs.redditmedia.com/8j3D96OGw1mZOKe1Z7LfkTlaRPuoC7Nc-SCBjMobgAA.jpg&#39;,
+ &#39;thumbnail_height&#39;: 105,
+ &#39;thumbnail_width&#39;: 140,
+ &#39;title&#39;: &#39;TIL that Ring was on Shark Tank and walked away without a deal. Ring later sold to Amazon for $1 billion.&#39;,
+ &#39;total_awards_received&#39;: 11,
+ &#39;treatment_tags&#39;: [],
+ &#39;upvote_ratio&#39;: 0.88,
+ &#39;url&#39;: &#39;https://www.youtube.com/watch?v=zcEDiOwv6Ro&#39;,
+ &#39;url_overridden_by_dest&#39;: &#39;https://www.youtube.com/watch?v=zcEDiOwv6Ro&#39;,
+ &#39;whitelist_status&#39;: &#39;all_ads&#39;,
+ &#39;wls&#39;: 6,
+ &#39;created&#39;: 1614925085.0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>How would we create a DataFrame from <code class="docutils literal notranslate"><span class="pre">all_submissions</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_submissions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>all_awardings</th>
+      <th>allow_live_comments</th>
+      <th>author</th>
+      <th>author_flair_css_class</th>
+      <th>author_flair_richtext</th>
+      <th>author_flair_text</th>
+      <th>author_flair_type</th>
+      <th>author_fullname</th>
+      <th>author_patreon_flair</th>
+      <th>author_premium</th>
+      <th>awarders</th>
+      <th>can_mod_post</th>
+      <th>contest_mode</th>
+      <th>created_utc</th>
+      <th>domain</th>
+      <th>full_link</th>
+      <th>gildings</th>
+      <th>id</th>
+      <th>is_crosspostable</th>
+      <th>is_meta</th>
+      <th>is_original_content</th>
+      <th>is_reddit_media_domain</th>
+      <th>is_robot_indexable</th>
+      <th>is_self</th>
+      <th>is_video</th>
+      <th>...</th>
+      <th>spoiler</th>
+      <th>stickied</th>
+      <th>subreddit</th>
+      <th>subreddit_id</th>
+      <th>subreddit_subscribers</th>
+      <th>subreddit_type</th>
+      <th>thumbnail</th>
+      <th>thumbnail_height</th>
+      <th>thumbnail_width</th>
+      <th>title</th>
+      <th>total_awards_received</th>
+      <th>treatment_tags</th>
+      <th>upvote_ratio</th>
+      <th>url</th>
+      <th>url_overridden_by_dest</th>
+      <th>whitelist_status</th>
+      <th>wls</th>
+      <th>created</th>
+      <th>link_flair_template_id</th>
+      <th>link_flair_text</th>
+      <th>removed_by_category</th>
+      <th>link_flair_css_class</th>
+      <th>gilded</th>
+      <th>author_flair_background_color</th>
+      <th>author_flair_text_color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[{'award_sub_type': 'APPRECIATION', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 250, 'coin_reward': 100, 'count': 1, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'When a thing immediately combusts your brain. Gives %{coin_symbol}100 Coins to both the author and the community.', 'end_date': None, 'giver_coin_reward': None, 'icon_forma...</td>
+      <td>True</td>
+      <td>HBombBrohan</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_8lhmp</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1614910685</td>
+      <td>youtube.com</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/ly1ndi/til_that_ring_was_on_shark_tank_and_walked_away/</td>
+      <td>{'gid_1': 2}</td>
+      <td>ly1ndi</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24986494</td>
+      <td>public</td>
+      <td>https://b.thumbs.redditmedia.com/8j3D96OGw1mZOKe1Z7LfkTlaRPuoC7Nc-SCBjMobgAA.jpg</td>
+      <td>105.0</td>
+      <td>140.0</td>
+      <td>TIL that Ring was on Shark Tank and walked away without a deal. Ring later sold to Amazon for $1 billion.</td>
+      <td>11</td>
+      <td>[]</td>
+      <td>0.88</td>
+      <td>https://www.youtube.com/watch?v=zcEDiOwv6Ro</td>
+      <td>https://www.youtube.com/watch?v=zcEDiOwv6Ro</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.614925e+09</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[{'award_sub_type': 'APPRECIATION', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 250, 'coin_reward': 100, 'count': 1, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'The more you know... Gives %{coin_symbol}100 Coins to both the author and the community.', 'end_date': None, 'giver_coin_reward': None, 'icon_format': None, 'icon_height': ...</td>
+      <td>True</td>
+      <td>Rod_Me</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_7du5z3fo</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1614889519</td>
+      <td>en.wikipedia.org</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/lxuavz/til_isaac_asimov_wrote_500_books_his_first_novel/</td>
+      <td>{'gid_1': 1}</td>
+      <td>lxuavz</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24985209</td>
+      <td>public</td>
+      <td>default</td>
+      <td>140.0</td>
+      <td>140.0</td>
+      <td>TIL Isaac Asimov wrote 500 books. His first novel was published in 1950, and he died in 1992. This means he wrote aprox 1 book per month for 42 straight years.</td>
+      <td>7</td>
+      <td>[]</td>
+      <td>0.97</td>
+      <td>https://en.wikipedia.org/wiki/Isaac_Asimov</td>
+      <td>https://en.wikipedia.org/wiki/Isaac_Asimov</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.614904e+09</td>
+      <td>b8ca7634-7786-11e6-9d21-0e18b019564b</td>
+      <td>R2, R5</td>
+      <td>moderator</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[{'award_sub_type': 'GLOBAL', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 150, 'coin_reward': 0, 'count': 25, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'Thank you stranger. Shows the award.', 'end_date': None, 'giver_coin_reward': None, 'icon_format': None, 'icon_height': 2048, 'icon_url': 'https://i.redd.it/award_images/t5_22cerq...</td>
+      <td>True</td>
+      <td>Hambgex</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_3tyrtztv</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1614874741</td>
+      <td>en.wikipedia.org</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/lxocip/til_that_at_an_allied_checkpoint_during_the/</td>
+      <td>{'gid_1': 18}</td>
+      <td>lxocip</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24984092</td>
+      <td>public</td>
+      <td>https://b.thumbs.redditmedia.com/u60BEH8Wlu_TRzVkEvk6TA3WN3sMGMRzlZR6M63TSAM.jpg</td>
+      <td>100.0</td>
+      <td>140.0</td>
+      <td>TIL that at an Allied checkpoint during the Battle of the Bulge, US General Omar Bradley was detained as a possible spy when he correctly identified Springfield as the capital of Illinois. The American military police officer who questioned him mistakenly believed the capital was Chicago</td>
+      <td>72</td>
+      <td>[]</td>
+      <td>0.93</td>
+      <td>https://en.wikipedia.org/wiki/Battle_of_the_Bulge#Operation_Greif_and_Operation_W%C3%A4hrung</td>
+      <td>https://en.wikipedia.org/wiki/Battle_of_the_Bulge#Operation_Greif_and_Operation_W%C3%A4hrung</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.614889e+09</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[{'award_sub_type': 'GLOBAL', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 150, 'coin_reward': 0, 'count': 4, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'Thank you stranger. Shows the award.', 'end_date': None, 'giver_coin_reward': None, 'icon_format': None, 'icon_height': 2048, 'icon_url': 'https://i.redd.it/award_images/t5_22cerq/...</td>
+      <td>True</td>
+      <td>NewAccountEachYear</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_6ick3b75</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1614837213</td>
+      <td>en.wikipedia.org</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/lxdwe1/til_the_first_country_to_recognize_greek/</td>
+      <td>{'gid_1': 4}</td>
+      <td>lxdwe1</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24981120</td>
+      <td>public</td>
+      <td>https://b.thumbs.redditmedia.com/dh_ot3EVBz7dBUzbxNdb6YzAHZW8YJgpFjULPkqMRvA.jpg</td>
+      <td>140.0</td>
+      <td>140.0</td>
+      <td>TIL the first country to recognize Greek independence was not any of the western powers, but Haiti, who alledgedly sent 25ton of Coffee beans to finance their rebellion</td>
+      <td>12</td>
+      <td>[]</td>
+      <td>0.97</td>
+      <td>https://en.wikipedia.org/wiki/Jean-Pierre_Boyer#Greek_War_of_Independence</td>
+      <td>https://en.wikipedia.org/wiki/Jean-Pierre_Boyer#Greek_War_of_Independence</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.614852e+09</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[{'award_sub_type': 'PREMIUM', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 30, 'coin_reward': 0, 'count': 1, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'A glowing commendation for all to see', 'end_date': None, 'giver_coin_reward': None, 'icon_format': 'APNG', 'icon_height': 2048, 'icon_url': 'https://www.redditstatic.com/gold/awar...</td>
+      <td>True</td>
+      <td>breck</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_30zub</td>
+      <td>False</td>
+      <td>True</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1614833870</td>
+      <td>en.wikipedia.org</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/lxd1z3/til_that_100s_of_years_ago_scribes_drew_colorful/</td>
+      <td>{'gid_1': 4}</td>
+      <td>lxd1z3</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24980860</td>
+      <td>public</td>
+      <td>default</td>
+      <td>80.0</td>
+      <td>140.0</td>
+      <td>TIL that 100's of years ago scribes drew colorful ¶ ("pilcrows") to mark new paragraphs. They'd leave blank spaces for the ¶'s then switch inks and add them. They would often miss some so readers evolved to interpret a blank space (indent) as the start of a new paragraph. Voila.</td>
+      <td>13</td>
+      <td>[]</td>
+      <td>0.97</td>
+      <td>https://en.wikipedia.org/wiki/Pilcrow</td>
+      <td>https://en.wikipedia.org/wiki/Pilcrow</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.614848e+09</td>
+      <td>8c746876-aee8-11e1-949b-12313d28619b</td>
+      <td>(R.2) Editorializing</td>
+      <td>moderator</td>
+      <td>removed r3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>[{'award_sub_type': 'GLOBAL', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 150, 'coin_reward': 0, 'count': 8, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'Thank you stranger. Shows the award.', 'end_date': None, 'giver_coin_reward': None, 'icon_format': None, 'icon_height': 2048, 'icon_url': 'https://i.redd.it/award_images/t5_22cerq/...</td>
+      <td>True</td>
+      <td>bhaggith</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_8v37f</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1612100751</td>
+      <td>sciencenewsforstudents.org</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/l9ckgq/til_that_babies_born_with_extra_digits_are_not/</td>
+      <td>{'gid_1': 3}</td>
+      <td>l9ckgq</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24759320</td>
+      <td>public</td>
+      <td>default</td>
+      <td>74.0</td>
+      <td>140.0</td>
+      <td>TIL That babies born with extra digits are not that rare, and those with 6 fingers on one hand are able to play a complicated video game with a single hand. What’s more, their brains have no trouble controlling the more complex movements of their extra digits.</td>
+      <td>15</td>
+      <td>[]</td>
+      <td>0.91</td>
+      <td>https://www.sciencenewsforstudents.org/article/sixth-finger-can-prove-extra-handy</td>
+      <td>https://www.sciencenewsforstudents.org/article/sixth-finger-can-prove-extra-handy</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.612115e+09</td>
+      <td>db5e66ec-bccd-11e1-b9fd-12313d051e91</td>
+      <td>(R.5) Omits Essential Info</td>
+      <td>moderator</td>
+      <td>removed r5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>[{'award_sub_type': 'GLOBAL', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 150, 'coin_reward': 0, 'count': 11, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'Thank you stranger. Shows the award.', 'end_date': None, 'giver_coin_reward': None, 'icon_format': None, 'icon_height': 2048, 'icon_url': 'https://i.redd.it/award_images/t5_22cerq...</td>
+      <td>True</td>
+      <td>Bulgogi_Pupusas</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_a13qdjpe</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1612097521</td>
+      <td>en.wikipedia.org</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/l9bpy2/til_that_the_common_method_for_a_spacecraft_to/</td>
+      <td>{'gid_1': 7}</td>
+      <td>l9bpy2</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24759085</td>
+      <td>public</td>
+      <td>https://b.thumbs.redditmedia.com/QBnvM7tdkN4dYTpcaupA8zdLGnNWSBPok78Uh71-Ifs.jpg</td>
+      <td>140.0</td>
+      <td>140.0</td>
+      <td>TIL that the common method for a spacecraft to shift between two orbits is called a Hohmann Transfer, and that the guy who calculated it (in 1925) was inspired by a science fiction book written in 1897, which gave a generally correct explanation of the concept of orbit trajectory</td>
+      <td>27</td>
+      <td>[]</td>
+      <td>0.95</td>
+      <td>https://en.wikipedia.org/wiki/Hohmann_transfer_orbit</td>
+      <td>https://en.wikipedia.org/wiki/Hohmann_transfer_orbit</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.612112e+09</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>[{'award_sub_type': 'GROUP', 'award_type': 'global', 'awardings_required_to_grant_benefits': 5, 'coin_price': 75, 'coin_reward': 100, 'count': 1, 'days_of_drip_extension': 0, 'days_of_premium': 7, 'description': 'All aboard! Every five Party Train Awards gives the author 100 Reddit Coins and a week of r/lounge access and ad-free browsing. Rack up the awards and watch the train level-up!', 'end...</td>
+      <td>True</td>
+      <td>ScreenExtension</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_8tkyk48v</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1608340113</td>
+      <td>alearned.com</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/kfy30w/til_12_counties_in_africa_are_building_a_9_mile/</td>
+      <td>{'gid_1': 2}</td>
+      <td>kfy30w</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24392378</td>
+      <td>public</td>
+      <td>https://b.thumbs.redditmedia.com/SJiyfSoO49dl0zKlgW7ujBFMDrYqlVN1cSvgDzjUH2A.jpg</td>
+      <td>111.0</td>
+      <td>140.0</td>
+      <td>TIL 12 counties in Africa are building a 9 mile wide tree wall all the way across the continent to prevent the Sahara from advancing</td>
+      <td>32</td>
+      <td>[]</td>
+      <td>0.96</td>
+      <td>http://www.alearned.com/green-wall-of-africa/</td>
+      <td>http://www.alearned.com/green-wall-of-africa/</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.608355e+09</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>moderator</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>[{'award_sub_type': 'GLOBAL', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 300, 'coin_reward': 0, 'count': 1, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'When an upvote just isn't enough, smash the Rocket Like.', 'end_date': None, 'giver_coin_reward': None, 'icon_format': None, 'icon_height': 2048, 'icon_url': 'https://i.redd.it/awa...</td>
+      <td>True</td>
+      <td>duevigilance</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_defeemc</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1608330864</td>
+      <td>theguardian.com</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/kfvcl3/til_that_legendary_hollywood_director_martin/</td>
+      <td>{'gid_1': 2}</td>
+      <td>kfvcl3</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24391920</td>
+      <td>public</td>
+      <td>https://a.thumbs.redditmedia.com/s8eU4TyzSw2MnU8QK3ObGCbmXlPa25o7Z76_EY4Psr0.jpg</td>
+      <td>73.0</td>
+      <td>140.0</td>
+      <td>TIL that legendary Hollywood director Martin Scorsese, best known for his violent gangster films, has used the same female editor, Thelma Schoonmaker, on every movie he's made since Raging Bull in 1980.</td>
+      <td>8</td>
+      <td>[]</td>
+      <td>0.95</td>
+      <td>https://www.theguardian.com/film/2019/feb/10/thelma-schoonmaker-martin-scorsese-raging-bull-goodfellas-bafta-fellowship-2019</td>
+      <td>https://www.theguardian.com/film/2019/feb/10/thelma-schoonmaker-martin-scorsese-raging-bull-goodfellas-bafta-fellowship-2019</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.608345e+09</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>[{'award_sub_type': 'GLOBAL', 'award_type': 'global', 'awardings_required_to_grant_benefits': None, 'coin_price': 300, 'coin_reward': 0, 'count': 3, 'days_of_drip_extension': 0, 'days_of_premium': 0, 'description': 'When an upvote just isn't enough, smash the Rocket Like.', 'end_date': None, 'giver_coin_reward': None, 'icon_format': None, 'icon_height': 2048, 'icon_url': 'https://i.redd.it/awa...</td>
+      <td>True</td>
+      <td>cornerstorecult</td>
+      <td>None</td>
+      <td>[]</td>
+      <td>None</td>
+      <td>text</td>
+      <td>t2_gmcbx</td>
+      <td>False</td>
+      <td>False</td>
+      <td>[]</td>
+      <td>False</td>
+      <td>False</td>
+      <td>1608306261</td>
+      <td>thestormking.com</td>
+      <td>https://www.reddit.com/r/todayilearned/comments/kfnh6w/til_john_stark_an_unpaid_rescuer_of_the_donner/</td>
+      <td>{'gid_1': 2}</td>
+      <td>kfnh6w</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>todayilearned</td>
+      <td>t5_2qqjc</td>
+      <td>24390809</td>
+      <td>public</td>
+      <td>https://a.thumbs.redditmedia.com/l-dVIv20Alf_-ERitqdpAvf7n2orBOkM1wg3YM2yZ50.jpg</td>
+      <td>94.0</td>
+      <td>140.0</td>
+      <td>TIL John Stark, an unpaid rescuer of the Donner Party who refused to leave any of the 9 dying survivors, mostly children, behind (unlike his paid partners who just grabbed one kid each and left). He carried 2-3 at a time, then went back and repeated the process. Stark, and all 9, survived.</td>
+      <td>10</td>
+      <td>[]</td>
+      <td>0.98</td>
+      <td>http://thestormking.com/tahoe_nuggets/Nugget_57/nugget_57.html</td>
+      <td>http://thestormking.com/tahoe_nuggets/Nugget_57/nugget_57.html</td>
+      <td>all_ads</td>
+      <td>6</td>
+      <td>1.608321e+09</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 74 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_submissions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could do all of the above in a single line of code, like so:</p>
+</div>
+<div class="section" id="examine-data">
+<h2>Examine Data<a class="headerlink" href="#examine-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>score</th>
+      <th>title</th>
+      <th>author</th>
+      <th>selftext</th>
+      <th>url</th>
+      <th>subreddit</th>
+      <th>num_comments</th>
+      <th>num_crossposts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-03-05 02:18:05+00:00</td>
+      <td>56030</td>
+      <td>TIL that Ring was on Shark Tank and walked away without a deal. Ring later sold to Amazon for $1 billion.</td>
+      <td>HBombBrohan</td>
+      <td></td>
+      <td>https://www.youtube.com/watch?v=zcEDiOwv6Ro</td>
+      <td>todayilearned</td>
+      <td>2139</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-03-04 20:25:19+00:00</td>
+      <td>20440</td>
+      <td>TIL Isaac Asimov wrote 500 books. His first novel was published in 1950, and he died in 1992. This means he wrote aprox 1 book per month for 42 straight years.</td>
+      <td>Rod_Me</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Isaac_Asimov</td>
+      <td>todayilearned</td>
+      <td>1315</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-03-04 16:19:01+00:00</td>
+      <td>82402</td>
+      <td>TIL that at an Allied checkpoint during the Battle of the Bulge, US General Omar Bradley was detained as a possible spy when he correctly identified Springfield as the capital of Illinois. The Ame...</td>
+      <td>Hambgex</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Battle_of_the_Bulge#Operation_Greif_and_Operation_W%C3%A4hrung</td>
+      <td>todayilearned</td>
+      <td>5113</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-03-04 05:53:33+00:00</td>
+      <td>18793</td>
+      <td>TIL the first country to recognize Greek independence was not any of the western powers, but Haiti, who alledgedly sent 25ton of Coffee beans to finance their rebellion</td>
+      <td>NewAccountEachYear</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Jean-Pierre_Boyer#Greek_War_of_Independence</td>
+      <td>todayilearned</td>
+      <td>727</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-03-04 04:57:50+00:00</td>
+      <td>14369</td>
+      <td>TIL that 100's of years ago scribes drew colorful ¶ ("pilcrows") to mark new paragraphs. They'd leave blank spaces for the ¶'s then switch inks and add them. They would often miss some so readers ...</td>
+      <td>breck</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Pilcrow</td>
+      <td>todayilearned</td>
+      <td>519</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>2021-01-31 13:45:51+00:00</td>
+      <td>42563</td>
+      <td>TIL That babies born with extra digits are not that rare, and those with 6 fingers on one hand are able to play a complicated video game with a single hand. What’s more, their brains have no troub...</td>
+      <td>bhaggith</td>
+      <td></td>
+      <td>https://www.sciencenewsforstudents.org/article/sixth-finger-can-prove-extra-handy</td>
+      <td>todayilearned</td>
+      <td>2598</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>2021-01-31 12:52:01+00:00</td>
+      <td>49707</td>
+      <td>TIL that the common method for a spacecraft to shift between two orbits is called a Hohmann Transfer, and that the guy who calculated it (in 1925) was inspired by a science fiction book written in...</td>
+      <td>Bulgogi_Pupusas</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Hohmann_transfer_orbit</td>
+      <td>todayilearned</td>
+      <td>1797</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>2020-12-19 01:08:33+00:00</td>
+      <td>21311</td>
+      <td>TIL 12 counties in Africa are building a 9 mile wide tree wall all the way across the continent to prevent the Sahara from advancing</td>
+      <td>ScreenExtension</td>
+      <td></td>
+      <td>http://www.alearned.com/green-wall-of-africa/</td>
+      <td>todayilearned</td>
+      <td>956</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>2020-12-18 22:34:24+00:00</td>
+      <td>12922</td>
+      <td>TIL that legendary Hollywood director Martin Scorsese, best known for his violent gangster films, has used the same female editor, Thelma Schoonmaker, on every movie he's made since Raging Bull in...</td>
+      <td>duevigilance</td>
+      <td></td>
+      <td>https://www.theguardian.com/film/2019/feb/10/thelma-schoonmaker-martin-scorsese-raging-bull-goodfellas-bafta-fellowship-2019</td>
+      <td>todayilearned</td>
+      <td>1066</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>2020-12-18 15:44:21+00:00</td>
+      <td>13854</td>
+      <td>TIL John Stark, an unpaid rescuer of the Donner Party who refused to leave any of the 9 dying survivors, mostly children, behind (unlike his paid partners who just grabbed one kid each and left). ...</td>
+      <td>cornerstorecult</td>
+      <td></td>
+      <td>http://thestormking.com/tahoe_nuggets/Nugget_57/nugget_57.html</td>
+      <td>todayilearned</td>
+      <td>1026</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 9 columns</p>
+</div></div></div>
+</div>
+<p>Check what columns/metdata exist in this data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;all_awardings&#39;, &#39;allow_live_comments&#39;, &#39;author&#39;,
+       &#39;author_flair_css_class&#39;, &#39;author_flair_richtext&#39;, &#39;author_flair_text&#39;,
+       &#39;author_flair_type&#39;, &#39;author_fullname&#39;, &#39;author_patreon_flair&#39;,
+       &#39;author_premium&#39;, &#39;awarders&#39;, &#39;can_mod_post&#39;, &#39;contest_mode&#39;,
+       &#39;created_utc&#39;, &#39;domain&#39;, &#39;full_link&#39;, &#39;gildings&#39;, &#39;id&#39;,
+       &#39;is_crosspostable&#39;, &#39;is_meta&#39;, &#39;is_original_content&#39;,
+       &#39;is_reddit_media_domain&#39;, &#39;is_robot_indexable&#39;, &#39;is_self&#39;, &#39;is_video&#39;,
+       &#39;link_flair_background_color&#39;, &#39;link_flair_richtext&#39;,
+       &#39;link_flair_text_color&#39;, &#39;link_flair_type&#39;, &#39;locked&#39;, &#39;media&#39;,
+       &#39;media_embed&#39;, &#39;media_only&#39;, &#39;no_follow&#39;, &#39;num_comments&#39;,
+       &#39;num_crossposts&#39;, &#39;over_18&#39;, &#39;parent_whitelist_status&#39;, &#39;permalink&#39;,
+       &#39;pinned&#39;, &#39;post_hint&#39;, &#39;preview&#39;, &#39;pwls&#39;, &#39;retrieved_on&#39;, &#39;score&#39;,
+       &#39;secure_media&#39;, &#39;secure_media_embed&#39;, &#39;selftext&#39;, &#39;send_replies&#39;,
+       &#39;spoiler&#39;, &#39;stickied&#39;, &#39;subreddit&#39;, &#39;subreddit_id&#39;,
+       &#39;subreddit_subscribers&#39;, &#39;subreddit_type&#39;, &#39;thumbnail&#39;,
+       &#39;thumbnail_height&#39;, &#39;thumbnail_width&#39;, &#39;title&#39;, &#39;total_awards_received&#39;,
+       &#39;treatment_tags&#39;, &#39;upvote_ratio&#39;, &#39;url&#39;, &#39;url_overridden_by_dest&#39;,
+       &#39;whitelist_status&#39;, &#39;wls&#39;, &#39;created&#39;, &#39;link_flair_template_id&#39;,
+       &#39;link_flair_text&#39;, &#39;removed_by_category&#39;, &#39;link_flair_css_class&#39;,
+       &#39;gilded&#39;, &#39;author_flair_background_color&#39;, &#39;author_flair_text_color&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21</th>
+      <td>TIL after vocalist Chris Cornell committed suicide, Linkin Park's Chester Bennington performed "Hallelujah" at his funeral. 2 months later, following Bennington's death, Cornell's twelve-year-old daughter (who was also Bennington's goddaughter) performed "Hallelujah" as a tribute to the both of them</td>
+      <td>65096</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>You can't make this stuff up... African American Student Group at Cornell get hysterical...when actual Africans take over black student union..cry racism. *I'm dying*</td>
+      <td>2080</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Now that Chris Cornell, Layne Staley, Scott Weiland and Kurt Cobain are all gone, the chorus of Pearl Jam's "Alive" sounds a bit like Eddie Vedder gloating.</td>
+      <td>22622</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>Discussion: Kurzgesagt's newest YouTube video on GMOs!</td>
+      <td>8555</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Engineers create ‘lifelike’ material with artificial metabolism: Cornell engineers constructed a DNA material with capabilities of metabolism, in addition to self-assembly and organization – three key traits of life.</td>
+      <td>25749</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Transform the <code class="docutils literal notranslate"><span class="pre">created_utc</span></code> column to a normal data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;created_utc&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Select columns of interest</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;selftext&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">,</span>  <span class="s1">&#39;num_comments&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;num_crossposts&#39;</span><span class="p">]]</span>
+<span class="n">reddit_submissions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>score</th>
+      <th>title</th>
+      <th>author</th>
+      <th>selftext</th>
+      <th>url</th>
+      <th>subreddit</th>
+      <th>num_comments</th>
+      <th>num_crossposts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-03-05 02:18:05+00:00</td>
+      <td>56030</td>
+      <td>TIL that Ring was on Shark Tank and walked away without a deal. Ring later sold to Amazon for $1 billion.</td>
+      <td>HBombBrohan</td>
+      <td></td>
+      <td>https://www.youtube.com/watch?v=zcEDiOwv6Ro</td>
+      <td>todayilearned</td>
+      <td>2139</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-03-04 20:25:19+00:00</td>
+      <td>20440</td>
+      <td>TIL Isaac Asimov wrote 500 books. His first novel was published in 1950, and he died in 1992. This means he wrote aprox 1 book per month for 42 straight years.</td>
+      <td>Rod_Me</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Isaac_Asimov</td>
+      <td>todayilearned</td>
+      <td>1315</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-03-04 16:19:01+00:00</td>
+      <td>82402</td>
+      <td>TIL that at an Allied checkpoint during the Battle of the Bulge, US General Omar Bradley was detained as a possible spy when he correctly identified Springfield as the capital of Illinois. The American military police officer who questioned him mistakenly believed the capital was Chicago</td>
+      <td>Hambgex</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Battle_of_the_Bulge#Operation_Greif_and_Operation_W%C3%A4hrung</td>
+      <td>todayilearned</td>
+      <td>5113</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-03-04 05:53:33+00:00</td>
+      <td>18793</td>
+      <td>TIL the first country to recognize Greek independence was not any of the western powers, but Haiti, who alledgedly sent 25ton of Coffee beans to finance their rebellion</td>
+      <td>NewAccountEachYear</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Jean-Pierre_Boyer#Greek_War_of_Independence</td>
+      <td>todayilearned</td>
+      <td>727</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-03-04 04:57:50+00:00</td>
+      <td>14369</td>
+      <td>TIL that 100's of years ago scribes drew colorful ¶ ("pilcrows") to mark new paragraphs. They'd leave blank spaces for the ¶'s then switch inks and add them. They would often miss some so readers evolved to interpret a blank space (indent) as the start of a new paragraph. Voila.</td>
+      <td>breck</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Pilcrow</td>
+      <td>todayilearned</td>
+      <td>519</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>2021-01-31 13:45:51+00:00</td>
+      <td>42563</td>
+      <td>TIL That babies born with extra digits are not that rare, and those with 6 fingers on one hand are able to play a complicated video game with a single hand. What’s more, their brains have no trouble controlling the more complex movements of their extra digits.</td>
+      <td>bhaggith</td>
+      <td></td>
+      <td>https://www.sciencenewsforstudents.org/article/sixth-finger-can-prove-extra-handy</td>
+      <td>todayilearned</td>
+      <td>2598</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>2021-01-31 12:52:01+00:00</td>
+      <td>49707</td>
+      <td>TIL that the common method for a spacecraft to shift between two orbits is called a Hohmann Transfer, and that the guy who calculated it (in 1925) was inspired by a science fiction book written in 1897, which gave a generally correct explanation of the concept of orbit trajectory</td>
+      <td>Bulgogi_Pupusas</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Hohmann_transfer_orbit</td>
+      <td>todayilearned</td>
+      <td>1797</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>2020-12-19 01:08:33+00:00</td>
+      <td>21311</td>
+      <td>TIL 12 counties in Africa are building a 9 mile wide tree wall all the way across the continent to prevent the Sahara from advancing</td>
+      <td>ScreenExtension</td>
+      <td></td>
+      <td>http://www.alearned.com/green-wall-of-africa/</td>
+      <td>todayilearned</td>
+      <td>956</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>2020-12-18 22:34:24+00:00</td>
+      <td>12922</td>
+      <td>TIL that legendary Hollywood director Martin Scorsese, best known for his violent gangster films, has used the same female editor, Thelma Schoonmaker, on every movie he's made since Raging Bull in 1980.</td>
+      <td>duevigilance</td>
+      <td></td>
+      <td>https://www.theguardian.com/film/2019/feb/10/thelma-schoonmaker-martin-scorsese-raging-bull-goodfellas-bafta-fellowship-2019</td>
+      <td>todayilearned</td>
+      <td>1066</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>2020-12-18 15:44:21+00:00</td>
+      <td>13854</td>
+      <td>TIL John Stark, an unpaid rescuer of the Donner Party who refused to leave any of the 9 dying survivors, mostly children, behind (unlike his paid partners who just grabbed one kid each and left). He carried 2-3 at a time, then went back and repeated the process. Stark, and all 9, survived.</td>
+      <td>cornerstorecult</td>
+      <td></td>
+      <td>http://thestormking.com/tahoe_nuggets/Nugget_57/nugget_57.html</td>
+      <td>todayilearned</td>
+      <td>1026</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 9 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="your-turn">
+<h2>Your Turn!<a class="headerlink" href="#your-turn" title="Permalink to this headline">¶</a></h2>
+<p>Sort the DataFrame to look at the top 10 Reddit posts with the highest upvote score:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>score</th>
+      <th>title</th>
+      <th>author</th>
+      <th>selftext</th>
+      <th>url</th>
+      <th>subreddit</th>
+      <th>num_comments</th>
+      <th>num_crossposts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>64</th>
+      <td>2021-02-03 19:46:20+00:00</td>
+      <td>129640</td>
+      <td>TIL that William Whipple, one of the 56 signers of the Declaration of Independence, freed his slave after signing it because he believed one cannot simultaneously fight for freedom and hold another person in bondage.</td>
+      <td>NikMarus</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/William_Whipple</td>
+      <td>todayilearned</td>
+      <td>2475</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>2021-02-02 18:25:46+00:00</td>
+      <td>110110</td>
+      <td>TIL Shia LaBeouf came under heavy fire for plagiarizing his directorial debut in 2012. When he publicly apologized to the original artist, Dan Clowes, people discovered that Shia's apology was itself plagiarized verbatim off a Yahoo Answers post from 2010.</td>
+      <td>IAmTheBraAndTheKet</td>
+      <td></td>
+      <td>https://time.com/6094/shia-labeouf-plagiarism-scandal/</td>
+      <td>todayilearned</td>
+      <td>7226</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-03-03 20:37:18+00:00</td>
+      <td>108682</td>
+      <td>TIL that the F.B.I. and C.I.A. recruit heavily from the Mormon population because they are usually cheaper to do a security clearance on, they often speak another language from their mission trips and they usually have a low risk lifestyle.</td>
+      <td>Intagvalley</td>
+      <td></td>
+      <td>https://www.atlasobscura.com/articles/why-mormons-make-great-fbi-recruits</td>
+      <td>todayilearned</td>
+      <td>12335</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>2021-02-24 13:22:20+00:00</td>
+      <td>95921</td>
+      <td>TIL GoldeneEye 007’s multiplayer mode was so last-minute that neither Rare nor Nintendo management knew about it. The first time executives saw anything was when programmers were playing it.</td>
+      <td>redmambo_no6</td>
+      <td></td>
+      <td>https://www.engadget.com/2012-08-14-goldeneye-007s-multiplayer-was-added-last-minute-unknown-to-ra.html</td>
+      <td>todayilearned</td>
+      <td>7099</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>2021-02-01 16:39:25+00:00</td>
+      <td>93337</td>
+      <td>TIL Judge Judy earns $47 MILLION a year for taping 'Judge Judy.' In an interview she said that every 3 years she would present her salary request to the CBS TV Distribution President. Once, when he gave her a counter offer in an envelope, she refused to open it saying "This isn't a negotiation."</td>
+      <td>thejohnblog</td>
+      <td></td>
+      <td>https://www.goodhousekeeping.com/life/entertainment/a31193785/judy-sheindlin-net-worth/</td>
+      <td>todayilearned</td>
+      <td>6605</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>2021-02-24 03:21:22+00:00</td>
+      <td>93251</td>
+      <td>TIL Joseph Bazalgette, the man who designed London's sewers in the 1860's, said 'Well, we're only going to do this once and there's always the unforeseen' and doubled the pipe diameter. If he had not done this, it would have overflowed in the 1960's (its still in use today).</td>
+      <td>james8475</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Joseph_Bazalgette</td>
+      <td>todayilearned</td>
+      <td>5950</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>2021-02-25 18:43:29+00:00</td>
+      <td>89959</td>
+      <td>TIL on the set of Blade: Trinity, Jessica Biel was supposed to fire an arrow directly at the camera, so the camera was surrounded by Plexiglass except for a 2" x 2" square in front of the camera lens. Biel managed to shoot the arrow through the hole and destroy the $300,000 camera.</td>
+      <td>Joe_Shroe</td>
+      <td></td>
+      <td>https://youtu.be/VApoQKeCcVk</td>
+      <td>todayilearned</td>
+      <td>5502</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>2021-02-02 07:54:11+00:00</td>
+      <td>87351</td>
+      <td>TIL that graffiti artist Banksy sought to trademark his image of a protester throwing flowers. The trademark office denied it on the grounds of him having no interest in selling his work. In the ruling they used a quote from one of Banksy's books: "copyright is for losers"</td>
+      <td>NewAccountEachYear</td>
+      <td></td>
+      <td>https://www.bbc.com/news/entertainment-arts-54189113</td>
+      <td>todayilearned</td>
+      <td>3712</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>2021-02-01 13:29:29+00:00</td>
+      <td>85163</td>
+      <td>TIL in 2014, four tenants refused to move out of their homes when developers wanted to create one of the most exclusive residences in Manhattan. Eventually, they all received huge payouts. The last tenant was so savvy and stubborn he received $17 million, plus use of a $2 million residence for life.</td>
+      <td>WhileFalseRepeat</td>
+      <td></td>
+      <td>https://www.independent.co.uk/news/world/americas/hermit-herbert-sukenik-paid-ps10-million-move-out-mould-covered-new-york-room-9165290.html</td>
+      <td>todayilearned</td>
+      <td>3574</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-03-04 16:19:01+00:00</td>
+      <td>82402</td>
+      <td>TIL that at an Allied checkpoint during the Battle of the Bulge, US General Omar Bradley was detained as a possible spy when he correctly identified Springfield as the capital of Illinois. The American military police officer who questioned him mistakenly believed the capital was Chicago</td>
+      <td>Hambgex</td>
+      <td></td>
+      <td>https://en.wikipedia.org/wiki/Battle_of_the_Bulge#Operation_Greif_and_Operation_W%C3%A4hrung</td>
+      <td>todayilearned</td>
+      <td>5113</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now choose your own subreddit to collect data from:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subreddit</span> <span class="o">=</span> <span class="s1">&#39;CHOOSE YOUR OWN&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_request_generator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_submissions</span><span class="p">(</span><span class="n">subreddit</span><span class="o">=</span><span class="n">subreddit</span><span class="p">,</span>
+                                               <span class="n">score</span> <span class="o">=</span> <span class="s2">&quot;&gt;3000&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">submission</span><span class="o">.</span><span class="n">d_</span> <span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">api_request_generator</span><span class="p">])</span>
+<span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;created_utc&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;selftext&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">,</span>  <span class="s1">&#39;num_comments&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;num_crossposts&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sort the DataFrame to look at the 10 Reddit posts with the highest upvote score:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="collect-reddit-submissions-based-on-search-keyword">
+<h2>Collect Reddit submissions based on search keyword<a class="headerlink" href="#collect-reddit-submissions-based-on-search-keyword" title="Permalink to this headline">¶</a></h2>
+<p>Now search through Reddit posts based on a query word.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;CHOOSE YOUR OWN QUERY&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_request_generator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_submissions</span><span class="p">(</span><span class="n">q</span><span class="o">=</span> <span class="n">query</span><span class="p">,</span>
+                                                <span class="n">score</span> <span class="o">=</span> <span class="s2">&quot;&gt;2000&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">submission</span><span class="o">.</span><span class="n">d_</span> <span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">api_request_generator</span><span class="p">])</span>
+<span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;created_utc&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;selftext&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">,</span>  <span class="s1">&#39;num_comments&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;num_crossposts&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find all the subreddits where this query word appears and the number of times they appear in this dataset (aka the number of unique values for subreddits):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;subreddit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>science                 19
+IAmA                     8
+The_Donald               7
+todayilearned            6
+Music                    5
+news                     3
+askscience               3
+SandersForPresident      3
+OldSchoolCool            3
+videos                   3
+movies                   2
+lastimages               2
+Showerthoughts           2
+InternetIsBeautiful      2
+politics                 2
+TwoXChromosomes          1
+interestingasfuck        1
+DunderMifflin            1
+AdviceAnimals            1
+NintendoSwitch           1
+lego                     1
+Metal                    1
+Guitar                   1
+conspiracy               1
+CFB                      1
+SeattleWA                1
+RetroFuturism            1
+Damnthatsinteresting     1
+westworld                1
+EarthPorn                1
+unpopularopinion         1
+tattoos                  1
+uncensorednews           1
+Awwducational            1
+bidenbro                 1
+pics                     1
+entitledparents          1
+AmItheAsshole            1
+LadyBoners               1
+KotakuInAction           1
+relationships            1
+offmychest               1
+vegan                    1
+AskHistorians            1
+coolguides               1
+Name: subreddit, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bonus">
+<h2>Bonus<a class="headerlink" href="#bonus" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="collect-reddit-comments-based-on-search-keyword">
+<h3>Collect Reddit <em>comments</em> based on search keyword<a class="headerlink" href="#collect-reddit-comments-based-on-search-keyword" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_request_generator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_comments</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;Missy Elliott&#39;</span><span class="p">,</span>
+                                            <span class="n">score</span> <span class="o">=</span> <span class="s2">&quot;&gt;2000&quot;</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">submission</span><span class="o">.</span><span class="n">d_</span> <span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">api_request_generator</span><span class="p">])</span>
+<span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;created_utc&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">,</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+<span class="n">reddit_submissions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>score</th>
+      <th>subreddit</th>
+      <th>body</th>
+      <th>author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2018-12-30 17:17:40+00:00</td>
+      <td>9649</td>
+      <td>videos</td>
+      <td>*cracks knuckles*  it's my time to shine..\n\nJust to refresh your memories:\n\n- She publicized the private healthcare information of Method Man's wife, broadcasting that she had cancer and that Method Man was having an affair with his wife's physician. (which was a lie).\n\n- She's the one that spread the rumours that Tupac was raped in jail and had one testicle\n\n- She's proudly claimed th...</td>
+      <td>VulcanHobo</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2018-03-19 03:40:30+00:00</td>
+      <td>4359</td>
+      <td>rage</td>
+      <td>This is just the tip of the iceberg. Here's a list of shitty things Wendy Williams has done (compiled by /u/VulcanHobo):\n\n- She publicized the private healthcare information of Method Man's wife, broadcasting that she had cancer and that Method Man was having an affair with his wife's physician. (which was a lie).\n\n- She's the one that spread the rumours that Tupac was raped in jail and ha...</td>
+      <td>schoolboy43</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2017-11-17 17:20:38+00:00</td>
+      <td>5581</td>
+      <td>videos</td>
+      <td>credit to [/u/vulcanhobo] (https://www.reddit.com/r/videos/comments/7diwik/wendy_williams_says_that_terry_crews_coming/dpy8b31/)\n\nTold you guys in that last discussion on her (when she collapsed on halloween) that she deserves no respect and is a piece of shit person.\n\nJust to refresh your memories:\n\n- She publicized the private healthcare information of Method Man's wife, broadcasting t...</td>
+      <td>PhadedMonk</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2017-11-17 07:54:52+00:00</td>
+      <td>14878</td>
+      <td>videos</td>
+      <td>Told you guys in that last discussion on her (when she collapsed on halloween) that she deserves no respect and is quite the bitch.\n\nJust to refresh your memories:\n\n- She publicized the private healthcare information of Method Man's wife, broadcasting that she had cancer and that Method Man was having an affair with his wife's physician. (which was a lie).\n\n- She's the one that spread th...</td>
+      <td>VulcanHobo</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016-01-09 02:19:07+00:00</td>
+      <td>2202</td>
+      <td>gifs</td>
+      <td>Who would have thought a background dancer for Janet Jackson, 'N Sync, Sean Combs, Toni Braxton, Celine Dion, Pink, Missy Elliott, Ricky Martin, and Christina Aguilera would have better moves than Channing.</td>
+      <td>HeyBayBeeUWanTSumFuk</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="collect-reddit-submissions-comments-based-on-multiple-search-keywords">
+<h3>Collect Reddit submissions/comments based on multiple search keywords<a class="headerlink" href="#collect-reddit-submissions-comments-based-on-multiple-search-keywords" title="Permalink to this headline">¶</a></h3>
+<p>To search for multiple phrases —  George Orwell OR J.R.R. Tolkein — use parentheses and the bitwise OR operator</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_request_generator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_comments</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;(George Orwell)|(J. R. R. Tolkien)&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">submission</span><span class="o">.</span><span class="n">d_</span> <span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">api_request_generator</span><span class="p">])</span>
+<span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;created_utc&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">,</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+<span class="n">reddit_submissions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>score</th>
+      <th>subreddit</th>
+      <th>body</th>
+      <th>author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-04-02 14:01:00+00:00</td>
+      <td>1</td>
+      <td>tifu</td>
+      <td>&amp;gt;The question? “What is 2+2”\n\nPresented with that question, I would put in “5.“\n\nThank you, George Orwell.</td>
+      <td>LiKenun</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-04-02 13:54:32+00:00</td>
+      <td>1</td>
+      <td>tolkienfans</td>
+      <td>I can't say I'm an experience scholar in English literature, so I'm not sure how he is held in the regards of the literary community.\n\nI can say that at least with those around me all know, "Tolkien" even if they don't know the J. R. R. bit - regardless of their likes and if they've even seen the movies. He seems to at the very least, be a household name.</td>
+      <td>Currie_Climax</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-04-02 13:47:52+00:00</td>
+      <td>1</td>
+      <td>aforismi</td>
+      <td>https://www.libridaleggereassolutamente.com/cartoline-con-aforismi/cartolina-aforisma-george-orwell-5/</td>
+      <td>Daniele86</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-04-02 13:47:39+00:00</td>
+      <td>1</td>
+      <td>aforismiecitazioni</td>
+      <td>https://www.libridaleggereassolutamente.com/cartoline-con-aforismi/cartolina-aforisma-george-orwell-5/</td>
+      <td>quote_emperor</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-04-02 13:14:57+00:00</td>
+      <td>1</td>
+      <td>aforismi</td>
+      <td>https://www.libridaleggereassolutamente.com/cartoline-con-aforismi/cartolina-aforisma-george-orwell-20/</td>
+      <td>Daniele86</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To search for multiple phrases —  Shakespeare AND Beyonce — use parentheses and the bitwise AND operator</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_request_generator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_comments</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;(Shakespeare)&amp;(Beyonce)&#39;</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">submission</span><span class="o">.</span><span class="n">d_</span> <span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">api_request_generator</span><span class="p">])</span>
+<span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;created_utc&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">,</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+<span class="n">reddit_submissions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>score</th>
+      <th>subreddit</th>
+      <th>body</th>
+      <th>author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-09-08 04:03:08+00:00</td>
+      <td>1</td>
+      <td>brasilnoticias</td>
+      <td>A antropóloga e historiadora Lilia Schwarcz, convidada do Roda Viva nesta segunda-feira (7), relembrou o episódio em que foi criticada nas redes sociais após a o artigo sobre o [filme "Black Is King" de Beyoncé publicado na **Folha**.](https://www1.folha.uol.com.br/ilustrada/2020/08/filme-de-beyonce-erra-ao-glamorizar-negritude-com-estampa-de-oncinha.shtml)\n\n  Ela disse não ser uma vítima d...</td>
+      <td>williambotter</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-08-23 12:01:56+00:00</td>
+      <td>1</td>
+      <td>brasilnoticias</td>
+      <td>Dou a palavra aqui a dois afro-brasileiros jovens, de pele preta (evitam a palavra “negro”), sobre [um artigo recente nesta **Folha**](https://www1.folha.uol.com.br/ilustrada/2020/08/filme-de-beyonce-erra-ao-glamorizar-negritude-com-estampa-de-oncinha.shtml) (da [antropóloga branca Lilia Schwarcz](https://www1.folha.uol.com.br/ilustrissima/2020/08/o-cancelamento-da-antropologa-branca-e-a-paut...</td>
+      <td>williambotter</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-08-13 13:09:41+00:00</td>
+      <td>1</td>
+      <td>stupidpol</td>
+      <td>I'm getting really tired of the high/low cultural relativism that is absolutely rife on Reddit and in left spaces as a supposedly egalitarian position.  \n\nBeyonce and Eminem aren't as good as Wagner and Bach, and *Game of Thrones* and *Harry Potter* aren't as good as Shakespeare and Naipaul.  Fucking get over it.</td>
+      <td>124876720</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-08-04 17:44:51+00:00</td>
+      <td>3</td>
+      <td>atheism</td>
+      <td>welcome.  ex-christian, u.s., here.  \n\n\&amp;gt; God's existence \n\nno evidence for that.\n\n\&amp;gt; the creation of the universe \n\n"creation" is a loaded word.  we may not know exactly how the universe came to exist, but i'm pretty sure it wasn't magic.  \n\n\&amp;gt; the Quran's linguistic beauty \n\ncool but not evidence of the supernatural, any more than the upponishads or the king james bible ...</td>
+      <td>whiskeybridge</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-08-03 01:02:32+00:00</td>
+      <td>1</td>
+      <td>brasilnoticias</td>
+      <td>Como tudo que Beyoncé faz, [seu novo álbum visual, "Black Is King"](https://www1.folha.uol.com.br/ilustrada/2020/08/beyonce-mergulha-de-cabeca-no-afrofuturismo-no-album-black-is-king.shtml), chega causando polêmica e trazendo muito barulho. Nele, a cantora e compositora retoma a história clássica de Hamlet, personagem icônico de Shakespeare, mas a ambienta em algum lugar perdido do continente...</td>
+      <td>williambotter</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="collect-reddit-submissions-comments-with-start-and-end-dates">
+<h2>Collect Reddit submissions/comments with start and end dates<a class="headerlink" href="#collect-reddit-submissions-comments-with-start-and-end-dates" title="Permalink to this headline">¶</a></h2>
+<p>From January 1, 2020 to January 10, 2020</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="n">start_epoch</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span>
+<span class="n">end_epoch</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span>
+
+<span class="n">api_request_generator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_comments</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s1">&#39;(Shakespeare)&amp;(Beyonce)&quot;&#39;</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">start_epoch</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="n">end_epoch</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">submission</span><span class="o">.</span><span class="n">d_</span> <span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">api_request_generator</span><span class="p">])</span>
+<span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">reddit_submissions</span><span class="p">[</span><span class="s1">&#39;created_utc&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">,</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+<span class="n">reddit_submissions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>score</th>
+      <th>subreddit</th>
+      <th>body</th>
+      <th>author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-01-05 06:09:22+00:00</td>
+      <td>6</td>
+      <td>popheads</td>
+      <td>It's not hard to have an intelligent discussion from my end. Maybe it's because you're unable to see Taylor's lyrics unless it's from behind rose-tinted glasses is the reason why something that seems so obvious to you doesn't seem obvious to me.\n\nTaylor is a talented songwriter. I never denied that. But my point is some, if not MOST, of her biggest songs are every bit as vapid, repetitive an...</td>
+      <td>bleedin_liberal</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04-Data-Collection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://melaniewalsh.org/">Melanie Walsh</a><br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <div>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a>. The code is licensed under a <a href="https://choosealicense.com/licenses/gpl-3.0/#">GNU General Public License v3.0</a>.
+</div>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-86905362-3', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

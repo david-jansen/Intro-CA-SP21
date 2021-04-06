@@ -1,0 +1,1374 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 3, part 1: Build your own emotion lexicon &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/Sentiment.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/Sentiment.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Week 3, part 1: Build your own emotion lexicon" />
+<meta property="og:description" content="Week 3, part 1: Build your own emotion lexicon  Can we use word counts to measure emotion? And can we go beyond simple positive/negative “valence”?  Last week w" />
+<meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/favicon.ico" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Cultural Analytics & Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  How To
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../How-To-Interact-With-This-Book.html">
+   Interact With This Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Course
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../course-schedule-2021.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../syllabus.html">
+   Course Syllabus
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Book
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Command-Line/01-The-Command-Line.html">
+   1. The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../02-Python/00-Python.html">
+   2. Python Basics
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/01-Installation.html">
+     Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/02-How-to-Use-Jupyter-Notebooks.html">
+     How to Use Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/03-Anatomy-Python-Script.html">
+     Anatomy of a Python Script
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/04-Variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/05-Data-Types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/06-String-Methods.html">
+     String Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/07-Files-Character-Encoding.html">
+     Files and Character Encoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/08-Comparisons-Conditionals.html">
+     Comparisons &amp; Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/09-Lists-Loops-Part1.html">
+     Lists &amp; Loops — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/10-Lists-Loops-Part2.html">
+     Lists &amp; Loops — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/11-Dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/12-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/13-Common-Python-Errors.html">
+     Common Python Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/14-What-Were-Not-Covering.html">
+     What We’re Not Covering
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../03-Data-Analysis/00-Data-Analysis.html">
+   3. Data Analysis (Pandas)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/01-Pandas-Basics-Part1.html">
+     Pandas Basics — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/02-Pandas-Basics-Part2.html">
+     Pandas Basics — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/03-Pandas-Basics-Part3.html">
+     Pandas Basics — Part 3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/04-Pandas-Merge-Datasets.html">
+     Pandas — Merge Datasets
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../04-Data-Collection/00-Data-Collection.html">
+   4. Data Collection (Web Scraping, APIs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/01-User-Ethics-Legal-Concerns.html">
+     User Ethics &amp; Legal Concerns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/02-Web-Scraping-Part1.html">
+     Web Scraping — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/03-Web-Scraping-Part2.html">
+     Web Scraping — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/04-Git-GitHub.html">
+     Git and GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/05-APIs.html">
+     Application Programming Interfaces (APIs)
+    </a>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/06-Song-Genius-Data-Collection.html">
+     Song Genius Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/07-Genius-API.html">
+       Song Genius API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/08-LyricsGenius.html">
+       Song Lyrics Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/09-Song-Lyrics-Analysis.html">
+       Song Lyrics Analysis
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/10-Twitter-Data-Collection-Home.html">
+     Twitter Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/11-Twitter-API-Setup.html">
+       Twitter API Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/12-Twitter-Data-Collection.html">
+       Twitter Data Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/13-Twitter-Data-Analysis.html">
+       Twitter Data Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/14-Twitter-Data-Sharing.html">
+       Twitter Data Sharing
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/15-Reddit-Data-Collection-With-PSAW.html">
+     Reddit Data Collection
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="00-Text-Analysis.html">
+   5. Text Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="01-TF-IDF.html">
+     TF-IDF
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="02-TF-IDF-HathiTrust.html">
+       TF-IDF with HathiTrust Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="03-TF-IDF-Scikit-Learn.html">
+       TF-IDF with Scikit-Learn
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="04-Topic-Modeling.html">
+     Topic Modeling
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="05-Topic-Modeling-Overview.html">
+       Topic Modeling — Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="06-Topic-Modeling-Set-Up.html">
+       Topic Modeling — Set Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="07-Topic-Modeling-Text-Files.html">
+       Topic Modeling — Text Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="08-Topic-Modeling-CSV.html">
+       Topic Modeling — CSV Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="09-Topic-Modeling-Time-Series.html">
+       Topic Modeling — Time Series
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-Named-Entity-Recognition.html">
+     Named Entity Recognition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-POS-Keywords.html">
+     Part-of-Speech Tagging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-POS-Keywords.html#keyword-extraction">
+     Keyword Extraction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../06-Network-Analysis/00-Network-Analysis-Home.html">
+   6. Network Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/01-Network-Analysis.html">
+     Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/02-Making-Network-Viz-with-Bokeh.html">
+     Make an Interactive Network Visualization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../07-Mapping/01-Mapping-Home.html">
+   7. Mapping
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html">
+     Mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#geocoding-with-geopy">
+     Geocoding with GeoPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#making-interactive-maps">
+     Making Interactive Maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/03-Custom-Maps.html">
+     Custom Map Backgrounds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/04-Publish-Your-Map.html">
+     Publish Your Map on the Web
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Datasets
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-Datasets/Datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Extra Materials
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Jupyter-Tips-Tricks.html">
+   Jupyter Tips and Tricks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Randomize-Students.html">
+   Make Random Student Groups
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05-Text-Analysis/Sentiment.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F05-Text-Analysis/Sentiment.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/05-Text-Analysis/Sentiment.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="week-3-part-1-build-your-own-emotion-lexicon">
+<h1>Week 3, part 1: Build your own emotion lexicon<a class="headerlink" href="#week-3-part-1-build-your-own-emotion-lexicon" title="Permalink to this headline">¶</a></h1>
+<p>Can we use word counts to measure emotion? And can we go beyond simple positive/negative “valence”?</p>
+<p>Last week we looked at pre-built sentiment lexicons. Today we will work in groups to define your own lexicons for specific emotions.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Plutchik">Robert Plutchik</a> defines eight basic <a class="reference external" href="https://en.wikipedia.org/wiki/Emotion">emotions</a>: joy/sadness, anticipation/surprise, trust/disgust, anger/fear.</p>
+<p>INSTRUCTIONS:</p>
+<p>Work with the other students at your table. You will turn in a single report to CMS. All students in a group will get the same grade, so make sure everyone participates.</p>
+<ol class="simple">
+<li><p>Create a shared spreadsheet doc, such as Google sheets. You can download these files in CSV format from the File / Download / … menu option. Create a second shared document to record your notes.</p></li>
+<li><p>Create a group in CMS</p></li>
+<li><p>I’ve added a new optional argument to <code class="docutils literal notranslate"><span class="pre">score_counts</span></code> and <code class="docutils literal notranslate"><span class="pre">load_paragraphs</span></code>: <code class="docutils literal notranslate"><span class="pre">extra_words</span></code>. Discuss what this option does, and try a few different numbers using the default lexicon (<code class="docutils literal notranslate"><span class="pre">bingliu</span></code>) and novel (<code class="docutils literal notranslate"><span class="pre">christmas</span></code>). In your document, describe your findings.</p></li>
+<li><p>Choose an emotion or opposed pair of emotions. Plutchik’s are a good start, but feel free to try others.</p></li>
+<li><p>Brainstorm words that you think indicate this emotion. Put numeric weights in the first column and words in the second column, as we did for the file <code class="docutils literal notranslate"><span class="pre">bingliu.csv</span></code>.</p></li>
+<li><p>Download your lexicon, and change the filename for <code class="docutils literal notranslate"><span class="pre">load_word_weights</span></code> to that filename. Save this file as “Version 1”, and keep a copy of it.</p></li>
+<li><p>Apply the lexicon to Dickens novels. Each student should choose one of the files in the <code class="docutils literal notranslate"><span class="pre">dickens</span></code> directory. Change the filename passed to <code class="docutils literal notranslate"><span class="pre">load_paragraphs</span></code> appropriately.</p></li>
+<li><p>Discuss your results. Compare top- and bottom- scoring paragraphs in the different novels. Look at the raw and “rolling mean” time series. Find passages that score high and low in these time series and look at the context around those paragraphs. In your document, copy in example paragraphs and comment on whether they are correct or not correct, and why. Each student should contribute, put your name on your exma</p></li>
+<li><p>Based on the results of your initial lexicon, create “Version 2” of your spreadsheet. Add or remove words, and change weights as necessary.</p></li>
+<li><p>Save this Version 2 lexicon as a CSV, and repeat the previous exploration. Document all of your findings in the shared document.</p></li>
+<li><p>Reflection. We will compare and discuss results in class. After that, write responses to the following in your document. Does your lexicon work? Was this process difficult? What factors made it easy or hard? Was your emotion easier or harder than others? If any other group worked on the same emotion, did they get similar results?</p></li>
+<li><p>Upload a zip file containing your written document and CSV copies of all versions of your sentiment lexicon files to CMS. Each member will need to join the CMS group to receive credit.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">import</span> <span class="nn">numpy</span><span class="o">,</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>IDEAS FOR YOUR WRITING RESPONSE FOR FRIDAY:</p>
+<p>Both groups are working from Vonnegut’s description of plot. Does this
+view really reflect plot? If not, what is missing, and how important is it
+to you?</p>
+<p>Given your experience with lexicon-based sentiment analysis, how well does
+it approximate a quantity that’s relevant for plot analysis?</p>
+<p>Would a more nuanced view of emotion lead to a better representation of plot?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_word_weights</span><span class="p">(</span><span class="n">lexicon_file</span><span class="p">):</span>
+
+    <span class="c1">## Create a mapping from words to numbers</span>
+    <span class="n">word_weights</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">lexicon_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">lexicon_reader</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lexicon_reader</span><span class="p">:</span>
+            <span class="n">weight</span><span class="p">,</span> <span class="n">word</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="c1">## split on comma</span>
+            <span class="n">word_weights</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="c1">## convert string to number</span>
+    
+    <span class="k">return</span> <span class="n">word_weights</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## This function applies the word weights to a list of word counts</span>
+<span class="k">def</span> <span class="nf">score_counts</span><span class="p">(</span><span class="n">counter</span><span class="p">,</span> <span class="n">word_weights</span><span class="p">,</span> <span class="n">extra_words</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="c1">## accumulate word weights in this variable</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1">## count the words in the passage</span>
+    <span class="n">total_tokens</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="c1">## check for empty segments</span>
+    <span class="k">if</span> <span class="n">total_tokens</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    
+    <span class="c1">## for each word, look up its score</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">counter</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_weights</span><span class="p">:</span>
+            <span class="n">score</span> <span class="o">+=</span> <span class="n">word_weights</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">*</span> <span class="n">counter</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">score</span> <span class="o">/</span> <span class="p">(</span><span class="n">total_tokens</span> <span class="o">+</span> <span class="n">extra_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_paragraphs</span><span class="p">(</span><span class="n">text_file</span><span class="p">,</span> <span class="n">extra_words</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+
+    <span class="c1">## Here&#39;s an example of a simple pattern defining a word token. </span>
+    <span class="n">word_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;\w[\w\-</span><span class="se">\&#39;</span><span class="s2">]*\w|\w&quot;</span><span class="p">)</span> <span class="c1">## what matches this?</span>
+
+    <span class="c1">## Now look at the actual documents. We&#39;ll create a list with one object per text segment.</span>
+    <span class="n">paragraphs</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1">## here&#39;s where we actually read the file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">text_file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    
+        <span class="c1">## This block reads a file line by line.</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+        
+            <span class="n">tokens</span> <span class="o">=</span> <span class="n">word_pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        
+            <span class="c1">## turn a list into a word-&gt;count map</span>
+            <span class="n">paragraph_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+        
+            <span class="c1">## create the paragraph object, with the original text, </span>
+            <span class="c1">##  the word counts, and the total score.</span>
+            <span class="n">paragraphs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">line</span><span class="p">,</span> <span class="s1">&#39;counts&#39;</span><span class="p">:</span> <span class="n">paragraph_counts</span><span class="p">,</span>
+                               <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="n">score_counts</span><span class="p">(</span><span class="n">paragraph_counts</span><span class="p">,</span> <span class="n">word_weights</span><span class="p">,</span> <span class="n">extra_words</span><span class="p">)</span> <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">paragraphs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### MODIFY THESE TWO FILENAMES</span>
+
+<span class="n">word_weights</span> <span class="o">=</span> <span class="n">load_word_weights</span><span class="p">(</span><span class="s2">&quot;bingliu.txt&quot;</span><span class="p">)</span>
+<span class="n">paragraphs</span> <span class="o">=</span> <span class="n">load_paragraphs</span><span class="p">(</span><span class="s2">&quot;../texts/literature/The-House-on-Mango-Street-No-Blank-Lines.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_paragraphs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">paragraphs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">])</span>
+
+<span class="c1">## Display the 10 most negative</span>
+<span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">sorted_paragraphs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paragraph</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">],</span> <span class="n">paragraph</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]))</span>
+
+<span class="c1">## ... and the 10 most positive</span>
+<span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">sorted_paragraphs</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paragraph</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">],</span> <span class="n">paragraph</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.4	Who you calling ugly, ugly?
+-0.3333333333333333	Whose fat face?
+-0.3333333333333333	That’s stupid.
+-0.3333333333333333	Who’s stupid?
+-0.3	My knees hurt, the one with the funny laugh complained.
+-0.25	and break your lip.
+-0.2	Your ugly mama’s toes.
+-0.2	I’ll shake the sky
+-0.16666666666666666	Ay, she says, she is sad.
+0.16666666666666666	Some are baggy like soggy Band-Aids
+0.16666666666666666	like the waves on the sea,
+0.16666666666666666	like the clouds in the wind,
+0.18181818181818182	Cumulus are cute, Rachel says. She would say something like that.
+0.2	… like bare feet in September!
+0.2	Do you like these shoes?
+0.2222222222222222	I like the boys and the boys like me.
+0.25	like a hundred violins.
+0.3333333333333333	I like coffee, I like tea.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Use this block to show a timeseries of raw scores</span>
+
+<span class="n">sentiment_scores</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">])</span>
+
+<span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sentiment_scores</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Sentiment_8_0.png" src="../_images/Sentiment_8_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rolling_mean</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">sentiment_scores</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rolling_mean</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Sentiment_9_0.png" src="../_images/Sentiment_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Use this block to look at specific paragraphs</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">500</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.00	The
+0.00	House
+0.00	on
+0.00	Mango Street
+0.00	We didn’t always live on Mango Street. Before that we lived on Loomis on the third floor, and before that we lived on Keeler. Before Keeler it was Paulina, and before that I can’t remember. But what I remember most is moving a lot. Each time it seemed there’d be one more of us. By the time we got to Mango Street we were six—Mama, Papa, Carlos, Kiki, my sister Nenny and me.
+-0.02	The house on Mango Street is ours, and we don’t have to pay rent to anybody, or share the yard with the people downstairs, or be careful not to make too much noise, and there isn’t a landlord banging on the ceiling with a broom. But even so, it’s not the house we’d thought we’d get.
+0.00	We had to leave the flat on Loomis quick. The water pipes broke and the landlord wouldn’t fix them because the house was too old. We had to leave fast. We were using the washroom next door and carrying water over in empty milk gallons. That’s why Mama and Papa looked for a house, and that’s why we moved into the house on Mango Street, far away, on the other side of town.
+0.02	They always told us that one day we would move into a house, a real house that would be ours for always so we wouldn’t have to move each year. And our house would have running water and pipes that worked. And inside it would have real stairs, not hallway stairs, but stairs inside like the houses on T.V. And we’d have a basement and at least three washrooms so when we took a bath we wouldn’t have to tell everybody. Our house would be white with trees around it, a great big yard and grass growing without a fence. This was the house Papa talked about when he held a lottery ticket and this was the house Mama dreamed up in the stories she told us before we went to bed.
+-0.02	But the house on Mango Street is not the way they told it at all. It’s small and red with tight steps in front and windows so small you’d think they were holding their breath. Bricks are crumbling in places, and the front door is so swollen you have to push hard to get in. There is no front yard, only four little elms the city planted by the curb. Out back is a small garage for the car we don’t own yet and a small yard that looks smaller between the two buildings on either side. There are stairs in our house, but they’re ordinary hallway stairs, and the house has only one washroom. Everybody has to share a bedroom—Mama and Papa, Carlos and Kiki, me and Nenny.
+-0.02	Once when we were living on Loomis, a nun from my school passed by and saw me playing out front. The laundromat downstairs had been boarded up because it had been robbed two days before and the owner had painted on the wood YES WE’RE OPEN so as not to lose business.
+0.00	Where do you live? she asked.
+0.00	There, I said pointing up to the third floor.
+0.00	You live there?
+0.00	There. I had to look to where she pointed—the third floor, the paint peeling, wooden bars Papa had nailed on the windows so we wouldn’t fall out. You live there? The way she said it made me feel like nothing. There. I lived there. I nodded.
+0.00	I knew then I had to have a house. A real house. One I could point to. But this isn’t it. The house on Mango Street isn’t it. For the time being, Mama says. Temporary, says Papa. But I know how those things go.
+0.00	Hairs
+0.02	Everybody in our family has different hair. My Papa’s hair is like a broom, all up in the air. And me, my hair is lazy. It never obeys barrettes or bands. Carlos’ hair is thick and straight. He doesn’t need to comb it. Nenny’s hair is slippery—slides out of your hand. And Kiki, who is the youngest, has hair like fur.
+0.04	But my mother’s hair, my mother’s hair, like little rosettes, like little candy circles all curly and pretty because she pinned it in pincurls all day, sweet to put your nose into when she is holding you, holding you and you feel safe, is the warm smell of bread before you bake it, is the smell when she makes room for you on her side of the bed still warm with her skin, and you sleep near her, the rain outside falling and Papa snoring. The snoring, the rain, and Mama’s hair that smells like bread.
+0.00	Boys &amp; Girls
+0.02	The boys and the girls live in separate worlds. The boys in their universe and we in ours. My brothers for example. They’ve got plenty to say to me and Nenny inside the house. But outside they can’t be seen talking to girls. Carlos and Kiki are each other’s best friend … not ours.
+0.00	Nenny is too young to be my friend. She’s just my sister and that was not my fault. You don’t pick your sisters, you just get them and sometimes they come like Nenny.
+0.07	She can’t play with those Vargas kids or she’ll turn out just like them. And since she comes right after me, she is my responsibility.
+0.02	Someday I will have a best friend all my own. One I can tell my secrets to. One who will understand my jokes without my having to explain them. Until then I am a red balloon, a balloon tied to an anchor.
+0.00	My Name
+0.00	In English my name means hope. In Spanish it means too many letters. It means sadness, it means waiting. It is like the number nine. A muddy color. It is the Mexican records my father plays on Sunday mornings when he is shaving, songs like sobbing.
+0.05	It was my great-grandmother’s name and now it is mine. She was a horse woman too, born like me in the Chinese year of the horse—which is supposed to be bad luck if you’re born female—but I think this is a Chinese lie because the Chinese, like the Mexicans, don’t like their women strong.
+0.00	My great-grandmother. I would’ve liked to have known her, a wild horse of a woman, so wild she wouldn’t marry. Until my great-grandfather threw a sack over her head and carried her off. Just like that, as if she were a fancy chandelier. That’s the way he did it.
+0.00	And the story goes she never forgave him. She looked out the window her whole life, the way so many women sit their sadness on an elbow. I wonder if she made the best with what she got or was she sorry because she couldn’t be all the things she wanted to be. Esperanza. I have inherited her name, but I don’t want to inherit her place by the window.
+-0.02	At school they say my name funny as if the syllables were made out of tin and hurt the roof of your mouth. But in Spanish my name is made out of a softer something, like silver, not quite as thick as sister’s name—Magdalena—which is uglier than mine. Magdalena who at least can come home and become Nenny. But I am always Esperanza.
+0.08	I would like to baptize myself under a new name, a name more like the real me, the one nobody sees. Esperanza as Lisandra or Maritza or Zeze the X. Yes. Something like Zeze the X will do.
+0.00	Cathy
+0.00	Queen of Cats
+0.04	She says, I am the great great grand cousin of the queen of France. She lives upstairs, over there, next door to Joe the baby-grabber. Keep away from him, she says. He is full of danger. Benny and Bianca own the corner store. They’re okay except don’t lean on the candy counter. Two girls raggedy as rats live across the street. You don’t want to know them. Edna is the lady who owns the building next to you. She used to own a building big as a whale, but her brother sold it. Their mother said no, no, don’t ever sell it. I won’t. And then she closed her eyes and he sold it. Alicia is stuck-up ever since she went to college. She used to like me but now she doesn’t.
+0.04	Cathy who is queen of cats has cats and cats and cats. Baby cats, big cats, skinny cats, sick cats. Cats asleep like little donuts. Cats on top of the refrigerator. Cats taking a walk on the dinner table. Her house is like cat heaven.
+-0.02	You want a friend, she says. Okay, I’ll be your friend. But only till next Tuesday. That’s when we move away. Got to. Then as if she forgot I just moved in, she says the neighborhood is getting bad.
+0.06	Cathy’s father will have to fly to France one day and find her great great distant grand cousin on her father’s side and inherit the family house. How do I know this is so? She told me so. In the meantime they’ll just have to move a little farther north from Mango Street, a little farther away every time people like us keep moving in.
+0.00	Our Good Day
+0.00	If you give me five dollars I will be your friend forever. That’s what the little one tells me.
+-0.05	Five dollars is cheap since I don’t have any friends except Cathy who is only my friend till Tuesday.
+0.00	Five dollars, five dollars.
+0.00	She is trying to get somebody to chip in so they can buy a bicycle from this kid named Tito. They already have ten dollars and all they need is five more.
+0.00	Only five dollars, she says.
+0.00	Don’t talk to them, says Cathy. Can’t you see they smell like a broom.
+0.06	But I like them. Their clothes are crooked and old. They are wearing shiny Sunday shoes without socks. It makes their bald ankles all red, but I like them. Especially the big one who laughs with all her teeth. I like her even though she lets the little one do all the talking.
+0.00	Five dollars, the little one says, only five.
+-0.06	Cathy is tugging my arm and I know whatever I do next will make her mad forever.
+0.03	Wait a minute, I say, and run inside to get the five dollars. I have three dollars saved and I take two of Nenny’s. She’s not home, but I’m sure she’ll be glad when she finds out we own a bike. When I get back, Cathy is gone like I knew she would be, but I don’t care. I have two new friends and a bike too.
+0.00	My name is Lucy, the big one says. This here is Rachel my sister.
+0.00	I’m her sister, says Rachel. Who are you?
+0.00	And I wish my name was Cassandra or Alexis or Maritza—anything but Esperanza—but when I tell them my name they don’t laugh.
+0.00	We come from Texas, Lucy says and grins. Her was born here, but me I’m Texas.
+0.00	You mean she, I say.
+0.00	No, I’m from Texas, and doesn’t get it.
+0.00	This bike is three ways ours, says Rachel who is thinking ahead already. Mine today, Lucy’s tomorrow and yours day after.
+0.00	But everybody wants to ride it today because the bike is new, so we decide to take turns after tomorrow. Today it belongs to all of us.
+-0.02	I don’t tell them about Nenny just yet. It’s too complicated. Especially since Rachel almost put out Lucy’s eye about who was going to get to ride it first. But finally we agree to ride it together. Why not?
+0.00	Because Lucy has long legs she pedals. I sit on the back seat and Rachel is skinny enough to get up on the handlebars which makes the bike all wobbly as if the wheels are spaghetti, but after a bit you get used to it.
+-0.02	We ride fast and faster. Past my house, sad and red and crumbly in places, past Mr. Benny’s grocery on the corner, and down the avenue which is dangerous. Laundromat, junk store, drugstore, windows and cars and more cars, and around the block back to Mango.
+-0.05	People on the bus wave. A very fat lady crossing the street says, You sure got quite a load there.
+0.00	Rachel shouts, You got quite a load there too. She is very sassy.
+-0.06	Down, down Mango Street we go. Rachel, Lucy, me. Our new bicycle. Laughing the crooked ride back.
+0.00	Laughter
+0.02	Nenny and I don’t look like sisters … not right away. Not the way you can tell with Rachel and Lucy who have the same fat popsicle lips like everybody else in their family. But me and Nenny, we are more alike than you would know. Our laughter for example. Not the shy ice cream bells’ giggle of Rachel and Lucy’s family, but all of a sudden and surprised like a pile of dishes breaking. And other things I can’t explain.
+0.06	One day we were passing a house that looked, in my mind, like houses I had seen in Mexico. I don’t know why. There was nothing about the house that looked exactly like the houses I remembered. I’m not even sure why I thought it, but it seemed to feel right.
+0.10	Look at that house, I said, it looks like Mexico.
+0.03	Rachel and Lucy look at me like I’m crazy, but before they can let out a laugh, Nenny says: Yes, that’s Mexico all right. That’s what I was thinking exactly.
+0.00	Gil’s
+0.00	Furniture
+0.00	Bought &amp; Sold
+-0.03	There is a junk store. An old man owns it. We bought a used refrigerator from him once, and Carlos sold a box of magazines for a dollar. The store is small with just a dirty window for light. He doesn’t turn the lights on unless you got money to buy things with, so in the dark we look and see all kinds of things, me and Nenny. Tables with their feet upside-down and rows and rows of refrigerators with round corners and couches that spin dust in the air when you punch them and a hundred T.V.’s that don’t work probably. Everything is on top of everything so the whole store has skinny aisles to walk through. You can get lost easy.
+0.03	The owner, he is a black man who doesn’t talk much and sometimes if you didn’t know better you could be in there a long time before your eyes notice a pair of gold glasses floating in the dark. Nenny who thinks she is smart and talks to any old man, asks lots of questions. Me, I never said nothing to him except once when I bought the Statue of Liberty for a dime.
+0.03	But Nenny, I hear her asking one time how’s this here and the man says, This, this is a music box, and I turn around quick thinking he means a pretty box with flowers painted on it, with a ballerina inside. Only there’s nothing like that where this old man is pointing, just a wood box that’s old and got a big brass record in it with holes. Then he starts it up and all sorts of things start happening. It’s like all of a sudden he let go a million moths all over the dusty furniture and swan-neck shadows and in our bones. It’s like drops of water. Or like marimbas only with a funny little plucked sound to it like if you were running your fingers across the teeth of a metal comb.
+-0.02	And then I don’t know why, but I have to turn around and pretend I don’t care about the box so Nenny won’t see how stupid I am. But Nenny, who is stupider, already is asking how much and I can see her fingers going for the quarters in her pants pocket.
+0.00	This, the old man says shutting the lid, this ain’t for sale.
+0.00	Meme Ortiz
+0.00	Meme Ortiz moved into Cathy’s house after her family moved away. His name isn’t really Meme. His name is Juan. But when we asked him what his name was he said Meme, and that’s what everybody calls him except his mother.
+0.00	Meme has a dog with gray eyes, a sheepdog with two names, one in English and one in Spanish. The dog is big, like a man dressed in a dog suit, and runs the same way its owner does, clumsy and wild and with the limbs flopping all over the place like untied shoes.
+-0.03	Cathy’s father built the house Meme moved into. It is wooden. Inside the floors slant. Some rooms uphill. Some down. And there are no closets. Out front there are twenty-one steps, all lopsided and jutting like crooked teeth (made that way on purpose, Cathy said, so the rain will slide off), and when Meme’s mama calls from the doorway, Meme goes scrambling up the twenty-one wooden stairs with the dog with two names scrambling after him.
+-0.01	Around the back is a yard, mostly dirt, and a greasy bunch of boards that used to be a garage. But what you remember most is this tree, huge, with fat arms and mighty families of squirrels in the higher branches. All around, the neighborhood of roofs, black-tarred and A-framed, and in their gutters, the balls that never came back down to earth. Down at the base of the tree, the dog with two names barks into the empty air, and there at the end of the block, looking smaller still, our house with its feet tucked under like a cat.
+0.00	This is the tree we chose for the First Annual Tarzan Jumping Contest. Meme won. And broke both arms.
+0.00	Louie,
+0.00	His Cousin &amp;
+0.00	His Other Cousin
+0.00	Downstairs from Meme’s is a basement apartment that Meme’s mother fixed up and rented to a Puerto Rican family. Louie’s family. Louie is the oldest in a family of little sisters. He is my brother’s friend really, but I know he has two cousins and that his T-shirts never stay tucked in his pants.
+0.01	Louie’s girl cousin is older than us. She lives with Louie’s family because her own family is in Puerto Rico. Her name is Marin or Maris or something like that, and she wears dark nylons all the time and lots of makeup she gets free from selling Avon. She can’t come out—gotta baby-sit with Louie’s sisters—but she stands in the doorway a lot, all the time singing, clicking her fingers, the same song:
+0.00	Apples, peaches, pumpkin pah-ay.
+0.12	You’re in love and so am ah-ay.
+0.02	Louie has another cousin. We only saw him once, but it was important. We were playing volleyball in the alley when he drove up in this great big yellow Cadillac with whitewalls and a yellow scarf tied around the mirror. Louie’s cousin had his arm out the window. He honked a couple of times and a lot of faces looked out from Louie’s back window and then a lot of people came out—Louie, Marin and all the little sisters.
+0.00	Everybody looked inside the car and asked where he got it. There were white rugs and white leather seats. We all asked for a ride and asked where he got it. Louie’s cousin said get in.
+0.03	We each had to sit with one of Louie’s little sisters on our lap, but that was okay. The seats were big and soft like a sofa, and there was a little white cat in the back window whose eyes lit up when the car stopped or turned. The windows didn’t roll up like in ordinary cars. Instead there was a button that did it for you automatically. We rode up the alley and around the block six times, but Louie’s cousin said he was going to make us walk home if we didn’t stop playing with the windows or touching the FM radio.
+-0.01	The seventh time we drove into the alley we heard sirens … real quiet at first, but then louder. Louie’s cousin stopped the car right where we were and said, Everybody out of the car. Then he took off flooring that car into a yellow blur. We hardly had time to think when the cop car pulled in the alley going just as fast. We saw the yellow Cadillac at the end of the block trying to make a left-hand turn, but our alley is too skinny and the car crashed into a lamppost.
+-0.03	Marin screamed and we ran down the block to where the cop car’s siren spun a dizzy blue. The nose of that yellow Cadillac was all pleated like an alligator’s, and except for a bloody lip and a bruised forehead, Louie’s cousin was okay. They put handcuffs on him and put him in the backseat of the cop car, and we all waved as they drove away.
+0.00	Marin
+0.02	Marin’s boyfriend is in Puerto Rico. She shows us his letters and makes us promise not to tell anybody they’re getting married when she goes back to P.R. She says he didn’t get a job yet, but she’s saving the money she gets from selling Avon and taking care of her cousins.
+0.05	Marin says that if she stays here next year, she’s going to get a real job downtown because that’s where the best jobs are, since you always get to look beautiful and get to wear nice clothes and can meet someone in the subway who might marry you and take you to live in a big house far away.
+0.00	But next year Louie’s parents are going to send her back to her mother with a letter saying she’s too much trouble, and that is too bad because I like Marin. She is older and knows lots of things. She is the one who told us how Davey the Baby’s sister got pregnant and what cream is best for taking off moustache hair and if you count the white flecks on your fingernails you can know how many boys are thinking of you and lots of other things I can’t remember now.
+0.01	We never see Marin until her aunt comes home from work, and even then she can only stay out in front. She is there every night with the radio. When the light in her aunt’s room goes out, Marin lights a cigarette and it doesn’t matter if it’s cold out or if the radio doesn’t work or if we’ve got nothing to say to each other. What matters, Marin says, is for the boys to see us and for us to see them. And since Marin’s skirts are shorter and since her eyes are pretty, and since Marin is already older than us in many ways, the boys who do pass by say stupid things like I am in love with those two green apples you call eyes, give them to me why don’t you. And Marin just looks at them without even blinking and is not afraid.
+-0.03	Marin, under the streetlight, dancing by herself, is singing the same song somewhere. I know. Is waiting for a car to stop, a star to fall, someone to change her life.
+0.00	Those Who Don’t
+-0.11	Those who don’t know any better come into our neighborhood scared. They think we’re dangerous. They think we will attack them with shiny knives. They are stupid people who are lost and got here by mistake.
+-0.05	But we aren’t afraid. We know the guy with the crooked eye is Davey the Baby’s brother, and the tall one next to him in the straw brim, that’s Rosa’s Eddie V., and the big one that looks like a dumb grown man, he’s Fat Boy, though he’s not fat anymore nor a boy.
+0.02	All brown all around, we are safe. But watch us drive into a neighborhood of another color and our knees go shakity-shake and our car windows get rolled up tight and our eyes look straight. Yeah. That is how it goes and goes.
+0.00	There Was
+0.00	an Old Woman
+0.00	She Had So Many Children
+0.00	She Didn’t Know
+0.00	What to Do
+-0.04	Rosa Vargas’ kids are too many and too much. It’s not her fault you know, except she is their mother and only one against so many.
+-0.04	They are bad those Vargases, and how can they help it with only one mother who is tired all the time from buttoning and bottling and babying, and who cries every day for the man who left without even leaving a dollar for bologna or a note explaining how come.
+0.03	The kids bend trees and bounce between cars and dangle upside down from knees and almost break like fancy museum vases you can’t replace. They think it’s funny. They are without respect for all things living, including themselves.
+0.00	But after a while you get tired of being worried about kids who aren’t even yours. One day they are playing chicken on Mr. Benny’s roof. Mr. Benny says, Hey ain’t you kids know better than to be swinging up there? Come down, you come down right now, and then they just spit.
+0.01	See. That’s what I mean. No wonder everybody gave up. Just stopped looking out when little Efren chipped his buck tooth on a parking meter and didn’t even stop Refugia from getting her head stuck between two slats in the back gate and nobody looked up not once the day Angel Vargas learned to fly and dropped from the sky like a sugar donut, just like a falling star, and exploded down to earth without even an “Oh.”
+0.00	Alicia
+0.00	Who Sees Mice
+-0.03	Close your eyes and they’ll go away, her father says, or You’re just imagining. And anyway, a woman’s place is sleeping so she can wake up early with the tortilla star, the one that appears early just in time to rise and catch the hind legs hide behind the sink, beneath the four-clawed tub, under the swollen floorboards nobody fixes, in the corner of your eyes.
+-0.01	Alicia, whose mama died, is sorry there is no one older to rise and make the lunchbox tortillas. Alicia, who inherited her mama’s rolling pin and sleepiness, is young and smart and studies for the first time at the university. Two trains and a bus, because she doesn’t want to spend her whole life in a factory or behind a rolling pin. Is a good girl, my friend, studies all night and sees the mice, the ones her father says do not exist. Is afraid of nothing except four-legged fur. And fathers.
+0.00	Darius
+0.00	&amp; the Clouds
+0.00	You can never have too much sky. You can fall asleep and wake up drunk on sky, and sky can keep you safe when you are sad. Here there is too much sadness and not enough sky. Butterflies too are few and so are flowers and most things that are beautiful. Still, we take what we can get and make the best of it.
+0.04	Darius, who doesn’t like school, who is sometimes stupid and mostly a fool, said something wise today, though most days he says nothing. Darius, who chases girls with firecrackers or a stick that touched a rat and thinks he’s tough, today pointed up because the world was full of clouds, the kind like pillows.
+-0.02	You all see that cloud, that fat one there? Darius said, See that? Where? That one next to the one that look like popcorn. That one there. See that. That’s God, Darius said. God? somebody little asked. God, he said, and made it simple.
+0.00	And Some More
+0.00	The Eskimos got thirty different names for snow, I say. I read it in a book.
+0.00	I got a cousin, Rachel says. She got three different names.
+0.00	There ain’t thirty different kinds of snow, Lucy says. There are two kinds. The clean kind and the dirty kind, clean and dirty. Only two.
+0.00	There are a million zillion kinds, says Nenny. No two exactly alike. Only how do you remember which one is which?
+0.00	She got three last names and, let me see, two first names. One in English and one in Spanish …
+0.00	And clouds got at least ten different names, I say.
+0.09	Names for clouds? Nenny asks. Names just like you and me?
+0.00	That up there, that’s cumulus, and everybody looks up.
+0.18	Cumulus are cute, Rachel says. She would say something like that.
+0.00	What’s that one there? Nenny asks, pointing a finger.
+0.00	That’s cumulus too. They’re all cumulus today. Cumulus, cumulus, cumulus.
+0.00	No, she says. That there is Nancy, otherwise known as Pig-eye. And over there her cousin Mildred, and little Joey, Marco, Nereida and Sue.
+0.00	There are all different kinds of clouds. How many different kinds of clouds can you think of?
+0.10	Well, there’s these already that look like shaving cream …
+0.06	And what about the kind that looks like you combed its hair? Yes, those are clouds too.
+0.00	Phyllis, Ted, Alfredo and Julie …
+0.12	There are clouds that look like big fields of sheep, Rachel says. Them are my favorite.
+-0.08	And don’t forget nimbus the rain cloud, I add, that’s something.
+0.00	Jose and Dagoberto, Alicia, Raul, Edna, Alma and Rickey …
+-0.04	There’s that wide puffy cloud that looks like your face when you wake up after falling asleep with all your clothes on.
+0.00	Reynaldo, Angelo, Albert, Armando, Mario …
+0.00	Not my face. Looks like your fat face.
+0.00	Rita, Margie, Ernie …
+-0.33	Whose fat face?
+-0.05	Esperanza’s fat face, that’s who. Looks like Esperanza’s ugly face when she comes to school in the morning.
+0.00	Anita, Stella, Dennis, and Lolo …
+-0.40	Who you calling ugly, ugly?
+0.00	Richie, Yolanda, Hector, Stevie, Vincent …
+0.00	Not you. Your mama, that’s who.
+0.11	My mama? You better not be saying that, Lucy Guerrero. You better not be talking like that … else you can say goodbye to being my friend forever.
+0.00	I’m saying your mama’s ugly like … ummm …
+0.20	… like bare feet in September!
+0.06	That does it! Both of yous better get out of my yard before I call my brothers.
+0.00	Oh, we’re only playing.
+0.00	I can think of thirty Eskimo words for you, Rachel. Thirty words that say what you are.
+0.11	Oh yeah, well I can think of some more.
+-0.08	Uh-oh, Nenny. Better get the broom. Too much trash in our yard today.
+0.00	Frankie, Licha, Maria, Pee Wee …
+0.00	Nenny, you better tell your sister she is really crazy because Lucy and me are never coming back here again. Forever.
+0.00	Reggie, Elizabeth, Lisa, Louie …
+0.04	You can do what you want to do, Nenny, but you better not talk to Lucy or Rachel if you want to be my sister.
+0.11	You know what you are, Esperanza? You are like the Cream of Wheat cereal. You’re like the lumps.
+0.00	Yeah, and you’re foot fleas, that’s you.
+0.00	Chicken lips.
+0.00	Rosemary, Dalia, Lily …
+0.00	Cockroach jelly.
+0.00	Jean, Geranium and Joe …
+0.00	Cold frijoles.
+0.00	Mimi, Michael, Moe …
+0.00	Your mama’s frijoles.
+-0.20	Your ugly mama’s toes.
+-0.33	That’s stupid.
+0.00	Bebe, Bianca, Benny …
+-0.33	Who’s stupid?
+0.00	Rachel, Lucy, Esperanza, and Nenny.
+0.00	The
+0.00	Family
+0.00	of Little Feet
+0.00	There was a family. All were little. Their arms were little, and their hands were little, and their height was not tall, and their feet very small.
+0.00	The grandpa slept on the living room couch and snored through his teeth. His feet were fat and doughy like thick tamales, and these he powdered and stuffed into white socks and brown leather shoes.
+0.03	The grandma’s feet were lovely as pink pearls and dressed in velvety high heels that made her walk with a wobble, but she wore them anyway because they were pretty.
+0.00	The baby’s feet had ten tiny toes, pale and see-through like a salamander’s, and these he popped into his mouth whenever he was hungry.
+0.06	The mother’s feet, plump and polite, descended like white pigeons from the sea of pillow, across the linoleum roses, down down the wooden stairs, over the chalk hopscotch squares, 5, 6, 7, blue sky.
+-0.02	Do you want this? And gave us a paper bag with one pair of lemon shoes and one red and one pair of dancing shoes that used to be white but were now pale blue. Here, and we said thank you and waited until she went upstairs.
+0.00	Hurray! Today we are Cinderella because our feet fit exactly, and we laugh at Rachel’s one foot with a girl’s grey sock and a lady’s high heel. Do you like these shoes? But the truth is it is scary to look down at your foot that is no longer yours and see attached a long long leg.
+-0.08	Everybody wants to trade. The lemon shoes for the red shoes, the red for the pair that were once white but are now pale blue, the pale blue for the lemon, and take them off and put them back on and keep on like this a long time until we are tired.
+0.00	Then Lucy screams to take our socks off and yes, it’s true. We have legs. Skinny and spotted with satin scars where scabs were picked, but legs, all our own, good to look at, and long.
+0.05	It’s Rachel who learns to walk the best all strutted in those magic high heels. She teaches us to cross and uncross our legs, and to run like a double-dutch rope, and how to walk down to the corner so that the shoes talk back to you with every step. Lucy, Rachel, me tee-tottering like so. Down to the corner where the men can’t take their eyes off us. We must be Christmas.
+0.09	Mr. Benny at the corner grocery puts down his important cigar: Your mother know you got shoes like that? Who give you those?
+0.00	Nobody.
+0.00	Them are dangerous, he says. You girls too young to be wearing shoes like that. Take them shoes off before I call the cops, but we just run.
+0.12	On the avenue a boy on a homemade bicycle calls out: Ladies, lead me to heaven.
+0.00	But there is nobody around but us.
+0.08	Do you like these shoes? Rachel says yes, and Lucy says yes, and yes I say, these are the best shoes. We will never go back to wearing the other kind again. Do you like these shoes?
+-0.14	In front of the laundromat six girls with the same fat face pretend we are invisible. They are the cousins, Lucy says, and always jealous. We just keep strutting.
+-0.07	Across the street in front of the tavern a bum man on the stoop.
+0.20	Do you like these shoes?
+0.04	Bum man says, Yes, little girl. Your little lemon shoes are so beautiful. But come closer. I can’t see very well. Come closer. Please.
+0.07	You are a pretty girl, bum man continues. What’s your name, pretty girl?
+0.14	And Rachel says Rachel, just like that.
+-0.08	Now you know to talk to drunks is crazy and to tell them your name is worse, but who can blame her. She is young and dizzy to hear so many sweet things in one day, even if it is a bum man’s whiskey words saying them.
+0.00	Rachel, you are prettier than a yellow taxicab. You know that?
+0.08	But we don’t like it. We got to go, Lucy says.
+-0.04	If I give you a dollar will you kiss me? How about a dollar. I give you a dollar, and he looks in his pocket for wrinkled money.
+0.09	We have to go right now, Lucy says taking Rachel’s hand because she looks like she’s thinking about that dollar.
+0.00	Bum man is yelling something to the air but by now we are running fast and far away, our high heel shoes taking us all the way down the avenue and around the block, past the ugly cousins, past Mr. Benny’s, up Mango Street, the back way, just in case.
+-0.02	We are tired of being beautiful. Lucy hides the lemon shoes and the red shoes and the shoes that used to be white but are now pale blue under a powerful bushel basket on the back porch, until one Tuesday her mother, who is very clean, throws them away. But no one complains.
+0.00	A
+0.00	Rice
+0.00	Sandwich
+0.02	The special kids, the ones who wear keys around their necks, get to eat in the canteen. The canteen! Even the name sounds important. And these kids at lunch time go there because their mothers aren’t home or home is too far away to get to.
+0.00	My home isn’t far but it’s not close either, and somehow I got it in my head one day to ask my mother to make me a sandwich and write a note to the principal so I could eat in the canteen too.
+0.00	Oh no, she says pointing the butter knife at me as if I’m starting trouble, no sir. Next thing you know everybody will be wanting a bag lunch—I’ll be up all night cutting bread into little triangles, this one with mayonnaise, this one with mustard, no pickles on mine, but mustard on one side please. You kids just like to invent more work for me.
+0.02	But Nenny says she doesn’t want to eat at school—ever—because she likes to go home with her best friend Gloria who lives across the schoolyard. Gloria’s mama has a big color T.V. and all they do is watch cartoons. Kiki and Carlos, on the other hand, are patrol boys. They don’t want to eat at school either. They like to stand out in the cold especially if it’s raining. They think suffering is good for you ever since they saw that movie 300 Spartans.
+0.00	I’m no Spartan and hold up an anemic wrist to prove it. I can’t even blow up a balloon without getting dizzy. And besides, I know how to make my own lunch. If I ate at school there’d be less dishes to wash. You would see me less and less and like me better. Everyday at noon my chair would be empty. Where is my favorite daughter you would cry, and when I came home finally at three p.m. you would appreciate me.
+0.00	Okay, okay, my mother says after three days of this. And the following morning I get to go to school with my mother’s letter and a rice sandwich because we don’t have lunch meat.
+0.01	Mondays or Fridays, it doesn’t matter, mornings always go by slow and this day especially. But lunchtime came finally and I got to get in line with the stay-at-school kids. Everything is fine until the nun who knows all the canteen kids by heart looks at me and says: You, who sent you here? And since I am shy, I don’t say anything, just hold out my hand with the letter. This is no good, she says, till Sister Superior gives the okay. Go upstairs and see her. And so I went.
+0.04	I had to wait for two kids in front of me to get hollered at, one because he did something in class, the other because he didn’t. My turn came and I stood in front of the big desk with holy pictures under the glass while the Sister Superior read my letter. It went like this:
+0.00	Dear Sister Superior,
+-0.09	Please let Esperanza eat in the lunchroom because she lives too far away and she gets tired. As you can see she is very skinny. I hope to God she does not faint.
+0.00	Thanking you,
+0.00	Mrs. E. Cordero
+0.00	You don’t live far, she says. You live across the boulevard. That’s only four blocks. Not even. Three maybe. Three long blocks away from here. I bet I can see your house from my window. Which one? Come here. Which one is your house?
+-0.06	And then she made me stand up on a box of books and point. That one? she said, pointing to a row of ugly three-flats, the ones even the raggedy men are ashamed to go into. Yes, I nodded even though I knew that wasn’t my house and started to cry. I always cry when nuns yell at me, even if they’re not yelling.
+-0.05	Then she was sorry and said I could stay—just for today, not tomorrow or the day after—you go home. And I said yes and could I please have a Kleenex—I had to blow my nose.
+-0.07	In the canteen, which was nothing special, lots of boys and girls watched while I cried and ate my sandwich, the bread already greasy and the rice cold.
+0.00	Chanclas
+-0.02	It’s me—Mama, Mama said. I open up and she’s there with bags and big boxes, the new clothes and, yes, she’s got the socks and a new slip with a little rose on it and a pink-and-white striped dress. What about the shoes? I forgot. Too late now. I’m tired. Whew!
+0.00	Six-thirty already and my little cousin’s baptism is over. All day waiting, the door locked, don’t open up for nobody, and I don’t till Mama gets back and buys everything except the shoes.
+0.00	Now Uncle Nacho is coming in his car, and we have to hurry to get to Precious Blood Church quick because that’s where the baptism party is, in the basement rented for today for dancing and tamales and everyone’s kids running all over the place.
+0.00	Mama dances, laughs, dances. All of a sudden, Mama is sick. I fan her hot face with a paper plate. Too many tamales, but Uncle Nacho says too many this and tilts his thumb to his lips.
+-0.03	Everybody laughing except me, because I’m wearing the new dress, pink and white with stripes, and new underclothes and new socks and the old saddle shoes I wear to school, brown and white, the kind I get every September because they last long and they do. My feet scuffed and round, and the heels all crooked that look dumb with this dress, so I just sit.
+-0.04	Meanwhile that boy who is my cousin by first communion or something asks me to dance and I can’t. Just stuff my feet under the metal folding chair stamped Precious Blood and pick on a wad of brown gum that’s stuck beneath the seat. I shake my head no. My feet growing bigger and bigger.
+-0.01	Then Uncle Nacho is pulling and pulling my arm and it doesn’t matter how new the dress Mama bought is because my feet are ugly until my uncle who is a liar says, You are the prettiest girl here, will you dance, but I believe him, and yes, we are dancing, my Uncle Nacho and me, only I don’t want to at first. My feet swell big and heavy like plungers, but I drag them across the linoleum floor straight center where Uncle wants to show off the new dance we learned. And Uncle spins me, and my skinny arms bend the way he taught me, and my mother watches, and my little cousins watch, and the boy who is my cousin by first communion watches, and everyone says, wow, who are those two who dance like in the movies, until I forget that I am wearing only ordinary shoes, brown and white, the kind my mother buys each year for school.
+0.02	And all I hear is the clapping when the music stops. My uncle and me bow and he walks me back in my thick shoes to my mother who is proud to be my mother. All night the boy who is a man watches me dance. He watched me dance.
+0.00	Hips
+0.33	I like coffee, I like tea.
+0.22	I like the boys and the boys like me.
+0.00	Yes, no, maybe so. Yes, no, maybe so …
+0.04	One day you wake up and they are there. Ready and waiting like a new Buick with the keys in the ignition. Ready to take you where?
+0.08	They’re good for holding a baby when you’re cooking, Rachel says, turning the jump rope a little quicker. She has no imagination.
+0.00	You need them to dance, says Lucy.
+0.00	If you don’t get them you may turn into a man. Nenny says this and she believes it. She is this way because of her age.
+0.04	That’s right, I add before Lucy or Rachel can make fun of her. She is stupid alright, but she is my sister.
+0.03	But most important, hips are scientific, I say repeating what Alicia already told me. It’s the bones that let you know which skeleton was a man’s when it was a man and which a woman’s.
+0.05	They bloom like roses, I continue because it’s obvious I’m the only one who can speak with any authority; I have science on my side. The bones just one day open. Just like that. One day you might decide to have kids, and then where are you going to put them? Got to have room. Bones got to give.
+0.00	But don’t have too many or your behind will spread. That’s how it is, says Rachel whose mama is as wide as a boat. And we just laugh.
+0.03	What I’m saying is who here is ready? You gotta be able to know what to do with hips when you get them, I say making it up as I go. You gotta know how to walk with hips, practice you know—like if half of you wanted to go one way and the other half the other.
+0.00	That’s to lullaby it, Nenny says, that’s to rock the baby asleep inside you. And then she begins singing seashells, copper bells, eevy, ivy, o-ver.
+0.00	I’m about to tell her that’s the dumbest thing I’ve ever heard, but the more I think about it …
+0.00	You gotta get the rhythm, and Lucy begins to dance. She has the idea, though she’s having trouble keeping her end of the double-dutch steady.
+0.00	It’s gotta be just so, I say. Not too fast and not too slow. Not too fast and not too slow.
+-0.05	We slow the double circles down to a certain speed so Rachel who has just jumped in can practice shaking it.
+-0.09	I want to shake like hoochi-coochie, Lucy says. She is crazy.
+0.08	I want to move like heebie-jeebie, I say picking up on the cue.
+0.00	I want to be Tahiti. Or merengue. Or electricity.
+0.00	Or tembleque!
+0.14	Yes, tembleque. That’s a good one.
+0.00	And then it’s Rachel who starts it:
+0.00	Skip, skip,
+0.00	snake in your hips.
+0.00	Wiggle around
+-0.25	and break your lip.
+0.00	Lucy waits a minute before her turn. She is thinking. Then she begins:
+-0.14	The waitress with the big fat hips
+0.00	who pays the rent with taxi tips …
+0.00	says nobody in town will kiss her on the lips
+0.00	because …
+0.17	because she looks like Christopher Columbus!
+0.00	Yes, no, maybe so. Yes, no, maybe so.
+-0.05	She misses on maybe so. I take a little while before my turn, take a breath, and dive in:
+0.00	Some are skinny like chicken lips.
+0.17	Some are baggy like soggy Band-Aids
+0.00	after you get out of the bathtub.
+0.00	I don’t care what kind I get.
+0.00	Just as long as I get hips.
+0.00	Everybody getting into it now except Nenny who is still humming not a girl, not a boy, just a little baby. She’s like that.
+0.03	When the two arcs open wide like jaws Nenny jumps in across from me, the rope tick-ticking, the little gold earrings our mama gave her for her First Holy Communion bouncing. She is the color of a bar of naphtha laundry soap, she is like the little brown piece left at the end of the wash, the hard little bone, my sister. Her mouth opens. She begins:
+0.00	My mother and your mother were washing clothes.
+0.11	My mother punched your mother right in the nose.
+0.00	What color blood came out?
+0.00	Not that old song, I say. You gotta use your own song. Make it up, you know? But she doesn’t get it or won’t. It’s hard to say which. The rope turning, turning, turning.
+0.00	Engine, engine number nine,
+0.00	running down Chicago line.
+0.00	If the train runs off the track
+0.00	do you want your money back?
+0.00	Do you want your MONEY back?
+0.00	Yes, no, maybe so. Yes, no, maybe so …
+-0.05	I can tell Lucy and Rachel are disgusted, but they don’t say anything because she’s my sister.
+0.00	Yes, no, maybe so. Yes, no, maybe so …
+0.00	Nenny, I say, but she doesn’t hear me. She is too many light-years away. She is in a world we don’t belong to anymore. Nenny. Going. Going.
+0.00	Y-E-S spells yes and out you go!
+0.00	The First Job
+0.00	It wasn’t as if I didn’t want to work. I did. I had even gone to the social security office the month before to get my social security number. I needed money. The Catholic high school cost a lot, and Papa said nobody went to public school unless you wanted to turn out bad.
+0.02	I thought I’d find an easy job, the kind other kids had, working in the dime store or maybe a hotdog stand. And though I hadn’t started looking yet, I thought I might the week after next. But when I came home that afternoon, all wet because Tito had pushed me into the open water hydrant—only I had sort of let him—Mama called me in the kitchen before I could even go and change, and Aunt Lala was sitting there drinking her coffee with a spoon. Aunt Lala said she had found a job for me at the Peter Pan Photo Finishers on North Broadway where she worked, and how old was I, and to show up tomorrow saying I was one year older, and that was that.
+0.03	So the next morning I put on the navy blue dress that made me look older and borrowed money for lunch and bus fare because Aunt Lala said I wouldn’t get paid till the next Friday, and I went in and saw the boss of the Peter Pan Photo Finishers on North Broadway where Aunt Lala worked and lied about my age like she told me to and sure enough, I started that same day.
+-0.03	In my job I had to wear white gloves. I was supposed to match negatives with their prints, just look at the picture and look for the same one on the negative strip, put it in the envelope, and do the next one. That’s all. I didn’t know where these envelopes were coming from or where they were going. I just did what I was told.
+0.00	It was real easy, and I guess I wouldn’t have minded it except that you got tired after a while and I didn’t know if I could sit down or not, and then I started sitting down only when the two ladies next to me did. After a while they started to laugh and came up to me and said I could sit when I wanted to, and I said I knew.
+-0.01	When lunchtime came, I was scared to eat alone in the company lunchroom with all those men and ladies looking, so I ate real fast standing in one of the washroom stalls and had lots of time left over, so I went back to work early. But then break time came, and not knowing where else to go, I went into the coatroom because there was a bench there.
+0.00	I guess it was the time for the night shift or middle shift to arrive because a few people came in and punched the time clock, and an older Oriental man said hello and we talked for a while about my just starting, and he said we could be friends and next time to go in the lunchroom and sit with him, and I felt better. He had nice eyes and I didn’t feel so nervous anymore. Then he asked if I knew what day it was, and when I said I didn’t, he said it was his birthday and would I please give him a birthday kiss. I thought I would because he was so old and just as I was about to put my lips on his cheek, he grabs my face with both hands and kisses me hard on the mouth and doesn’t let go.
+0.00	Papa
+0.00	Who Wakes Up
+0.00	Tired
+0.00	in the Dark
+-0.02	Your abuelito is dead, Papa says early one morning in my room. Está muerto, and then as if he just heard the news himself, crumples like a coat and cries, my brave Papa cries. I have never seen my Papa cry and don’t know what to do.
+0.00	I know he will have to go away, that he will take a plane to Mexico, all the uncles and aunts will be there, and they will have a black-and-white photo taken in front of the tomb with flowers shaped like spears in a white vase because this is how they send the dead away in that country.
+0.02	Because I am the oldest, my father has told me first, and now it is my turn to tell the others. I will have to explain why we can’t play. I will have to tell them to be quiet today.
+-0.06	My Papa, his thick hands and thick shoes, who wakes up tired in the dark, who combs his hair with water, drinks his coffee, and is gone before we wake, today is sitting on my bed.
+-0.04	And I think if my own Papa died what would I do. I hold my Papa in my arms. I hold and hold and hold him.
+0.00	Born Bad
+-0.04	Most likely I will go to hell and most likely I deserve to be there. My mother says I was born on an evil day and prays for me. Lucy and Rachel pray too. For ourselves and for each other … because of what we did to Aunt Lupe.
+0.07	Her name was Guadalupe and she was pretty like my mother. Dark. Good to look at. In her Joan Crawford dress and swimmer’s legs. Aunt Lupe of the photographs.
+-0.04	But I knew her sick from the disease that would not go, her legs bunched under the yellow sheets, the bones gone limp as worms. The yellow pillow, the yellow smell, the bottles and spoons. Her head thrown back like a thirsty lady. My aunt, the swimmer.
+-0.04	Hard to imagine her legs once strong, the bones hard and parting water, clean sharp strokes, not bent and wrinkled like a baby, not drowning under the sticky yellow light. Second-floor rear apartment. The naked light bulb. The high ceilings. The light bulb always burning.
+-0.06	I don’t know who decides who deserves to go bad. There was no evil in her birth. No wicked curse. One day I believe she was swimming, and the next day she was sick. It might have been the day that gray photograph was taken. It might have been the day she was holding cousin Totchy and baby Frank. It might have been the moment she pointed to the camera for the kids to look and they wouldn’t.
+-0.04	Maybe the sky didn’t look the day she fell down. Maybe God was busy. It could be true she didn’t dive right one day and hurt her spine. Or maybe the story that she fell very hard from a high step stool, like Totchy said, is true.
+-0.04	But I think diseases have no eyes. They pick with a dizzy finger anyone, just anyone. Like my aunt who happened to be walking down the street one day in her Joan Crawford dress, in her funny felt hat with the black feather, cousin Totchy in one hand, baby Frank in the other.
+-0.06	Sometimes you get used to the sick and sometimes the sickness, if it is there too long, gets to seem normal. This is how it was with her, and maybe this is why we chose her.
+0.00	It was a game, that’s all. It was the game we played every afternoon ever since that day one of us invented it—I can’t remember who—I think it was me.
+0.03	You had to pick somebody. You had to think of someone everybody knew. Someone you could imitate and everyone else would have to guess who it was. It started out with famous people: Wonder Woman, the Beatles, Marilyn Monroe.… But then somebody thought it’d be better if we changed the game a little, if we pretended we were Mr. Benny, or his wife Bianca, or Ruthie, or anybody we knew.
+-0.08	I don’t know why we picked her. Maybe we were bored that day. Maybe we got tired. We liked my aunt. She listened to our stories. She always asked us to come back. Lucy, me, Rachel. I hated to go there alone. The six blocks to the dark apartment, second-floor rear building where sunlight never came, and what did it matter? My aunt was blind by then. She never saw the dirty dishes in the sink. She couldn’t see the ceilings dusty with flies, the ugly maroon walls, the bottles and sticky spoons. I can’t forget the smell. Like sticky capsules filled with jelly. My aunt, a little oyster, a little piece of meat on an open shell for us to look at. Hello, hello. As if she had fallen into a well.
+0.00	I took my library books to her house. I read her stories. I liked the book The Waterbabies. She liked it too. I never knew how sick she was until that day I tried to show her one of the pictures in the book, a beautiful color picture of the water babies swimming in the sea. I held the book up to her face. I can’t see it, she said, I’m blind. And then I was ashamed.
+0.00	She listened to every book, every poem I read her. One day I read her one of my own. I came very close. I whispered it into the pillow:
+0.00	I want to be
+0.17	like the waves on the sea,
+0.17	like the clouds in the wind,
+0.00	but I’m me.
+0.00	One day I’ll jump
+0.00	out of my skin.
+-0.20	I’ll shake the sky
+0.25	like a hundred violins.
+0.05	That’s nice. That’s very good, she said in her tired voice. You just remember to keep writing, Esperanza. You must keep writing. It will keep you free, and I said yes, but at that time I didn’t know what she meant.
+-0.03	The day we played the game, we didn’t know she was going to die. We pretended with our heads thrown back, our arms limp and useless, dangling like the dead. We laughed the way she did. We talked the way she talked, the way blind people talk without moving their head. We imitated the way you had to lift her head a little so she could drink water, she sucked it up slow out of a green tin cup. The water was warm and tasted like metal. Lucy laughed. Rachel too. We took turns being her. We screamed in the weak voice of a parrot for Totchy to come and wash those dishes. It was easy.
+-0.04	We didn’t know. She had been dying such a long time, we forgot. Maybe she was ashamed. Maybe she was embarrassed it took so many years. The kids who wanted to be kids instead of washing dishes and ironing their papa’s shirts, and the husband who wanted a wife again.
+-0.09	And then she died, my aunt who listened to my poems.
+0.00	And then we began to dream the dreams.
+0.00	Elenita,
+0.00	Cards, Palm, Water
+-0.02	Elenita, witch woman, wipes the table with a rag because Ernie who is feeding the baby spilled Kool-Aid. She says: Take that crazy baby out of here and drink your Kool-Aid in the living room. Can’t you see I’m busy? Ernie takes the baby into the living room where Bugs Bunny is on T.V.
+0.06	Good lucky you didn’t come yesterday, she says. The planets were all mixed up yesterday.
+0.05	Her T.V. is color and big and all her pretty furniture made out of red fur like the teddy bears they give away in carnivals. She has them covered with plastic. I think this is on account of the baby.
+0.12	Yes, it’s a good thing, I say.
+0.06	But we stay in the kitchen because this is where she works. The top of the refrigerator busy with holy candles, some lit, some not, red and green and blue, a plaster saint and a dusty Palm Sunday cross, and a picture of the voodoo hand taped to the wall.
+0.00	Get the water, she says.
+0.04	I go to the sink and pick the only clean glass there, a beer mug that says the beer that made Milwaukee famous, and fill it up with hot water from the tap, then put the glass of water on the center of the table, the way she taught me.
+0.00	Look in it, do you see anything?
+0.00	But all I see are bubbles.
+0.00	You see anybody’s face?
+0.00	Nope, just bubbles, I say.
+0.00	That’s okay, and she makes the sign of the cross over the water three times and then begins to cut the cards.
+-0.06	They’re not like ordinary playing cards, these cards. They’re strange, with blond men on horses and crazy baseball bats with thorns. Golden goblets, sad-looking women dressed in old-fashioned dresses, and roses that cry.
+0.03	There is a good Bugs Bunny cartoon on T.V. I know, I saw it before and recognize the music and wish I could go sit on the plastic couch with Ernie and the baby, but now my fortune begins. My whole life on that kitchen table: past, present, future. Then she takes my hand and looks into my palm. Closes it. Closes her eyes too.
+-0.14	Do you feel it, feel the cold?
+-0.14	Yes, I lie, but only a little.
+0.00	Good, she says, los espíritus are here. And begins.
+-0.05	This card, the one with the dark man on a dark horse, this means jealousy, and this one, sorrow. Here a pillar of bees and this a mattress of luxury. You will go to a wedding soon and did you lose an anchor of arms, yes, an anchor of arms? It’s clear that’s what that means.
+0.00	What about a house, I say, because that’s what I came for.
+0.00	Ah, yes, a home in the heart. I see a home in the heart.
+0.00	Is that it?
+0.03	That’s what I see, she says, then gets up because the kids are fighting. Elenita gets up to hit and then hug them. She really does love them, only sometimes they are rude.
+-0.04	She comes back and can tell I’m disappointed. She’s a witch woman and knows many things. If you got a headache, rub a cold egg across your face. Need to forget an old romance? Take a chicken’s foot, tie it with red string, spin it over your head three times, then burn it. Bad spirits keeping you awake? Sleep next to a holy candle for seven days, then on the eighth day, spit. And lots of other stuff. Only now she can tell I’m sad.
+0.00	Baby, I’ll look again if you want me to. And she looks again into the cards, palm, water, and says uh-huh.
+0.12	A home in the heart, I was right.
+0.00	Only I don’t get it.
+0.00	A new house, a house made of heart. I’ll light a candle for you.
+0.00	All this for five dollars I give her.
+0.03	Thank you and goodbye and be careful of the evil eye. Come back again on a Thursday when the stars are stronger. And may the Virgin bless you. And shuts the door.
+0.00	Geraldo
+0.00	No Last Name
+0.03	She met him at a dance. Pretty too, and young. Said he worked in a restaurant, but she can’t remember which one. Geraldo. That’s all. Green pants and Saturday shirt. Geraldo. That’s what he told her.
+0.03	And how was she to know she’d be the last one to see him alive. An accident, don’t you know. Hit-and-run. Marin, she goes to all those dances. Uptown. Logan. Embassy. Palmer. Aragon. Fontana. The Manor. She likes to dance. She knows how to do cumbias and salsas and rancheras even. And he was just someone she danced with. Somebody she met that night. That’s right.
+-0.03	That’s the story. That’s what she said again and again. Once to the hospital people and twice to the police. No address. No name. Nothing in his pockets. Ain’t it a shame.
+-0.03	Only Marin can’t explain why it mattered, the hours and hours, for somebody she didn’t even know. The hospital emergency room. Nobody but an intern working all alone. And maybe if the surgeon would’ve come, maybe if he hadn’t lost so much blood, if the surgeon had only come, they would know who to notify and where.
+0.00	But what difference does it make? He wasn’t anything to her. He wasn’t her boyfriend or anything like that. Just another brazer who didn’t speak English. Just another wetback. You know the kind. The ones who always look ashamed. And what was she doing out at three a.m. anyway? Marin who was sent home with her coat and some aspirin. How does she explain?
+0.05	She met him at a dance. Geraldo in his shiny shirt and green pants. Geraldo going to a dance.
+0.00	What does it matter?
+0.00	They never saw the kitchenettes. They never knew about the two-room flats and sleeping rooms he rented, the weekly money orders sent home, the currency exchange. How could they?
+0.00	His name was Geraldo. And his home is in another country. The ones he left behind are far away, will wonder, shrug, remember. Geraldo—he went north … we never heard from him again.
+0.00	Edna’s Ruthie
+0.00	Ruthie, tall skinny lady with red lipstick and blue babushka, one blue sock and one green because she forgot, is the only grown-up we know who likes to play. She takes her dog Bobo for a walk and laughs all by herself, that Ruthie. She doesn’t need anybody to laugh with, she just laughs.
+0.01	She is Edna’s daughter, the lady who owns the big building next door, three apartments front and back. Every week Edna is screaming at somebody, and every week somebody has to move away. Once she threw out a pregnant lady just because she owned a duck … and it was a nice duck too. But Ruthie lives here and Edna can’t throw her out because Ruthie is her daughter.
+0.05	Ruthie came one day, it seemed, out of nowhere. Angel Vargas was trying to teach us how to whistle. Then we heard someone whistling—beautiful like the Emperor’s nightingale—and when we turned around there was Ruthie.
+0.00	Sometimes we go shopping and take her with us, but she never comes inside the stores and if she does she keeps looking around her like a wild animal in a house for the first time.
+0.04	She likes candy. When we go to Mr. Benny’s grocery she gives us money to buy her some. She says make sure it’s the soft kind because her teeth hurt. Then she promises to see the dentist next week, but when next week comes, she doesn’t go.
+0.04	Ruthie sees lovely things everywhere. I might be telling her a joke and she’ll stop and say: The moon is beautiful like a balloon. Or somebody might be singing and she’ll point to a few clouds: Look, Marlon Brando. Or a sphinx winking. Or my left shoe.
+0.00	Once some friends of Edna’s came to visit and asked Ruthie if she wanted to go with them to play bingo. The car motor was running, and Ruthie stood on the steps wondering whether to go. Should I go, Ma? she asked the gray shadow behind the second-floor screen. I don’t care, says the screen, go if you want. Ruthie looked at the ground. What do you think, Ma? Do what you want, how should I know? Ruthie looked at the ground some more. The car with the motor running waited fifteen minutes and then they left. When we brought out the deck of cards that night, we let Ruthie deal.
+0.02	There were many things Ruthie could have been if she wanted to. Not only is she a good whistler, but she can sing and dance too. She had lots of job offers when she was young, but she never took them. She got married instead and moved away to a pretty house outside the city. Only thing I can’t understand is why Ruthie is living on Mango Street if she doesn’t have to, why is she sleeping on a couch in her mother’s living room when she has a real house all her own, but she says she’s just visiting and next weekend her husband’s going to take her home. But the weekends come and go and Ruthie stays. No matter. We are glad because she is our friend.
+0.04	I like showing Ruthie the books I take out of the library. Books are wonderful, Ruthie says, and then she runs her hand over them as if she could read them in braille. They’re wonderful, wonderful, but I can’t read anymore. I get headaches. I need to go to the eye doctor next week. I used to write children’s books once, did I tell you?
+-0.01	One day I memorized all of “The Walrus and the Carpenter” because I wanted Ruthie to hear me. “The sun was shining on the sea, shining with all his might …” Ruthie looked at the sky and her eyes got watery at times. Finally I came to the last lines: “But answer came there none—and this was scarcely odd, because they’d eaten every one …” She took a long time looking at me before she opened her mouth, and then she said, You have the most beautiful teeth I have ever seen, and went inside.
+0.00	The
+0.00	Earl of
+0.00	Tennessee
+-0.02	Earl lives next door in Edna’s basement, behind the flower boxes Edna paints green each year, behind the dusty geraniums. We used to sit on the flower boxes until the day Tito saw a cockroach with a spot of green paint on its head. Now we sit on the steps that swing around the basement apartment where Earl lives.
+0.05	Earl works nights. His blinds are always closed during the day. Sometimes he comes out and tells us to keep quiet. The little wooden door that has wedged shut the dark for so long opens with a sigh and lets out a breath of mold and dampness, like books that have been left out in the rain. This is the only time we see Earl except for when he comes and goes to work. He has two little black dogs that go everywhere with him. They don’t walk like ordinary dogs, but leap and somersault like an apostrophe and comma.
+-0.02	At night Nenny and I can hear when Earl comes home from work. First the click and whine of the car door opening, then the scrape of concrete, the excited tinkling of dog tags, followed by the heavy jingling of keys, and finally the moan of the wooden door as it opens and lets loose its sigh of dampness.
+-0.01	Earl is a jukebox repairman. He learned his trade in the South, he says. He speaks with a Southern accent, smokes fat cigars and wears a felt hat—winter or summer, hot or cold, don’t matter—a felt hat. In his apartment are boxes and boxes of 45 records, moldy and damp like the smell that comes out of his apartment whenever he opens the door. He gives the records away to us—all except the country and western.
+0.00	The word is that Earl is married and has a wife somewhere. Edna says she saw her once when Earl brought her to the apartment. Mama says she is a skinny thing, blond and pale like salamanders that have never seen the sun. But I saw her once too and she’s not that way at all. And the boys across the street say she is a tall red-headed lady who wears tight pink pants and green glasses. We never agree on what she looks like, but we do know this. Whenever she arrives, he holds her tight by the crook of the arm. They walk fast into the apartment, lock the door behind them and never stay long.
+0.00	Sire
+-0.02	I don’t remember when I first noticed him looking at me—Sire. But I knew he was looking. Every time. All the time I walked past his house. Him and his friends sitting on their bikes in front of the house, pitching pennies. They didn’t scare me. They did, but I wouldn’t let them know. I don’t cross the street like other girls. Straight ahead, straight eyes. I walked past. I knew he was looking. I had to prove to me I wasn’t scared of nobody’s eyes, not even his. I had to look back hard, just once, like he was glass. And I did. I did once. But I looked too long when he rode his bike past me. I looked because I wanted to be brave, straight into the dusty cat fur of his eyes and the bike stopped and he bumped into a parked car, bumped, and I walked fast. It made your blood freeze to have somebody look at you like that. Somebody looked at me. Somebody looked. But his kind, his ways. He is a punk, Papa says, and Mama says not to talk to him.
+0.01	And then his girlfriend came. Lois I heard him call her. She is tiny and pretty and smells like baby’s skin. I see her sometimes running to the store for him. And once when she was standing next to me at Mr. Benny’s grocery she was barefoot, and I saw her barefoot baby toenails all painted pale pale pink, like little pink seashells, and she smells pink like babies do. She’s got big girl hands, and her bones are long like ladies’ bones, and she wears makeup too. But she doesn’t know how to tie her shoes. I do.
+0.00	Sometimes I hear them laughing late, beer cans and cats and the trees talking to themselves: wait, wait, wait. Sire lets Lois ride his bike around the block, or they take walks together. I watch them. She holds his hand, and he stops sometimes to tie her shoes. But Mama says those kinds of girls, those girls are the ones that go into alleys. Lois who can’t tie her shoes. Where does he take her?
+0.00	Everything is holding its breath inside me. Everything is waiting to explode like Christmas. I want to be all new and shiny. I want to sit out bad at night, a boy around my neck and the wind under my skirt. Not this way, every evening talking to the trees, leaning out my window, imagining what I can’t see.
+-0.04	A boy held me once so hard, I swear, I felt the grip and weight of his arms, but it was a dream.
+0.00	Sire. How did you hold her? Was it? Like this? And when you kissed her? Like this?
+0.00	Four Skinny Trees
+-0.02	They are the only ones who understand me. I am the only one who understands them. Four skinny trees with skinny necks and pointy elbows like mine. Four who do not belong here but are here. Four raggedy excuses planted by the city. From our room we can hear them, but Nenny just sleeps and doesn’t appreciate these things.
+-0.05	Their strength is secret. They send ferocious roots beneath the ground. They grow up and they grow down and grab the earth between their hairy toes and bite the sky with violent teeth and never quit their anger. This is how they keep.
+0.00	Let one forget his reason for being, they’d all droop like tulips in a glass, each with their arms around the other. Keep, keep, keep, trees say when I sleep. They teach.
+-0.03	When I am too sad and too skinny to keep keeping, when I am a tiny thing against so many bricks, then it is I look at trees. When there is nothing left to look at on this street. Four who grew despite concrete. Four who reach and do not forget to reach. Four whose only reason is to be and be.
+0.00	No Speak English
+0.00	Mamacita is the big mama of the man across the street, third-floor front. Rachel says her name ought to be Mamasota, but I think that’s mean.
+0.03	The man saved his money to bring her here. He saved and saved because she was alone with the baby boy in that country. He worked two jobs. He came home late and he left early. Every day.
+0.05	Then one day Mamacita and the baby boy arrived in a yellow taxi. The taxi door opened like a waiter’s arm. Out stepped a tiny pink shoe, a foot soft as a rabbit’s ear, then the thick ankle, a flutter of hips, fuchsia roses and green perfume. The man had to pull her, the taxicab driver had to push. Push, pull. Push, pull. Poof!
+0.03	All at once she bloomed. Huge, enormous, beautiful to look at, from the salmon-pink feather on the tip of her hat down to the little rosebuds of her toes. I couldn’t take my eyes off her tiny shoes.
+0.00	Up, up, up the stairs she went with the baby boy in a blue blanket, the man carrying her suitcases, her lavender hatboxes, a dozen boxes of satin high heels. Then we didn’t see her.
+-0.02	Somebody said because she’s too fat, somebody because of the three flights of stairs, but I believe she doesn’t come out because she is afraid to speak English, and maybe this is so since she only knows eight words. She knows to say: He not here for when the landlord comes, No speak English if anybody else comes, and Holy smokes. I don’t know where she learned this, but I heard her say it one time and it surprised me.
+0.00	My father says when he came to this country he ate hamandeggs for three months. Breakfast, lunch and dinner. Hamandeggs. That was the only word he knew. He doesn’t eat hamandeggs anymore.
+0.00	Whatever her reasons, whether she is fat, or can’t climb the stairs, or is afraid of English, she won’t come down. She sits all day by the window and plays the Spanish radio show and sings all the homesick songs about her country in a voice that sounds like a seagull.
+0.00	Home. Home. Home is a house in a photograph, a pink house, pink as hollyhocks with lots of startled light. The man paints the walls of the apartment pink, but it’s not the same, you know. She still sighs for her pink house, and then I think she cries. I would.
+-0.05	Sometimes the man gets disgusted. He starts screaming and you can hear it all the way down the street.
+-0.17	Ay, she says, she is sad.
+0.00	Oh, he says. Not again.
+0.00	¿Cuándo, cuándo, cuándo? she asks.
+0.00	¡Ay, caray! We are home. This is home. Here I am and here I stay. Speak English. Speak English. Christ!
+-0.08	¡Ay! Mamacita, who does not belong, every once in a while lets out a cry, hysterical, high, as if he had torn the only skinny thread that kept her alive, the only road out to that country.
+-0.04	And then to break her heart forever, the baby boy, who has begun to talk, starts to sing the Pepsi commercial he heard on T.V.
+0.03	No speak English, she says to the child who is singing in the language that sounds like tin. No speak English, no speak English, and bubbles into tears. No, no, no, as if she can’t believe her ears.
+0.00	Rafaela
+0.00	Who Drinks
+0.00	Coconut &amp; Papaya
+0.00	Juice
+0.00	on Tuesdays
+0.00	On Tuesdays Rafaela’s husband comes home late because that’s the night he plays dominoes. And then Rafaela, who is still young but getting old from leaning out the window so much, gets locked indoors because her husband is afraid Rafaela will run away since she is too beautiful to look at.
+0.03	Rafaela leans out the window and leans on her elbow and dreams her hair is like Rapunzel’s. On the corner there is music from the bar, and Rafaela wishes she could go there and dance before she gets old.
+-0.02	A long time passes and we forget she is up there watching until she says: Kids, if I give you a dollar will you go to the store and buy me something? She throws a crumpled dollar down and always asks for coconut or sometimes papaya juice, and we send it up to her in a paper shopping bag she lets down with clothesline.
+0.09	Rafaela who drinks and drinks coconut and papaya juice on Tuesdays and wishes there were sweeter drinks, not bitter like an empty room, but sweet sweet like the island, like the dance hall down the street where women much older than her throw green eyes easily like dice and open homes with keys. And always there is someone offering sweeter drinks, someone promising to keep them on a silver string.
+0.00	Sally
+0.08	Sally is the girl with eyes like Egypt and nylons the color of smoke. The boys at school think she’s beautiful because her hair is shiny black like raven feathers and when she laughs, she flicks her hair back like a satin shawl over her shoulders and laughs.
+-0.05	Her father says to be this beautiful is trouble. They are very strict in his religion. They are not supposed to dance. He remembers his sisters and is sad. Then she can’t go out. Sally I mean.
+0.00	Sally, who taught you to paint your eyes like Cleopatra? And if I roll the little brush with my tongue and chew it to a point and dip it in the muddy cake, the one in the little red box, will you teach me?
+0.06	I like your black coat and those shoes you wear, where did you get them? My mother says to wear black so young is dangerous, but I want to buy shoes just like yours, like your black ones made out of suede, just like those. And one day, when my mother’s in a good mood, maybe after my next birthday, I’m going to ask to buy the nylons too.
+0.00	Cheryl, who is not your friend anymore, not since last Tuesday before Easter, not since the day you made her ear bleed, not since she called you that name and bit a hole in your arm and you looked as if you were going to cry and everyone was waiting and you didn’t, you didn’t, Sally, not since then, you don’t have a best friend to lean against the schoolyard fence with, to laugh behind your hands at what the boys say. There is no one to lend you her hairbrush.
+0.03	The stories the boys tell in the coatroom, they’re not true. You lean against the schoolyard fence alone with your eyes closed as if no one was watching, as if no one could see you standing there, Sally. What do you think about when you close your eyes like that? And why do you always have to go straight home after school? You become a different Sally. You pull your skirt straight, you rub the blue paint off your eyelids. You don’t laugh, Sally. You look at your feet and walk fast to the house you can’t come out from.
+0.00	Sally, do you sometimes wish you didn’t have to go home? Do you wish your feet would one day keep walking and take you far away from Mango Street, far away and maybe your feet would stop in front of a house, a nice one with flowers and big windows and steps for you to climb up two by two upstairs to where a room is waiting for you. And if you opened the little window latch and gave it a shove, the windows would swing open, all the sky would come in. There’d be no nosy neighbors watching, no motorcycles and cars, no sheets and towels and laundry. Only trees and more trees and plenty of blue sky. And you could laugh, Sally. You could go to sleep and wake up and never have to think who likes and doesn’t like you. You could close your eyes and you wouldn’t have to worry what people said because you never belonged here anyway and nobody could make you sad and nobody would think you’re strange because you like to dream and dream. And no one could yell at you if they saw you out in the dark leaning against a car, leaning against somebody without someone thinking you are bad, without somebody saying it is wrong, without the whole world waiting for you to make a mistake when all you wanted, all you wanted, Sally, was to love and to love and to love and to love, and no one could call that crazy.
+0.00	Minerva
+0.00	Writes Poems
+0.01	Minerva is only a little bit older than me but already she has two kids and a husband who left. Her mother raised her kids alone and it looks like her daughters will go that way too. Minerva cries because her luck is unlucky. Every night and every day. And prays. But when the kids are asleep after she’s fed them their pancake dinner, she writes poems on little pieces of paper that she folds over and over and holds in her hands a long time, little pieces of paper that smell like a dime.
+-0.05	She lets me read her poems. I let her read mine. She is always sad like a house on fire—always something wrong. She has many troubles, but the big one is her husband who left and keeps leaving.
+0.02	One day she is through and lets him know enough is enough. Out the door he goes. Clothes, records, shoes. Out the window and the door locked. But that night he comes back and sends a big rock through the window. Then he is sorry and she opens the door again. Same story.
+0.00	Next week she comes over black and blue and asks what can she do? Minerva. I don’t know which way she’ll go. There is nothing I can do.
+0.00	Bums
+0.00	in the Attic
+0.03	I want a house on a hill like the ones with the gardens where Papa works. We go on Sundays, Papa’s day off. I used to go. I don’t anymore. You don’t like to go out with us, Papa says. Getting too old? Getting too stuck-up, says Nenny. I don’t tell them I am ashamed—all of us staring out the window like the hungry. I am tired of looking at what we can’t have. When we win the lottery … Mama begins, and then I stop listening.
+-0.03	People who live on hills sleep so close to the stars they forget those of us who live too much on earth. They don’t look down at all except to be content to live on hills. They have nothing to do with last week’s garbage or fear of rats. Night comes. Nothing wakes them but the wind.
+0.02	One day I’ll own my own house, but I won’t forget who I am or where I came from. Passing bums will ask, Can I come in? I’ll offer them the attic, ask them to stay, because I know how it is to be without a house.
+-0.10	Some days after dinner, guests and I will sit in front of a fire. Floorboards will squeak upstairs. The attic grumble.
+0.00	Rats? they’ll ask.
+0.11	Bums, I’ll say, and I’ll be happy.
+0.00	Beautiful &amp; Cruel
+-0.08	I am an ugly daughter. I am the one nobody comes for.
+0.06	Nenny says she won’t wait her whole life for a husband to come and get her, that Minerva’s sister left her mother’s house by having a baby, but she doesn’t want to go that way either. She wants things all her own, to pick and choose. Nenny has pretty eyes and it’s easy to talk that way if you are pretty.
+0.02	My mother says when I get older my dusty hair will settle and my blouse will learn to stay clean, but I have decided not to grow up tame like the others who lay their necks on the threshold waiting for the ball and chain.
+-0.02	In the movies there is always one with red red lips who is beautiful and cruel. She is the one who drives the men crazy and laughs them all away. Her power is her own. She will not give it away.
+0.07	I have begun my own quiet war. Simple. Sure. I am one who leaves the table like a man, without putting back the chair or picking up the plate.
+0.00	A Smart Cookie
+0.01	I could’ve been somebody, you know? my mother says and sighs. She has lived in this city her whole life. She can speak two languages. She can sing an opera. She knows how to fix a T.V. But she doesn’t know which subway train to take to get downtown. I hold her hand very tight while we wait for the right train to arrive.
+0.03	She used to draw when she had time. Now she draws with a needle and thread, little knotted rosebuds, tulips made of silk thread. Someday she would like to go to the ballet. Someday she would like to see a play. She borrows opera records from the public library and sings with velvety lungs powerful as morning glories.
+-0.04	Today while cooking oatmeal she is Madame Butterfly until she sighs and points the wooden spoon at me. I could’ve been somebody, you know? Esperanza, you go to school. Study hard. That Madame Butterfly was a fool. She stirs the oatmeal. Look at my comadres. She means Izaura whose husband left and Yolanda whose husband is dead. Got to take care all your own, she says shaking her head.
+0.00	Then out of nowhere:
+0.00	Shame is a bad thing, you know. It keeps you down. You want to know why I quit school? Because I didn’t have nice clothes. No clothes, but I had brains.
+0.00	Yup, she says disgusted, stirring again. I was a smart cookie then.
+0.00	What Sally Said
+-0.09	He never hits me hard. She said her mama rubs lard on all the places where it hurts. Then at school she’d say she fell. That’s where all the blue places come from. That’s why her skin is always scarred.
+-0.03	But who believes her. A girl that big, a girl who comes in with her pretty face all beaten and black can’t be falling off the stairs. He never hits me hard.
+0.04	But Sally doesn’t tell about that time he hit her with his hands just like a dog, she said, like if I was an animal. He thinks I’m going to run away like his sisters who made the family ashamed. Just because I’m a daughter, and then she doesn’t say.
+-0.03	Sally was going to get permission to stay with us a little and one Thursday she came finally with a sack full of clothes and a paper bag of sweetbread her mama sent. And would’ve stayed too except when the dark came her father, whose eyes were little from crying, knocked on the door and said please come back, this is the last time. And she said Daddy and went home.
+-0.05	Then we didn’t need to worry. Until one day Sally’s father catches her talking to a boy and the next day she doesn’t come to school. And the next. Until the way Sally tells it, he just went crazy, he just forgot he was her father between the buckle and the belt.
+-0.06	You’re not my daughter, you’re not my daughter. And then he broke into his hands.
+0.00	The
+0.00	Monkey
+0.00	Garden
+0.03	The monkey doesn’t live there anymore. The monkey moved—to Kentucky—and took his people with him. And I was glad because I couldn’t listen anymore to his wild screaming at night, the twangy yakkety-yak of the people who owned him. The green metal cage, the porcelain table top, the family that spoke like guitars. Monkey, family, table. All gone.
+-0.04	And it was then we took over the garden we had been afraid to go into when the monkey screamed and showed its yellow teeth.
+-0.05	There were sunflowers big as flowers on Mars and thick cockscombs bleeding the deep red fringe of theater curtains. There were dizzy bees and bow-tied fruit flies turning somersaults and humming in the air. Sweet sweet peach trees. Thorn roses and thistle and pears. Weeds like so many squinty-eyed stars and brush that made your ankles itch and itch until you washed with soap and water. There were big green apples hard as knees. And everywhere the sleepy smell of rotting wood, damp earth and dusty hollyhocks thick and perfumy like the blue-blond hair of the dead.
+-0.02	Yellow spiders ran when we turned rocks over and pale worms blind and afraid of light rolled over in their sleep. Poke a stick in the sandy soil and a few blue-skinned beetles would appear, an avenue of ants, so many crusty lady bugs. This was a garden, a wonderful thing to look at in the spring. But bit by bit, after the monkey left, the garden began to take over itself. Flowers stopped obeying the little bricks that kept them from growing beyond their paths. Weeds mixed in. Dead cars appeared overnight like mushrooms. First one and then another and then a pale blue pickup with the front windshield missing. Before you knew it, the monkey garden became filled with sleepy cars.
+-0.01	Things had a way of disappearing in the garden, as if the garden itself ate them, or, as if with its old-man memory, it put them away and forgot them. Nenny found a dollar and a dead mouse between two rocks in the stone wall where the morning glories climbed, and once when we were playing hide-and-seek, Eddie Vargas laid his head beneath a hibiscus tree and fell asleep there like a Rip Van Winkle until somebody remembered he was in the game and went back to look for him.
+0.00	This, I suppose, was the reason why we went there. Far away from where our mothers could find us. We and a few old dogs who lived inside the empty cars. We made a clubhouse once on the back of that old blue pickup. And besides, we liked to jump from the roof of one car to another and pretend they were giant mushrooms.
+0.00	Somebody started the lie that the monkey garden had been there before anything. We liked to think the garden could hide things for a thousand years. There beneath the roots of soggy flowers were the bones of murdered pirates and dinosaurs, the eye of a unicorn turned to coal.
+-0.03	This is where I wanted to die and where I tried one day but not even the monkey garden would have me. It was the last day I would go there.
+0.02	Who was it that said I was getting too old to play the games? Who was it I didn’t listen to? I only remember that when the others ran, I wanted to run too, up and down and through the monkey garden, fast as the boys, not like Sally who screamed if she got her stockings muddy.
+0.02	I said, Sally, come on, but she wouldn’t. She stayed by the curb talking to Tito and his friends. Play with the kids if you want, she said, I’m staying here. She could be stuck-up like that if she wanted to, so I just left.
+-0.07	It was her own fault too. When I got back Sally was pretending to be mad … something about the boys having stolen her keys. Please give them back to me, she said punching the nearest one with a soft fist. They were laughing. She was too. It was a joke I didn’t get.
+0.00	I wanted to go back with the other kids who were still jumping on cars, still chasing each other through the garden, but Sally had her own game.
+-0.03	One of the boys invented the rules. One of Tito’s friends said you can’t get the keys back unless you kiss us and Sally pretended to be mad at first but she said yes. It was that simple.
+0.00	I don’t know why, but something inside me wanted to throw a stick. Something wanted to say no when I watched Sally going into the garden with Tito’s buddies all grinning. It was just a kiss, that’s all. A kiss for each one. So what, she said.
+0.00	Only how come I felt angry inside. Like something wasn’t right. Sally went behind that old blue pickup to kiss the boys and get her keys back, and I ran up three flights of stairs to where Tito lived. His mother was ironing shirts. She was sprinkling water on them from an empty pop bottle and smoking a cigarette.
+0.02	Your son and his friends stole Sally’s keys and now they won’t give them back unless she kisses them and right now they’re making her kiss them, I said all out of breath from the three flights of stairs.
+0.00	Those kids, she said, not looking up from her ironing.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05-Text-Analysis"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://melaniewalsh.org/">Melanie Walsh</a><br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <div>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a>. The code is licensed under a <a href="https://choosealicense.com/licenses/gpl-3.0/#">GNU General Public License v3.0</a>.
+</div>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-86905362-3', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

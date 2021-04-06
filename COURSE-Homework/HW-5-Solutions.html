@@ -1,0 +1,2058 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HW 5 — Reddit Data &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/COURSE-Homework/HW-5-Solutions.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/COURSE-Homework/HW-5-Solutions.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="HW 5 — Reddit Data" />
+<meta property="og:description" content="HW 5 — Reddit Data  Student Name: Your name here&lt;br /&gt; Net ID: Your ID here (Double-click this cell to type)    In this homework assignment, you will collect Re" />
+<meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/favicon.ico" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Cultural Analytics & Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  How To
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../How-To-Interact-With-This-Book.html">
+   Interact With This Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Course
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../course-schedule-2021.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../syllabus.html">
+   Course Syllabus
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Book
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Command-Line/01-The-Command-Line.html">
+   1. The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../02-Python/00-Python.html">
+   2. Python Basics
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/01-Installation.html">
+     Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/02-How-to-Use-Jupyter-Notebooks.html">
+     How to Use Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/03-Anatomy-Python-Script.html">
+     Anatomy of a Python Script
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/04-Variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/05-Data-Types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/06-String-Methods.html">
+     String Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/07-Files-Character-Encoding.html">
+     Files and Character Encoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/08-Comparisons-Conditionals.html">
+     Comparisons &amp; Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/09-Lists-Loops-Part1.html">
+     Lists &amp; Loops — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/10-Lists-Loops-Part2.html">
+     Lists &amp; Loops — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/11-Dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/12-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/13-Common-Python-Errors.html">
+     Common Python Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/14-What-Were-Not-Covering.html">
+     What We’re Not Covering
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../03-Data-Analysis/00-Data-Analysis.html">
+   3. Data Analysis (Pandas)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/01-Pandas-Basics-Part1.html">
+     Pandas Basics — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/02-Pandas-Basics-Part2.html">
+     Pandas Basics — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/03-Pandas-Basics-Part3.html">
+     Pandas Basics — Part 3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/04-Pandas-Merge-Datasets.html">
+     Pandas — Merge Datasets
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../04-Data-Collection/00-Data-Collection.html">
+   4. Data Collection (Web Scraping, APIs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/01-User-Ethics-Legal-Concerns.html">
+     User Ethics &amp; Legal Concerns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/02-Web-Scraping-Part1.html">
+     Web Scraping — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/03-Web-Scraping-Part2.html">
+     Web Scraping — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/04-Git-GitHub.html">
+     Git and GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/05-APIs.html">
+     Application Programming Interfaces (APIs)
+    </a>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/06-Song-Genius-Data-Collection.html">
+     Song Genius Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/07-Genius-API.html">
+       Song Genius API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/08-LyricsGenius.html">
+       Song Lyrics Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/09-Song-Lyrics-Analysis.html">
+       Song Lyrics Analysis
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/10-Twitter-Data-Collection-Home.html">
+     Twitter Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/11-Twitter-API-Setup.html">
+       Twitter API Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/12-Twitter-Data-Collection.html">
+       Twitter Data Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/13-Twitter-Data-Analysis.html">
+       Twitter Data Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/14-Twitter-Data-Sharing.html">
+       Twitter Data Sharing
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/15-Reddit-Data-Collection-With-PSAW.html">
+     Reddit Data Collection
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../05-Text-Analysis/00-Text-Analysis.html">
+   5. Text Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/01-TF-IDF.html">
+     TF-IDF
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/02-TF-IDF-HathiTrust.html">
+       TF-IDF with HathiTrust Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/03-TF-IDF-Scikit-Learn.html">
+       TF-IDF with Scikit-Learn
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/04-Topic-Modeling.html">
+     Topic Modeling
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/05-Topic-Modeling-Overview.html">
+       Topic Modeling — Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/06-Topic-Modeling-Set-Up.html">
+       Topic Modeling — Set Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/07-Topic-Modeling-Text-Files.html">
+       Topic Modeling — Text Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/08-Topic-Modeling-CSV.html">
+       Topic Modeling — CSV Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/09-Topic-Modeling-Time-Series.html">
+       Topic Modeling — Time Series
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/10-Named-Entity-Recognition.html">
+     Named Entity Recognition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html">
+     Part-of-Speech Tagging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html#keyword-extraction">
+     Keyword Extraction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../06-Network-Analysis/00-Network-Analysis-Home.html">
+   6. Network Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/01-Network-Analysis.html">
+     Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/02-Making-Network-Viz-with-Bokeh.html">
+     Make an Interactive Network Visualization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../07-Mapping/01-Mapping-Home.html">
+   7. Mapping
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html">
+     Mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#geocoding-with-geopy">
+     Geocoding with GeoPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#making-interactive-maps">
+     Making Interactive Maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/03-Custom-Maps.html">
+     Custom Map Backgrounds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/04-Publish-Your-Map.html">
+     Publish Your Map on the Web
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Datasets
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-Datasets/Datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Extra Materials
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Jupyter-Tips-Tricks.html">
+   Jupyter Tips and Tricks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Randomize-Students.html">
+   Make Random Student Groups
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/COURSE-Homework/HW-5-Solutions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2FCOURSE-Homework/HW-5-Solutions.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/COURSE-Homework/HW-5-Solutions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up">
+   Set Up
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-seach-arguments">
+   Define Seach Arguments
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-reddit-posts">
+   Get Reddit Posts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examine-the-reddit-posts">
+   Examine the Reddit Posts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#find-top-posts">
+   Find Top Posts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#synthesize">
+   Synthesize
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonus-1-point">
+   Bonus (1 Point)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-youre-finished">
+   When You’re Finished
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="hw-5-reddit-data">
+<h1>HW 5 — Reddit Data<a class="headerlink" href="#hw-5-reddit-data" title="Permalink to this headline">¶</a></h1>
+<p>Student Name: Your name here<br />
+Net ID: Your ID here
+(Double-click this cell to type)</p>
+<hr class="docutils" />
+<p>In this homework assignment, you will collect Reddit posts that mention a certain keyword from a Reddit community or “subreddit” of your choice. To do so, you will use <a class="reference external" href="https://github.com/dmarx/psaw">PSAW</a>, the API wrapper for <a class="reference external" href="https://www.reddit.com/r/pushshift/comments/bcxguf/new_to_pushshift_read_this_faq/">Pushshift</a>, which stores Reddit data. This homework assignment will closely mirror our 04-Data-Collection/5.5 class workbook from Friday, March 2nd.</p>
+<p>When you’re finished, please upload this Jupyer notebook to Gradescope (LAST-NAME-HW-5.ipynb).</p>
+<p><em>Not sure which subreddit to choose? To browse popular subreddits, you can go to https://www.reddit.com/, scroll down the page, and look on the right-hand sidebar for “Popular Communities.”</em></p>
+<div class="section" id="set-up">
+<h2>Set Up<a class="headerlink" href="#set-up" title="Permalink to this headline">¶</a></h2>
+<p><strong>1:</strong> First, you need to install and import the libraries/packages that you will need for this notebook.</p>
+<p>Install PSAW with pip (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install psaw
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psaw in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (0.0.12)
+Requirement already satisfied: Click in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from psaw) (7.1.2)
+Requirement already satisfied: requests in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from psaw) (2.23.0)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;psaw) (2.9)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;psaw) (3.0.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;psaw) (2020.12.5)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;psaw) (1.25.9)
+<span class=" -Color -Color-Yellow">WARNING: You are using pip version 20.3.3; however, version 21.0.1 is available.</span>
+<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/Users/melaniewalsh/opt/anaconda3/bin/python3 -m pip install --upgrade pip&#39; command.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Import the specific part of the PSAW package that you need to collect Reddit data (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">psaw</span> <span class="kn">import</span> <span class="n">PushshiftAPI</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Import Pandas (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Set Pandas <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html#available-options">display settings</a> to show 100 rows and set column widths to be 400<br />
+(1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_colwidth</span> <span class="o">=</span>  <span class="mi">400</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, you need to initialize the Pushshift API (completed for you below):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">PushshiftAPI</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="define-seach-arguments">
+<h2>Define Seach Arguments<a class="headerlink" href="#define-seach-arguments" title="Permalink to this headline">¶</a></h2>
+<p><strong>2:</strong> Now you need to set up <code class="docutils literal notranslate"><span class="pre">api_request_generator</span></code> to search for Reddit posts (not comments) that will meet four criteria. (4 points)</p>
+<p>Here are the four criteria you need to establish:</p>
+<ul class="simple">
+<li><p>a subreddit of your choice</p></li>
+<li><p>a query word of your choice</p></li>
+<li><p>an upvote score of 100 or more</p></li>
+<li><p>a limit of 100 Reddit posts</p></li>
+</ul>
+<p><em>Note: You can choose whatever subreddit and query word you like as you long as you get at least 10 Reddit posts in return. For example, in the subreddit “TodayILearned,” the query word “triskaidekaphobia” only returns two Reddit posts (with upvote scores of 100 or more). So I’d have to choose another subreddit/query combo.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api_request_generator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_submissions</span><span class="p">(</span><span class="n">subreddit</span><span class="o">=</span><span class="s1">&#39;TodayILearned&#39;</span><span class="p">,</span>
+                                               <span class="n">q</span><span class="o">=</span><span class="s1">&#39;golf&#39;</span><span class="p">,</span>
+                                               <span class="n">score</span> <span class="o">=</span> <span class="s2">&quot;&gt;100&quot;</span><span class="p">,</span>
+                                               <span class="n">limit</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note: Remember that nothing will happen when you run this cell. You are just setting up the generator.</em></p>
+</div>
+<div class="section" id="get-reddit-posts">
+<h2>Get Reddit Posts<a class="headerlink" href="#get-reddit-posts" title="Permalink to this headline">¶</a></h2>
+<p><strong>3:</strong> Now you will use the <code class="docutils literal notranslate"><span class="pre">api_request_generator</span></code> to get individual Reddit posts and put them in a list called <code class="docutils literal notranslate"><span class="pre">all_submissions</span></code>.</p>
+<p>To get individual Reddit posts (or submissions), you need to loop through <code class="docutils literal notranslate"><span class="pre">api_request_generator</span></code> and extract the data for each submission, which will be stored in the attribute <code class="docutils literal notranslate"><span class="pre">submission.d_</span></code>.</p>
+<p>Fill in the missing code below to extract the Reddit post data and add it to the list <code class="docutils literal notranslate"><span class="pre">all_submissions</span></code> (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_submissions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">submission</span> <span class="ow">in</span> <span class="n">api_request_generator</span><span class="p">:</span>
+    <span class="n">all_submissions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">d_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note: Running this cell should take a few seconds.</em></p>
+<p>Now calculate the length of the list <code class="docutils literal notranslate"><span class="pre">all_submissions</span></code> — in other words, how many items are contained in it? (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">all_submissions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Hint: Refer to the <a class="reference external" href="https://info1350.github.io/Intro-CA-SP21/02-Python/10-Lists-Loops-Part2.html#build-a-list-with-a-for-loop">lists sections</a> of our course textbook for a refresher</em></p>
+<p>Examine the fourth item in the list <code class="docutils literal notranslate"><span class="pre">all_submissions</span></code> (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_submissions</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;all_awardings&#39;: [],
+ &#39;allow_live_comments&#39;: False,
+ &#39;author&#39;: &#39;sofyflo&#39;,
+ &#39;author_flair_css_class&#39;: None,
+ &#39;author_flair_richtext&#39;: [],
+ &#39;author_flair_text&#39;: None,
+ &#39;author_flair_type&#39;: &#39;text&#39;,
+ &#39;author_fullname&#39;: &#39;t2_142o3k&#39;,
+ &#39;author_patreon_flair&#39;: False,
+ &#39;awarders&#39;: [],
+ &#39;can_mod_post&#39;: False,
+ &#39;contest_mode&#39;: False,
+ &#39;created_utc&#39;: 1571204244,
+ &#39;domain&#39;: &#39;atlasobscura.com&#39;,
+ &#39;full_link&#39;: &#39;https://www.reddit.com/r/todayilearned/comments/diksxt/til_about_salina_turda_a_massive_roman_salt_mine/&#39;,
+ &#39;gildings&#39;: {},
+ &#39;id&#39;: &#39;diksxt&#39;,
+ &#39;is_crosspostable&#39;: True,
+ &#39;is_meta&#39;: False,
+ &#39;is_original_content&#39;: False,
+ &#39;is_reddit_media_domain&#39;: False,
+ &#39;is_robot_indexable&#39;: True,
+ &#39;is_self&#39;: False,
+ &#39;is_video&#39;: False,
+ &#39;link_flair_background_color&#39;: &#39;&#39;,
+ &#39;link_flair_richtext&#39;: [],
+ &#39;link_flair_text_color&#39;: &#39;dark&#39;,
+ &#39;link_flair_type&#39;: &#39;text&#39;,
+ &#39;locked&#39;: False,
+ &#39;media_only&#39;: False,
+ &#39;no_follow&#39;: True,
+ &#39;num_comments&#39;: 29,
+ &#39;num_crossposts&#39;: 0,
+ &#39;over_18&#39;: False,
+ &#39;parent_whitelist_status&#39;: &#39;all_ads&#39;,
+ &#39;permalink&#39;: &#39;/r/todayilearned/comments/diksxt/til_about_salina_turda_a_massive_roman_salt_mine/&#39;,
+ &#39;pinned&#39;: False,
+ &#39;pwls&#39;: 6,
+ &#39;retrieved_on&#39;: 1571204246,
+ &#39;score&#39;: 631,
+ &#39;selftext&#39;: &#39;&#39;,
+ &#39;send_replies&#39;: True,
+ &#39;spoiler&#39;: False,
+ &#39;steward_reports&#39;: [],
+ &#39;stickied&#39;: False,
+ &#39;subreddit&#39;: &#39;todayilearned&#39;,
+ &#39;subreddit_id&#39;: &#39;t5_2qqjc&#39;,
+ &#39;subreddit_subscribers&#39;: 21627447,
+ &#39;subreddit_type&#39;: &#39;public&#39;,
+ &#39;thumbnail&#39;: &#39;default&#39;,
+ &#39;title&#39;: &#39;TIL about Salina Turda, a massive Roman salt mine in Transylvania which contains an underground theme park and other tourist attractions including a lake, mini golf course, and bowling alley. The salty air down there is apparently very good for asthma.&#39;,
+ &#39;total_awards_received&#39;: 0,
+ &#39;updated_utc&#39;: 1572090886,
+ &#39;url&#39;: &#39;https://www.atlasobscura.com/places/salina-turda&#39;,
+ &#39;whitelist_status&#39;: &#39;all_ads&#39;,
+ &#39;wls&#39;: 6,
+ &#39;created&#39;: 1571218644.0}
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Hint: Refer to the <a class="reference external" href="https://info1350.github.io/Intro-CA-SP21/02-Python/09-Lists-Loops-Part1.html#index">list indexing</a> sections of our course textbook for a refresher</em></p>
+<p>Make a DataFrame from the list <code class="docutils literal notranslate"><span class="pre">all_submissions</span></code> and save it in the variable <code class="docutils literal notranslate"><span class="pre">reddit_submmissions</span></code> (completed for you below).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_submissions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="examine-the-reddit-posts">
+<h2>Examine the Reddit Posts<a class="headerlink" href="#examine-the-reddit-posts" title="Permalink to this headline">¶</a></h2>
+<p>Display the <code class="docutils literal notranslate"><span class="pre">reddit_submissions</span></code> DataFrame with only the following columns:</p>
+<ul class="simple">
+<li><p>‘score’</p></li>
+<li><p>‘title’</p></li>
+<li><p>‘author’</p></li>
+<li><p>‘selftext’,</p></li>
+<li><p>‘num_comments’,</p></li>
+<li><p>‘subreddit’</p></li>
+</ul>
+<p>(2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;selftext&#39;</span><span class="p">,</span> <span class="s1">&#39;num_comments&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>title</th>
+      <th>author</th>
+      <th>selftext</th>
+      <th>num_comments</th>
+      <th>subreddit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2671</td>
+      <td>TIL rockstar Alice Cooper is an avid golfer. Because golf didn’t fit his “anti-establishment” persona, he used to put on a fake moustache and play on random public courses — until he realized a true “maverick” wouldn’t care what people think.</td>
+      <td>MeInMyOwnWords</td>
+      <td></td>
+      <td>246</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>66511</td>
+      <td>TIL Tiger Woods almost ran out of golf balls during the 2nd round of the 2000 US Open because his caddy forgot to pack the balls Tiger was putting with in his hotel room the night before. He finished the round with one ball and went on to win the tournament by a record-setting 15 strokes.</td>
+      <td>HanShot2nd</td>
+      <td></td>
+      <td>3347</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>129</td>
+      <td>TIL that in 2006 Bill Murray (56 at the time) accepted an invitation to a college party in the Scottish Town of St. Andrews after a round of golf. He showed up, drank their vodka, did all the dishes and left</td>
+      <td>Hurrson57</td>
+      <td></td>
+      <td>1502</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>631</td>
+      <td>TIL about Salina Turda, a massive Roman salt mine in Transylvania which contains an underground theme park and other tourist attractions including a lake, mini golf course, and bowling alley. The salty air down there is apparently very good for asthma.</td>
+      <td>sofyflo</td>
+      <td></td>
+      <td>29</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8569</td>
+      <td>TIL that of the 77 Olympians competing in the golf tournament at the 1904 Summer Olympics, 74 of them represented the USA and 3 of them represented Canada. Canada won the Gold.</td>
+      <td>SamwellBarley</td>
+      <td></td>
+      <td>227</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>8598</td>
+      <td>TIL of Clive Palmer. An Australian billionaire who has attempted to build the Titanic II once before, failed and is now trying again. He has also built an animatronic dinosaur park on a golf course in Australia.</td>
+      <td>sykobanana</td>
+      <td></td>
+      <td>436</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>130</td>
+      <td>TIL if the Earth were the size of a grain of sand, the Sun would be the size of a golf ball, and the nearest star would be over 750 miles away.</td>
+      <td>HaroldMcHaroldsen</td>
+      <td></td>
+      <td>17</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>34394</td>
+      <td>TIL Los Angeles’s private golf courses effectively receive a public subsidy of $89.8 million in taxes” paying only $200,00 in property taxes without granting the public access to the land. LA ranks bottom of the list in terms of public parks against all major metropolitan cities in America.</td>
+      <td>Blacbamboo</td>
+      <td></td>
+      <td>1986</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8231</td>
+      <td>TIL golf balls were once smooth. Golfers eventually realized that old, beat up balls flew farther. Modern day golf balls now have dimples around them because they increase turbulence, which allow them to fly farther.</td>
+      <td>SublimeOverall</td>
+      <td></td>
+      <td>311</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>17870</td>
+      <td>TIL legendary director/actor/pilot John Huston once flew over a celebrity golf tournament and dropped 5,000 ping pong balls on it.</td>
+      <td>JasonYaya</td>
+      <td></td>
+      <td>317</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>121</td>
+      <td>TIL Olympic swimmer Michael Phelps holds a golf record for the longest televised putt in history of 159 feet</td>
+      <td>r3dt4rget</td>
+      <td></td>
+      <td>4</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>4562</td>
+      <td>TIL - In 2017, a famed green jacket from the Augusta National Golf Club was purchased for $5 at a Toronto thrift shop, then sold at auction for $139k</td>
+      <td>shantm79</td>
+      <td></td>
+      <td>161</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>152</td>
+      <td>TIL that Kim Jong-il was credited with amazing achievements by North Korean propaganda, including 11 holes-in-one the first time he played golf, learning to walk at 3 weeks old, and writing 6 operas in 2 years.</td>
+      <td>zepphiu</td>
+      <td></td>
+      <td>39</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>118</td>
+      <td>TIL that Richard Nixon shot a 79 in golf once and never played again.</td>
+      <td>Hibernicanauta</td>
+      <td></td>
+      <td>22</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>139</td>
+      <td>TIL of Mathieu Boya, a teenager from Benin who, in October 1987, caused over $40 million in damages and wiped out the entire Benin Air Force... with a golf ball. His shot hit a bird that landed in the open cockpit of a taxing jet, causing the pilot to lose control and crash into the remaining jets.</td>
+      <td>CC_Keyes</td>
+      <td></td>
+      <td>40</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>228</td>
+      <td>TIL Samuel L Jackson has a single digit handicap and a clause in his film contracts that allows him to play golf twice a week during film shoots.</td>
+      <td>PieGeters</td>
+      <td></td>
+      <td>7</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>828</td>
+      <td>TIL When Tiger Woods father passed away, a Green Beret, Tiger became so obsessed with Navy Seals he regularly trained with them at their facilities. His team staged an intervention to avoid him quitting Golf and enlisting.</td>
+      <td>No_MoreSorry</td>
+      <td></td>
+      <td>94</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>66627</td>
+      <td>TIL: Alan Shepard pulled out a makeshift six-iron he smuggled on board Apollo 14 and hit two golf balls on the lunar surface, becoming the first -- and only -- person to play golf anywhere other than Earth.</td>
+      <td>Sh1fty3yedD0g</td>
+      <td></td>
+      <td>1842</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>268</td>
+      <td>TIL for the last 25 years a Golf Course in Australia has 6 Bull Sharks trapped in its water hazard.</td>
+      <td>1Darkest_Knight1</td>
+      <td></td>
+      <td>33</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1875</td>
+      <td>TIL Maricopa County, Arizona golf courses average more than 80 million gallons daily for irrigation, consuming more water than any other place in the country</td>
+      <td>YLthrowaway</td>
+      <td></td>
+      <td>154</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>149</td>
+      <td>TIL: on the same day as the O.J. ‘Bronco chase’ there were countless major sporting events happening simultaneously. Including the opening of the World Cup, Arnold Palmers last game of golf, New York Knicks NBA finals and New York Rangers victories victory parade.</td>
+      <td>C-doc</td>
+      <td></td>
+      <td>36</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>14111</td>
+      <td>TIL: The actor who played David Wallace on The Office was actually a full time wealth-management adviser at the time, and considered acting on the TV show a hobby - "this is what I do instead of playing golf"</td>
+      <td>InternetWeakGuy</td>
+      <td></td>
+      <td>613</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>44233</td>
+      <td>TIL "Tarzan" actor Johnny Weissmuller was playing golf during the Cuban Revolution when his cart was suddenly surrounded by rebel soldiers. After doing the Tarzan yell for them, the guerrillas recognized him and even escorted him to his hotel.</td>
+      <td>Ghostaire</td>
+      <td></td>
+      <td>755</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>11097</td>
+      <td>TIL an unknown man in Norway has been shitting in golf holes for a decade</td>
+      <td>AloneOnIslands</td>
+      <td></td>
+      <td>462</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>30073</td>
+      <td>TIL A guy quit his job and practiced golf for 6,000 hours to put the theory of "intensive practice" to the test and become a pro golfer</td>
+      <td>thescrounger</td>
+      <td></td>
+      <td>1414</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>729</td>
+      <td>TIL Irish golfer Adam Rolston set up a 2,000 km golf hole across Mongolia. The hole was par 14,000 and took 80 days to finish. He finished the game 6,000 strokes over par.</td>
+      <td>DavidtheSquidd</td>
+      <td></td>
+      <td>21</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>114</td>
+      <td>TIL CBS golf analyst, Gary McCord, has been banned from The Masters for 24 years (and counting) due to stating that the 17th green at Augusta National was so fast that it seemed to be "bikini-waxed", and that "body bags" were located behind that green for players who missed their approach shots.</td>
+      <td>TheFightingSloths</td>
+      <td></td>
+      <td>20</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2140</td>
+      <td>TIL The dimples on a golf ball allow it to travel up to twice the distance of a smooth ball. The dimples increase lift and decrease drag</td>
+      <td>ShitInMyCunt-2dollar</td>
+      <td></td>
+      <td>82</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>1417</td>
+      <td>TIL Sofia Coppola wrote the lead of Lost in Translation, for Bill Murray. She didn't know him, spent a year trying to track him down, including asking random people who knew him through golf. Eventually she showed him the script, but he didn’t commit. She flew to Japan to film not sure if he’d show.</td>
+      <td>LanterneRougeOG</td>
+      <td></td>
+      <td>130</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>93074</td>
+      <td>TIL: CBS used to add bird songs to their golf broadcasts to get rid of awkward silences until they got caught by someone watching at home who knew the bird songs belonged to birds that didn’t live in the region in which the golf tournament was being played.</td>
+      <td>bagofmeatproduct</td>
+      <td></td>
+      <td>2351</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>5753</td>
+      <td>TIL in 1945, Barry Fitzgerald accidentally decapitated his Oscar for Best Supporting Actor while using it to practice his golf swing. The statute was particularly vulnerable because it was made of plaster and painted gold due to the shortage of metal during WWII.</td>
+      <td>Hdalby33</td>
+      <td></td>
+      <td>89</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>168</td>
+      <td>TIL of Ed Headrick, the creator of Disc Golf. His dying wish was to have his ashes moulded into limited edition frisbees which his family wanted to sell to open a museum in his name.</td>
+      <td>godver555</td>
+      <td></td>
+      <td>4</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>156</td>
+      <td>TIL The golf term “Fore” derives from the military. Artillerymen would yell down “beware before” to their infantry men to warn them of impending shells that would be ejected from the large artillery, which could knock them unconscious.</td>
+      <td>tazzo27</td>
+      <td></td>
+      <td>1</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>231</td>
+      <td>TIL of a show "Shaq vs." where Shaq competed against top athletes in their sports to prove himself "the greatest athlete." In 2 seasons, he only won twice: once beating Joey Chestnut in a hot dog eating contest (where Shaq was allowed teammates), and another time beating Charles Barkley at golf.</td>
+      <td>rugrats1989</td>
+      <td></td>
+      <td>19</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>541</td>
+      <td>TIL: Golf Balls Irradiated with Gamma Rays performed better than their non irradiated counterparts due to forced molecular cross linking. Spalding even has a patent on the technology!</td>
+      <td>10k-Ultra</td>
+      <td></td>
+      <td>63</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>112</td>
+      <td>TIL the US military spent less on transgender service members than the Gov't spends on one trip to the golf coarse for Trump</td>
+      <td>amac109</td>
+      <td></td>
+      <td>49</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>354</td>
+      <td>TIL there are 96 bags of astronaut poop, pee and puke on the moon. They were left behind to make room for bringing moon rocks back to earth. Theres also 12 Hasselblad cameras, a gold plated telescope, used wet wipes, space food wrappers, golf balls, 70 other space craft, and 12 pairs of boots there.</td>
+      <td>BasedOnAir</td>
+      <td></td>
+      <td>98</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>49717</td>
+      <td>TIL Harvard's first black faculty member was a dentist. Dr. George Franklin Grant joined the Dept of mechanical dentistry in 1871. Also an inventor, he patented the wooden golf tee. Previously, golfers carried around buckets of sand, placing their balls on little piles as they went.</td>
+      <td>WaxFaster</td>
+      <td></td>
+      <td>1297</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>142</td>
+      <td>TIL In Japan it is a tradition that if you get a hole in one in golf you throw yourself an extravagant party which can cost up to $10,000. They even sell insurance to cover the cost of this party.</td>
+      <td>Jvan1231</td>
+      <td></td>
+      <td>14</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>219</td>
+      <td>TIL That Evel Knievel made a bet during a golf game over a hole. The loser had to pay $7,000 or cut off a finger tip. Knievel ended up losing a fingertip.</td>
+      <td>Gta5Shed</td>
+      <td></td>
+      <td>9</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>429</td>
+      <td>TIL that Michael Phelps holds the world record for the longest televised golf putt.</td>
+      <td>visualize_and_attack</td>
+      <td></td>
+      <td>24</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>218</td>
+      <td>TIL There is a lucrative career in diving for golf balls; up to $150K/year.</td>
+      <td>Battz</td>
+      <td>NaN</td>
+      <td>40</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>1600</td>
+      <td>TIL pioneering shock rocker Alice Cooper credits golf with helping him overcome alcohol addiction and plays the game up to six days a week.</td>
+      <td>Melancholeroid</td>
+      <td>NaN</td>
+      <td>121</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>40654</td>
+      <td>TIL that there is little evidence that Kim Jong-il and the North Korean media ever claimed that he made any kind of improbable golf score. Even North Korean officials say it is an urban myth.</td>
+      <td>sendvaginapics</td>
+      <td>NaN</td>
+      <td>2899</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>38903</td>
+      <td>TIL According to his biography, Kim Jung-Il first picked up a golf club in 1994, at North Korea's only golf course, and shot a 38-under par round that included no fewer than 11 holes in one. Satisfied with his performance, he reportedly immediately declared his retirement from the sport.</td>
+      <td>eatdeadpeople</td>
+      <td>NaN</td>
+      <td>1984</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>1382</td>
+      <td>TIL two Australians fooled officials into letting them play in an international golf tournament at North Korea's only golf course. For five days they were treated as honored guests and taken on official visits around Pyongyang before being exposed as frauds due to their poor golfing skills.</td>
+      <td>LurkmasterGeneral</td>
+      <td>NaN</td>
+      <td>94</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>156</td>
+      <td>TIL there was an official set of golf rules published in Britain during WW2 to establish what you were able to do during and after a Nazi attack. These rules include taking cover without penalty for ceasing play and taking a drop without penalty if your ball is destroyed by an enemy shell.</td>
+      <td>username-confirmed</td>
+      <td></td>
+      <td>3</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>602</td>
+      <td>TIL that during the making of 'O Brother, Where Art Thou' the Coen brothers had someone on set just to catch snakes using a golf club. When asked what to call somebody with this profession, he said 'an idiot.'</td>
+      <td>unhealthybreakfast</td>
+      <td></td>
+      <td>19</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>221</td>
+      <td>TIL in 1940 the Richmond Golf Club in London, after being bombed, adopted special rules for play including no-penalty for removing your ball from a bomb crater and being permitted to take cover without a penalty for ceasing play.</td>
+      <td>HeadphoneJackal</td>
+      <td></td>
+      <td>4</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>894</td>
+      <td>TIL On APOLLO mission 14, Alan Shepard smuggled in a custom made 6 iron golf club head which attached to a rock collector, and proceeded to hit 2 gold balls on the lunar surface.</td>
+      <td>317locc</td>
+      <td></td>
+      <td>60</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>1870</td>
+      <td>TIL The rules of golf once provided that if your ball hit your opponent, he would lose the hole.</td>
+      <td>cunninglinguist316</td>
+      <td></td>
+      <td>61</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>1320</td>
+      <td>TIL that the number of holes on a golf course, 18, is a completely arbitrary number chosen by St. Andrews Links course in 1764, and other courses simply copied them.</td>
+      <td>jchall3</td>
+      <td></td>
+      <td>37</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>309</td>
+      <td>TIL the Chinese government has deemed golf as a facet of corruption, condemning it as "a sport for millionaires"</td>
+      <td>creamedpeaches</td>
+      <td></td>
+      <td>50</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>216</td>
+      <td>TIL Major James Nesmeth, a POW in Vietnam for 7 years, used golf visualization to stay sane. Every day he played a full 18 holes in his head as if he were actually there. After being released, he tried golf again for real and shot a 74 which was 20 strokes off his previous average.</td>
+      <td>freddyjohnson</td>
+      <td></td>
+      <td>22</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>2822</td>
+      <td>TIL The KKK tried to to set up a kerosene-soaked cross at Spring Hill College due to its supporting the civil rights movement. When the students were alerted they chased the Klansmen away with whatever items they could use as weapons like golf clubs, tennis rackets, bricks, and softball bats.</td>
+      <td>BrianOBlivion1</td>
+      <td></td>
+      <td>305</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>118</td>
+      <td>TIL "The Villages" retirement subdivision in Florida has over 100,000 residents, 540 holes of golf and 50,000 golf carts</td>
+      <td>FriendlyPhillip</td>
+      <td></td>
+      <td>21</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>299</td>
+      <td>Til that a group of people repurposed a bogus "golf ball finder" into a bomb sniffer, leading to hundreds of deaths in places like Iraq and Afghanistan. The device is nothing more than some plastic and metal junk.</td>
+      <td>Baltorussian</td>
+      <td></td>
+      <td>16</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>120</td>
+      <td>TIL the chemical used as grape flavoring in products like jolly ranchers and bubble gum is also used as a bird repellent on golf courses and commercial crops</td>
+      <td>hippity_dippity123</td>
+      <td></td>
+      <td>12</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>958</td>
+      <td>TIL Bing Crosby was a lifelong golfer. He died at the age of 74 immediately after finishing 18 holes. His last words were reportedly "That was a great game of golf, fellas."</td>
+      <td>Wazula42</td>
+      <td></td>
+      <td>28</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>5552</td>
+      <td>TIL after Serena and Venus Williams had claimed they could beat any man outside the top 200 at tennis, Karsten Braasch took them up on the challenge. Braasch played them fresh after finishing a round of golf and two beers, beating Serena 6-1 and Venus 6-2.</td>
+      <td>redditpirateroberts</td>
+      <td></td>
+      <td>772</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>5781</td>
+      <td>TIL: Scoring a condor is the rarest event in golf. This is normally a hole in one at a par five and only four condors have ever been recorded:</td>
+      <td>westmontblvd</td>
+      <td></td>
+      <td>624</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>438</td>
+      <td>TIL there was a 1940's U.S. plane which had 10 engines, 336 spark plugs, carried a camera that could spot a golf ball at 12 miles, and could stay in the air for 50 hours.</td>
+      <td>choose_auser_name</td>
+      <td></td>
+      <td>33</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>3915</td>
+      <td>TIL The night before the Olympic final, Michael Jordan apparently spent the night drinking and gambling all night, then he went on a long day of press appearances, plus 18 holes of golf in Barcelona, before he went on to lead Team USA in a gold-medal winning victory over Croatia.</td>
+      <td>hanky1979</td>
+      <td></td>
+      <td>298</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>6363</td>
+      <td>TIL of Margaret Abbott, a woman who competed in and won a golf tournament in Paris. After her death, it was discovered that this tournament was part of the poorly-organized 1900 Olympics. She never knew she was an Olympian.</td>
+      <td>Brayds2006</td>
+      <td></td>
+      <td>788</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>2366</td>
+      <td>TIL of Dave Wottle, an American runner who won gold in the 800m race of the 1972 Olympics. He went from dead last to first in the final 200 meters, wearing a golf cap.</td>
+      <td>Gotta_Foggy_Notion</td>
+      <td></td>
+      <td>151</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>230</td>
+      <td>Til of the 6 Apollo missions that resulted with men walking on the moon, each had exactly two. Twelve men have walked on the moon and the fifth (and also oldest (Alan Shepard, 47)) used a smuggled, makeshift golf club to become the only person to play golf off of earth.</td>
+      <td>thomasinks</td>
+      <td></td>
+      <td>41</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>148</td>
+      <td>TIL In 1998 the young William's sisters stated they could beat any male tennis player ranked outside the world's top 200. German Karsten Braashch ranked 203 and a heavy smoker accepted the challenge. After playing a round of golf having some beers and beat them 6-1 and 6-2 respectively.</td>
+      <td>Coldman78</td>
+      <td></td>
+      <td>83</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>345</td>
+      <td>TIL that after wife Mia Farrow lost $20K at the Sands, Frank Sinatra bought $50K in chips and attempted to win the money back. After failing and being denied credit, Sinatra drove a golf cart into a coffee shop where the casino manager was seated and fought with him. He never performed there again.</td>
+      <td>asdfpickle</td>
+      <td></td>
+      <td>24</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>291</td>
+      <td>TIL The machines that harvest, process and slice potatoes are unable to tell the difference between them and golf balls, occasionally resulting in golf ball potato crisps/chips making it into packets.</td>
+      <td>TheMeItingSnowman</td>
+      <td></td>
+      <td>45</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>101</td>
+      <td>TIL - the lowest possible individual score recorded in golf is known as a "condor". It's four under par, and can be done by hitting a hole in one on a par-5 hole.</td>
+      <td>gjallard</td>
+      <td></td>
+      <td>20</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>630</td>
+      <td>TIL a man in Florida has collected about 15 million golf balls from golf course water hazards in the past 14 years, selling them for up to $2 each.</td>
+      <td>IchthysTattoo</td>
+      <td></td>
+      <td>69</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>634</td>
+      <td>TIL: Goats can eat poison ivy with no ill effects. Goats are rented out to clear parks, golf courses and historical sites.</td>
+      <td>Whats4Dinner1</td>
+      <td></td>
+      <td>34</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>271</td>
+      <td>TIL of Tripod a fairly famous Alligator with a missing leg that lives on the TPC Louisiana Golf Course. He's known to make appearances when there are tournaments in town</td>
+      <td>InsaneLazyGamer</td>
+      <td></td>
+      <td>4</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>5638</td>
+      <td>TIL The creator/father of frisbee golf was cremated after death and made into a frisbee in 2002</td>
+      <td>Mr_Glenn_Quagmire</td>
+      <td></td>
+      <td>636</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>4351</td>
+      <td>TIL Alice Cooper has credited golf with playing a major role in helping him overcome his alcohol addiction. He has even gone so far as to say that when he took up golf, it was a case of replacing one addiction with another. He now plays six rounds a week with a 2 handicap.</td>
+      <td>kaypmger</td>
+      <td></td>
+      <td>235</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>4389</td>
+      <td>TIL that goats can eat poison ivy with no ill effects. There are farmers that rent out goats to clear parks, golf courses and historical sites without using chemicals and herbicides.</td>
+      <td>Earguy</td>
+      <td></td>
+      <td>186</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>1122</td>
+      <td>TIL Golf is the only sport that allows for fans, sitting at home, to call (or e-mail) with rules infractions.</td>
+      <td>tabascojoeOG</td>
+      <td></td>
+      <td>57</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>2212</td>
+      <td>TIL of a theme park in Transylvania that's 400 feet below ground. Once a salt mine and cheese storing facility, visitors can ride a Ferris wheel, row around a lake, play mini golf, and more.</td>
+      <td>symbiosa</td>
+      <td></td>
+      <td>57</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>829</td>
+      <td>TIL that "The Legend of Bagger Vance", a movie about a golf game, is actually a modern-day rendition of the Bhagavad Gita, an ancient sacred Hindu text.</td>
+      <td>enigmatoid</td>
+      <td></td>
+      <td>56</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>5978</td>
+      <td>TIL that actor Christopher McDonald, the actor who played Shooter McGavin in Happy Gilmore, says he never pays for a round of golf because of his widespread fame from that role.</td>
+      <td>VHSRoot</td>
+      <td></td>
+      <td>904</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>3811</td>
+      <td>TIL there is a golf course in Australia with full-grown bull sharks living in the water hazards</td>
+      <td>Reedobandito</td>
+      <td></td>
+      <td>318</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>81</th>
+      <td>2208</td>
+      <td>TIL Englishman Frank Bickerton fought in both world wars, was drafted into 2 Antarctic expeditions, developed a golf course, was the hero of a novel, killed bears, wrote major motion pictures, treasure hunted in Costa Rica &amp;amp; married an earl's granddaughter</td>
+      <td>WillParchman</td>
+      <td></td>
+      <td>102</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>2536</td>
+      <td>TIL that dumping golf balls into the sea is outlawed because the plastic does not break down. A professor at the University of Maine used ground-up lobster shells and other materials to develop biodegradable golf balls. These balls are intended for use on cruise ships or driving ranges by the ocean.</td>
+      <td>dennyjenny</td>
+      <td></td>
+      <td>68</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>83</th>
+      <td>195</td>
+      <td>TIL The world record for fastest golf ball is 328 km/h (204 mph), set by Canadian Jason Zuback. The previous record was 302 km/h (188 mph).</td>
+      <td>080087</td>
+      <td></td>
+      <td>10</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>84</th>
+      <td>5322</td>
+      <td>TIL That Samuel Jackson has a clause in his film contracts that allows him to play golf during film shoots whenever he wants.</td>
+      <td>r3xcranium</td>
+      <td></td>
+      <td>659</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>106</td>
+      <td>TIL of a miniature golf course in the basement of a funeral home located near Chicago. The 9-hole course is free to play with advance notice.</td>
+      <td>FluidHips</td>
+      <td></td>
+      <td>9</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>4032</td>
+      <td>TIL someone has been serial pooping in the holes of Norway's Stavanger Golf Club for 10 years. The person even has a couple of favorite holes.</td>
+      <td>irish1983</td>
+      <td></td>
+      <td>287</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>6045</td>
+      <td>TIL that CBS used to dub in bird songs to golf tournaments. They were caught by an avid bird watching who noticed the song of a bird that was not indigenous to the region of the tournament.</td>
+      <td>PmMeYourWhatever</td>
+      <td></td>
+      <td>810</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>172</td>
+      <td>TIL there is a golf course in Australia that has a group of bull sharks living in one of its water hazards.</td>
+      <td>justinz94</td>
+      <td></td>
+      <td>23</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>4091</td>
+      <td>TIL the average American golf course consumes around 312,000 gallons of water per day.</td>
+      <td>setsomethingablaze</td>
+      <td></td>
+      <td>272</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>910</td>
+      <td>TIL the development of the golf tee was the last major change to the rules of golf. Before this, golf balls were teed up on tiny heaps of sand provided in boxes.</td>
+      <td>doozersworkhard9</td>
+      <td></td>
+      <td>22</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>133</td>
+      <td>TIL: Known hustler and gambler Titanic Thompson could have been a professional golfer but declined saying "He could not afford the cut in pay." He the continued to hustle on the golf course while picking many players to be his partner who went on the become pro golfers themselves.</td>
+      <td>YachtRock_SoSmooth</td>
+      <td></td>
+      <td>0</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>425</td>
+      <td>TIL In the finale of 'Newhart', Bob Newhart's character gets hit in the head by a golf ball and wakes up in his old show 'The Bob Newhart Show', explaining that the entire show of 'Newhart' was just a dream.</td>
+      <td>vishiousx</td>
+      <td></td>
+      <td>33</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>293</td>
+      <td>TIL Max Woosnam captained Manchester City football club and England, scored a century at Lord's, played golf off scratch, won Wimbledon and Olympic gold in tennis, made a 147 break at snooker and beat Charlie Chaplin in table tennis with a butter knife.</td>
+      <td>punerisaiyan</td>
+      <td></td>
+      <td>19</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>141</td>
+      <td>TIL after Morgan Freeman was in a car crash that paralyzed his left hand, he had to play golf one-handed, and went on to become the first American to record a par on the Legend Golf &amp;amp; Safari Resort’s Extreme 19th hole.</td>
+      <td>DrWeeGee</td>
+      <td></td>
+      <td>8</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>666</td>
+      <td>TIL When Pyongyang's first golf course opened in 1994, Kim Jong-il was given the honour of playing the first round. He shot a 38-under-par round, which included 11 holes-in-one. His 17 bodyguards were put forward as witnesses to his remarkable feat.</td>
+      <td>KRISHNA53</td>
+      <td></td>
+      <td>67</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>548</td>
+      <td>Today I learned that golf courses have 18 holes, because The Old Course at St. Andrews changed to that in 1764, and others followed suit.</td>
+      <td>layendecker</td>
+      <td></td>
+      <td>12</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>3200</td>
+      <td>TIL There is a one-hole "golf course" just meters south of the Korean DMZ which is surrounded on three sides by minefields. There are reports that at least one shot exploded a land mine</td>
+      <td>beckerist</td>
+      <td></td>
+      <td>108</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>149</td>
+      <td>TIL "Kim Jong-Il's perfect golf score", amongst other alleged North Korean propaganda, was actually fabricated by foreign media and isn't widely believed in North Korea</td>
+      <td>BadGoyWithAGun</td>
+      <td></td>
+      <td>14</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>610</td>
+      <td>TIL that Serena and Venus Williams claimed they could beat any male tennis player ranked 200 or below. Karsten Braasch, ranked 203, easily beat each of them 6-1 and 6-2 respectively; all after playing a round of golf, drinking a couple beers, and smoking several cigarettes.</td>
+      <td>bongarong</td>
+      <td></td>
+      <td>75</td>
+      <td>todayilearned</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Assign the above condensed version of the DataFrame to the variable <code class="docutils literal notranslate"><span class="pre">reddit_submissions</span></code> (essentially, writing over the previous DataFrame) (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span> <span class="o">=</span> <span class="n">reddit_submissions</span><span class="p">[[</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;selftext&#39;</span><span class="p">,</span> <span class="s1">&#39;num_comments&#39;</span><span class="p">,</span> <span class="s1">&#39;subreddit&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="find-top-posts">
+<h2>Find Top Posts<a class="headerlink" href="#find-top-posts" title="Permalink to this headline">¶</a></h2>
+<p>Find the top 10 Reddit posts with the highest upvote scores. In other words, sort the DataFrame by upvote score and isolate the first 10 values. (4 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_submissions</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>title</th>
+      <th>author</th>
+      <th>selftext</th>
+      <th>num_comments</th>
+      <th>subreddit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>29</th>
+      <td>93074</td>
+      <td>TIL: CBS used to add bird songs to their golf broadcasts to get rid of awkward silences until they got caught by someone watching at home who knew the bird songs belonged to birds that didn’t live in the region in which the golf tournament was being played.</td>
+      <td>bagofmeatproduct</td>
+      <td></td>
+      <td>2351</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>66627</td>
+      <td>TIL: Alan Shepard pulled out a makeshift six-iron he smuggled on board Apollo 14 and hit two golf balls on the lunar surface, becoming the first -- and only -- person to play golf anywhere other than Earth.</td>
+      <td>Sh1fty3yedD0g</td>
+      <td></td>
+      <td>1842</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>66511</td>
+      <td>TIL Tiger Woods almost ran out of golf balls during the 2nd round of the 2000 US Open because his caddy forgot to pack the balls Tiger was putting with in his hotel room the night before. He finished the round with one ball and went on to win the tournament by a record-setting 15 strokes.</td>
+      <td>HanShot2nd</td>
+      <td></td>
+      <td>3347</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>49717</td>
+      <td>TIL Harvard's first black faculty member was a dentist. Dr. George Franklin Grant joined the Dept of mechanical dentistry in 1871. Also an inventor, he patented the wooden golf tee. Previously, golfers carried around buckets of sand, placing their balls on little piles as they went.</td>
+      <td>WaxFaster</td>
+      <td></td>
+      <td>1297</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>44233</td>
+      <td>TIL "Tarzan" actor Johnny Weissmuller was playing golf during the Cuban Revolution when his cart was suddenly surrounded by rebel soldiers. After doing the Tarzan yell for them, the guerrillas recognized him and even escorted him to his hotel.</td>
+      <td>Ghostaire</td>
+      <td></td>
+      <td>755</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>40654</td>
+      <td>TIL that there is little evidence that Kim Jong-il and the North Korean media ever claimed that he made any kind of improbable golf score. Even North Korean officials say it is an urban myth.</td>
+      <td>sendvaginapics</td>
+      <td>NaN</td>
+      <td>2899</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>38903</td>
+      <td>TIL According to his biography, Kim Jung-Il first picked up a golf club in 1994, at North Korea's only golf course, and shot a 38-under par round that included no fewer than 11 holes in one. Satisfied with his performance, he reportedly immediately declared his retirement from the sport.</td>
+      <td>eatdeadpeople</td>
+      <td>NaN</td>
+      <td>1984</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>34394</td>
+      <td>TIL Los Angeles’s private golf courses effectively receive a public subsidy of $89.8 million in taxes” paying only $200,00 in property taxes without granting the public access to the land. LA ranks bottom of the list in terms of public parks against all major metropolitan cities in America.</td>
+      <td>Blacbamboo</td>
+      <td></td>
+      <td>1986</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>30073</td>
+      <td>TIL A guy quit his job and practiced golf for 6,000 hours to put the theory of "intensive practice" to the test and become a pro golfer</td>
+      <td>thescrounger</td>
+      <td></td>
+      <td>1414</td>
+      <td>todayilearned</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>17870</td>
+      <td>TIL legendary director/actor/pilot John Huston once flew over a celebrity golf tournament and dropped 5,000 ping pong balls on it.</td>
+      <td>JasonYaya</td>
+      <td></td>
+      <td>317</td>
+      <td>todayilearned</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="synthesize">
+<h2>Synthesize<a class="headerlink" href="#synthesize" title="Permalink to this headline">¶</a></h2>
+<p>Answer the following qusetions in a few sentences or more:</p>
+<ul class="simple">
+<li><p>What do you patterns do you notice in the top Reddit posts that contain your query word in your subreddit of choice?</p></li>
+<li><p>What kinds of further analysis could you imagine doing with this data?</p></li>
+<li><p>What drawbacks do you see in this data?</p></li>
+</ul>
+<p>Your thoughts here (double-click to type)</p>
+</div>
+<div class="section" id="bonus-1-point">
+<h2>Bonus (1 Point)<a class="headerlink" href="#bonus-1-point" title="Permalink to this headline">¶</a></h2>
+<p>We’ve mentioned list comprehensions in class, but we haven’t had a chance to practice them. For for this week’s bonus question, use a list comprehension to make a new list <code class="docutils literal notranslate"><span class="pre">apples</span></code> that only contains items from the list <code class="docutils literal notranslate"><span class="pre">fruits</span></code> that are “apple.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;pear&#39;</span><span class="p">,</span> <span class="s1">&#39;kumquat&#39;</span><span class="p">,</span> <span class="s1">&#39;kiwi&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">apples</span> <span class="o">=</span> <span class="p">[</span><span class="n">fruit</span> <span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span> <span class="k">if</span> <span class="n">fruit</span> <span class="o">==</span> <span class="s1">&#39;apple&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Check</span> <span class="n">to</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">did</span> <span class="n">it</span> <span class="n">correctly</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="when-youre-finished">
+<h2>When You’re Finished<a class="headerlink" href="#when-youre-finished" title="Permalink to this headline">¶</a></h2>
+<p>When you’re finished, you should:</p>
+<ol class="simple">
+<li><p>Save your Jupyter notebook with your last name. To save your notebook, you can select File -&gt; Save Notebook or File -&gt; Save Notebook As…</p></li>
+<li><p>Upload the Jupyter notebook file (.ipynb) to Gradescope. You can do so by locating your file on your computer and then dragging and dropping it into Gradescope.</p></li>
+</ol>
+<p><img alt="" src="../_images/submit-hw-gradescope.gif" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./COURSE-Homework"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://melaniewalsh.org/">Melanie Walsh</a><br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <div>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a>. The code is licensed under a <a href="https://choosealicense.com/licenses/gpl-3.0/#">GNU General Public License v3.0</a>.
+</div>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-86905362-3', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

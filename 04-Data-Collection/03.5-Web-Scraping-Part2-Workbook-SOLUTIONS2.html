@@ -1,0 +1,1738 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Scraping — Part 2 — Workbook Solutions &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/04-Data-Collection/03.5-Web-Scraping-Part2-Workbook-SOLUTIONS2.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/04-Data-Collection/03.5-Web-Scraping-Part2-Workbook-SOLUTIONS2.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Web Scraping — Part 2 — Workbook Solutions" />
+<meta property="og:description" content="Web Scraping — Part 2 — Workbook Solutions  Don’t forget to rename this notebook if you want to save changes!  In this lesson, we’re going to introduce how to s" />
+<meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/favicon.ico" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Cultural Analytics & Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  How To
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../How-To-Interact-With-This-Book.html">
+   Interact With This Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Course
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../course-schedule-2021.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../syllabus.html">
+   Course Syllabus
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Book
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Command-Line/01-The-Command-Line.html">
+   1. The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../02-Python/00-Python.html">
+   2. Python Basics
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/01-Installation.html">
+     Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/02-How-to-Use-Jupyter-Notebooks.html">
+     How to Use Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/03-Anatomy-Python-Script.html">
+     Anatomy of a Python Script
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/04-Variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/05-Data-Types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/06-String-Methods.html">
+     String Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/07-Files-Character-Encoding.html">
+     Files and Character Encoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/08-Comparisons-Conditionals.html">
+     Comparisons &amp; Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/09-Lists-Loops-Part1.html">
+     Lists &amp; Loops — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/10-Lists-Loops-Part2.html">
+     Lists &amp; Loops — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/11-Dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/12-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/13-Common-Python-Errors.html">
+     Common Python Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/14-What-Were-Not-Covering.html">
+     What We’re Not Covering
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../03-Data-Analysis/00-Data-Analysis.html">
+   3. Data Analysis (Pandas)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/01-Pandas-Basics-Part1.html">
+     Pandas Basics — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/02-Pandas-Basics-Part2.html">
+     Pandas Basics — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/03-Pandas-Basics-Part3.html">
+     Pandas Basics — Part 3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/04-Pandas-Merge-Datasets.html">
+     Pandas — Merge Datasets
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="00-Data-Collection.html">
+   4. Data Collection (Web Scraping, APIs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-User-Ethics-Legal-Concerns.html">
+     User Ethics &amp; Legal Concerns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-Web-Scraping-Part1.html">
+     Web Scraping — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-Web-Scraping-Part2.html">
+     Web Scraping — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-Git-GitHub.html">
+     Git and GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-APIs.html">
+     Application Programming Interfaces (APIs)
+    </a>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="06-Song-Genius-Data-Collection.html">
+     Song Genius Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="07-Genius-API.html">
+       Song Genius API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="08-LyricsGenius.html">
+       Song Lyrics Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="09-Song-Lyrics-Analysis.html">
+       Song Lyrics Analysis
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="10-Twitter-Data-Collection-Home.html">
+     Twitter Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="11-Twitter-API-Setup.html">
+       Twitter API Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="12-Twitter-Data-Collection.html">
+       Twitter Data Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="13-Twitter-Data-Analysis.html">
+       Twitter Data Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="14-Twitter-Data-Sharing.html">
+       Twitter Data Sharing
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="15-Reddit-Data-Collection-With-PSAW.html">
+     Reddit Data Collection
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../05-Text-Analysis/00-Text-Analysis.html">
+   5. Text Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/01-TF-IDF.html">
+     TF-IDF
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/02-TF-IDF-HathiTrust.html">
+       TF-IDF with HathiTrust Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/03-TF-IDF-Scikit-Learn.html">
+       TF-IDF with Scikit-Learn
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/04-Topic-Modeling.html">
+     Topic Modeling
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/05-Topic-Modeling-Overview.html">
+       Topic Modeling — Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/06-Topic-Modeling-Set-Up.html">
+       Topic Modeling — Set Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/07-Topic-Modeling-Text-Files.html">
+       Topic Modeling — Text Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/08-Topic-Modeling-CSV.html">
+       Topic Modeling — CSV Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/09-Topic-Modeling-Time-Series.html">
+       Topic Modeling — Time Series
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/10-Named-Entity-Recognition.html">
+     Named Entity Recognition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html">
+     Part-of-Speech Tagging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html#keyword-extraction">
+     Keyword Extraction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../06-Network-Analysis/00-Network-Analysis-Home.html">
+   6. Network Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/01-Network-Analysis.html">
+     Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/02-Making-Network-Viz-with-Bokeh.html">
+     Make an Interactive Network Visualization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../07-Mapping/01-Mapping-Home.html">
+   7. Mapping
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html">
+     Mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#geocoding-with-geopy">
+     Geocoding with GeoPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#making-interactive-maps">
+     Making Interactive Maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/03-Custom-Maps.html">
+     Custom Map Backgrounds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/04-Publish-Your-Map.html">
+     Publish Your Map on the Web
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Datasets
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-Datasets/Datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Extra Materials
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Jupyter-Tips-Tricks.html">
+   Jupyter Tips and Tricks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Randomize-Students.html">
+   Make Random Student Groups
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04-Data-Collection/03.5-Web-Scraping-Part2-Workbook-SOLUTIONS2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F04-Data-Collection/03.5-Web-Scraping-Part2-Workbook-SOLUTIONS2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/04-Data-Collection/03.5-Web-Scraping-Part2-Workbook-SOLUTIONS2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-demonstration-of-image-scraping-nyt-front-page">
+   Quick Demonstration of Image Scraping — NYT Front Page
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-requests-and-beautifulsoup">
+     Import Requests and BeautifulSoup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-html-data-and-extract-text">
+     Get HTML Data and Extract Text
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-demonstration-of-image-scraping-bill-gatess-linkedin-page">
+   Quick Demonstration of Image Scraping — Bill Gates’s LinkedIn Page
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scraping-multiple-web-pages-at-a-time">
+   Scraping Multiple Web Pages At a Time
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-out-the-pattern">
+     Figure Out the Pattern
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#make-song-titles-fit-pattern-your-turn">
+     Make Song Titles Fit Pattern — Your Turn!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#put-it-all-together">
+     Put It All Together
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-lyrics-to-a-text-file">
+   Write Lyrics to a Text File
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#count-top-words-from-file">
+   Count Top Words From File
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-patterns-do-you-notice-about-the-top-20-words-from-these-missy-elliott-songs">
+   What patterns do you notice about the top 20 words from these Missy Elliott songs?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonus-if-you-wanted-to-change-the-artist">
+   Bonus: If You Wanted to Change the Artist…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#group-discussion">
+   Group Discussion
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="web-scraping-part-2-workbook-solutions">
+<h1>Web Scraping — Part 2 — Workbook Solutions<a class="headerlink" href="#web-scraping-part-2-workbook-solutions" title="Permalink to this headline">¶</a></h1>
+<p><em>Don’t forget to rename this notebook if you want to save changes!</em></p>
+<p>In this lesson, we’re going to introduce how to scrape multiple web pages from the internet with the Python libraries requests and BeautifulSoup.</p>
+<hr class="docutils" />
+<div class="section" id="quick-demonstration-of-image-scraping-nyt-front-page">
+<h2>Quick Demonstration of Image Scraping — NYT Front Page<a class="headerlink" href="#quick-demonstration-of-image-scraping-nyt-front-page" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="import-requests-and-beautifulsoup">
+<h3>Import Requests and BeautifulSoup<a class="headerlink" href="#import-requests-and-beautifulsoup" title="Permalink to this headline">¶</a></h3>
+<p>Once again, we’re going to use the <code class="docutils literal notranslate"><span class="pre">requests</span></code> library and the <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> library to scrape data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-html-data-and-extract-text">
+<h3>Get HTML Data and Extract Text<a class="headerlink" href="#get-html-data-and-extract-text" title="Permalink to this headline">¶</a></h3>
+<p><em>The New York Times</em> Front Page: https://nytimes.com</p>
+<p>Here we’re going to request the url for <em>The New York Times</em> front page, extract the text of the web page, then transform it into BeautifulSoup document.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://nytimes.com&quot;</span><span class="p">)</span>
+<span class="n">html_string</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+<span class="n">document</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_string</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we search through the HTML code to find all the <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> tags:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">document</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;img alt=&quot;&quot; decoding=&quot;async&quot; src=&quot;https://static01.nyt.com/images/2017/01/29/podcasts/the-daily-album-art/the-daily-album-art-square320-v4.png&quot;/&gt;,
+ &lt;img alt=&quot;&quot; decoding=&quot;async&quot; src=&quot;https://static01.nyt.com/images/2021/02/11/podcasts/00argument-albumart/00argument-albumart-square320.png&quot;/&gt;,
+ &lt;img alt=&quot;&quot; decoding=&quot;async&quot; src=&quot;https://static01.nyt.com/images/2021/03/31/insider/event-bar/event-bar-square640.png?quality=75&amp;amp;auto=webp&amp;amp;disable=upscale&amp;amp;width=350&quot;/&gt;,
+ &lt;img class=&quot;desktop&quot; src=&quot;https://static01.nyt.com/images/2020/07/21/us/cases_orphan_usa-1595349567192/cases_orphan_usa-1595349567192-master1050-v834.png&quot;/&gt;,
+ &lt;img class=&quot;mobile&quot; src=&quot;https://static01.nyt.com/images/2020/07/21/us/cases_orphan_usa-1595349567192/cases_orphan_usa-1595349567192-square640-v1659.png&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-JCQZ/PM-virus-fader-update-slide-JCQZ-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-JCQZ/PM-virus-fader-update-slide-JCQZ-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-QHJS/PM-virus-fader-update-slide-QHJS-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-QHJS/PM-virus-fader-update-slide-QHJS-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-2NOK/PM-virus-fader-update-slide-2NOK-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-2NOK/PM-virus-fader-update-slide-2NOK-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-UMJT/PM-virus-fader-update-slide-UMJT-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-UMJT/PM-virus-fader-update-slide-UMJT-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-5GAV/PM-virus-fader-update-slide-5GAV-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-5GAV/PM-virus-fader-update-slide-5GAV-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-48H1/PM-virus-fader-update-slide-48H1-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-48H1/PM-virus-fader-update-slide-48H1-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-V603/PM-virus-fader-update-slide-V603-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-V603/PM-virus-fader-update-slide-V603-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-VC94/PM-virus-fader-update-slide-VC94-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-VC94/PM-virus-fader-update-slide-VC94-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-38H0/PM-virus-fader-update-slide-38H0-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-38H0/PM-virus-fader-update-slide-38H0-square640.jpg&quot;/&gt;,
+ &lt;img alt=&quot;US coronavirus cases&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_usa-threeByTwoSmallAt2X.png&quot;/&gt;,
+ &lt;img alt=&quot;Worldwide coronavirus cases&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_world-threeByTwoSmallAt2X.png&quot;/&gt;,
+ &lt;img alt=&quot;Where states are reporting vaccines given&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nytimes.com/newsgraphics/2020/12/09/vaccine-distribution-tracker/assets/scoop-vaccine-distribution-tracker-threeByTwoSmallAt2X.png&quot;/&gt;,
+ &lt;img alt=&quot;US coronavirus cases&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_usa-threeByTwoSmallAt2X.png&quot;/&gt;,
+ &lt;img alt=&quot;Worldwide coronavirus cases&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_world-threeByTwoSmallAt2X.png&quot;/&gt;,
+ &lt;img alt=&quot;Vaccine tracker&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/footer-thumbs/vaccines.png&quot;/&gt;,
+ &lt;img alt=&quot;US coronavirus cases&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_usa-threeByTwoSmallAt2X.png&quot;/&gt;,
+ &lt;img alt=&quot;Worldwide coronavirus cases&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_world-threeByTwoSmallAt2X.png&quot;/&gt;,
+ &lt;img alt=&quot;Vaccine tracker&quot; class=&quot;svelte-zl0f6y&quot; src=&quot;https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/footer-thumbs/vaccines.png&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/multimedia/01chauvin-hpfader1b/merlin_185848461_c216fa52-b810-4451-9abb-41ea4351227c-threeByTwoMediumAt2X.jpg&quot;&gt;
+ &lt;/img&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/multimedia/01chauvin-hpfader2/merlin_185847222_09a383e8-7ba2-45f3-8726-30aefdf04778-threeByTwoMediumAt2X.jpg&quot;&gt;
+ &lt;/img&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/multimedia/01chauvin-hpfader-slide1/merlin_185786850_d1d9fe71-4c62-4d4a-bc2a-4a1048ecec2b-threeByTwoMediumAt2X.jpg&quot;&gt;
+ &lt;/img&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/business/01nytchauvin-HPfader-slide-5UKS/01nytchauvin-HPfader-slide-5UKS-threeByTwoMediumAt2X.jpg&quot;&gt;
+ &lt;/img&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/business/01nytchauvin-HPfader-slide-OQ08/01nytchauvin-HPfader-slide-OQ08-threeByTwoMediumAt2X.jpg&quot;&gt;
+ &lt;/img&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/03/31/multimedia/31nytchauvin13/merlin_185807448_2721d030-0d49-4306-92b7-08eccad98588-threeByTwoMediumAt2X.jpg&quot;&gt;
+ &lt;/img&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2021/04/01/business/01nytchauvin-HPfader-slide-MK68/01nytchauvin-HPfader-slide-MK68-threeByTwoMediumAt2X.jpg&quot;&gt;
+ &lt;/img&gt;,
+ &lt;img class=&quot;css-hdqqnp&quot; loading=&quot;lazy&quot; role=&quot;presentation&quot; src=&quot;https://static01.nyt.com/images/2021/03/31/science/31cli-bidenclimate-1/merlin_180788583_3a9e790e-f13d-4d3d-8036-f5b90d213506-threeByTwoSmallAt2X.jpg?format=pjpg&amp;amp;quality=75&amp;amp;auto=webp&amp;amp;disable=upscale&quot;/&gt;,
+ &lt;img class=&quot;css-hdqqnp&quot; loading=&quot;lazy&quot; role=&quot;presentation&quot; src=&quot;https://static01.nyt.com/images/2021/03/25/world/00ethiopia-assaults-1/00ethiopia-assaults-1-threeByTwoMediumAt2X-v4.jpg?format=pjpg&amp;amp;quality=75&amp;amp;auto=webp&amp;amp;disable=upscale&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-LCPY/home-fader-hp-2-slides-slide-LCPY-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-LCPY/home-fader-hp-2-slides-slide-LCPY-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-R65N/home-fader-hp-2-slides-slide-R65N-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-R65N/home-fader-hp-2-slides-slide-R65N-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-9OFH/home-fader-hp-2-slides-slide-9OFH-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-9OFH/home-fader-hp-2-slides-slide-9OFH-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-DSSY/home-fader-hp-2-slides-slide-DSSY-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-DSSY/home-fader-hp-2-slides-slide-DSSY-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-G9KM/home-fader-hp-2-slides-slide-G9KM-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-G9KM/home-fader-hp-2-slides-slide-G9KM-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-PS44/home-fader-hp-2-slides-slide-PS44-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-PS44/home-fader-hp-2-slides-slide-PS44-square640.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-CNRH/home-fader-hp-2-slides-slide-CNRH-master1050.jpg&quot;/&gt;,
+ &lt;img src=&quot;https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-CNRH/home-fader-hp-2-slides-slide-CNRH-square640.jpg&quot;/&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To display these images in our Jupyter notebook, we’re going to import the Python modules <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> and <code class="docutils literal notranslate"><span class="pre">display</span></code>, which allow us to transform code output into Markdown and thus display the images in this notebook</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="c1"># Loop through all the images on the NYT front page</span>
+<span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">):</span>
+    
+    <span class="c1"># Convert the image tag to a string</span>
+    <span class="n">image_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    
+    <span class="c1"># Transform the tag to Markdown and then display it as Markdown</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">image_string</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="" decoding="async" src="https://static01.nyt.com/images/2017/01/29/podcasts/the-daily-album-art/the-daily-album-art-square320-v4.png"/><img alt="" decoding="async" src="https://static01.nyt.com/images/2021/02/11/podcasts/00argument-albumart/00argument-albumart-square320.png"/><img alt="" decoding="async" src="https://static01.nyt.com/images/2021/03/31/insider/event-bar/event-bar-square640.png?quality=75&amp;auto=webp&amp;disable=upscale&amp;width=350"/><img class="desktop" src="https://static01.nyt.com/images/2020/07/21/us/cases_orphan_usa-1595349567192/cases_orphan_usa-1595349567192-master1050-v834.png"/><img class="mobile" src="https://static01.nyt.com/images/2020/07/21/us/cases_orphan_usa-1595349567192/cases_orphan_usa-1595349567192-square640-v1659.png"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-JCQZ/PM-virus-fader-update-slide-JCQZ-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-JCQZ/PM-virus-fader-update-slide-JCQZ-square640.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-QHJS/PM-virus-fader-update-slide-QHJS-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-QHJS/PM-virus-fader-update-slide-QHJS-square640.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-2NOK/PM-virus-fader-update-slide-2NOK-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-2NOK/PM-virus-fader-update-slide-2NOK-square640.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-UMJT/PM-virus-fader-update-slide-UMJT-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-UMJT/PM-virus-fader-update-slide-UMJT-square640.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-5GAV/PM-virus-fader-update-slide-5GAV-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-5GAV/PM-virus-fader-update-slide-5GAV-square640.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-48H1/PM-virus-fader-update-slide-48H1-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-48H1/PM-virus-fader-update-slide-48H1-square640.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-V603/PM-virus-fader-update-slide-V603-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-V603/PM-virus-fader-update-slide-V603-square640.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-VC94/PM-virus-fader-update-slide-VC94-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-VC94/PM-virus-fader-update-slide-VC94-square640.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-38H0/PM-virus-fader-update-slide-38H0-master1050.jpg"/><img src="https://static01.nyt.com/images/2021/04/01/homepage/PM-virus-fader-update-slide-38H0/PM-virus-fader-update-slide-38H0-square640.jpg"/><img alt="US coronavirus cases" class="svelte-zl0f6y" src="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_usa-threeByTwoSmallAt2X.png"/><img alt="Worldwide coronavirus cases" class="svelte-zl0f6y" src="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_world-threeByTwoSmallAt2X.png"/><img alt="Where states are reporting vaccines given" class="svelte-zl0f6y" src="https://static01.nytimes.com/newsgraphics/2020/12/09/vaccine-distribution-tracker/assets/scoop-vaccine-distribution-tracker-threeByTwoSmallAt2X.png"/><img alt="US coronavirus cases" class="svelte-zl0f6y" src="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_usa-threeByTwoSmallAt2X.png"/><img alt="Worldwide coronavirus cases" class="svelte-zl0f6y" src="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_world-threeByTwoSmallAt2X.png"/><img alt="Vaccine tracker" class="svelte-zl0f6y" src="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/footer-thumbs/vaccines.png"/><img alt="US coronavirus cases" class="svelte-zl0f6y" src="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_usa-threeByTwoSmallAt2X.png"/><img alt="Worldwide coronavirus cases" class="svelte-zl0f6y" src="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/orphan_world-threeByTwoSmallAt2X.png"/><img alt="Vaccine tracker" class="svelte-zl0f6y" src="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/8c96f04c6de658a5d841582ab5d0dcbae9109438/images/footer-thumbs/vaccines.png"/><img src="https://static01.nyt.com/images/2021/04/01/multimedia/01chauvin-hpfader1b/merlin_185848461_c216fa52-b810-4451-9abb-41ea4351227c-threeByTwoMediumAt2X.jpg">
+</img><img src="https://static01.nyt.com/images/2021/04/01/multimedia/01chauvin-hpfader2/merlin_185847222_09a383e8-7ba2-45f3-8726-30aefdf04778-threeByTwoMediumAt2X.jpg">
+</img><img src="https://static01.nyt.com/images/2021/04/01/multimedia/01chauvin-hpfader-slide1/merlin_185786850_d1d9fe71-4c62-4d4a-bc2a-4a1048ecec2b-threeByTwoMediumAt2X.jpg">
+</img><img src="https://static01.nyt.com/images/2021/04/01/business/01nytchauvin-HPfader-slide-5UKS/01nytchauvin-HPfader-slide-5UKS-threeByTwoMediumAt2X.jpg">
+</img><img src="https://static01.nyt.com/images/2021/04/01/business/01nytchauvin-HPfader-slide-OQ08/01nytchauvin-HPfader-slide-OQ08-threeByTwoMediumAt2X.jpg">
+</img><img src="https://static01.nyt.com/images/2021/03/31/multimedia/31nytchauvin13/merlin_185807448_2721d030-0d49-4306-92b7-08eccad98588-threeByTwoMediumAt2X.jpg">
+</img><img src="https://static01.nyt.com/images/2021/04/01/business/01nytchauvin-HPfader-slide-MK68/01nytchauvin-HPfader-slide-MK68-threeByTwoMediumAt2X.jpg">
+</img><img class="css-hdqqnp" loading="lazy" role="presentation" src="https://static01.nyt.com/images/2021/03/31/science/31cli-bidenclimate-1/merlin_180788583_3a9e790e-f13d-4d3d-8036-f5b90d213506-threeByTwoSmallAt2X.jpg?format=pjpg&amp;quality=75&amp;auto=webp&amp;disable=upscale"/><img class="css-hdqqnp" loading="lazy" role="presentation" src="https://static01.nyt.com/images/2021/03/25/world/00ethiopia-assaults-1/00ethiopia-assaults-1-threeByTwoMediumAt2X-v4.jpg?format=pjpg&amp;quality=75&amp;auto=webp&amp;disable=upscale"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-LCPY/home-fader-hp-2-slides-slide-LCPY-master1050.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-LCPY/home-fader-hp-2-slides-slide-LCPY-square640.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-R65N/home-fader-hp-2-slides-slide-R65N-master1050.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-R65N/home-fader-hp-2-slides-slide-R65N-square640.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-9OFH/home-fader-hp-2-slides-slide-9OFH-master1050.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-9OFH/home-fader-hp-2-slides-slide-9OFH-square640.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-DSSY/home-fader-hp-2-slides-slide-DSSY-master1050.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-DSSY/home-fader-hp-2-slides-slide-DSSY-square640.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-G9KM/home-fader-hp-2-slides-slide-G9KM-master1050.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-G9KM/home-fader-hp-2-slides-slide-G9KM-square640.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-PS44/home-fader-hp-2-slides-slide-PS44-master1050.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-PS44/home-fader-hp-2-slides-slide-PS44-square640.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-CNRH/home-fader-hp-2-slides-slide-CNRH-master1050.jpg"/><img src="https://static01.nyt.com/images/2020/12/08/multimedia/home-fader-hp-2-slides-slide-CNRH/home-fader-hp-2-slides-slide-CNRH-square640.jpg"/></div>
+</div>
+</div>
+</div>
+<div class="section" id="quick-demonstration-of-image-scraping-bill-gatess-linkedin-page">
+<h2>Quick Demonstration of Image Scraping — Bill Gates’s LinkedIn Page<a class="headerlink" href="#quick-demonstration-of-image-scraping-bill-gatess-linkedin-page" title="Permalink to this headline">¶</a></h2>
+<p>https://www.linkedin.com/in/williamhgates/</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://www.linkedin.com/in/williamhgates/&quot;</span><span class="p">)</span>
+<span class="n">html_string</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+<span class="n">document</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_string</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="c1"># Loop through all the images on the NYT front page</span>
+<span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">):</span>
+    <span class="c1"># Convert the image tag to a string</span>
+    <span class="n">image_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="c1"># Transform the tag to Markdown and then display it as Markdown</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">image_string</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What’s going wrong here?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Response [999]&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="scraping-multiple-web-pages-at-a-time">
+<h2>Scraping Multiple Web Pages At a Time<a class="headerlink" href="#scraping-multiple-web-pages-at-a-time" title="Permalink to this headline">¶</a></h2>
+<p>In the last lesson, we figured out how to scrape the lyrics for a single Missy Elliott song.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://genius.com/Missy-elliott-work-it-lyrics&quot;</span><span class="p">)</span>
+<span class="n">html_string</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+<span class="n">document</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_string</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">document</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;[Intro]\nDJ, please pick up your phone, I&#39;m on the request line\nThis is a Missy Elliott one-time exclusive, come on\n\n[Chorus]\nIs it worth it? Let me work it\nI put my thing down, flip it and reverse it\nTi esrever dna ti pilf, nwod gniht ym tup\nTi esrever dna ti pilf, nwod gniht ym tup\nIf you got a big *elephant trumpet*, let me search ya\nAnd find out how hard I gotta work ya\nTi esrever dna ti pilf, nwod gniht ym tup\nTi esrever dna ti pilf, nwod gniht ym tup\nC&#39;mon\n\n[Verse 1]\nI&#39;d like to get to know ya so I could show ya\nPut the pussy on ya like I told ya\nGive me all your numbers so I can phone ya\nYour girl acting stank, then call me over\nNot on the bed, lay me on your sofa\nCall before you come, I need to shave my chocha\nYou do or you don&#39;t or you will or won&#39;t ya?\nGo downtown and eat it like a vulture\nSee my hips and my tips, don&#39;t ya?\nSee my ass and my lips, don&#39;t ya?\nLost a few pounds and my waist for ya\nThis the kinda beat that go ra-ta-ta\nRa-ta-ta-ta-ta-ta-ta-ta-ta-ta\nSex me so good I say blah-blah-blah\nWork it, I need a glass of water\nBoy, oh boy, it&#39;s good to know ya\nC&#39;mon\n\n[Chorus]\nIs it worth it? Let me work it\nI put my thing down, flip it and reverse it\nTi esrever dna ti pilf, nwod gniht ym tup\nTi esrever dna ti pilf, nwod gniht ym tup\nIf you got a big *elephant trumpet*, let me search ya\nAnd find out how hard I gotta work ya\nTi esrever dna ti pilf, nwod gniht ym tup\nTi esrever dna ti pilf, nwod gniht ym tup\nC&#39;mon\n\n[Bridge]\nIf you a fly gal, get your nails done\nGet a pedicure, get your hair did\nBoy, lift it up, let&#39;s make a toast-a\nLet&#39;s get drunk, that&#39;s gonna bring us closer (Okay)\nDon&#39;t I look like a Halle Berry poster?\nSee the Belvedere playing tricks on ya (Ah)\nGirlfriend wanna be like me, never\nYou won&#39;t find a bitch that&#39;s even better (Ah)\nI make you hot as Las Vegas weather\nListen up close while I take it backwards\n\u200bsdrawkcab ti ekat ot ekil yssiM yaw eht hctaW\nI&#39;m not a prostitute, but I could give you what you want\nI love your braids and your mouth full of fronts\nLove the way my ass go bum-bum-bum-bum (Huh)\nKeep your eyes on my bum-bum-bum-bum-bum (Okay)\nYou think you can handle this badonka-donk-donk (Woo)\nTake my thong off and my ass go boom (Ugh)\nCut the lights on so you see what I could do (C&#39;mon)\n\n[Chorus]\nIs it worth it? Let me work it\nI put my thing down, flip it and reverse it\nTi esrever dna ti pilf, nwod gniht ym tup\nTi esrever dna ti pilf, nwod gniht ym tup (Ooh)\nIf you got a big *elephant trumpet*, let me search ya\nAnd find out how hard I gotta work ya\nTi esrever dna ti pilf, nwod gniht ym tup (Huh)\nTi esrever dna ti pilf, nwod gniht ym tup (C&#39;mon)\nC&#39;mon\n\n[Bridge]\nBoys, boys, all type of boys\nBlack, White, Puerto Rican, Chinese boys (C&#39;mon)\nWhy-thai, thai-o-toy-o-thai-thai\nRock-thai, thai-o-toy-o-thai-thai (C&#39;mon)\nGirls, girls, get that cash\nIf it&#39;s 9 to 5 or shaking your ass (Aha)\nAin&#39;t no shame, ladies do your thing (C&#39;mon)\nJust make sure you ahead of the game\n\n[Verse 3]\nJust &#39;cause I got a lot of fame super\nPrince couldn&#39;t get me change my name, papa\nKunta Kinte a slave again, no sir\nPicture Blacks saying, “Oh yes&#39;a, massa”\nPicture Lil&#39; Kim dating a pastor\nMinute Man, Big Red could outlast ya\nWho is the best? I don&#39;t have to ask ya\nWhen I come out, you won&#39;t even matter (Ugh)\nWhy you act dumb like, uhhhh, duh?\nSo you act dumb like, uhhhhh, duh\nAs the drummer boy go ba-rom-pop-pom-pom (Ooh)\nGive you some-some-some of this Cinnabun (C&#39;mon)\n\n[Chorus]\nIs it worth it? Let me work it\nI put my thing down, flip it and reverse it\nTi esrever dna ti pilf, nwod gniht ym tup\nTi esrever dna ti pilf, nwod gniht ym tup (Ooh)\nIf you got a big *elephant trumpet*, let me search ya\nAnd find out how hard I gotta work ya\nTi esrever dna ti pilf, nwod gniht ym tup\nTi esrever dna ti pilf, nwod gniht ym tup\nC&#39;mon\n\n[Break]\nTo my fellas (Ooh, good god!)\nI like the way you work that (Uh-huh, la-la-la-la)\nTo my ladies (Whoo! Good god!)\nYou sure know how to work that\n\n[Outro]\nYeah, it&#39;s Missy Elliott!\nI hope y&#39;all enjoying what y&#39;all heard so far\nI was sittin&#39; here thinkin&#39; like\nBig Daddy Kane and Public Enemy\nSalt n Pepa, Lyte, EPMD, LL, Run-DMC\nKRS-One, Rakim\nMost of them artists used to dance\nAnd still get respected in the street\nDon&#39;t be scared to Bankhead or Bogo\nOr move as far as sold Michael Jackson 43 million\nShoot, errbody have the zipper jacket\nAnd half of these thugs have the glove to match, ya feel me?\nYo, it&#39;s ok though, if you wanna be hard and ice grill\nAnd Harlem Shake at the same time, whatever\nLet&#39;s just have fun, it&#39;s hip-hop man, this is hip-hop!&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>But how can we scrape lyrics for multiple Missy Elliott songs at a time?</p>
+<div class="section" id="figure-out-the-pattern">
+<h3>Figure Out the Pattern<a class="headerlink" href="#figure-out-the-pattern" title="Permalink to this headline">¶</a></h3>
+<p>What we need to do is figure out how to progammatically generate the correct Genius web page URL for each song we’re interested in:</p>
+<p><code class="docutils literal notranslate"><span class="pre">f&quot;https://genius.com/Missy-elliott-{formatted_song}-lyrics&quot;</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">song_titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Work It&#39;</span><span class="p">,</span> <span class="s1">&#39;WTF (Where They From)&#39;</span><span class="p">,</span> <span class="s1">&#39;The Rain (Supa Dupa Fly)&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for song in song_titles:
+    formatted_song = ?????
+    response = requests.get(f&quot;https://genius.com/Missy-elliott-{formatted_song}-lyrics&quot;)
+    html_string = response.text
+    document = BeautifulSoup(html_string, &quot;html.parser&quot;)
+    document.find(&#39;p&#39;).text
+</pre></div>
+</div>
+<p>Let’s inspect the Genius web pages for each of these songs:</p>
+<p>https://genius.com/Missy-elliott-work-it-lyrics</p>
+<p>https://genius.com/Missy-elliott-the-rain-supa-dupa-fly-lyrics</p>
+<p>https://genius.com/Missy-elliott-wtf-where-they-from-lyrics</p>
+</div>
+<div class="section" id="make-song-titles-fit-pattern-your-turn">
+<h3>Make Song Titles Fit Pattern — Your Turn!<a class="headerlink" href="#make-song-titles-fit-pattern-your-turn" title="Permalink to this headline">¶</a></h3>
+<p>Create a function called <code class="docutils literal notranslate"><span class="pre">format_song()</span></code> that will take in a song title and then return the song title correctly formatted for its Genius web page.</p>
+<p>For example, the song <code class="docutils literal notranslate"><span class="pre">WTF</span> <span class="pre">(Where</span> <span class="pre">They</span> <span class="pre">From)</span></code> needs to be converted to <code class="docutils literal notranslate"><span class="pre">wtf-where-they-from</span></code>.</p>
+<p>Hint: You will need to use <a class="reference external" href="https://info1350.github.io/Intro-CA-SP21/02-Python/06-String-Methods.html#id1">string methods</a>!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_song</span><span class="p">(</span><span class="n">song</span><span class="p">):</span>
+    <span class="n">formatted_song</span> <span class="o">=</span> <span class="n">song</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">formatted_song</span> <span class="o">=</span> <span class="n">formatted_song</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">formatted_song</span> <span class="o">=</span> <span class="n">formatted_song</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">formatted_song</span> <span class="o">=</span> <span class="n">formatted_song</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">formatted_song</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test of your function on these two song titles to make sure it’s working correctly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">format_song</span><span class="p">(</span><span class="s1">&#39;WTF (Where They From)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;wtf-where-they-from&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">format_song</span><span class="p">(</span><span class="s1">&#39;Work It&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;work-it&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="put-it-all-together">
+<h3>Put It All Together<a class="headerlink" href="#put-it-all-together" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">song_titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Work It&#39;</span><span class="p">,</span> <span class="s1">&#39;WTF (Where They From)&#39;</span><span class="p">,</span> <span class="s1">&#39;The Rain (Supa Dupa Fly)&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now use your <code class="docutils literal notranslate"><span class="pre">format_song()</span></code> function to create the variable <code class="docutils literal notranslate"><span class="pre">formatted_song</span></code>, which will allow the code below to work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">song</span> <span class="ow">in</span> <span class="n">song_titles</span><span class="p">:</span>
+    <span class="n">formatted_song</span> <span class="o">=</span> <span class="n">format_song</span><span class="p">(</span><span class="n">song</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://genius.com/Missy-elliott-</span><span class="si">{</span><span class="n">formatted_song</span><span class="si">}</span><span class="s2">-lyrics&quot;</span><span class="p">)</span>
+    <span class="n">html_string</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">document</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_string</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+    <span class="n">lyrics</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Intro]
+DJ, please pick up your phone, I&#39;m on the request line
+This is a Missy Elliott one-time exclusive, come on
+
+[Chorus]
+Is it worth it? Let me work it
+I put my thing down, flip it and reverse it
+Ti esrever dna ti pilf, nwod gniht ym tup
+Ti esrever dna ti pilf, nwod gniht ym tup
+If you got a big *elephant trumpet*, let me search ya
+And find out how hard I gotta work ya
+Ti esrever dna ti pilf, nwod gniht ym tup
+Ti esrever dna ti pilf, nwod gniht ym tup
+C&#39;mon
+
+[Verse 1]
+I&#39;d like to get to know ya so I could show ya
+Put the pussy on ya like I told ya
+Give me all your numbers so I can phone ya
+Your girl acting stank, then call me over
+Not on the bed, lay me on your sofa
+Call before you come, I need to shave my chocha
+You do or you don&#39;t or you will or won&#39;t ya?
+Go downtown and eat it like a vulture
+See my hips and my tips, don&#39;t ya?
+See my ass and my lips, don&#39;t ya?
+Lost a few pounds and my waist for ya
+This the kinda beat that go ra-ta-ta
+Ra-ta-ta-ta-ta-ta-ta-ta-ta-ta
+Sex me so good I say blah-blah-blah
+Work it, I need a glass of water
+Boy, oh boy, it&#39;s good to know ya
+C&#39;mon
+
+[Chorus]
+Is it worth it? Let me work it
+I put my thing down, flip it and reverse it
+Ti esrever dna ti pilf, nwod gniht ym tup
+Ti esrever dna ti pilf, nwod gniht ym tup
+If you got a big *elephant trumpet*, let me search ya
+And find out how hard I gotta work ya
+Ti esrever dna ti pilf, nwod gniht ym tup
+Ti esrever dna ti pilf, nwod gniht ym tup
+C&#39;mon
+
+[Bridge]
+If you a fly gal, get your nails done
+Get a pedicure, get your hair did
+Boy, lift it up, let&#39;s make a toast-a
+Let&#39;s get drunk, that&#39;s gonna bring us closer (Okay)
+Don&#39;t I look like a Halle Berry poster?
+See the Belvedere playing tricks on ya (Ah)
+Girlfriend wanna be like me, never
+You won&#39;t find a bitch that&#39;s even better (Ah)
+I make you hot as Las Vegas weather
+Listen up close while I take it backwards
+​sdrawkcab ti ekat ot ekil yssiM yaw eht hctaW
+I&#39;m not a prostitute, but I could give you what you want
+I love your braids and your mouth full of fronts
+Love the way my ass go bum-bum-bum-bum (Huh)
+Keep your eyes on my bum-bum-bum-bum-bum (Okay)
+You think you can handle this badonka-donk-donk (Woo)
+Take my thong off and my ass go boom (Ugh)
+Cut the lights on so you see what I could do (C&#39;mon)
+
+[Chorus]
+Is it worth it? Let me work it
+I put my thing down, flip it and reverse it
+Ti esrever dna ti pilf, nwod gniht ym tup
+Ti esrever dna ti pilf, nwod gniht ym tup (Ooh)
+If you got a big *elephant trumpet*, let me search ya
+And find out how hard I gotta work ya
+Ti esrever dna ti pilf, nwod gniht ym tup (Huh)
+Ti esrever dna ti pilf, nwod gniht ym tup (C&#39;mon)
+C&#39;mon
+
+[Bridge]
+Boys, boys, all type of boys
+Black, White, Puerto Rican, Chinese boys (C&#39;mon)
+Why-thai, thai-o-toy-o-thai-thai
+Rock-thai, thai-o-toy-o-thai-thai (C&#39;mon)
+Girls, girls, get that cash
+If it&#39;s 9 to 5 or shaking your ass (Aha)
+Ain&#39;t no shame, ladies do your thing (C&#39;mon)
+Just make sure you ahead of the game
+
+[Verse 3]
+Just &#39;cause I got a lot of fame super
+Prince couldn&#39;t get me change my name, papa
+Kunta Kinte a slave again, no sir
+Picture Blacks saying, “Oh yes&#39;a, massa”
+Picture Lil&#39; Kim dating a pastor
+Minute Man, Big Red could outlast ya
+Who is the best? I don&#39;t have to ask ya
+When I come out, you won&#39;t even matter (Ugh)
+Why you act dumb like, uhhhh, duh?
+So you act dumb like, uhhhhh, duh
+As the drummer boy go ba-rom-pop-pom-pom (Ooh)
+Give you some-some-some of this Cinnabun (C&#39;mon)
+
+[Chorus]
+Is it worth it? Let me work it
+I put my thing down, flip it and reverse it
+Ti esrever dna ti pilf, nwod gniht ym tup
+Ti esrever dna ti pilf, nwod gniht ym tup (Ooh)
+If you got a big *elephant trumpet*, let me search ya
+And find out how hard I gotta work ya
+Ti esrever dna ti pilf, nwod gniht ym tup
+Ti esrever dna ti pilf, nwod gniht ym tup
+C&#39;mon
+
+[Break]
+To my fellas (Ooh, good god!)
+I like the way you work that (Uh-huh, la-la-la-la)
+To my ladies (Whoo! Good god!)
+You sure know how to work that
+
+[Outro]
+Yeah, it&#39;s Missy Elliott!
+I hope y&#39;all enjoying what y&#39;all heard so far
+I was sittin&#39; here thinkin&#39; like
+Big Daddy Kane and Public Enemy
+Salt n Pepa, Lyte, EPMD, LL, Run-DMC
+KRS-One, Rakim
+Most of them artists used to dance
+And still get respected in the street
+Don&#39;t be scared to Bankhead or Bogo
+Or move as far as sold Michael Jackson 43 million
+Shoot, errbody have the zipper jacket
+And half of these thugs have the glove to match, ya feel me?
+Yo, it&#39;s ok though, if you wanna be hard and ice grill
+And Harlem Shake at the same time, whatever
+Let&#39;s just have fun, it&#39;s hip-hop man, this is hip-hop!
+[Produced by Pharrell]
+
+[Intro]
+
+[Hook: Missy Elliott (Pharrell)]
+(Shorty what?)
+The dance that you doing is dumb
+How they do it where you from? (Ayy!, Triflin&#39;!)
+Stickin&#39; out your tongue
+Girl, but you know you&#39;re too young
+A bunch of girls do it and the shit look fun
+That&#39;s how they do it where we from (Ayy!)
+You know it don&#39;t start till one
+That&#39;s how they do it where they from
+
+[Verse 1: Missy Elliott]
+I&#39;m so faded, no exaggeration (What?)
+Backs breakin&#39; like a percolation (What?)
+Boys to the yard for some hip spankin&#39;
+Where you make it drop down like you in the matrix (Yeah!)
+Can&#39;t take it, them chicks been fakin&#39; (What?)
+Y&#39;all still sleep, better stay awakened (What?)
+Hot new dance for the hood to make it
+Make the donk move fast, make them think you drinkin&#39; (Yeah!)
+Head to the floor don&#39;t collect that though (What?)
+You better huddle up cause the beat&#39;s so cold (Huh?)
+Pop that, pop that, cock and reload (Huh?)
+This another hit, I got an ace in the hole (What?)
+Boys on my back, playa, did you peep that?
+You got a small stack, playa, you can keep that (Huh?)
+I&#39;m a Big Mac make you wanna eat that
+Like m-m-m-m-m, yak it to the yak (Yeah?)
+Junk in the trunk make you pumps in the bump
+Girls wanna have fun make you stickin&#39; out your tongue (What?)
+
+[Hook: Missy Elliott]
+Shorty what?
+The dance that you doing is dumb
+How they do it where you from?
+Stickin&#39; out your tongue girl
+But you know you&#39;re too young
+A bunch of girls do it and the shit look fun
+That&#39;s how they do it where we from
+You know it don&#39;t start till one
+That&#39;s how they do it where they from
+
+[Verse 2: Pharrell]
+I come into this bitch like liquid
+Drip, drip, then the business
+Click, click, get your picture
+Hermés Trismegistus
+Witness and get lifted
+Basic, nigga I was born in the basement
+Shape shift, nigga, I think like a spaceship
+False, oh-nah-nah-nah
+I am so different than y&#39;all, so far apart
+The way that I balance the bars
+I never fall, and if I do I just call
+The almighty yellow star, God
+Lyrically I&#39;m Optimus Prime
+The car I drive; La FER-RAR-I
+When I go by, smoke in your eyes
+So open your eyes, the joke&#39;s on you guys
+And you ain&#39;t gotta be a mason to see through
+Some of this shit on occasion
+
+[Hook: Missy Elliott]
+Shorty what?
+The dance that you doing is dumb
+How they do it where you from?
+Stickin&#39; out your tongue, girl
+But you know you&#39;re too young
+A bunch of girls do it and the shit look fun
+That&#39;s how they do it where we from
+You know it don&#39;t start till one
+That&#39;s how they do it where they from
+
+[Verse 3: Missy Elliott]
+I&#39;m like kak-a-rak-a-rak-rak-a-rak-a-rak
+Make a new track, make &#39;em fall on they crack
+Give &#39;em a slap, appetizer and smack
+I&#39;m so fat in the back, make the boys all collapse
+Yeah, when I rap they be all on my jack
+Boys wanna jump on this pussy cat (Prrrr)
+Got a new idea, let me switch it
+Man, I&#39;m so futuristic
+Big lips and big, big, big hips
+Body be thick like a biscuit
+Different, rippin&#39; shit, microphone grippin&#39; it
+Gettin&#39; these Benjamins, new car, whippin&#39; it
+Uh, I&#39;m so far ahead of ya&#39;ll, man I&#39;m on top of the stars
+I don&#39;t care none of you are, blah-blah-blah-blah
+You best to go rewrite your bars
+
+[Outro Missy Elliott &amp; (Pharrell)]
+Shawty what?
+How they do it where you from? (Triflin&#39;!)
+How they do it where you from?
+That&#39;s how they do it where we from
+That&#39;s how they do it where they from
+Shawty what?
+How they do it where you from? (Hey!)
+How they do it where you from?
+That&#39;s how they do it where we from
+That&#39;s how they do it where they from
+[Intro: Missy Elliott &amp; Timbaland]
+[*Yawning*]
+Run the track
+
+[Chorus: Missy Elliott &amp; Ann Peebles]
+Me I&#39;m super fly, super dupa fly
+(I can&#39;t stand the rain) Supa dupa fly
+Me I&#39;m super fly, (against my window) super dupa fly
+(I can&#39;t stand the rain) supa dupa fly
+Me I&#39;m super fly, (against my window) super dupa fly
+(I can&#39;t stand the rain) supa dupa fly
+Me I&#39;m super fly, (against my window)
+
+[Verse 1: Missy Elliott]
+When the rain hits my window
+I take and *cough* me some indo
+Me and Timbaland, ooh, we sang a jangle
+We so tight that you get our styles tangled
+Sway on dosie-do like you loco
+Can we get kinky tonight?
+Like Coko, so-so
+You don&#39;t wanna play with my Yo-Yo
+I smoke my hydro on the D-low (D-D-D-D-D-low)
+
+[Hook: Ann Peebles]
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain
+
+[Verse 2: Missy Elliott]
+Beep, beep, who got the keys to the Jeep, vroom
+I&#39;m driving to the beach
+Top down, loud sounds, see my peeps
+Give them pounds, now look who it be
+It be me, me, me and Timothy
+Look like it&#39;s &#39;bout to rain, what a shame
+I got the Armor-All to shine up the stain
+Oh, Missy, try to maintain
+Icky-icky-icky-icky-icky-icky-icky
+
+[Hook: Ann Peebles]
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain
+
+[Verse 3: Missy Elliott &amp; Ann Peebles]
+I feel the wind
+5, 6, 7, 8, 9, 10
+9, 10
+Begin, I sit on Hills like Lauryn
+Until the rain starts coming down, pouring
+Chill, I got my umbrella
+My finger waves these days, they fall like Humpty
+Chumpy, I break up with him before he dump me
+To have me, (I can&#39;t stand the rain), yes, you lucky (against my window)
+
+[Outro: Ann Peebles]
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain
+I can&#39;t stand the rain
+I can&#39;t stand the rain
+I can&#39;t stand the rain
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I I can&#39;t stand the rain against my window
+I can&#39;t stand the rain against my window
+I can&#39;t stand the rain
+I can&#39;t stand the rain
+I can&#39;t stand the rain
+I can&#39;t stand the rain
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="write-lyrics-to-a-text-file">
+<h2>Write Lyrics to a Text File<a class="headerlink" href="#write-lyrics-to-a-text-file" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">song_titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Work It&#39;</span><span class="p">,</span> <span class="s1">&#39;WTF (Where They From)&#39;</span><span class="p">,</span> <span class="s1">&#39;The Rain (Supa Dupa Fly)&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we are writing the lyrics to a text file rather than printing them out.</p>
+<p>Again, use your <code class="docutils literal notranslate"><span class="pre">format_song()</span></code> function to create the variable <code class="docutils literal notranslate"><span class="pre">formatted_song</span></code>, which will allow the code below to work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Missy-Elliott-Lyrics.txt&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+    
+    <span class="k">for</span> <span class="n">song</span> <span class="ow">in</span> <span class="n">song_titles</span><span class="p">:</span>
+        <span class="n">formatted_song</span> <span class="o">=</span> <span class="n">format_song</span><span class="p">(</span><span class="n">song</span><span class="p">)</span>  <span class="c1">#Use your format_song() function here</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://genius.com/Missy-elliott-</span><span class="si">{</span><span class="n">formatted_song</span><span class="si">}</span><span class="s2">-lyrics&quot;</span><span class="p">)</span>
+        <span class="n">html_string</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_string</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+        <span class="n">lyrics</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        
+        <span class="n">file_object</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="count-top-words-from-file">
+<h2>Count Top Words From File<a class="headerlink" href="#count-top-words-from-file" title="Permalink to this headline">¶</a></h2>
+<p>If we wanted to find out the most frequent words in Missy Elliott’s lyrics, we could use the word counter code that we’ve used in previous lessons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="s1">&#39;my&#39;</span><span class="p">,</span> <span class="s1">&#39;myself&#39;</span><span class="p">,</span> <span class="s1">&#39;we&#39;</span><span class="p">,</span> <span class="s1">&#39;our&#39;</span><span class="p">,</span> <span class="s1">&#39;ours&#39;</span><span class="p">,</span> <span class="s1">&#39;ourselves&#39;</span><span class="p">,</span> <span class="s1">&#39;you&#39;</span><span class="p">,</span> <span class="s1">&#39;your&#39;</span><span class="p">,</span> <span class="s1">&#39;yours&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;yourself&#39;</span><span class="p">,</span> <span class="s1">&#39;yourselves&#39;</span><span class="p">,</span> <span class="s1">&#39;he&#39;</span><span class="p">,</span> <span class="s1">&#39;him&#39;</span><span class="p">,</span> <span class="s1">&#39;his&#39;</span><span class="p">,</span> <span class="s1">&#39;himself&#39;</span><span class="p">,</span> <span class="s1">&#39;she&#39;</span><span class="p">,</span> <span class="s1">&#39;her&#39;</span><span class="p">,</span> <span class="s1">&#39;hers&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;herself&#39;</span><span class="p">,</span> <span class="s1">&#39;it&#39;</span><span class="p">,</span> <span class="s1">&#39;its&#39;</span><span class="p">,</span> <span class="s1">&#39;itself&#39;</span><span class="p">,</span> <span class="s1">&#39;they&#39;</span><span class="p">,</span> <span class="s1">&#39;them&#39;</span><span class="p">,</span> <span class="s1">&#39;their&#39;</span><span class="p">,</span> <span class="s1">&#39;theirs&#39;</span><span class="p">,</span> <span class="s1">&#39;themselves&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;what&#39;</span><span class="p">,</span> <span class="s1">&#39;which&#39;</span><span class="p">,</span> <span class="s1">&#39;who&#39;</span><span class="p">,</span> <span class="s1">&#39;whom&#39;</span><span class="p">,</span> <span class="s1">&#39;this&#39;</span><span class="p">,</span> <span class="s1">&#39;that&#39;</span><span class="p">,</span> <span class="s1">&#39;these&#39;</span><span class="p">,</span> <span class="s1">&#39;those&#39;</span><span class="p">,</span> <span class="s1">&#39;am&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;was&#39;</span><span class="p">,</span> <span class="s1">&#39;were&#39;</span><span class="p">,</span> <span class="s1">&#39;be&#39;</span><span class="p">,</span> <span class="s1">&#39;been&#39;</span><span class="p">,</span> <span class="s1">&#39;being&#39;</span><span class="p">,</span> <span class="s1">&#39;have&#39;</span><span class="p">,</span> <span class="s1">&#39;has&#39;</span><span class="p">,</span> <span class="s1">&#39;had&#39;</span><span class="p">,</span> <span class="s1">&#39;having&#39;</span><span class="p">,</span> <span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;does&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;did&#39;</span><span class="p">,</span> <span class="s1">&#39;doing&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;an&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;but&#39;</span><span class="p">,</span> <span class="s1">&#39;if&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="s1">&#39;as&#39;</span><span class="p">,</span> <span class="s1">&#39;until&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;while&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;by&#39;</span><span class="p">,</span> <span class="s1">&#39;for&#39;</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span><span class="p">,</span> <span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;against&#39;</span><span class="p">,</span> <span class="s1">&#39;between&#39;</span><span class="p">,</span> <span class="s1">&#39;into&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;through&#39;</span><span class="p">,</span> <span class="s1">&#39;during&#39;</span><span class="p">,</span> <span class="s1">&#39;before&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span><span class="p">,</span> <span class="s1">&#39;above&#39;</span><span class="p">,</span> <span class="s1">&#39;below&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;up&#39;</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;under&#39;</span><span class="p">,</span> <span class="s1">&#39;again&#39;</span><span class="p">,</span> <span class="s1">&#39;further&#39;</span><span class="p">,</span> <span class="s1">&#39;then&#39;</span><span class="p">,</span> <span class="s1">&#39;once&#39;</span><span class="p">,</span> <span class="s1">&#39;here&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;there&#39;</span><span class="p">,</span> <span class="s1">&#39;when&#39;</span><span class="p">,</span> <span class="s1">&#39;where&#39;</span><span class="p">,</span> <span class="s1">&#39;why&#39;</span><span class="p">,</span> <span class="s1">&#39;how&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;any&#39;</span><span class="p">,</span> <span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="s1">&#39;each&#39;</span><span class="p">,</span> <span class="s1">&#39;few&#39;</span><span class="p">,</span> <span class="s1">&#39;more&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;most&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="s1">&#39;some&#39;</span><span class="p">,</span> <span class="s1">&#39;such&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;nor&#39;</span><span class="p">,</span> <span class="s1">&#39;not&#39;</span><span class="p">,</span> <span class="s1">&#39;only&#39;</span><span class="p">,</span> <span class="s1">&#39;own&#39;</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="s1">&#39;so&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;than&#39;</span><span class="p">,</span> <span class="s1">&#39;too&#39;</span><span class="p">,</span> <span class="s1">&#39;very&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;will&#39;</span><span class="p">,</span> <span class="s1">&#39;just&#39;</span><span class="p">,</span> <span class="s1">&#39;don&#39;</span><span class="p">,</span> <span class="s1">&#39;should&#39;</span><span class="p">,</span> <span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="s1">&#39;ll&#39;</span><span class="p">,</span> <span class="s1">&#39;amp&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">split_into_words</span><span class="p">(</span><span class="n">any_chunk_of_text</span><span class="p">):</span>
+    <span class="n">lowercase_text</span> <span class="o">=</span> <span class="n">any_chunk_of_text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">split_words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;\W+&quot;</span><span class="p">,</span> <span class="n">lowercase_text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">split_words</span>
+
+<span class="k">def</span> <span class="nf">get_top_words</span><span class="p">(</span><span class="n">full_text</span><span class="p">,</span> <span class="n">number_of_words</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">all_the_words</span> <span class="o">=</span> <span class="n">split_into_words</span><span class="p">(</span><span class="n">full_text</span><span class="p">)</span>
+    <span class="n">meaningful_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">all_the_words</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+    <span class="n">meaningful_words_tally</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">meaningful_words</span><span class="p">)</span>
+    <span class="n">most_frequent_meaningful_words</span> <span class="o">=</span> <span class="n">meaningful_words_tally</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="n">number_of_words</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">most_frequent_meaningful_words</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s read in the file that we created and get the top words.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missy_lyrics</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;Missy-Elliott-Lyrics.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">get_top_words</span><span class="p">(</span><span class="n">missy_lyrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;ti&#39;, 33),
+ (&#39;rain&#39;, 32),
+ (&#39;stand&#39;, 29),
+ (&#39;ya&#39;, 23),
+ (&#39;like&#39;, 21),
+ (&#39;m&#39;, 20),
+ (&#39;window&#39;, 20),
+ (&#39;esrever&#39;, 16),
+ (&#39;dna&#39;, 16),
+ (&#39;pilf&#39;, 16),
+ (&#39;nwod&#39;, 16),
+ (&#39;gniht&#39;, 16),
+ (&#39;ym&#39;, 16),
+ (&#39;tup&#39;, 16),
+ (&#39;missy&#39;, 14),
+ (&#39;elliott&#39;, 13),
+ (&#39;make&#39;, 13),
+ (&#39;let&#39;, 12),
+ (&#39;get&#39;, 12),
+ (&#39;work&#39;, 11)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="what-patterns-do-you-notice-about-the-top-20-words-from-these-missy-elliott-songs">
+<h2>What patterns do you notice about the top 20 words from these Missy Elliott songs?<a class="headerlink" href="#what-patterns-do-you-notice-about-the-top-20-words-from-these-missy-elliott-songs" title="Permalink to this headline">¶</a></h2>
+<p>Feel free to open the text file in the file browser at the left and inspect the lyrics manually</p>
+</div>
+<div class="section" id="bonus-if-you-wanted-to-change-the-artist">
+<h2>Bonus: If You Wanted to Change the Artist…<a class="headerlink" href="#bonus-if-you-wanted-to-change-the-artist" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artist</span> <span class="o">=</span> <span class="s1">&#39;Bts&#39;</span>
+<span class="n">song_titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Dynamite&#39;</span><span class="p">,</span> <span class="s1">&#39;Euphoria&#39;</span><span class="p">,</span> <span class="s1">&#39;Fake Love&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">song</span> <span class="ow">in</span> <span class="n">song_titles</span><span class="p">:</span>
+    <span class="n">formatted_song</span> <span class="o">=</span> <span class="n">format_song</span><span class="p">(</span><span class="n">song</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://genius.com/</span><span class="si">{</span><span class="n">artist</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">formatted_song</span><span class="si">}</span><span class="s2">-lyrics&quot;</span><span class="p">)</span>
+    <span class="n">html_string</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">document</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_string</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+    <span class="n">lyrics</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Intro: Jungkook]
+&#39;Cause I, I, I&#39;m in the stars tonight
+So watch me bring the fire and set the night alight
+
+[Verse 1: Jungkook]
+Shoes on, get up in the morn&#39;
+Cup of milk, let&#39;s rock and roll
+King Kong, kick the drum
+Rolling on like a Rolling Stone
+Sing song when I&#39;m walkin&#39; home
+Jump up to the top, LeBron
+Ding-dong, call me on my phone
+Ice tea and a game of ping pong
+
+[Pre-Chorus: RM, j-hope]
+This is gettin&#39; heavy, can you hear the bass boom? I&#39;m ready (Woo-hoo)
+Life is sweet as honey, yeah, this beat cha-ching like money, huh
+Disco overload, I&#39;m into that, I&#39;m good to go
+I&#39;m diamond, you know I glow up
+Hey, so let&#39;s go
+
+[Chorus: Jungkook, Jimin]
+&#39;Cause I, I, I&#39;m in the stars tonight
+So watch me bring the fire and set the night alight (Hey)
+Shinin&#39; through the city with a little funk and soul
+So I&#39;ma light it up like dynamite, woah-oh-oh
+
+[Verse 2: V, RM]
+Bring a friend, join the crowd, whoever wanna come along
+Word up, talk the talk, just move like we off the wall
+Day or night, the sky&#39;s alight, so we dance to the break of dawn (Hey)
+Ladies and gentlemen, I got the medicine so you should keep ya eyes on the ball
+
+[Pre-Chorus: Suga, Jimin, RM]
+Huh, this is gettin&#39; heavy, can you hear the bass boom? I&#39;m ready (Woo-hoo)
+Life is sweet as honey, yeah, this beat cha-ching like money, huh
+Disco overload, I&#39;m into that, I&#39;m good to go
+I&#39;m diamond, you know I glow up
+Let&#39;s go
+
+[Chorus: Jungkook, V]
+&#39;Cause I, I, I&#39;m in the stars tonight
+So watch me bring the fire and set the night alight (Hey)
+Shinin&#39; through the city with a little funk and soul
+So I&#39;ma light it up like dynamite, woah-oh-oh
+
+[Post-Chorus: Jungkook, Jimin, Jin]
+Dyn-na-na-na, na-na-na-na-na, na-na-na, life is dynamite
+Dyn-na-na-na, na-na-na-na-na, na-na-na, life is dynamite
+Shinin&#39; through the city with a little funk and soul
+So I&#39;ma light it up like dynamite, woah-oh-oh
+
+[Bridge: Jungkook, j-hope, Jimin, V]
+Dyn-na-na-na, na-na, na-na, ayy
+Dyn-na-na-na, na-na, na-na, ayy
+Dyn-na-na-na, na-na, na-na, ayy
+Light it up like dynamite
+Dyn-na-na-na, na-na, na-na, ayy
+Dyn-na-na-na, na-na, na-na, ayy
+Dyn-na-na-na, na-na, na-na, ayy
+Light it up like dynamite
+
+[Chorus: Jimin, Jungkook, Jin]
+&#39;Cause I, I, I&#39;m in the stars tonight
+So watch me bring the fire and set the night alight
+Shinin&#39; through the city with a little funk and soul
+So I&#39;ma light it up like dynamite
+(This is ah) &#39;Cause I, I, I&#39;m in the stars tonight
+So watch me bring the fire and set the night alight (Alight, oh)
+Shinin&#39; through the city with a little funk and soul
+So I&#39;ma light (Light) it (It) up (Up) like (Like) dynamite (Dynamite), woah-oh-oh
+
+[Post-Chorus: Jungkook, Jimin, V]
+Dyn-na-na-na, na-na-na-na-na, na-na-na, life is dynamite (Life is dynamite)
+Dyn-na-na-na, na-na-na-na-na, na-na-na, life is dynamite (Oh)
+Shinin&#39; through the city with a little funk and soul
+So I&#39;ma light it up like dynamite, woah-oh-oh
+[방탄소년단의 Euphoria 가사]
+
+[Verse 1: Jungkook]
+너는 내 삶에 다시 뜬 햇빛
+어린 시절 내 꿈들의 재림
+모르겠어 이 감정이 뭔지
+혹시 여기도 꿈속인 건지
+꿈은 사막의 푸른 신기루
+내 안 깊은 곳의 a priori
+숨이 막힐 듯이 행복해져
+주변이 점점 더 투명해져
+
+[Pre-Chorus: Jungkook]
+저기 멀리서 바다가 들려
+꿈을 건너서 수풀 너머로
+선명해지는 그 곳으로 가
+Take my hands now
+You are the cause of my euphoria
+
+[Chorus: Jungkook]
+Euphoria
+Take my hands now
+You are the cause of my euphoria
+Oh yeah, yeah, yeah, yeah, yeah, yeah (Oh)
+Oh yeah, yeah, yeah, yeah, yeah, yeah (Euphoria)
+Oh yeah, yeah, yeah, yeah, yeah, yeah
+Close the door now
+When I&#39;m with you, I&#39;m in utopia
+
+[Verse 2: Jungkook]
+무지개처럼
+지워진 꿈을 찾아 헤맸을까
+운명 같은 흔한 말관 달라
+아픈 너의 눈빛이 나와 같은 곳을 보는 걸
+Won&#39;t you please stay in dreams, yeah?
+
+[Pre-Chorus: Jungkook]
+저기 멀리서 바다가 들려
+꿈을 건너서 수풀 너머로
+선명해지는 그곳으로 가
+Take my hands now
+You are the cause of my euphoria
+
+[Chorus: Jungkook]
+Oh, yeah, yeah, yeah, yeah, yeah, yeah
+Euphoria
+Take my hands now
+You are the cause of my euphoria
+
+[Bridge: Jungkook]
+모래 바닥이 갈라진대도
+그 누가 이 세겔 흔들어도
+잡은 손 절대 놓지 말아 줘
+제발 꿈에서 깨어나지 마
+
+[Pre-Chorus: Jungkook]
+저기 멀리서 바다가 들려
+꿈을 건너서 수풀 너머로
+(제발 꿈에서 깨어나지 마)
+선명해지는 그곳으로 가
+Take my hands now
+You are the cause of my euphoria
+
+[Chorus: Jungkook]
+Yeah, yeah, yeah, yeah
+Euphoria (Euphoria, oh)
+Take my hands now
+You are the cause of my euphoria
+Oh yeah, yeah, yeah, yeah, yeah, yeah (Yeah, yeah, yeah, yeah)
+Oh yeah, yeah, yeah, yeah, yeah, yeah (Oh, euphoria)
+Oh yeah, yeah, yeah, yeah, yeah, yeah
+Close the door now
+When I&#39;m with you, I&#39;m in utopia
+[방탄소년단의 FAKE LOVE 가사]
+
+[Intro: V, Jungkook]
+널 위해서라면 난
+슬퍼도 기쁜 척 할 수가 있었어
+널 위해서라면 난
+아파도 강한 척 할 수가 있었어
+사랑이 사랑만으로 완벽하길
+내 모든 약점들은 다 숨겨지길
+이뤄지지 않는 꿈속에서
+피울 수 없는 꽃을 키웠어
+
+[Hook: Jimin, Jin]
+I&#39;m so sick of this fake love, fake love, fake love
+I&#39;m so sorry but it&#39;s fake love, fake love, fake love
+
+[Verse 1: RM, RM &amp; Jungkook, J-Hope]
+I wanna be a good man just for you
+세상을 줬네 just for you
+전부 바꿨어 just for you
+Now I don&#39;t know me, who are you?
+우리만의 숲 너는 없었어
+내가 왔던 route 잊어버렸어
+나도 내가 누구였는지도 잘 모르게 됐어
+거울에다 지껄여봐 너는 대체 누구니
+
+[Pre-Chorus: Jimin, Jin]
+널 위해서라면 난
+슬퍼도 기쁜 척 할 수가 있었어
+널 위해서라면 난
+아파도 강한 척 할 수가 있었어
+사랑이 사랑만으로 완벽하길
+내 모든 약점들은 다 숨겨지길
+이뤄지지 않는 꿈속에서
+피울 수 없는 꽃을 키웠어
+
+[Chorus: Jungkook, V]
+Love you so bad, love you so bad
+널 위해 예쁜 거짓을 빚어내
+Love it&#39;s so mad, love it&#39;s so mad
+날 지워 너의 인형이 되려 해
+Love you so bad, love you so bad
+널 위해 예쁜 거짓을 빚어내
+Love it&#39;s so mad, love it&#39;s so mad
+날 지워 너의 인형이 되려 해
+
+[Hook: Jimin, Jin]
+I&#39;m so sick of this fake love, fake love, fake love
+I&#39;m so sorry but it&#39;s fake love, fake love, fake love
+
+[Verse 2: RM, Suga]
+Why you sad? I don&#39;t know 난 몰라
+웃어봐 사랑해 말해봐
+나를 봐 나조차도 버린 나
+너조차 이해할 수 없는 나
+낯설다 하네
+니가 좋아하던 나로 변한 내가
+아니라 하네
+예전에 니가 잘 알고 있던 내가
+아니긴 뭐가 아냐 난 눈 멀었어
+사랑은 뭐가 사랑 it&#39;s all fake love
+
+[Bridge: Jimin, Jin]
+(Woo) I don&#39;t know, I don&#39;t know, I don&#39;t know why
+(Woo) 나도 날 나도 날 모르겠어
+(Woo) I just know, I just know, I just know why
+&#39;Cause it&#39;s all fake love, fake love, fake love
+
+[Chorus: Jungkook, Jimin]
+Love you so bad, love you so bad
+널 위해 예쁜 거짓을 빚어내
+Love it&#39;s so mad, love it&#39;s so mad
+날 지워 너의 인형이 되려 해
+Love you so bad, love you so bad
+널 위해 예쁜 거짓을 빚어내
+Love it&#39;s so mad, love it&#39;s so mad
+날 지워 너의 인형이 되려 해
+
+[Hook: Jimin, Jin]
+I&#39;m so sick of this fake love, fake love, fake love
+I&#39;m so sorry but it&#39;s fake love, fake love, fake love
+
+[Outro: Jimin/V, Jungkook/Jin]
+널 위해서라면 난
+슬퍼도 기쁜 척 할 수가 있었어
+널 위해서라면 난
+아파도 강한 척 할 수가 있었어
+사랑이 사랑만으로 완벽하길
+내 모든 약점들은 다 숨겨지길
+이뤄지지 않는 꿈속에서
+피울 수 없는 꽃을 키웠어
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="group-discussion">
+<h2>Group Discussion<a class="headerlink" href="#group-discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Do you think scholars should use web scraping in their research? Why or why not?</p></li>
+<li><p>How would you feel if you found out that one of your social media posts had been included in an academic article without your knowledge?</p></li>
+<li><p>What are some strategies that you think scholars might use to do web scraping in an ethical way?</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04-Data-Collection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://melaniewalsh.org/">Melanie Walsh</a><br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <div>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a>. The code is licensed under a <a href="https://choosealicense.com/licenses/gpl-3.0/#">GNU General Public License v3.0</a>.
+</div>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-86905362-3', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>
