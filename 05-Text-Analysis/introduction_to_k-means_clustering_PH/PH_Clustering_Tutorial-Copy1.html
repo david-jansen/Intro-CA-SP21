@@ -1,0 +1,1500 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unsupervised Learning and K-Means Clustering with Python &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/introduction_to_k-means_clustering_PH/PH_Clustering_Tutorial-Copy1.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/introduction_to_k-means_clustering_PH/PH_Clustering_Tutorial-Copy1.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Unsupervised Learning and K-Means Clustering with Python" />
+<meta property="og:description" content="Unsupervised Learning and K-Means Clustering with Python  A tutorial by Thomas Jurczyk, CERES (Bochum)  This notebook includes the code used in my clustering tu" />
+<meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/favicon.ico" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Cultural Analytics & Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  How To
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../How-To-Interact-With-This-Book.html">
+   Interact With This Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Course
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../course-schedule-2021.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../syllabus.html">
+   Course Syllabus
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Book
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01-Command-Line/01-The-Command-Line.html">
+   1. The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../02-Python/00-Python.html">
+   2. Python Basics
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/01-Installation.html">
+     Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/02-How-to-Use-Jupyter-Notebooks.html">
+     How to Use Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/03-Anatomy-Python-Script.html">
+     Anatomy of a Python Script
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/04-Variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/05-Data-Types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/06-String-Methods.html">
+     String Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/07-Files-Character-Encoding.html">
+     Files and Character Encoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/08-Comparisons-Conditionals.html">
+     Comparisons &amp; Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/09-Lists-Loops-Part1.html">
+     Lists &amp; Loops — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/10-Lists-Loops-Part2.html">
+     Lists &amp; Loops — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/11-Dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/12-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/13-Common-Python-Errors.html">
+     Common Python Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02-Python/14-What-Were-Not-Covering.html">
+     What We’re Not Covering
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../03-Data-Analysis/00-Data-Analysis.html">
+   3. Data Analysis (Pandas)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03-Data-Analysis/01-Pandas-Basics-Part1.html">
+     Pandas Basics — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03-Data-Analysis/02-Pandas-Basics-Part2.html">
+     Pandas Basics — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03-Data-Analysis/03-Pandas-Basics-Part3.html">
+     Pandas Basics — Part 3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03-Data-Analysis/04-Pandas-Merge-Datasets.html">
+     Pandas — Merge Datasets
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../04-Data-Collection/00-Data-Collection.html">
+   4. Data Collection (Web Scraping, APIs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04-Data-Collection/01-User-Ethics-Legal-Concerns.html">
+     User Ethics &amp; Legal Concerns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04-Data-Collection/02-Web-Scraping-Part1.html">
+     Web Scraping — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04-Data-Collection/03-Web-Scraping-Part2.html">
+     Web Scraping — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04-Data-Collection/04-Git-GitHub.html">
+     Git and GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04-Data-Collection/05-APIs.html">
+     Application Programming Interfaces (APIs)
+    </a>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../../04-Data-Collection/06-Song-Genius-Data-Collection.html">
+     Song Genius Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../04-Data-Collection/07-Genius-API.html">
+       Song Genius API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../04-Data-Collection/08-LyricsGenius.html">
+       Song Lyrics Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../04-Data-Collection/09-Song-Lyrics-Analysis.html">
+       Song Lyrics Analysis
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../../04-Data-Collection/10-Twitter-Data-Collection-Home.html">
+     Twitter Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../04-Data-Collection/11-Twitter-API-Setup.html">
+       Twitter API Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../04-Data-Collection/12-Twitter-Data-Collection.html">
+       Twitter Data Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../04-Data-Collection/13-Twitter-Data-Analysis.html">
+       Twitter Data Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../04-Data-Collection/14-Twitter-Data-Sharing.html">
+       Twitter Data Sharing
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04-Data-Collection/15-Reddit-Data-Collection-With-PSAW.html">
+     Reddit Data Collection
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../00-Text-Analysis.html">
+   5. Text Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../01-TF-IDF.html">
+     TF-IDF
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../02-TF-IDF-HathiTrust.html">
+       TF-IDF with HathiTrust Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../03-TF-IDF-Scikit-Learn.html">
+       TF-IDF with Scikit-Learn
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Topic-Modeling.html">
+     Topic Modeling
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Topic-Modeling-Overview.html">
+       Topic Modeling — Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../06-Topic-Modeling-Set-Up.html">
+       Topic Modeling — Set Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../07-Topic-Modeling-Text-Files.html">
+       Topic Modeling — Text Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../08-Topic-Modeling-CSV.html">
+       Topic Modeling — CSV Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../09-Topic-Modeling-Time-Series.html">
+       Topic Modeling — Time Series
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-Named-Entity-Recognition.html">
+     Named Entity Recognition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-POS-Keywords.html">
+     Part-of-Speech Tagging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-POS-Keywords.html#keyword-extraction">
+     Keyword Extraction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../06-Network-Analysis/00-Network-Analysis-Home.html">
+   6. Network Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../06-Network-Analysis/01-Network-Analysis.html">
+     Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../06-Network-Analysis/02-Making-Network-Viz-with-Bokeh.html">
+     Make an Interactive Network Visualization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../07-Mapping/01-Mapping-Home.html">
+   7. Mapping
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../07-Mapping/02-Mapping.html">
+     Mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../07-Mapping/02-Mapping.html#geocoding-with-geopy">
+     Geocoding with GeoPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../07-Mapping/02-Mapping.html#making-interactive-maps">
+     Making Interactive Maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../07-Mapping/03-Custom-Maps.html">
+     Custom Map Backgrounds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../07-Mapping/04-Publish-Your-Map.html">
+     Publish Your Map on the Web
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Datasets
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../00-Datasets/Datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Extra Materials
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../02-Python/EXTRA-Jupyter-Tips-Tricks.html">
+   Jupyter Tips and Tricks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../02-Python/EXTRA-Randomize-Students.html">
+   Make Random Student Groups
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/05-Text-Analysis/introduction_to_k-means_clustering_PH/PH_Clustering_Tutorial-Copy1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F05-Text-Analysis/introduction_to_k-means_clustering_PH/PH_Clustering_Tutorial-Copy1.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/05-Text-Analysis/introduction_to_k-means_clustering_PH/PH_Clustering_Tutorial-Copy1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Unsupervised Learning and K-Means Clustering with Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#if-you-have-any-questions-or-comments-please-send-them-to-my-email-address-br-br">
+     If you have any questions or comments, please send them to my email address.
+     <br/>
+     <br/>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-dataset-exploratory-data-analysis">
+     1. Loading dataset &amp; exploratory data analysis
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initializing-k-means-scaler">
+     2. Initializing k-means &amp; scaler
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applying-k-means-clustering-on-the-dataset">
+     3. Applying k-means clustering on the dataset
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-hot-encode-categorical-variables">
+   One Hot Encode Categorical Variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-the-cluster-with-seaborn">
+     4. Plotting the cluster with seaborn
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applying-the-elbow-method-hyperparameter-tuning">
+     5. Applying the “elbow method” (hyperparameter tuning)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-the-final-clusters">
+     6. Plotting the final clusters
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="unsupervised-learning-and-k-means-clustering-with-python">
+<h1>Unsupervised Learning and K-Means Clustering with Python<a class="headerlink" href="#unsupervised-learning-and-k-means-clustering-with-python" title="Permalink to this headline">¶</a></h1>
+<p><strong>A tutorial by Thomas Jurczyk, CERES (Bochum)</strong></p>
+<p>This notebook includes the code used in my clustering tutorial for the <a class="reference external" href="https://programminghistorian.org/">Programming Historian</a>. Please note that you need to save the dataset <code class="docutils literal notranslate"><span class="pre">DNP_authors.csv</span></code> in the same folder as this Jupyter notebook. The dataset is available in my <a class="reference external" href="https://github.com/thomjur/introduction_to_k-means_clustering_PH">GitHub repository</a>.</p>
+<div class="section" id="if-you-have-any-questions-or-comments-please-send-them-to-my-email-address-br-br">
+<h2>If you have any questions or comments, please send them to <a class="reference external" href="mailto:thomas&#46;jurczyk-q88&#37;&#52;&#48;rub&#46;de">my email address</a>.
+<br>
+<br><a class="headerlink" href="#if-you-have-any-questions-or-comments-please-send-them-to-my-email-address-br-br" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="loading-dataset-exploratory-data-analysis">
+<h2>1. Loading dataset &amp; exploratory data analysis<a class="headerlink" href="#loading-dataset-exploratory-data-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># load the dataset that has been stored as .csv files in the same folder</span>
+<span class="c1"># using the author names as index</span>
+<span class="n">df_authors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;books.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># display dataset structure with the pandas .info() method</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_authors</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+<span class="c1"># show first 5 rows</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_authors</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 301 entries, 0 to 300
+Data columns (total 4 columns):
+ #   Column            Non-Null Count  Dtype  
+---  ------            --------------  -----  
+ 0   book_id           301 non-null    int64  
+ 1   genre             301 non-null    object 
+ 2   publication_year  301 non-null    int64  
+ 3   price             301 non-null    float64
+dtypes: float64(1), int64(2), object(1)
+memory usage: 11.8+ KB
+None
+   book_id    genre  publication_year  price
+0        0  Romance              2012  31.19
+1        1   Horror              2009  13.21
+2        2  Fantasy              2012  26.99
+3        3   Horror              2008  26.95
+4        4  Fantasy              2004  26.10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_authors</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book_id</th>
+      <th>publication_year</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>301.000000</td>
+      <td>301.000000</td>
+      <td>301.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>150.000000</td>
+      <td>2010.415282</td>
+      <td>31.153987</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>87.035433</td>
+      <td>4.670150</td>
+      <td>170.071332</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>2003.000000</td>
+      <td>8.750000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>75.000000</td>
+      <td>2006.000000</td>
+      <td>16.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>150.000000</td>
+      <td>2011.000000</td>
+      <td>22.040000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>225.000000</td>
+      <td>2015.000000</td>
+      <td>26.660000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>300.000000</td>
+      <td>2018.000000</td>
+      <td>2970.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="initializing-k-means-scaler">
+<h2>2. Initializing k-means &amp; scaler<a class="headerlink" href="#initializing-k-means-scaler" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering part</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span> <span class="k">as</span> <span class="n">SS</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="c1"># plotting libraries</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initializing k-means and scaler</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">SS</span><span class="p">()</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="applying-k-means-clustering-on-the-dataset">
+<h2>3. Applying k-means clustering on the dataset<a class="headerlink" href="#applying-k-means-clustering-on-the-dataset" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="one-hot-encode-categorical-variables">
+<h1>One Hot Encode Categorical Variables<a class="headerlink" href="#one-hot-encode-categorical-variables" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_authors</span><span class="p">[</span><span class="s1">&#39;genre&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_authors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_authors</span><span class="p">,</span> <span class="n">dummies</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#heart = pd.get_dummies(heart, columns = [&#39;sex&#39;, &#39;chest_pain&#39;, &#39;blood_sugar&#39;, &#39;restecg&#39;, &#39;exang&#39;, &#39;slope&#39;, &#39;thal&#39;], drop_first=True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_authors_cp</span><span class="p">[</span><span class="n">df_authors_cp</span><span class="p">[</span><span class="s1">&#39;publication_year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book_id</th>
+      <th>genre</th>
+      <th>publication_year</th>
+      <th>price</th>
+      <th>Fantasy</th>
+      <th>Horror</th>
+      <th>Mystery Fiction</th>
+      <th>Romance</th>
+      <th>Young Adult</th>
+      <th>wc_scaled</th>
+      <th>articles_scaled</th>
+      <th>clusters</th>
+      <th>clusters_2</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_authors_cp</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      31.19
+1      13.21
+2      26.99
+3      26.95
+4      26.10
+       ...  
+296    25.08
+297    22.15
+298    16.63
+299    19.69
+300    24.06
+Name: price, Length: 301, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_authors_cp</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book_id</th>
+      <th>genre</th>
+      <th>publication_year</th>
+      <th>price</th>
+      <th>Fantasy</th>
+      <th>Horror</th>
+      <th>Mystery Fiction</th>
+      <th>Romance</th>
+      <th>Young Adult</th>
+      <th>wc_scaled</th>
+      <th>articles_scaled</th>
+      <th>clusters</th>
+      <th>clusters_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>301.000000</td>
+      <td>301</td>
+      <td>301.000000</td>
+      <td>301.000000</td>
+      <td>301.000000</td>
+      <td>301.000000</td>
+      <td>301.000000</td>
+      <td>301.000000</td>
+      <td>301.000000</td>
+      <td>3.010000e+02</td>
+      <td>3.010000e+02</td>
+      <td>301.000000</td>
+      <td>301.000000</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>NaN</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>NaN</td>
+      <td>Mystery Fiction</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>NaN</td>
+      <td>72</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>150.000000</td>
+      <td>NaN</td>
+      <td>2010.415282</td>
+      <td>31.153987</td>
+      <td>0.219269</td>
+      <td>0.179402</td>
+      <td>0.239203</td>
+      <td>0.176080</td>
+      <td>0.186047</td>
+      <td>2.025401e-14</td>
+      <td>-1.770455e-17</td>
+      <td>0.514950</td>
+      <td>1.411960</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>87.035433</td>
+      <td>NaN</td>
+      <td>4.670150</td>
+      <td>170.071332</td>
+      <td>0.414440</td>
+      <td>0.384328</td>
+      <td>0.427307</td>
+      <td>0.381522</td>
+      <td>0.389792</td>
+      <td>1.001665e+00</td>
+      <td>1.001665e+00</td>
+      <td>0.507224</td>
+      <td>1.273992</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>2003.000000</td>
+      <td>8.750000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-1.590448e+00</td>
+      <td>-1.319523e-01</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>75.000000</td>
+      <td>NaN</td>
+      <td>2006.000000</td>
+      <td>16.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-9.470007e-01</td>
+      <td>-8.925209e-02</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>150.000000</td>
+      <td>NaN</td>
+      <td>2011.000000</td>
+      <td>22.040000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.254117e-01</td>
+      <td>-5.367844e-02</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>225.000000</td>
+      <td>NaN</td>
+      <td>2015.000000</td>
+      <td>26.660000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>9.833416e-01</td>
+      <td>-2.646813e-02</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>300.000000</td>
+      <td>NaN</td>
+      <td>2018.000000</td>
+      <td>2970.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.626789e+00</td>
+      <td>1.730885e+01</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scale the &quot;word_count&quot; and &quot;articles&quot; columns of df_authors</span>
+<span class="n">df_authors_cp</span> <span class="o">=</span> <span class="n">df_authors</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">scaled_columns</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_authors_cp</span><span class="p">[[</span><span class="s2">&quot;price&quot;</span><span class="p">]])</span>
+<span class="n">df_authors_cp</span><span class="p">[</span><span class="s2">&quot;wc_scaled&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaled_columns</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#df_authors_cp[&quot;articles_scaled&quot;] = scaled_columns[:,1]</span>
+<span class="n">df_authors_cp</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book_id</th>
+      <th>genre</th>
+      <th>publication_year</th>
+      <th>price</th>
+      <th>Fantasy</th>
+      <th>Horror</th>
+      <th>Mystery Fiction</th>
+      <th>Romance</th>
+      <th>Young Adult</th>
+      <th>wc_scaled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Romance</td>
+      <td>2012</td>
+      <td>31.19</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.000212</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Horror</td>
+      <td>2009</td>
+      <td>13.21</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.105684</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Fantasy</td>
+      <td>2012</td>
+      <td>26.99</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.024525</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Horror</td>
+      <td>2008</td>
+      <td>26.95</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.024760</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Fantasy</td>
+      <td>2004</td>
+      <td>26.10</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.029766</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering df_authors_cp</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_authors_cp</span><span class="p">[[</span> <span class="s2">&quot;price&quot;</span><span class="p">]])</span>
+<span class="n">df_authors_cp</span><span class="p">[</span><span class="s2">&quot;clusters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-the-cluster-with-seaborn">
+<h2>4. Plotting the cluster with seaborn<a class="headerlink" href="#plotting-the-cluster-with-seaborn" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;wc_scaled&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;articles_scaled&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;clusters&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_authors_cp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">55</span><span class="o">-</span><span class="n">b455630c2d19</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;wc_scaled&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;clusters&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_authors_cp</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/seaborn/relational.py</span> in <span class="ni">scatterplot</span><span class="nt">(x, y, hue, style, size, data, palette, hue_order, hue_norm, sizes, size_order, size_norm, markers, style_order, x_bins, y_bins, units, estimator, ci, n_boot, alpha, x_jitter, y_jitter, legend, ax, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1395</span>         <span class="n">x_bins</span><span class="o">=</span><span class="n">x_bins</span><span class="p">,</span> <span class="n">y_bins</span><span class="o">=</span><span class="n">y_bins</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1396</span>         <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="n">ci</span><span class="p">,</span> <span class="n">n_boot</span><span class="o">=</span><span class="n">n_boot</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1397</span>         <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">x_jitter</span><span class="o">=</span><span class="n">x_jitter</span><span class="p">,</span> <span class="n">y_jitter</span><span class="o">=</span><span class="n">y_jitter</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="n">legend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1398</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1399</span> 
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/seaborn/relational.py</span> in <span class="ni">__init__</span><span class="nt">(self, x, y, hue, size, style, data, palette, hue_order, hue_norm, sizes, size_order, size_norm, dashes, markers, style_order, x_bins, y_bins, units, estimator, ci, n_boot, alpha, x_jitter, y_jitter, legend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">884</span> 
+<span class="g g-Whitespace">    </span><span class="mi">885</span>         <span class="n">plot_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">establish_variables</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">886</span>             <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">hue</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">data</span>
+<span class="g g-Whitespace">    </span><span class="mi">887</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">888</span> 
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/seaborn/relational.py</span> in <span class="ni">establish_variables</span><span class="nt">(self, x, y, hue, size, style, units, data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span>             <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Either both or neither of `x` and `y` must be specified &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>                    <span class="s2">&quot;(but try passing to `data`, which is more flexible).&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">161</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span> 
+<span class="g g-Whitespace">    </span><span class="mi">163</span>         <span class="c1"># ---- Post-processing</span>
+
+<span class="ne">ValueError</span>: Either both or neither of `x` and `y` must be specified (but try passing to `data`, which is more flexible).
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_authors_cp</span><span class="p">[</span><span class="n">df_authors_cp</span><span class="p">[</span><span class="s2">&quot;clusters&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book_id</th>
+      <th>genre</th>
+      <th>publication_year</th>
+      <th>price</th>
+      <th>Fantasy</th>
+      <th>Horror</th>
+      <th>Mystery Fiction</th>
+      <th>Romance</th>
+      <th>Young Adult</th>
+      <th>wc_scaled</th>
+      <th>articles_scaled</th>
+      <th>clusters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>185</th>
+      <td>185</td>
+      <td>Fantasy</td>
+      <td>2013</td>
+      <td>2970.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.554377</td>
+      <td>17.308855</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="applying-the-elbow-method-hyperparameter-tuning">
+<h2>5. Applying the “elbow method” (hyperparameter tuning)<a class="headerlink" href="#applying-the-elbow-method-hyperparameter-tuning" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># elbow method</span>
+<span class="c1"># preparing data for plotting</span>
+<span class="n">cluster_range</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">inertia_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">cluster_range</span><span class="p">:</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_authors_cp</span><span class="p">[[</span><span class="s2">&quot;wc_scaled&quot;</span><span class="p">,</span> <span class="s2">&quot;articles_scaled&quot;</span><span class="p">]])</span>
+    <span class="n">inertia_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+
+<span class="c1"># plotting</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">inertia_list</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">cluster_range</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Clusters&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Inertia&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7f8b3a7e38d0&gt;,
+ &lt;matplotlib.axis.XTick at 0x7f8b3a7e3890&gt;,
+ &lt;matplotlib.axis.XTick at 0x7f8b3a7e3450&gt;,
+ &lt;matplotlib.axis.XTick at 0x7f8b3a85ff50&gt;,
+ &lt;matplotlib.axis.XTick at 0x7f8b3a873b90&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/PH_Clustering_Tutorial-Copy1_22_1.png" src="../../_images/PH_Clustering_Tutorial-Copy1_22_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># k-means with 4 clusters</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_authors_cp</span><span class="p">[[</span><span class="s2">&quot;wc_scaled&quot;</span><span class="p">,</span> <span class="s2">&quot;articles_scaled&quot;</span><span class="p">]])</span>
+
+<span class="n">df_authors_cp</span><span class="p">[</span><span class="s2">&quot;clusters_2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-the-final-clusters">
+<h2>6. Plotting the final clusters<a class="headerlink" href="#plotting-the-final-clusters" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;wc_scaled&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;articles_scaled&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;clusters_2&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_authors_cp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;results_2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/PH_Clustering_Tutorial-Copy1_25_0.png" src="../../_images/PH_Clustering_Tutorial-Copy1_25_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05-Text-Analysis/introduction_to_k-means_clustering_PH"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://melaniewalsh.org/">Melanie Walsh</a><br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <div>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a>. The code is licensed under a <a href="https://choosealicense.com/licenses/gpl-3.0/#">GNU General Public License v3.0</a>.
+</div>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-86905362-3', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

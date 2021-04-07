@@ -54,7 +54,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/K-Means-Scikit-Learn.html" />
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/K-Means-Scikit-Learn-Mango-Street.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -64,7 +64,7 @@
 
 
 <!-- Opengraph tags -->
-<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/K-Means-Scikit-Learn.html" />
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/K-Means-Scikit-Learn-Mango-Street.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="K-Means Clustering with Scikit-Learn" />
 <meta property="og:description" content="K-Means Clustering with Scikit-Learn  In the previous lesson, we learned about a text analysis method called term frequency–inverse document frequency, often ab" />
@@ -535,7 +535,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/05-Text-Analysis/K-Means-Scikit-Learn.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/05-Text-Analysis/K-Means-Scikit-Learn-Mango-Street.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -555,7 +555,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F05-Text-Analysis/K-Means-Scikit-Learn.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F05-Text-Analysis/K-Means-Scikit-Learn-Mango-Street.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -576,7 +576,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/05-Text-Analysis/K-Means-Scikit-Learn.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/05-Text-Analysis/K-Means-Scikit-Learn-Mango-Street.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -762,7 +762,7 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
 <p>Below we’re setting the directory filepath that contains all the text files that we want to analyze.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">directory_path</span> <span class="o">=</span> <span class="s2">&quot;../texts/literature/House-on-Mango-Street/&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">directory_path</span> <span class="o">=</span> <span class="s2">&quot;../texts/history/US_Inaugural_Addresses/&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -782,50 +782,64 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;../texts/literature/House-on-Mango-Street/23-Born-Bad.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/25-Geraldo-No-Last-Name.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/08-Gil’s-Furniture-Bought-&amp;-Sold.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/12-Those-Who-Don’t.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/42-Alicia-&amp;-I-Talking-on-Edna’s-Steps.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/30-No-Speak-English.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/34-Bums-in-the-Attic.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/16-And-Some-More.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/39-Red-Clowns.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/15-Darius-&amp;-the-Clouds.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/40-Linoleum-Roses.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/13-There-Was-an-Old-Woman-She-Had-So-Many-Children-She-Didn’t-Know-What-to-Do.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/20-Hips.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/18-A-Rice-Sandwich.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/21-The-First-Job.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/29-Four-Skinny-Trees.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/36-A-Smart-Cookie.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/19-Chanclas.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/11-Marin.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/01-The-House-on-Mango-Street.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/32-Sally.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/26-Edna’s-Ruthie.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/31-Rafaela-Who-Drinks-Coconut-&amp;-Papaya-Juice-on-Tuesdays.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/27-The-Earl-of-Tennessee.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/28-Sire.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/33-Minerva-Writes-Poems.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/06-Our-Good-Day.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/17-The-Family-of-Little-Feet.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/35-Beautiful-&amp;-Cruel.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/37-What-Sally-Said.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/41-The-Three-Sisters.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/04-My-Name.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/03-Boys-&amp;-Girls.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/14-Alicia-Who-Sees-Mice.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/07-Laughter.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/02-Hairs.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/38-The-Monkey-Garden.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/22-Papa-Who-Wakes-Up-Tired-in-the-Dark.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/43-A-House-of-My-Own.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/05-Cathy-Queen-of-Cats.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/44-Mango-Says-Goodbye-Sometimes.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/10-Louie,-His-Cousin-&amp;-His-Other-Cousin.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/24-Elenita,-Cards,-Palm,-Water.txt&#39;,
- &#39;../texts/literature/House-on-Mango-Street/09-Meme-Ortiz.txt&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;../texts/history/US_Inaugural_Addresses/13_van_buren_1837.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/47_nixon_1973.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/50_reagan_1985.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/53_clinton_1997.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/17_pierce_1853.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/14_harrison_1841.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/56_obama_2009.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/25_cleveland_1885.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/03_adams_john_1797.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/12_jackson_1833.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/11_jackson_1829.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/36_hoover_1929.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/45_johnson_1965.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/51_bush_george_h_w_1989.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/21_grant_1869.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/41_truman_1949.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/33_wilson_1917.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/49_reagan_1981.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/30_roosevelt_theodore_1905.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/07_madison_1813.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/09_monroe_1821.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/48_carter_1977.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/32_wilson_1913.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/19_lincoln_1861.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/01_washington_1789.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/29_mckinley_1901.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/04_jefferson_1801.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/34_harding_1921.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/52_clinton_1993.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/35_coolidge_1925.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/39_roosevelt_franklin_1941.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/28_mckinley_1897.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/24_garfield_1881.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/22_grant_1873.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/15_polk_1845.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/54_bush_george_w_2001.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/02_washington_1793.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/38_roosevelt_franklin_1937.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/37_roosevelt_franklin_1933.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/18_buchanan_1857.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/16_taylor_1849.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/05_jefferson_1805.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/26_harrison_1889.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/44_kennedy_1961.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/23_hayes_1877.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/20_lincoln_1865.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/57_obama_2013.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/10_adams_john_quincy_1825.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/55_bush_george_w_2005.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/27_cleveland_1893.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/46_nixon_1969.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/42_eisenhower_1953.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/40_roosevelt_franklin_1945.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/43_eisenhower_1957.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/08_monroe_1817.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/06_madison_1809.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/58_trump_2017.txt&#39;,
+ &#39;../texts/history/US_Inaugural_Addresses/31_taft_1909.txt&#39;]
 </pre></div>
 </div>
 </div>
@@ -844,50 +858,64 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;23-Born-Bad&#39;,
- &#39;25-Geraldo-No-Last-Name&#39;,
- &#39;08-Gil’s-Furniture-Bought-&amp;-Sold&#39;,
- &#39;12-Those-Who-Don’t&#39;,
- &#39;42-Alicia-&amp;-I-Talking-on-Edna’s-Steps&#39;,
- &#39;30-No-Speak-English&#39;,
- &#39;34-Bums-in-the-Attic&#39;,
- &#39;16-And-Some-More&#39;,
- &#39;39-Red-Clowns&#39;,
- &#39;15-Darius-&amp;-the-Clouds&#39;,
- &#39;40-Linoleum-Roses&#39;,
- &#39;13-There-Was-an-Old-Woman-She-Had-So-Many-Children-She-Didn’t-Know-What-to-Do&#39;,
- &#39;20-Hips&#39;,
- &#39;18-A-Rice-Sandwich&#39;,
- &#39;21-The-First-Job&#39;,
- &#39;29-Four-Skinny-Trees&#39;,
- &#39;36-A-Smart-Cookie&#39;,
- &#39;19-Chanclas&#39;,
- &#39;11-Marin&#39;,
- &#39;01-The-House-on-Mango-Street&#39;,
- &#39;32-Sally&#39;,
- &#39;26-Edna’s-Ruthie&#39;,
- &#39;31-Rafaela-Who-Drinks-Coconut-&amp;-Papaya-Juice-on-Tuesdays&#39;,
- &#39;27-The-Earl-of-Tennessee&#39;,
- &#39;28-Sire&#39;,
- &#39;33-Minerva-Writes-Poems&#39;,
- &#39;06-Our-Good-Day&#39;,
- &#39;17-The-Family-of-Little-Feet&#39;,
- &#39;35-Beautiful-&amp;-Cruel&#39;,
- &#39;37-What-Sally-Said&#39;,
- &#39;41-The-Three-Sisters&#39;,
- &#39;04-My-Name&#39;,
- &#39;03-Boys-&amp;-Girls&#39;,
- &#39;14-Alicia-Who-Sees-Mice&#39;,
- &#39;07-Laughter&#39;,
- &#39;02-Hairs&#39;,
- &#39;38-The-Monkey-Garden&#39;,
- &#39;22-Papa-Who-Wakes-Up-Tired-in-the-Dark&#39;,
- &#39;43-A-House-of-My-Own&#39;,
- &#39;05-Cathy-Queen-of-Cats&#39;,
- &#39;44-Mango-Says-Goodbye-Sometimes&#39;,
- &#39;10-Louie,-His-Cousin-&amp;-His-Other-Cousin&#39;,
- &#39;24-Elenita,-Cards,-Palm,-Water&#39;,
- &#39;09-Meme-Ortiz&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;13_van_buren_1837&#39;,
+ &#39;47_nixon_1973&#39;,
+ &#39;50_reagan_1985&#39;,
+ &#39;53_clinton_1997&#39;,
+ &#39;17_pierce_1853&#39;,
+ &#39;14_harrison_1841&#39;,
+ &#39;56_obama_2009&#39;,
+ &#39;25_cleveland_1885&#39;,
+ &#39;03_adams_john_1797&#39;,
+ &#39;12_jackson_1833&#39;,
+ &#39;11_jackson_1829&#39;,
+ &#39;36_hoover_1929&#39;,
+ &#39;45_johnson_1965&#39;,
+ &#39;51_bush_george_h_w_1989&#39;,
+ &#39;21_grant_1869&#39;,
+ &#39;41_truman_1949&#39;,
+ &#39;33_wilson_1917&#39;,
+ &#39;49_reagan_1981&#39;,
+ &#39;30_roosevelt_theodore_1905&#39;,
+ &#39;07_madison_1813&#39;,
+ &#39;09_monroe_1821&#39;,
+ &#39;48_carter_1977&#39;,
+ &#39;32_wilson_1913&#39;,
+ &#39;19_lincoln_1861&#39;,
+ &#39;01_washington_1789&#39;,
+ &#39;29_mckinley_1901&#39;,
+ &#39;04_jefferson_1801&#39;,
+ &#39;34_harding_1921&#39;,
+ &#39;52_clinton_1993&#39;,
+ &#39;35_coolidge_1925&#39;,
+ &#39;39_roosevelt_franklin_1941&#39;,
+ &#39;28_mckinley_1897&#39;,
+ &#39;24_garfield_1881&#39;,
+ &#39;22_grant_1873&#39;,
+ &#39;15_polk_1845&#39;,
+ &#39;54_bush_george_w_2001&#39;,
+ &#39;02_washington_1793&#39;,
+ &#39;38_roosevelt_franklin_1937&#39;,
+ &#39;37_roosevelt_franklin_1933&#39;,
+ &#39;18_buchanan_1857&#39;,
+ &#39;16_taylor_1849&#39;,
+ &#39;05_jefferson_1805&#39;,
+ &#39;26_harrison_1889&#39;,
+ &#39;44_kennedy_1961&#39;,
+ &#39;23_hayes_1877&#39;,
+ &#39;20_lincoln_1865&#39;,
+ &#39;57_obama_2013&#39;,
+ &#39;10_adams_john_quincy_1825&#39;,
+ &#39;55_bush_george_w_2005&#39;,
+ &#39;27_cleveland_1893&#39;,
+ &#39;46_nixon_1969&#39;,
+ &#39;42_eisenhower_1953&#39;,
+ &#39;40_roosevelt_franklin_1945&#39;,
+ &#39;43_eisenhower_1957&#39;,
+ &#39;08_monroe_1817&#39;,
+ &#39;06_madison_1809&#39;,
+ &#39;58_trump_2017&#39;,
+ &#39;31_taft_1909&#39;]
 </pre></div>
 </div>
 </div>
@@ -902,166 +930,7 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
 <p>Initialize TfidfVectorizer with desired parameters (default smoothing and normalization)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="s1">&#39;my&#39;</span><span class="p">,</span> <span class="s1">&#39;myself&#39;</span><span class="p">,</span> <span class="s1">&#39;we&#39;</span><span class="p">,</span> <span class="s1">&#39;our&#39;</span><span class="p">,</span> <span class="s1">&#39;ours&#39;</span><span class="p">,</span> <span class="s1">&#39;ourselves&#39;</span><span class="p">,</span> <span class="s1">&#39;you&#39;</span><span class="p">,</span> <span class="s1">&#39;your&#39;</span><span class="p">,</span> <span class="s1">&#39;yours&#39;</span><span class="p">,</span>
- <span class="s1">&#39;yourself&#39;</span><span class="p">,</span> <span class="s1">&#39;yourselves&#39;</span><span class="p">,</span> <span class="s1">&#39;he&#39;</span><span class="p">,</span> <span class="s1">&#39;him&#39;</span><span class="p">,</span> <span class="s1">&#39;his&#39;</span><span class="p">,</span> <span class="s1">&#39;himself&#39;</span><span class="p">,</span> <span class="s1">&#39;she&#39;</span><span class="p">,</span> <span class="s1">&#39;her&#39;</span><span class="p">,</span> <span class="s1">&#39;hers&#39;</span><span class="p">,</span>
- <span class="s1">&#39;herself&#39;</span><span class="p">,</span> <span class="s1">&#39;it&#39;</span><span class="p">,</span> <span class="s1">&#39;its&#39;</span><span class="p">,</span> <span class="s1">&#39;itself&#39;</span><span class="p">,</span> <span class="s1">&#39;they&#39;</span><span class="p">,</span> <span class="s1">&#39;them&#39;</span><span class="p">,</span> <span class="s1">&#39;their&#39;</span><span class="p">,</span> <span class="s1">&#39;theirs&#39;</span><span class="p">,</span> <span class="s1">&#39;themselves&#39;</span><span class="p">,</span>
- <span class="s1">&#39;what&#39;</span><span class="p">,</span> <span class="s1">&#39;which&#39;</span><span class="p">,</span> <span class="s1">&#39;who&#39;</span><span class="p">,</span> <span class="s1">&#39;whom&#39;</span><span class="p">,</span> <span class="s1">&#39;this&#39;</span><span class="p">,</span> <span class="s1">&#39;that&#39;</span><span class="p">,</span> <span class="s1">&#39;these&#39;</span><span class="p">,</span> <span class="s1">&#39;those&#39;</span><span class="p">,</span> <span class="s1">&#39;am&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span>
- <span class="s1">&#39;was&#39;</span><span class="p">,</span> <span class="s1">&#39;were&#39;</span><span class="p">,</span> <span class="s1">&#39;be&#39;</span><span class="p">,</span> <span class="s1">&#39;been&#39;</span><span class="p">,</span> <span class="s1">&#39;being&#39;</span><span class="p">,</span> <span class="s1">&#39;have&#39;</span><span class="p">,</span> <span class="s1">&#39;has&#39;</span><span class="p">,</span> <span class="s1">&#39;had&#39;</span><span class="p">,</span> <span class="s1">&#39;having&#39;</span><span class="p">,</span> <span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;does&#39;</span><span class="p">,</span>
- <span class="s1">&#39;did&#39;</span><span class="p">,</span> <span class="s1">&#39;doing&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;an&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;but&#39;</span><span class="p">,</span> <span class="s1">&#39;if&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;because&#39;</span><span class="p">,</span> <span class="s1">&#39;as&#39;</span><span class="p">,</span> <span class="s1">&#39;until&#39;</span><span class="p">,</span>
- <span class="s1">&#39;while&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">,</span> <span class="s1">&#39;at&#39;</span><span class="p">,</span> <span class="s1">&#39;by&#39;</span><span class="p">,</span> <span class="s1">&#39;for&#39;</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span><span class="p">,</span> <span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;against&#39;</span><span class="p">,</span> <span class="s1">&#39;between&#39;</span><span class="p">,</span> <span class="s1">&#39;into&#39;</span><span class="p">,</span>
- <span class="s1">&#39;through&#39;</span><span class="p">,</span> <span class="s1">&#39;during&#39;</span><span class="p">,</span> <span class="s1">&#39;before&#39;</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span><span class="p">,</span> <span class="s1">&#39;above&#39;</span><span class="p">,</span> <span class="s1">&#39;below&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;up&#39;</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="p">,</span>
- <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span> <span class="s1">&#39;under&#39;</span><span class="p">,</span> <span class="s1">&#39;again&#39;</span><span class="p">,</span> <span class="s1">&#39;further&#39;</span><span class="p">,</span> <span class="s1">&#39;then&#39;</span><span class="p">,</span> <span class="s1">&#39;once&#39;</span><span class="p">,</span> <span class="s1">&#39;here&#39;</span><span class="p">,</span>
- <span class="s1">&#39;there&#39;</span><span class="p">,</span> <span class="s1">&#39;when&#39;</span><span class="p">,</span> <span class="s1">&#39;where&#39;</span><span class="p">,</span> <span class="s1">&#39;why&#39;</span><span class="p">,</span> <span class="s1">&#39;how&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;any&#39;</span><span class="p">,</span> <span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="s1">&#39;each&#39;</span><span class="p">,</span> <span class="s1">&#39;few&#39;</span><span class="p">,</span> <span class="s1">&#39;more&#39;</span><span class="p">,</span>
- <span class="s1">&#39;most&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="s1">&#39;some&#39;</span><span class="p">,</span> <span class="s1">&#39;such&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;nor&#39;</span><span class="p">,</span> <span class="s1">&#39;not&#39;</span><span class="p">,</span> <span class="s1">&#39;only&#39;</span><span class="p">,</span> <span class="s1">&#39;own&#39;</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="s1">&#39;so&#39;</span><span class="p">,</span>
- <span class="s1">&#39;than&#39;</span><span class="p">,</span> <span class="s1">&#39;too&#39;</span><span class="p">,</span> <span class="s1">&#39;very&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;will&#39;</span><span class="p">,</span> <span class="s1">&#39;just&#39;</span><span class="p">,</span> <span class="s1">&#39;don&#39;</span><span class="p">,</span> <span class="s1">&#39;should&#39;</span><span class="p">,</span> <span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="s1">&#39;ll&#39;</span><span class="p">,</span> <span class="s1">&#39;amp&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="n">my_stopwords</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">get_stop_words</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frozenset({&#39;a&#39;,
-           &#39;about&#39;,
-           &#39;above&#39;,
-           &#39;after&#39;,
-           &#39;again&#39;,
-           &#39;against&#39;,
-           &#39;all&#39;,
-           &#39;am&#39;,
-           &#39;amp&#39;,
-           &#39;an&#39;,
-           &#39;and&#39;,
-           &#39;any&#39;,
-           &#39;are&#39;,
-           &#39;as&#39;,
-           &#39;at&#39;,
-           &#39;be&#39;,
-           &#39;because&#39;,
-           &#39;been&#39;,
-           &#39;before&#39;,
-           &#39;being&#39;,
-           &#39;below&#39;,
-           &#39;between&#39;,
-           &#39;both&#39;,
-           &#39;but&#39;,
-           &#39;by&#39;,
-           &#39;can&#39;,
-           &#39;did&#39;,
-           &#39;do&#39;,
-           &#39;does&#39;,
-           &#39;doing&#39;,
-           &#39;don&#39;,
-           &#39;down&#39;,
-           &#39;during&#39;,
-           &#39;each&#39;,
-           &#39;few&#39;,
-           &#39;for&#39;,
-           &#39;from&#39;,
-           &#39;further&#39;,
-           &#39;had&#39;,
-           &#39;has&#39;,
-           &#39;have&#39;,
-           &#39;having&#39;,
-           &#39;he&#39;,
-           &#39;her&#39;,
-           &#39;here&#39;,
-           &#39;hers&#39;,
-           &#39;herself&#39;,
-           &#39;him&#39;,
-           &#39;himself&#39;,
-           &#39;his&#39;,
-           &#39;how&#39;,
-           &#39;i&#39;,
-           &#39;if&#39;,
-           &#39;in&#39;,
-           &#39;into&#39;,
-           &#39;is&#39;,
-           &#39;it&#39;,
-           &#39;its&#39;,
-           &#39;itself&#39;,
-           &#39;just&#39;,
-           &#39;ll&#39;,
-           &#39;me&#39;,
-           &#39;more&#39;,
-           &#39;most&#39;,
-           &#39;my&#39;,
-           &#39;myself&#39;,
-           &#39;no&#39;,
-           &#39;nor&#39;,
-           &#39;not&#39;,
-           &#39;now&#39;,
-           &#39;of&#39;,
-           &#39;off&#39;,
-           &#39;on&#39;,
-           &#39;once&#39;,
-           &#39;only&#39;,
-           &#39;or&#39;,
-           &#39;other&#39;,
-           &#39;our&#39;,
-           &#39;ours&#39;,
-           &#39;ourselves&#39;,
-           &#39;out&#39;,
-           &#39;over&#39;,
-           &#39;own&#39;,
-           &#39;s&#39;,
-           &#39;same&#39;,
-           &#39;she&#39;,
-           &#39;should&#39;,
-           &#39;so&#39;,
-           &#39;some&#39;,
-           &#39;such&#39;,
-           &#39;t&#39;,
-           &#39;than&#39;,
-           &#39;that&#39;,
-           &#39;the&#39;,
-           &#39;their&#39;,
-           &#39;theirs&#39;,
-           &#39;them&#39;,
-           &#39;themselves&#39;,
-           &#39;then&#39;,
-           &#39;there&#39;,
-           &#39;these&#39;,
-           &#39;they&#39;,
-           &#39;this&#39;,
-           &#39;those&#39;,
-           &#39;through&#39;,
-           &#39;to&#39;,
-           &#39;too&#39;,
-           &#39;under&#39;,
-           &#39;until&#39;,
-           &#39;up&#39;,
-           &#39;ve&#39;,
-           &#39;very&#39;,
-           &#39;was&#39;,
-           &#39;we&#39;,
-           &#39;were&#39;,
-           &#39;what&#39;,
-           &#39;when&#39;,
-           &#39;where&#39;,
-           &#39;which&#39;,
-           &#39;while&#39;,
-           &#39;who&#39;,
-           &#39;whom&#39;,
-           &#39;why&#39;,
-           &#39;will&#39;,
-           &#39;with&#39;,
-           &#39;you&#39;,
-           &#39;your&#39;,
-           &#39;yours&#39;,
-           &#39;yourself&#39;,
-           &#39;yourselves&#39;})
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1070,6 +939,18 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vector</span> <span class="o">=</span> <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">text_files</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vector</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(58, 8999)
 </pre></div>
 </div>
 </div>
@@ -1083,6 +964,29 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
 </div>
 </div>
 <p>Add column for document frequency aka number of times word appears in all documents</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_df</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13_van_buren_1837  000          0.000000
+                   03           0.011681
+                   04           0.011924
+                   05           0.000000
+                   100          0.000000
+                                  ...   
+31_taft_1909       zachary      0.000000
+                   zeal         0.000000
+                   zealous      0.000000
+                   zealously    0.000000
+                   zone         0.000000
+Length: 521942, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="k-means">
 <h2>K Means<a class="headerlink" href="#k-means" title="Permalink to this headline">¶</a></h2>
@@ -1090,7 +994,7 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 
-<span class="n">num_clusters</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">num_clusters</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">num_clusters</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># default is also 10, but good to know </span>
 
@@ -1112,7 +1016,6 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
     
     <span class="n">top_ten_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">order_centroids</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]]</span>
     <span class="n">top_words_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_ten_words</span><span class="p">))</span>
-    
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;---</span><span class="se">\n</span><span class="s2">Cluster </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">top_ten_words</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1120,34 +1023,16 @@ Requirement already satisfied: scipy&gt;=0.13.3 in /Users/melaniewalsh/anaconda3
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---
 Cluster 0:
-[&#39;aunt&#39;, &#39;said&#39;, &#39;day&#39;, &#39;one&#39;, &#39;maybe&#39;, &#39;kids&#39;, &#39;came&#39;, &#39;go&#39;, &#39;could&#39;, &#39;eat&#39;]
+[&#39;arrive&#39;, &#39;upbraidings&#39;, &#39;1793&#39;, &#39;incurring&#39;, &#39;willingly&#39;, &#39;violated&#39;, &#39;knowingly&#39;, &#39;witnesses&#39;, &#39;previous&#39;, &#39;injunctions&#39;]
 ---
 Cluster 1:
-[&#39;ruthie&#39;, &#39;darius&#39;, &#39;said&#39;, &#39;name&#39;, &#39;like&#39;, &#39;yes&#39;, &#39;one&#39;, &#39;esperanza&#39;, &#39;see&#39;, &#39;means&#39;]
+[&#39;world&#39;, &#39;people&#39;, &#39;peace&#39;, &#39;shall&#39;, &#39;war&#39;, &#39;nation&#39;, &#39;men&#39;, &#39;government&#39;, &#39;democracy&#39;, &#39;life&#39;]
 ---
 Cluster 2:
-[&#39;cats&#39;, &#39;uncle&#39;, &#39;boy&#39;, &#39;neighborhood&#39;, &#39;new&#39;, &#39;like&#39;, &#39;straight&#39;, &#39;sire&#39;, &#39;shoes&#39;, &#39;mama&#39;]
+[&#39;government&#39;, &#39;people&#39;, &#39;states&#39;, &#39;public&#39;, &#39;country&#39;, &#39;shall&#39;, &#39;constitution&#39;, &#39;union&#39;, &#39;great&#39;, &#39;power&#39;]
 ---
 Cluster 3:
-[&#39;house&#39;, &#39;papa&#39;, &#39;mango&#39;, &#39;hair&#39;, &#39;meme&#39;, &#39;alicia&#39;, &#39;like&#39;, &#39;live&#39;, &#39;one&#39;, &#39;tell&#39;]
----
-Cluster 4:
-[&#39;sally&#39;, &#39;said&#39;, &#39;garden&#39;, &#39;love&#39;, &#39;married&#39;, &#39;like&#39;, &#39;monkey&#39;, &#39;one&#39;, &#39;clowns&#39;, &#39;whirl&#39;]
----
-Cluster 5:
-[&#39;four&#39;, &#39;keep&#39;, &#39;trees&#39;, &#39;alicia&#39;, &#39;mice&#39;, &#39;rolling&#39;, &#39;rise&#39;, &#39;studies&#39;, &#39;pin&#39;, &#39;skinny&#39;]
----
-Cluster 6:
-[&#39;nenny&#39;, &#39;like&#39;, &#39;rachel&#39;, &#39;lucy&#39;, &#39;says&#39;, &#39;man&#39;, &#39;one&#39;, &#39;get&#39;, &#39;shoes&#39;, &#39;yes&#39;]
----
-Cluster 7:
-[&#39;marin&#39;, &#39;louie&#39;, &#39;geraldo&#39;, &#39;cousin&#39;, &#39;car&#39;, &#39;us&#39;, &#39;alley&#39;, &#39;dance&#39;, &#39;met&#39;, &#39;another&#39;]
----
-Cluster 8:
-[&#39;earl&#39;, &#39;rafaela&#39;, &#39;kids&#39;, &#39;minerva&#39;, &#39;door&#39;, &#39;like&#39;, &#39;drinks&#39;, &#39;poems&#39;, &#39;comes&#39;, &#39;lets&#39;]
----
-Cluster 9:
-[&#39;butterfly&#39;, &#39;cookie&#39;, &#39;opera&#39;, &#39;oatmeal&#39;, &#39;madame&#39;, &#39;train&#39;, &#39;sighs&#39;, &#39;thread&#39;, &#39;someday&#39;, &#39;know&#39;]
+[&#39;america&#39;, &#39;world&#39;, &#39;new&#39;, &#39;nation&#39;, &#39;let&#39;, &#39;people&#39;, &#39;today&#39;, &#39;freedom&#39;, &#39;americans&#39;, &#39;time&#39;]
 </pre></div>
 </div>
 </div>
@@ -1193,222 +1078,292 @@ Cluster 9:
   <tbody>
     <tr>
       <th>0</th>
-      <td>23-Born-Bad</td>
-      <td>0</td>
+      <td>01_washington_1789</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>25-Geraldo-No-Last-Name</td>
-      <td>7</td>
+      <td>02_washington_1793</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>08-Gil’s-Furniture-Bought-&amp;-Sold</td>
-      <td>6</td>
+      <td>03_adams_john_1797</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>12-Those-Who-Don’t</td>
+      <td>04_jefferson_1801</td>
       <td>2</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>42-Alicia-&amp;-I-Talking-on-Edna’s-Steps</td>
-      <td>3</td>
+      <td>05_jefferson_1805</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>30-No-Speak-English</td>
-      <td>6</td>
+      <td>06_madison_1809</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>34-Bums-in-the-Attic</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>16-And-Some-More</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>39-Red-Clowns</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>15-Darius-&amp;-the-Clouds</td>
+      <td>07_madison_1813</td>
       <td>1</td>
     </tr>
     <tr>
+      <th>7</th>
+      <td>08_monroe_1817</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>09_monroe_1821</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10_adams_john_quincy_1825</td>
+      <td>2</td>
+    </tr>
+    <tr>
       <th>10</th>
-      <td>40-Linoleum-Roses</td>
-      <td>4</td>
+      <td>11_jackson_1829</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>13-There-Was-an-Old-Woman-She-Had-So-Many-Chil...</td>
-      <td>8</td>
+      <td>12_jackson_1833</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>20-Hips</td>
-      <td>6</td>
+      <td>13_van_buren_1837</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>18-A-Rice-Sandwich</td>
-      <td>0</td>
+      <td>14_harrison_1841</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>21-The-First-Job</td>
-      <td>0</td>
+      <td>15_polk_1845</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>29-Four-Skinny-Trees</td>
-      <td>5</td>
+      <td>16_taylor_1849</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>36-A-Smart-Cookie</td>
-      <td>9</td>
+      <td>17_pierce_1853</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>19-Chanclas</td>
+      <td>18_buchanan_1857</td>
       <td>2</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>11-Marin</td>
-      <td>7</td>
+      <td>19_lincoln_1861</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>01-The-House-on-Mango-Street</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>32-Sally</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>26-Edna’s-Ruthie</td>
+      <td>20_lincoln_1865</td>
       <td>1</td>
     </tr>
     <tr>
+      <th>20</th>
+      <td>21_grant_1869</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>22_grant_1873</td>
+      <td>2</td>
+    </tr>
+    <tr>
       <th>22</th>
-      <td>31-Rafaela-Who-Drinks-Coconut-&amp;-Papaya-Juice-o...</td>
-      <td>8</td>
+      <td>23_hayes_1877</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>27-The-Earl-of-Tennessee</td>
-      <td>8</td>
+      <td>24_garfield_1881</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>28-Sire</td>
+      <td>25_cleveland_1885</td>
       <td>2</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>33-Minerva-Writes-Poems</td>
-      <td>8</td>
+      <td>26_harrison_1889</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>06-Our-Good-Day</td>
-      <td>6</td>
+      <td>27_cleveland_1893</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>17-The-Family-of-Little-Feet</td>
-      <td>6</td>
+      <td>28_mckinley_1897</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>35-Beautiful-&amp;-Cruel</td>
-      <td>6</td>
+      <td>29_mckinley_1901</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>37-What-Sally-Said</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>41-The-Three-Sisters</td>
+      <td>30_roosevelt_theodore_1905</td>
       <td>1</td>
     </tr>
     <tr>
+      <th>30</th>
+      <td>31_taft_1909</td>
+      <td>2</td>
+    </tr>
+    <tr>
       <th>31</th>
-      <td>04-My-Name</td>
+      <td>32_wilson_1913</td>
       <td>1</td>
     </tr>
     <tr>
       <th>32</th>
-      <td>03-Boys-&amp;-Girls</td>
-      <td>6</td>
+      <td>33_wilson_1917</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>33</th>
-      <td>14-Alicia-Who-Sees-Mice</td>
-      <td>5</td>
+      <td>34_harding_1921</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>34</th>
-      <td>07-Laughter</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>02-Hairs</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>38-The-Monkey-Garden</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>22-Papa-Who-Wakes-Up-Tired-in-the-Dark</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>43-A-House-of-My-Own</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>05-Cathy-Queen-of-Cats</td>
+      <td>35_coolidge_1925</td>
       <td>2</td>
     </tr>
     <tr>
+      <th>35</th>
+      <td>36_hoover_1929</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>37_roosevelt_franklin_1933</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>38_roosevelt_franklin_1937</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>39_roosevelt_franklin_1941</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>40_roosevelt_franklin_1945</td>
+      <td>1</td>
+    </tr>
+    <tr>
       <th>40</th>
-      <td>44-Mango-Says-Goodbye-Sometimes</td>
-      <td>3</td>
+      <td>41_truman_1949</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>41</th>
-      <td>10-Louie,-His-Cousin-&amp;-His-Other-Cousin</td>
-      <td>7</td>
+      <td>42_eisenhower_1953</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>42</th>
-      <td>24-Elenita,-Cards,-Palm,-Water</td>
+      <td>43_eisenhower_1957</td>
       <td>1</td>
     </tr>
     <tr>
       <th>43</th>
-      <td>09-Meme-Ortiz</td>
+      <td>44_kennedy_1961</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>45_johnson_1965</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>46_nixon_1969</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>47_nixon_1973</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>48_carter_1977</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>49_reagan_1981</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>50_reagan_1985</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>51_bush_george_h_w_1989</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>52_clinton_1993</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>53_clinton_1997</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>54_bush_george_w_2001</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>55_bush_george_w_2005</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>56_obama_2009</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>57_obama_2013</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>58_trump_2017</td>
       <td>3</td>
     </tr>
   </tbody>
@@ -1444,9 +1399,27 @@ Cluster 9:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reduced_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">)</span>
-<span class="n">reduced_df</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">text_titles</span>
-<span class="n">reduced_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clusters</span>
-<span class="n">reduced_df</span> <span class="o">=</span> <span class="n">reduced_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;y&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reduced_df</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">text_titles</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reduced_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clusters</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reduced_df</span> <span class="o">=</span> <span class="n">reduced_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;y&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1507,355 +1480,467 @@ Cluster 9:
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.087509</td>
-      <td>-0.126657</td>
-      <td>23-Born-Bad</td>
-      <td>0</td>
-      <td>aunt said day one maybe kids came go could eat</td>
+      <td>-0.184639</td>
+      <td>-0.208635</td>
+      <td>01_washington_1789</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.137044</td>
-      <td>0.029962</td>
-      <td>25-Geraldo-No-Last-Name</td>
-      <td>7</td>
-      <td>marin louie geraldo cousin car us alley dance ...</td>
+      <td>-0.057761</td>
+      <td>-0.288762</td>
+      <td>02_washington_1793</td>
+      <td>0</td>
+      <td>arrive upbraidings 1793 incurring willingly vi...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.094738</td>
-      <td>-0.142628</td>
-      <td>08-Gil’s-Furniture-Bought-&amp;-Sold</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>-0.198036</td>
+      <td>-0.055405</td>
+      <td>03_adams_john_1797</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-0.040497</td>
-      <td>-0.091689</td>
-      <td>12-Those-Who-Don’t</td>
+      <td>-0.100516</td>
+      <td>-0.194398</td>
+      <td>04_jefferson_1801</td>
       <td>2</td>
-      <td>cats uncle boy neighborhood new like straight ...</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.118866</td>
-      <td>0.326663</td>
-      <td>42-Alicia-&amp;-I-Talking-on-Edna’s-Steps</td>
-      <td>3</td>
-      <td>house papa mango hair meme alicia like live on...</td>
+      <td>-0.184482</td>
+      <td>-0.208315</td>
+      <td>05_jefferson_1805</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>-0.035484</td>
-      <td>-0.047775</td>
-      <td>30-No-Speak-English</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>-0.177750</td>
+      <td>-0.284071</td>
+      <td>06_madison_1809</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>-0.144030</td>
-      <td>0.292934</td>
-      <td>34-Bums-in-the-Attic</td>
-      <td>3</td>
-      <td>house papa mango hair meme alicia like live on...</td>
+      <td>-0.091372</td>
+      <td>-0.244205</td>
+      <td>07_madison_1813</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>-0.250076</td>
-      <td>-0.311766</td>
-      <td>16-And-Some-More</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>-0.333489</td>
+      <td>-0.057452</td>
+      <td>08_monroe_1817</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.546028</td>
-      <td>-0.009558</td>
-      <td>39-Red-Clowns</td>
-      <td>4</td>
-      <td>sally said garden love married like monkey one...</td>
+      <td>-0.279557</td>
+      <td>-0.051897</td>
+      <td>09_monroe_1821</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.078195</td>
-      <td>-0.066607</td>
-      <td>15-Darius-&amp;-the-Clouds</td>
-      <td>1</td>
-      <td>ruthie darius said name like yes one esperanza...</td>
+      <td>-0.279912</td>
+      <td>-0.135633</td>
+      <td>10_adams_john_quincy_1825</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.184661</td>
-      <td>0.055122</td>
-      <td>40-Linoleum-Roses</td>
-      <td>4</td>
-      <td>sally said garden love married like monkey one...</td>
+      <td>-0.274600</td>
+      <td>-0.180339</td>
+      <td>11_jackson_1829</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>-0.045944</td>
-      <td>-0.065988</td>
-      <td>13-There-Was-an-Old-Woman-She-Had-So-Many-Chil...</td>
-      <td>8</td>
-      <td>earl rafaela kids minerva door like drinks poe...</td>
+      <td>-0.246656</td>
+      <td>-0.102312</td>
+      <td>12_jackson_1833</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>-0.167283</td>
-      <td>-0.374158</td>
-      <td>20-Hips</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>-0.244408</td>
+      <td>-0.038119</td>
+      <td>13_van_buren_1837</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>0.111538</td>
-      <td>-0.029519</td>
-      <td>18-A-Rice-Sandwich</td>
-      <td>0</td>
-      <td>aunt said day one maybe kids came go could eat</td>
+      <td>-0.316963</td>
+      <td>-0.029839</td>
+      <td>14_harrison_1841</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>0.304329</td>
-      <td>-0.021466</td>
-      <td>21-The-First-Job</td>
-      <td>0</td>
-      <td>aunt said day one maybe kids came go could eat</td>
+      <td>-0.372280</td>
+      <td>-0.042414</td>
+      <td>15_polk_1845</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>-0.106536</td>
-      <td>0.185226</td>
-      <td>29-Four-Skinny-Trees</td>
-      <td>5</td>
-      <td>four keep trees alicia mice rolling rise studi...</td>
+      <td>-0.264760</td>
+      <td>-0.117332</td>
+      <td>16_taylor_1849</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>-0.012367</td>
-      <td>0.001800</td>
-      <td>36-A-Smart-Cookie</td>
-      <td>9</td>
-      <td>butterfly cookie opera oatmeal madame train si...</td>
+      <td>-0.189795</td>
+      <td>-0.036203</td>
+      <td>17_pierce_1853</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>-0.123753</td>
-      <td>-0.142981</td>
-      <td>19-Chanclas</td>
+      <td>-0.314206</td>
+      <td>0.004435</td>
+      <td>18_buchanan_1857</td>
       <td>2</td>
-      <td>cats uncle boy neighborhood new like straight ...</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>0.052501</td>
-      <td>0.010867</td>
-      <td>11-Marin</td>
-      <td>7</td>
-      <td>marin louie geraldo cousin car us alley dance ...</td>
+      <td>-0.269353</td>
+      <td>-0.025514</td>
+      <td>19_lincoln_1861</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>-0.094070</td>
-      <td>0.385936</td>
-      <td>01-The-House-on-Mango-Street</td>
-      <td>3</td>
-      <td>house papa mango hair meme alicia like live on...</td>
+      <td>0.017512</td>
+      <td>-0.277734</td>
+      <td>20_lincoln_1865</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>0.458729</td>
-      <td>-0.030707</td>
-      <td>32-Sally</td>
-      <td>4</td>
-      <td>sally said garden love married like monkey one...</td>
+      <td>-0.160959</td>
+      <td>-0.051768</td>
+      <td>21_grant_1869</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>21</th>
-      <td>0.063601</td>
-      <td>0.106686</td>
-      <td>26-Edna’s-Ruthie</td>
-      <td>1</td>
-      <td>ruthie darius said name like yes one esperanza...</td>
+      <td>-0.124807</td>
+      <td>0.007191</td>
+      <td>22_grant_1873</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>-0.044229</td>
-      <td>0.103691</td>
-      <td>31-Rafaela-Who-Drinks-Coconut-&amp;-Papaya-Juice-o...</td>
-      <td>8</td>
-      <td>earl rafaela kids minerva door like drinks poe...</td>
+      <td>-0.279180</td>
+      <td>0.076664</td>
+      <td>23_hayes_1877</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>-0.075758</td>
-      <td>0.127213</td>
-      <td>27-The-Earl-of-Tennessee</td>
-      <td>8</td>
-      <td>earl rafaela kids minerva door like drinks poe...</td>
+      <td>-0.194847</td>
+      <td>0.150471</td>
+      <td>24_garfield_1881</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>-0.086408</td>
-      <td>-0.124779</td>
-      <td>28-Sire</td>
+      <td>-0.218586</td>
+      <td>0.126821</td>
+      <td>25_cleveland_1885</td>
       <td>2</td>
-      <td>cats uncle boy neighborhood new like straight ...</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>-0.018426</td>
-      <td>0.067794</td>
-      <td>33-Minerva-Writes-Poems</td>
-      <td>8</td>
-      <td>earl rafaela kids minerva door like drinks poe...</td>
+      <td>-0.224047</td>
+      <td>0.175653</td>
+      <td>26_harrison_1889</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>-0.212719</td>
-      <td>-0.298371</td>
-      <td>06-Our-Good-Day</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>-0.177567</td>
+      <td>0.180915</td>
+      <td>27_cleveland_1893</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>-0.173141</td>
-      <td>-0.330411</td>
-      <td>17-The-Family-of-Little-Feet</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>-0.273255</td>
+      <td>0.277380</td>
+      <td>28_mckinley_1897</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>-0.096401</td>
-      <td>-0.013117</td>
-      <td>35-Beautiful-&amp;-Cruel</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>-0.151695</td>
+      <td>0.200263</td>
+      <td>29_mckinley_1901</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>0.481862</td>
-      <td>0.001663</td>
-      <td>37-What-Sally-Said</td>
-      <td>4</td>
-      <td>sally said garden love married like monkey one...</td>
+      <td>0.088589</td>
+      <td>0.141683</td>
+      <td>30_roosevelt_theodore_1905</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>30</th>
-      <td>0.175359</td>
-      <td>-0.200829</td>
-      <td>41-The-Three-Sisters</td>
-      <td>1</td>
-      <td>ruthie darius said name like yes one esperanza...</td>
+      <td>-0.192457</td>
+      <td>0.293920</td>
+      <td>31_taft_1909</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>31</th>
-      <td>0.005744</td>
-      <td>-0.107631</td>
-      <td>04-My-Name</td>
+      <td>0.099133</td>
+      <td>0.159081</td>
+      <td>32_wilson_1913</td>
       <td>1</td>
-      <td>ruthie darius said name like yes one esperanza...</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>32</th>
-      <td>-0.106238</td>
-      <td>-0.013286</td>
-      <td>03-Boys-&amp;-Girls</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>0.079699</td>
+      <td>0.103410</td>
+      <td>33_wilson_1917</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>33</th>
-      <td>-0.072967</td>
-      <td>0.263733</td>
-      <td>14-Alicia-Who-Sees-Mice</td>
-      <td>5</td>
-      <td>four keep trees alicia mice rolling rise studi...</td>
+      <td>0.157429</td>
+      <td>0.249701</td>
+      <td>34_harding_1921</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>34</th>
-      <td>-0.244569</td>
-      <td>-0.258584</td>
-      <td>07-Laughter</td>
-      <td>6</td>
-      <td>nenny like rachel lucy says man one get shoes yes</td>
+      <td>-0.039473</td>
+      <td>0.294064</td>
+      <td>35_coolidge_1925</td>
+      <td>2</td>
+      <td>government people states public country shall ...</td>
     </tr>
     <tr>
       <th>35</th>
-      <td>-0.139687</td>
-      <td>0.089237</td>
-      <td>02-Hairs</td>
-      <td>3</td>
-      <td>house papa mango hair meme alicia like live on...</td>
+      <td>-0.030961</td>
+      <td>0.340977</td>
+      <td>36_hoover_1929</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>36</th>
-      <td>0.368863</td>
-      <td>-0.086388</td>
-      <td>38-The-Monkey-Garden</td>
-      <td>4</td>
-      <td>sally said garden love married like monkey one...</td>
+      <td>0.031930</td>
+      <td>0.168790</td>
+      <td>37_roosevelt_franklin_1933</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>37</th>
-      <td>-0.091277</td>
-      <td>0.214062</td>
-      <td>22-Papa-Who-Wakes-Up-Tired-in-the-Dark</td>
-      <td>3</td>
-      <td>house papa mango hair meme alicia like live on...</td>
+      <td>0.131963</td>
+      <td>0.210169</td>
+      <td>38_roosevelt_franklin_1937</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>38</th>
-      <td>-0.172302</td>
-      <td>0.308690</td>
-      <td>43-A-House-of-My-Own</td>
-      <td>3</td>
-      <td>house papa mango hair meme alicia like live on...</td>
+      <td>0.244820</td>
+      <td>0.003138</td>
+      <td>39_roosevelt_franklin_1941</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>39</th>
-      <td>-0.124046</td>
-      <td>0.090430</td>
-      <td>05-Cathy-Queen-of-Cats</td>
-      <td>2</td>
-      <td>cats uncle boy neighborhood new like straight ...</td>
+      <td>0.192140</td>
+      <td>-0.089462</td>
+      <td>40_roosevelt_franklin_1945</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>40</th>
-      <td>-0.057049</td>
-      <td>0.333106</td>
-      <td>44-Mango-Says-Goodbye-Sometimes</td>
-      <td>3</td>
-      <td>house papa mango hair meme alicia like live on...</td>
+      <td>0.180418</td>
+      <td>0.243568</td>
+      <td>41_truman_1949</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>41</th>
-      <td>0.014825</td>
-      <td>-0.033267</td>
-      <td>10-Louie,-His-Cousin-&amp;-His-Other-Cousin</td>
-      <td>7</td>
-      <td>marin louie geraldo cousin car us alley dance ...</td>
+      <td>0.214123</td>
+      <td>0.102768</td>
+      <td>42_eisenhower_1953</td>
+      <td>1</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>42</th>
-      <td>-0.038557</td>
-      <td>-0.106020</td>
-      <td>24-Elenita,-Cards,-Palm,-Water</td>
+      <td>0.279368</td>
+      <td>0.107388</td>
+      <td>43_eisenhower_1957</td>
       <td>1</td>
-      <td>ruthie darius said name like yes one esperanza...</td>
+      <td>world people peace shall war nation men govern...</td>
     </tr>
     <tr>
       <th>43</th>
-      <td>-0.083366</td>
-      <td>0.039366</td>
-      <td>09-Meme-Ortiz</td>
+      <td>0.255435</td>
+      <td>-0.158091</td>
+      <td>44_kennedy_1961</td>
       <td>3</td>
-      <td>house papa mango hair meme alicia like live on...</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>0.248931</td>
+      <td>-0.131192</td>
+      <td>45_johnson_1965</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>0.341623</td>
+      <td>-0.042941</td>
+      <td>46_nixon_1969</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>0.350438</td>
+      <td>-0.014130</td>
+      <td>47_nixon_1973</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>0.241472</td>
+      <td>-0.036115</td>
+      <td>48_carter_1977</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>0.263784</td>
+      <td>-0.007451</td>
+      <td>49_reagan_1981</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0.299847</td>
+      <td>0.037993</td>
+      <td>50_reagan_1985</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>0.333804</td>
+      <td>-0.010952</td>
+      <td>51_bush_george_h_w_1989</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>0.420407</td>
+      <td>-0.084744</td>
+      <td>52_clinton_1993</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>0.384835</td>
+      <td>-0.034922</td>
+      <td>53_clinton_1997</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>0.293268</td>
+      <td>-0.089819</td>
+      <td>54_bush_george_w_2001</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>0.316508</td>
+      <td>-0.038095</td>
+      <td>55_bush_george_w_2005</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>0.348499</td>
+      <td>-0.103775</td>
+      <td>56_obama_2009</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>0.314352</td>
+      <td>-0.081283</td>
+      <td>57_obama_2013</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>0.318042</td>
+      <td>-0.103123</td>
+      <td>58_trump_2017</td>
+      <td>3</td>
+      <td>america world new nation let people today free...</td>
     </tr>
   </tbody>
 </table>
@@ -1866,7 +1951,8 @@ Cluster 9:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">reduced_df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;cluster&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">scheme</span> <span class="o">=</span> <span class="s1">&#39;dark2&#39;</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">)</span> <span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;cluster&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span> 
+                      <span class="n">Scale</span><span class="p">(</span><span class="n">scheme</span> <span class="o">=</span> <span class="s1">&#39;dark2&#39;</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">)</span> <span class="p">,</span>
     <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster&#39;</span><span class="p">,</span> <span class="s1">&#39;top_words&#39;</span><span class="p">]</span>
 <span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </pre></div>
@@ -1874,12 +1960,12 @@ Cluster 9:
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-1df378f4413d49b5a6374b4ff1cd6f82"></div>
+<div id="altair-viz-32b6c2213f394760b61dd6033f16e4df"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-1df378f4413d49b5a6374b4ff1cd6f82") {
-      outputDiv = document.getElementById("altair-viz-1df378f4413d49b5a6374b4ff1cd6f82");
+    if (outputDiv.id !== "altair-viz-32b6c2213f394760b61dd6033f16e4df") {
+      outputDiv = document.getElementById("altair-viz-32b6c2213f394760b61dd6033f16e4df");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1921,45 +2007,8 @@ Cluster 9:
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-ceb3a9ec5fb9680255a68d8767f1ff3f"}, "mark": {"type": "circle", "size": 60}, "encoding": {"color": {"type": "ordinal", "field": "cluster", "scale": {"scheme": "dark2"}}, "tooltip": [{"type": "nominal", "field": "title"}, {"type": "quantitative", "field": "cluster"}, {"type": "nominal", "field": "top_words"}], "x": {"type": "quantitative", "field": "x"}, "y": {"type": "quantitative", "field": "y"}}, "selection": {"selector002": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-ceb3a9ec5fb9680255a68d8767f1ff3f": [{"x": 0.08750872228123267, "y": -0.12665673381239378, "title": "23-Born-Bad", "cluster": 0, "top_words": "aunt said day one maybe kids came go could eat"}, {"x": 0.1370435147348159, "y": 0.02996194418212462, "title": "25-Geraldo-No-Last-Name", "cluster": 7, "top_words": "marin louie geraldo cousin car us alley dance met another"}, {"x": -0.09473789355281464, "y": -0.14262807565070748, "title": "08-Gil\u2019s-Furniture-Bought-&-Sold", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": -0.04049694990558007, "y": -0.09168926769646578, "title": "12-Those-Who-Don\u2019t", "cluster": 2, "top_words": "cats uncle boy neighborhood new like straight sire shoes mama"}, {"x": -0.11886578327355339, "y": 0.3266625062740544, "title": "42-Alicia-&-I-Talking-on-Edna\u2019s-Steps", "cluster": 3, "top_words": "house papa mango hair meme alicia like live one tell"}, {"x": -0.03548426772715004, "y": -0.04777524915429783, "title": "30-No-Speak-English", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": -0.14403038575325686, "y": 0.29293424272189, "title": "34-Bums-in-the-Attic", "cluster": 3, "top_words": "house papa mango hair meme alicia like live one tell"}, {"x": -0.2500761973564707, "y": -0.3117655698723267, "title": "16-And-Some-More", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": 0.5460278057858875, "y": -0.009557864155860395, "title": "39-Red-Clowns", "cluster": 4, "top_words": "sally said garden love married like monkey one clowns whirl"}, {"x": 0.07819498514653105, "y": -0.06660737981365895, "title": "15-Darius-&-the-Clouds", "cluster": 1, "top_words": "ruthie darius said name like yes one esperanza see means"}, {"x": 0.18466103090801364, "y": 0.0551218915692132, "title": "40-Linoleum-Roses", "cluster": 4, "top_words": "sally said garden love married like monkey one clowns whirl"}, {"x": -0.045944352745331464, "y": -0.0659876654855791, "title": "13-There-Was-an-Old-Woman-She-Had-So-Many-Children-She-Didn\u2019t-Know-What-to-Do", "cluster": 8, "top_words": "earl rafaela kids minerva door like drinks poems comes lets"}, {"x": -0.16728344195379743, "y": -0.37415761486615234, "title": "20-Hips", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": 0.11153753594258288, "y": -0.029519303446153777, "title": "18-A-Rice-Sandwich", "cluster": 0, "top_words": "aunt said day one maybe kids came go could eat"}, {"x": 0.30432870251066785, "y": -0.021466053809556174, "title": "21-The-First-Job", "cluster": 0, "top_words": "aunt said day one maybe kids came go could eat"}, {"x": -0.10653628664211626, "y": 0.18522626441963913, "title": "29-Four-Skinny-Trees", "cluster": 5, "top_words": "four keep trees alicia mice rolling rise studies pin skinny"}, {"x": -0.012367436080433383, "y": 0.00180012589160234, "title": "36-A-Smart-Cookie", "cluster": 9, "top_words": "butterfly cookie opera oatmeal madame train sighs thread someday know"}, {"x": -0.12375277313101209, "y": -0.14298105342729686, "title": "19-Chanclas", "cluster": 2, "top_words": "cats uncle boy neighborhood new like straight sire shoes mama"}, {"x": 0.05250061196830179, "y": 0.0108674872639227, "title": "11-Marin", "cluster": 7, "top_words": "marin louie geraldo cousin car us alley dance met another"}, {"x": -0.0940702832270407, "y": 0.3859360430354701, "title": "01-The-House-on-Mango-Street", "cluster": 3, "top_words": "house papa mango hair meme alicia like live one tell"}, {"x": 0.4587294999604368, "y": -0.030707283202031123, "title": "32-Sally", "cluster": 4, "top_words": "sally said garden love married like monkey one clowns whirl"}, {"x": 0.06360076581827734, "y": 0.1066864241564937, "title": "26-Edna\u2019s-Ruthie", "cluster": 1, "top_words": "ruthie darius said name like yes one esperanza see means"}, {"x": -0.044229404985236656, "y": 0.10369129510556946, "title": "31-Rafaela-Who-Drinks-Coconut-&-Papaya-Juice-on-Tuesdays", "cluster": 8, "top_words": "earl rafaela kids minerva door like drinks poems comes lets"}, {"x": -0.07575769643226825, "y": 0.12721287951147378, "title": "27-The-Earl-of-Tennessee", "cluster": 8, "top_words": "earl rafaela kids minerva door like drinks poems comes lets"}, {"x": -0.08640779885218097, "y": -0.12477935321560718, "title": "28-Sire", "cluster": 2, "top_words": "cats uncle boy neighborhood new like straight sire shoes mama"}, {"x": -0.01842623954110951, "y": 0.06779417888472095, "title": "33-Minerva-Writes-Poems", "cluster": 8, "top_words": "earl rafaela kids minerva door like drinks poems comes lets"}, {"x": -0.21271860043758525, "y": -0.29837050870064424, "title": "06-Our-Good-Day", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": -0.1731410263719538, "y": -0.3304106397423703, "title": "17-The-Family-of-Little-Feet", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": -0.09640059103570645, "y": -0.01311679585608717, "title": "35-Beautiful-&-Cruel", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": 0.4818624996663241, "y": 0.001663221488127576, "title": "37-What-Sally-Said", "cluster": 4, "top_words": "sally said garden love married like monkey one clowns whirl"}, {"x": 0.17535917386164718, "y": -0.20082862373652802, "title": "41-The-Three-Sisters", "cluster": 1, "top_words": "ruthie darius said name like yes one esperanza see means"}, {"x": 0.005743578789851606, "y": -0.10763080457777971, "title": "04-My-Name", "cluster": 1, "top_words": "ruthie darius said name like yes one esperanza see means"}, {"x": -0.10623808838801398, "y": -0.013285985610406238, "title": "03-Boys-&-Girls", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": -0.07296695533362588, "y": 0.2637326654050494, "title": "14-Alicia-Who-Sees-Mice", "cluster": 5, "top_words": "four keep trees alicia mice rolling rise studies pin skinny"}, {"x": -0.24456928457909322, "y": -0.2585838478039261, "title": "07-Laughter", "cluster": 6, "top_words": "nenny like rachel lucy says man one get shoes yes"}, {"x": -0.1396865600798452, "y": 0.08923718134093162, "title": "02-Hairs", "cluster": 3, "top_words": "house papa mango hair meme alicia like live one tell"}, {"x": 0.3688629325894722, "y": -0.08638837770217928, "title": "38-The-Monkey-Garden", "cluster": 4, "top_words": "sally said garden love married like monkey one clowns whirl"}, {"x": -0.09127745471459242, "y": 0.2140619031141261, "title": "22-Papa-Who-Wakes-Up-Tired-in-the-Dark", "cluster": 3, "top_words": "house papa mango hair meme alicia like live one tell"}, {"x": -0.17230153349956184, "y": 0.3086895322846566, "title": "43-A-House-of-My-Own", "cluster": 3, "top_words": "house papa mango hair meme alicia like live one tell"}, {"x": -0.12404640024161256, "y": 0.09042954725198109, "title": "05-Cathy-Queen-of-Cats", "cluster": 2, "top_words": "cats uncle boy neighborhood new like straight sire shoes mama"}, {"x": -0.05704903362256844, "y": 0.3331055411520698, "title": "44-Mango-Says-Goodbye-Sometimes", "cluster": 3, "top_words": "house papa mango hair meme alicia like live one tell"}, {"x": 0.014824595758258355, "y": -0.0332669395173221, "title": "10-Louie,-His-Cousin-&-His-Other-Cousin", "cluster": 7, "top_words": "marin louie geraldo cousin car us alley dance met another"}, {"x": -0.038557290673747385, "y": -0.10601985625769343, "title": "24-Elenita,-Cards,-Palm,-Water", "cluster": 1, "top_words": "ruthie darius said name like yes one esperanza see means"}, {"x": -0.08336594558504117, "y": 0.03936597205990689, "title": "09-Meme-Ortiz", "cluster": 3, "top_words": "house papa mango hair meme alicia like live one tell"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-381efbaee4c343f5f93b6fa22e9800e5"}, "mark": {"type": "circle", "size": 60}, "encoding": {"color": {"type": "ordinal", "field": "cluster", "scale": {"scheme": "dark2"}}, "tooltip": [{"type": "nominal", "field": "title"}, {"type": "quantitative", "field": "cluster"}, {"type": "nominal", "field": "top_words"}], "x": {"type": "quantitative", "field": "x"}, "y": {"type": "quantitative", "field": "y"}}, "selection": {"selector001": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-381efbaee4c343f5f93b6fa22e9800e5": [{"x": -0.18463853490099796, "y": -0.20863539252145516, "title": "01_washington_1789", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.057760905323852745, "y": -0.28876169223975634, "title": "02_washington_1793", "cluster": 0, "top_words": "arrive upbraidings 1793 incurring willingly violated knowingly witnesses previous injunctions"}, {"x": -0.1980362602322655, "y": -0.05540513559239223, "title": "03_adams_john_1797", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.1005158243834669, "y": -0.194397574444892, "title": "04_jefferson_1801", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.1844817247585815, "y": -0.20831513670273002, "title": "05_jefferson_1805", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.17775033749971084, "y": -0.2840714981671148, "title": "06_madison_1809", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.09137205705214048, "y": -0.2442051778872049, "title": "07_madison_1813", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": -0.3334885225487962, "y": -0.057452449049490345, "title": "08_monroe_1817", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.2795567061414304, "y": -0.051896750736389254, "title": "09_monroe_1821", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.27991201622288503, "y": -0.13563251478328953, "title": "10_adams_john_quincy_1825", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.27460000194282214, "y": -0.1803390299454931, "title": "11_jackson_1829", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.2466556103737145, "y": -0.10231236174678865, "title": "12_jackson_1833", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.24440844575493317, "y": -0.038119009452648206, "title": "13_van_buren_1837", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.31696313160710865, "y": -0.02983889797222399, "title": "14_harrison_1841", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.37227973781852775, "y": -0.04241407441837259, "title": "15_polk_1845", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.26475979432366276, "y": -0.11733206600213246, "title": "16_taylor_1849", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.18979535487717092, "y": -0.03620342900544778, "title": "17_pierce_1853", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.3142064029191858, "y": 0.00443548038068096, "title": "18_buchanan_1857", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.2693526559027255, "y": -0.025514186854796846, "title": "19_lincoln_1861", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": 0.017512310281753662, "y": -0.27773374135076384, "title": "20_lincoln_1865", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": -0.16095884605818506, "y": -0.05176785013276759, "title": "21_grant_1869", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.12480718748489666, "y": 0.007190990384065338, "title": "22_grant_1873", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.27918018682186707, "y": 0.07666351515925625, "title": "23_hayes_1877", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.19484650698478514, "y": 0.15047059702888776, "title": "24_garfield_1881", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.2185861894872817, "y": 0.12682147247800568, "title": "25_cleveland_1885", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.22404733659616588, "y": 0.17565280600831334, "title": "26_harrison_1889", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.1775673467650011, "y": 0.18091477805910441, "title": "27_cleveland_1893", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.2732548238596531, "y": 0.2773798742516385, "title": "28_mckinley_1897", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.15169549617756095, "y": 0.20026296633117827, "title": "29_mckinley_1901", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": 0.08858949710285031, "y": 0.1416833083089871, "title": "30_roosevelt_theodore_1905", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": -0.1924568177284205, "y": 0.29392045217990415, "title": "31_taft_1909", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": 0.09913292551390834, "y": 0.15908056685363367, "title": "32_wilson_1913", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.07969868272984158, "y": 0.103410253489584, "title": "33_wilson_1917", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.15742940434619482, "y": 0.24970057010670518, "title": "34_harding_1921", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": -0.03947300075849979, "y": 0.2940637806427024, "title": "35_coolidge_1925", "cluster": 2, "top_words": "government people states public country shall constitution union great power"}, {"x": -0.030961196744673576, "y": 0.340976941737669, "title": "36_hoover_1929", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.031929816819401075, "y": 0.16878954471684618, "title": "37_roosevelt_franklin_1933", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.13196268113870374, "y": 0.21016888487437613, "title": "38_roosevelt_franklin_1937", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.2448196016712974, "y": 0.003138095625039892, "title": "39_roosevelt_franklin_1941", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.19214041550594346, "y": -0.08946168664402544, "title": "40_roosevelt_franklin_1945", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.18041842676922093, "y": 0.24356828575103076, "title": "41_truman_1949", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.214122773146198, "y": 0.1027681020935128, "title": "42_eisenhower_1953", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.27936790432588277, "y": 0.10738837534047672, "title": "43_eisenhower_1957", "cluster": 1, "top_words": "world people peace shall war nation men government democracy life"}, {"x": 0.2554349705609722, "y": -0.1580911141055354, "title": "44_kennedy_1961", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.24893136094613677, "y": -0.1311917956287843, "title": "45_johnson_1965", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.341622531138452, "y": -0.042941251976749424, "title": "46_nixon_1969", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.3504377109057475, "y": -0.014130113315613788, "title": "47_nixon_1973", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.2414720327074156, "y": -0.03611494286264823, "title": "48_carter_1977", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.26378424716291055, "y": -0.007450881939169414, "title": "49_reagan_1981", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.2998469532434951, "y": 0.03799287290599629, "title": "50_reagan_1985", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.33380351310944745, "y": -0.01095234375662928, "title": "51_bush_george_h_w_1989", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.42040739012325923, "y": -0.08474396607232906, "title": "52_clinton_1993", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.3848350839459301, "y": -0.034921538562998566, "title": "53_clinton_1997", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.2932680057979617, "y": -0.0898194733740524, "title": "54_bush_george_w_2001", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.31650789807445867, "y": -0.03809535304405336, "title": "55_bush_george_w_2005", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.3484994590528858, "y": -0.10377464671488144, "title": "56_obama_2009", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.3143515245050702, "y": -0.08128258926877635, "title": "57_obama_2013", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}, {"x": 0.3180418394256297, "y": -0.10312284843519907, "title": "58_trump_2017", "cluster": 3, "top_words": "america world new nation let people today freedom americans time"}]}}, {"mode": "vega-lite"});
 </script></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># elbow method</span>
-<span class="c1"># preparing data for plotting</span>
-<span class="n">cluster_range</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
-<span class="n">inertia_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">cluster_range</span><span class="p">:</span>
-    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tfidf_vector</span><span class="p">)</span>
-    <span class="n">inertia_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
-
-<span class="c1"># plotting</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">inertia_list</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">cluster_range</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Clusters&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Inertia&quot;</span><span class="p">)</span>
-<span class="c1">#ax.set_xticks([2,3,4,5,6,8,10,12])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Inertia&#39;)
-</pre></div>
-</div>
-<img alt="../_images/K-Means-Scikit-Learn_57_1.png" src="../_images/K-Means-Scikit-Learn_57_1.png" />
-</div>
 </div>
 </div>
 <div class="section" id="tsne-plot">
@@ -1969,18 +2018,6 @@ Cluster 9:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tsne_num_components</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">embeddings</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">tsne_num_components</span><span class="p">)</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">33</span><span class="o">-</span><span class="n">a55efeb4b454</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">tsne_num_components</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">embeddings</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">tsne_num_components</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;TSNE&#39; is not defined
 </pre></div>
 </div>
 </div>
