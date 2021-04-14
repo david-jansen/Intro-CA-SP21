@@ -1,0 +1,1426 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Named Entity Recognition — Workbook &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/05.5-Named-Entity-Recognition-WORKBOOK.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/05.5-Named-Entity-Recognition-WORKBOOK.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Named Entity Recognition — Workbook" />
+<meta property="og:description" content="Named Entity Recognition — Workbook  In this lesson, we’re going to learn about a text analysis method called Named Entity Recognition (NER). This method will h" />
+<meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/favicon.ico" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Cultural Analytics & Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  How To
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../How-To-Interact-With-This-Book.html">
+   Interact With This Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Course
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../course-schedule-2021.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../syllabus.html">
+   Course Syllabus
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Book
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Command-Line/01-The-Command-Line.html">
+   1. The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../02-Python/00-Python.html">
+   2. Python Basics
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/01-Installation.html">
+     Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/02-How-to-Use-Jupyter-Notebooks.html">
+     How to Use Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/03-Anatomy-Python-Script.html">
+     Anatomy of a Python Script
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/04-Variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/05-Data-Types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/06-String-Methods.html">
+     String Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/07-Files-Character-Encoding.html">
+     Files and Character Encoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/08-Comparisons-Conditionals.html">
+     Comparisons &amp; Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/09-Lists-Loops-Part1.html">
+     Lists &amp; Loops — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/10-Lists-Loops-Part2.html">
+     Lists &amp; Loops — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/11-Dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/12-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/13-Common-Python-Errors.html">
+     Common Python Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/14-What-Were-Not-Covering.html">
+     What We’re Not Covering
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../03-Data-Analysis/00-Data-Analysis.html">
+   3. Data Analysis (Pandas)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/01-Pandas-Basics-Part1.html">
+     Pandas Basics — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/02-Pandas-Basics-Part2.html">
+     Pandas Basics — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/03-Pandas-Basics-Part3.html">
+     Pandas Basics — Part 3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/04-Pandas-Merge-Datasets.html">
+     Pandas — Merge Datasets
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../04-Data-Collection/00-Data-Collection.html">
+   4. Data Collection (Web Scraping, APIs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/01-User-Ethics-Legal-Concerns.html">
+     User Ethics &amp; Legal Concerns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/02-Web-Scraping-Part1.html">
+     Web Scraping — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/03-Web-Scraping-Part2.html">
+     Web Scraping — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/04-Git-GitHub.html">
+     Git and GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/05-APIs.html">
+     Application Programming Interfaces (APIs)
+    </a>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/06-Song-Genius-Data-Collection.html">
+     Song Genius Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/07-Genius-API.html">
+       Song Genius API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/08-LyricsGenius.html">
+       Song Lyrics Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/09-Song-Lyrics-Analysis.html">
+       Song Lyrics Analysis
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/10-Twitter-Data-Collection-Home.html">
+     Twitter Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/11-Twitter-API-Setup.html">
+       Twitter API Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/12-Twitter-Data-Collection.html">
+       Twitter Data Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/13-Twitter-Data-Analysis.html">
+       Twitter Data Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/14-Twitter-Data-Sharing.html">
+       Twitter Data Sharing
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/15-Reddit-Data-Collection-With-PSAW.html">
+     Reddit Data Collection
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="00-Text-Analysis.html">
+   5. Text Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="01-TF-IDF.html">
+     TF-IDF
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="02-TF-IDF-HathiTrust.html">
+       TF-IDF with HathiTrust Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="03-TF-IDF-Scikit-Learn.html">
+       TF-IDF with Scikit-Learn
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="04-Topic-Modeling.html">
+     Topic Modeling
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="05-Topic-Modeling-Overview.html">
+       Topic Modeling — Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="06-Topic-Modeling-Set-Up.html">
+       Topic Modeling — Set Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="07-Topic-Modeling-Text-Files.html">
+       Topic Modeling — Text Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="08-Topic-Modeling-CSV.html">
+       Topic Modeling — CSV Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="09-Topic-Modeling-Time-Series.html">
+       Topic Modeling — Time Series
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07-Topic-Modeling-Without-Mallet.html">
+     Topic Modeling — With Tomotopy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-Named-Entity-Recognition.html">
+     Named Entity Recognition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-POS-Keywords.html">
+     Part-of-Speech Tagging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-POS-Keywords.html#keyword-extraction">
+     Keyword Extraction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../06-Network-Analysis/00-Network-Analysis-Home.html">
+   6. Network Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/01-Network-Analysis.html">
+     Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/02-Making-Network-Viz-with-Bokeh.html">
+     Make an Interactive Network Visualization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../07-Mapping/01-Mapping-Home.html">
+   7. Mapping
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html">
+     Mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#geocoding-with-geopy">
+     Geocoding with GeoPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#making-interactive-maps">
+     Making Interactive Maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/03-Custom-Maps.html">
+     Custom Map Backgrounds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/04-Publish-Your-Map.html">
+     Publish Your Map on the Web
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Datasets
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-Datasets/Datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Extra Materials
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Jupyter-Tips-Tricks.html">
+   Jupyter Tips and Tricks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Randomize-Students.html">
+   Make Random Student Groups
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05-Text-Analysis/05.5-Named-Entity-Recognition-WORKBOOK.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2F05-Text-Analysis/05.5-Named-Entity-Recognition-WORKBOOK.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/05-Text-Analysis/05.5-Named-Entity-Recognition-WORKBOOK.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset">
+   Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ner-with-spacy">
+   NER with spaCy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-spacy-and-download-language-model">
+     Install spaCy and Download Language Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import Libraries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-language-model">
+     Load Language Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#process-document">
+   Process Document
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spacy-named-entities">
+   spaCy Named Entities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-named-entities">
+   Get Named Entities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#your-turn">
+   Your Turn!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ner-with-the-house-on-mango-street">
+   NER with The House on Mango Street
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-people">
+   Get People
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-places">
+   Get Places
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-languages">
+   Get Languages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-another-entity">
+   Get Another Entity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discussion">
+   Discussion
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="named-entity-recognition-workbook">
+<h1>Named Entity Recognition — Workbook<a class="headerlink" href="#named-entity-recognition-workbook" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson, we’re going to learn about a text analysis method called <em>Named Entity Recognition</em> (NER). This method will help us computationally identify people, places, and things (of various kinds) in a text or collection of texts.</p>
+<hr class="docutils" />
+<div class="section" id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
+</div>
+<hr class="docutils" />
+<div class="section" id="ner-with-spacy">
+<h2>NER with spaCy<a class="headerlink" href="#ner-with-spacy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-spacy-and-download-language-model">
+<h3>Install spaCy and Download Language Model<a class="headerlink" href="#install-spacy-and-download-language-model" title="Permalink to this headline">¶</a></h3>
+<p>Next we need to download the English-language model (<code class="docutils literal notranslate"><span class="pre">en_core_web_sm</span></code>), which will be processing and making predictions about our texts. This is the model that was trained on the annotated “OntoNotes” corpus. You can download the <code class="docutils literal notranslate"><span class="pre">en_core_web_sm</span></code> model by running the cell below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -U spacy
+<span class="o">!</span>python -m spacy download en_core_web_sm
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pip in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (20.3.3)
+Requirement already satisfied: setuptools in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (50.3.2)
+Requirement already satisfied: wheel in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (0.34.2)
+Collecting pip
+  Using cached pip-21.0.1-py3-none-any.whl (1.5 MB)
+Collecting wheel
+  Using cached wheel-0.36.2-py2.py3-none-any.whl (35 kB)
+Collecting setuptools
+  Using cached setuptools-56.0.0-py3-none-any.whl (784 kB)
+Installing collected packages: wheel, setuptools, pip
+  Attempting uninstall: wheel
+    Found existing installation: wheel 0.34.2
+    Uninstalling wheel-0.34.2:
+      Successfully uninstalled wheel-0.34.2
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 50.3.2
+    Uninstalling setuptools-50.3.2:
+      Successfully uninstalled setuptools-50.3.2
+  Attempting uninstall: pip
+    Found existing installation: pip 20.3.3
+    Uninstalling pip-20.3.3:
+      Successfully uninstalled pip-20.3.3
+<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">tensorflow 2.1.0 requires wrapt&gt;=1.11.1, which is not installed.</span>
+<span class=" -Color -Color-Red">tensorboard 2.1.1 requires werkzeug&gt;=0.11.15, which is not installed.</span>
+<span class=" -Color -Color-Red">mordecai 2.0.3 requires h5py&gt;=2.6.0, which is not installed.</span>
+<span class=" -Color -Color-Red">tensorflow 2.1.0 requires scipy==1.4.1; python_version &gt;= &quot;3&quot;, but you have scipy 1.5.4 which is incompatible.</span>
+<span class=" -Color -Color-Red">myst-parser 0.13.0 requires markdown-it-py~=0.6.0, but you have markdown-it-py 0.5.8 which is incompatible.</span>
+<span class=" -Color -Color-Red">myst-nb 0.10.1 requires myst-parser~=0.12.9, but you have myst-parser 0.13.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">mordecai 2.0.3 requires spacy&lt;2.1.0,&gt;=2.0.3, but you have spacy 2.2.4 which is incompatible.</span>
+Successfully installed pip-21.0.1 setuptools-56.0.0 wheel-0.36.2
+Requirement already satisfied: spacy in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (2.2.4)
+Collecting spacy
+  Downloading spacy-3.0.5-cp37-cp37m-macosx_10_9_x86_64.whl (12.3 MB)
+     |████████████████████████████████| 12.3 MB 6.1 MB/s eta 0:00:01
+?25hCollecting pydantic&lt;1.8.0,&gt;=1.7.1
+  Downloading pydantic-1.7.3-cp37-cp37m-macosx_10_9_x86_64.whl (2.3 MB)
+     |████████████████████████████████| 2.3 MB 7.0 MB/s eta 0:00:01
+?25hCollecting thinc&lt;8.1.0,&gt;=8.0.2
+  Downloading thinc-8.0.2-cp37-cp37m-macosx_10_9_x86_64.whl (1.1 MB)
+     |████████████████████████████████| 1.1 MB 7.8 MB/s eta 0:00:01
+?25hRequirement already satisfied: jinja2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (2.11.2)
+Collecting typer&lt;0.4.0,&gt;=0.3.0
+  Downloading typer-0.3.2-py3-none-any.whl (21 kB)
+Requirement already satisfied: importlib-metadata&gt;=0.20 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (3.9.1)
+Requirement already satisfied: preshed&lt;3.1.0,&gt;=3.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (3.0.2)
+Requirement already satisfied: requests&lt;3.0.0,&gt;=2.13.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (2.23.0)
+Collecting spacy-legacy&lt;3.1.0,&gt;=3.0.0
+  Downloading spacy_legacy-3.0.2-py2.py3-none-any.whl (7.8 kB)
+Collecting srsly&lt;3.0.0,&gt;=2.4.0
+  Downloading srsly-2.4.1-cp37-cp37m-macosx_10_9_x86_64.whl (449 kB)
+     |████████████████████████████████| 449 kB 9.3 MB/s eta 0:00:01
+?25hRequirement already satisfied: packaging&gt;=20.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (20.1)
+Requirement already satisfied: numpy&gt;=1.15.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (1.20.2)
+Requirement already satisfied: cymem&lt;2.1.0,&gt;=2.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (2.0.3)
+Requirement already satisfied: murmurhash&lt;1.1.0,&gt;=0.28.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (1.0.2)
+Requirement already satisfied: typing-extensions&lt;4.0.0.0,&gt;=3.7.4 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (3.7.4.2)
+Requirement already satisfied: tqdm&lt;5.0.0,&gt;=4.38.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (4.46.0)
+Collecting catalogue&lt;2.1.0,&gt;=2.0.1
+  Downloading catalogue-2.0.2-py3-none-any.whl (9.6 kB)
+Collecting wasabi&lt;1.1.0,&gt;=0.8.1
+  Downloading wasabi-0.8.2-py3-none-any.whl (23 kB)
+Requirement already satisfied: blis&lt;0.8.0,&gt;=0.4.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (0.4.1)
+Collecting pathy&gt;=0.3.5
+  Downloading pathy-0.4.0-py3-none-any.whl (36 kB)
+Requirement already satisfied: setuptools in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy) (56.0.0)
+Collecting importlib-metadata&gt;=0.20
+  Downloading importlib_metadata-3.2.0-py3-none-any.whl (9.9 kB)
+Requirement already satisfied: zipp&gt;=0.5 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from importlib-metadata&gt;=0.20-&gt;spacy) (3.1.0)
+Requirement already satisfied: pyparsing&gt;=2.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from packaging&gt;=20.0-&gt;spacy) (2.4.7)
+Requirement already satisfied: six in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from packaging&gt;=20.0-&gt;spacy) (1.14.0)
+Collecting smart-open&lt;4.0.0,&gt;=2.2.0
+  Downloading smart_open-3.0.0.tar.gz (113 kB)
+     |████████████████████████████████| 113 kB 1.8 MB/s eta 0:00:01
+?25hRequirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (1.25.9)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (3.0.4)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (2.9)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (2020.12.5)
+Requirement already satisfied: click&lt;7.2.0,&gt;=7.1.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from typer&lt;0.4.0,&gt;=0.3.0-&gt;spacy) (7.1.2)
+Requirement already satisfied: MarkupSafe&gt;=0.23 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from jinja2-&gt;spacy) (1.1.1)
+Building wheels for collected packages: smart-open
+  Building wheel for smart-open (setup.py) ... ?25ldone
+?25h  Created wheel for smart-open: filename=smart_open-3.0.0-py3-none-any.whl size=107097 sha256=7f661d1923ddc0565aa377d8cf6489269dcf8d3c1005c4550ba5151dbbc5b437
+  Stored in directory: /Users/melaniewalsh/Library/Caches/pip/wheels/83/a6/12/bf3c1a667bde4251be5b7a3368b2d604c9af2105b5c1cb1870
+Successfully built smart-open
+Installing collected packages: importlib-metadata, catalogue, wasabi, typer, srsly, smart-open, pydantic, thinc, spacy-legacy, pathy, spacy
+  Attempting uninstall: importlib-metadata
+    Found existing installation: importlib-metadata 3.9.1
+    Uninstalling importlib-metadata-3.9.1:
+      Successfully uninstalled importlib-metadata-3.9.1
+  Attempting uninstall: catalogue
+    Found existing installation: catalogue 1.0.0
+    Uninstalling catalogue-1.0.0:
+      Successfully uninstalled catalogue-1.0.0
+  Attempting uninstall: wasabi
+    Found existing installation: wasabi 0.6.0
+    Uninstalling wasabi-0.6.0:
+      Successfully uninstalled wasabi-0.6.0
+  Attempting uninstall: srsly
+    Found existing installation: srsly 1.0.2
+    Uninstalling srsly-1.0.2:
+      Successfully uninstalled srsly-1.0.2
+  Attempting uninstall: smart-open
+    Found existing installation: smart-open 5.0.0
+    Uninstalling smart-open-5.0.0:
+      Successfully uninstalled smart-open-5.0.0
+  Attempting uninstall: thinc
+    Found existing installation: thinc 7.4.0
+    Uninstalling thinc-7.4.0:
+      Successfully uninstalled thinc-7.4.0
+  Attempting uninstall: spacy
+    Found existing installation: spacy 2.2.4
+    Uninstalling spacy-2.2.4:
+      Successfully uninstalled spacy-2.2.4
+<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">mordecai 2.0.3 requires h5py&gt;=2.6.0, which is not installed.</span>
+<span class=" -Color -Color-Red">virtualenv 20.0.31 requires importlib-metadata&lt;2,&gt;=0.12; python_version &lt; &quot;3.8&quot;, but you have importlib-metadata 3.2.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">tox 3.20.0 requires importlib-metadata&lt;2,&gt;=0.12; python_version &lt; &quot;3.8&quot;, but you have importlib-metadata 3.2.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">myst-nb 0.10.1 requires myst-parser~=0.12.9, but you have myst-parser 0.13.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">mordecai 2.0.3 requires spacy&lt;2.1.0,&gt;=2.0.3, but you have spacy 3.0.5 which is incompatible.</span>
+<span class=" -Color -Color-Red">keyring 23.0.1 requires importlib-metadata&gt;=3.6, but you have importlib-metadata 3.2.0 which is incompatible.</span>
+Successfully installed catalogue-2.0.2 importlib-metadata-3.2.0 pathy-0.4.0 pydantic-1.7.3 smart-open-3.0.0 spacy-3.0.5 spacy-legacy-3.0.2 srsly-2.4.1 thinc-8.0.2 typer-0.3.2 wasabi-0.8.2
+Collecting en-core-web-sm==3.0.0
+<span class=" -Color -Color-Yellow">  WARNING: Keyring is skipped due to an exception: entry_points() got an unexpected keyword argument &#39;group&#39;</span>
+  Downloading https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0-py3-none-any.whl (13.7 MB)
+     |████████████████████████████████| 13.7 MB 7.7 MB/s eta 0:00:01
+?25hRequirement already satisfied: spacy&lt;3.1.0,&gt;=3.0.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from en-core-web-sm==3.0.0) (3.0.5)
+Requirement already satisfied: catalogue&lt;2.1.0,&gt;=2.0.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (2.0.2)
+Requirement already satisfied: pydantic&lt;1.8.0,&gt;=1.7.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (1.7.3)
+Requirement already satisfied: wasabi&lt;1.1.0,&gt;=0.8.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (0.8.2)
+Requirement already satisfied: importlib-metadata&gt;=0.20 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (3.2.0)
+Requirement already satisfied: murmurhash&lt;1.1.0,&gt;=0.28.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (1.0.2)
+Requirement already satisfied: jinja2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (2.11.2)
+Requirement already satisfied: typing-extensions&lt;4.0.0.0,&gt;=3.7.4 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (3.7.4.2)
+Requirement already satisfied: blis&lt;0.8.0,&gt;=0.4.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (0.4.1)
+Requirement already satisfied: srsly&lt;3.0.0,&gt;=2.4.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (2.4.1)
+Requirement already satisfied: packaging&gt;=20.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (20.1)
+Requirement already satisfied: setuptools in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (56.0.0)
+Requirement already satisfied: tqdm&lt;5.0.0,&gt;=4.38.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (4.46.0)
+Requirement already satisfied: thinc&lt;8.1.0,&gt;=8.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (8.0.2)
+Requirement already satisfied: pathy&gt;=0.3.5 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (0.4.0)
+Requirement already satisfied: preshed&lt;3.1.0,&gt;=3.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (3.0.2)
+Requirement already satisfied: typer&lt;0.4.0,&gt;=0.3.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (0.3.2)
+Requirement already satisfied: cymem&lt;2.1.0,&gt;=2.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (2.0.3)
+Requirement already satisfied: spacy-legacy&lt;3.1.0,&gt;=3.0.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (3.0.2)
+Requirement already satisfied: requests&lt;3.0.0,&gt;=2.13.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (2.23.0)
+Requirement already satisfied: numpy&gt;=1.15.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (1.20.2)
+Requirement already satisfied: zipp&gt;=0.5 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from importlib-metadata&gt;=0.20-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (3.1.0)
+Requirement already satisfied: six in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from packaging&gt;=20.0-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (1.14.0)
+Requirement already satisfied: pyparsing&gt;=2.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from packaging&gt;=20.0-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (2.4.7)
+Requirement already satisfied: smart-open&lt;4.0.0,&gt;=2.2.0 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from pathy&gt;=0.3.5-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (3.0.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (2020.12.5)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (1.25.9)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (3.0.4)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (2.9)
+Requirement already satisfied: click&lt;7.2.0,&gt;=7.1.1 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from typer&lt;0.4.0,&gt;=0.3.0-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (7.1.2)
+Requirement already satisfied: MarkupSafe&gt;=0.23 in /Users/melaniewalsh/opt/anaconda3/lib/python3.7/site-packages (from jinja2-&gt;spacy&lt;3.1.0,&gt;=3.0.0-&gt;en-core-web-sm==3.0.0) (1.1.1)
+Installing collected packages: en-core-web-sm
+  Attempting uninstall: en-core-web-sm
+    Found existing installation: en-core-web-sm 2.2.5
+    Uninstalling en-core-web-sm-2.2.5:
+      Successfully uninstalled en-core-web-sm-2.2.5
+Successfully installed en-core-web-sm-3.0.0
+<span class=" -Color -Color-C2">✔ Download and installation successful</span>
+You can now load the package via spacy.load(&#39;en_core_web_sm&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="import-libraries">
+<h3>Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h3>
+<p>We’re going to import <code class="docutils literal notranslate"><span class="pre">spacy</span></code> and <code class="docutils literal notranslate"><span class="pre">displacy</span></code>, a special spaCy module for visualization.</p>
+<p>We’re also going to import the <code class="docutils literal notranslate"><span class="pre">Counter</span></code> module for counting people, places, and things, and the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> library for organizing and displaying data (we’re also changing the pandas default max row and column width display setting).</p>
+<p><em>Note: spaCy offers <a class="reference external" href="https://spacy.io/usage/models#languages">models for other languages</a> including German, French, Spanish, Portuguese, Italian, Dutch, Greek, Norwegian, and Lithuanian. Languages such as Russian, Ukrainian, Thai, Chinese, Japanese, Korean and Vietnamese don’t currently have their own NLP models. However, spaCy offers language and tokenization support for many of these language with external dependencies — such as <a class="reference external" href="https://github.com/konlpy/konlpy">PyviKonlpy</a> for Korean or <a class="reference external" href="https://github.com/fxsjy/jieba">Jieba</a> for Chinese.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">from</span> <span class="nn">spacy</span> <span class="kn">import</span> <span class="n">displacy</span>
+<span class="kn">import</span> <span class="nn">en_core_web_sm</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_colwidth</span> <span class="o">=</span> <span class="mi">400</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="load-language-model">
+<h3>Load Language Model<a class="headerlink" href="#load-language-model" title="Permalink to this headline">¶</a></h3>
+<p>Once the model is downloaded, we need to load it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlp</span> <span class="o">=</span> <span class="n">en_core_web_sm</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="process-document">
+<h2>Process Document<a class="headerlink" href="#process-document" title="Permalink to this headline">¶</a></h2>
+<p>In the cell below, we open and read Ada Lovelace’s obituary. Then we run<code class="docutils literal notranslate"><span class="pre">nlp()</span></code> on the text and create our document.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;../texts/literature/House-on-Mango-Street/04-My-Name.txt&quot;</span>
+<span class="n">text</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">document</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="spacy-named-entities">
+<h2>spaCy Named Entities<a class="headerlink" href="#spacy-named-entities" title="Permalink to this headline">¶</a></h2>
+<p>Below is a Named Entities chart taken from <a class="reference external" href="https://spacy.io/api/annotation#named-entities">spaCy’s website</a>, which shows the different named entities that spaCy can identify as well as their corresponding type labels.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Type Label</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>PERSON</p></td>
+<td class="text-align:center"><p>People, including fictional.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>NORP</p></td>
+<td class="text-align:center"><p>Nationalities or religious or political groups.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>FAC</p></td>
+<td class="text-align:center"><p>Buildings, airports, highways, bridges, etc.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>ORG</p></td>
+<td class="text-align:center"><p>Companies, agencies, institutions, etc.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>GPE</p></td>
+<td class="text-align:center"><p>Countries, cities, states.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>LOC</p></td>
+<td class="text-align:center"><p>Non-GPE locations, mountain ranges, bodies of water.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>PRODUCT</p></td>
+<td class="text-align:center"><p>Objects, vehicles, foods, etc. (Not services.)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>EVENT</p></td>
+<td class="text-align:center"><p>Named hurricanes, battles, wars, sports events, etc.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>WORK_OF_ART</p></td>
+<td class="text-align:center"><p>Titles of books, songs, etc.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>LAW</p></td>
+<td class="text-align:center"><p>Named documents made into laws.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>LANGUAGE</p></td>
+<td class="text-align:center"><p>Any named language.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>DATE</p></td>
+<td class="text-align:center"><p>Absolute or relative dates or periods.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>TIME</p></td>
+<td class="text-align:center"><p>Times smaller than a day.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>PERCENT</p></td>
+<td class="text-align:center"><p>Percentage, including ”%“.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>MONEY</p></td>
+<td class="text-align:center"><p>Monetary values, including unit.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>QUANTITY</p></td>
+<td class="text-align:center"><p>Measurements, as of weight or distance.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>ORDINAL</p></td>
+<td class="text-align:center"><p>“first”, “second”, etc.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>CARDINAL</p></td>
+<td class="text-align:center"><p>Numerals that do not fall under another type.</p></td>
+</tr>
+</tbody>
+</table>
+<p>To quickly see spaCy’s NER in action, we can use the <a class="reference external" href="https://spacy.io/usage/visualizers#ent">spaCy module <code class="docutils literal notranslate"><span class="pre">displacy</span></code></a> with the <code class="docutils literal notranslate"><span class="pre">style=</span></code> parameter set to “ent”  (short for entities):</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;ent&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span class="tex2jax_ignore"><div class="entities" style="line-height: 2.5; direction: ltr">My Name</br></br></br>In 
+<mark class="entity" style="background: #ff8197; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    English
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">LANGUAGE</span>
+</mark>
+ my name means hope. In 
+<mark class="entity" style="background: #c887fb; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Spanish
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">NORP</span>
+</mark>
+ it means too many letters. It means sadness, it means waiting. It is like the number 
+<mark class="entity" style="background: #e4e7d2; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    nine
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">CARDINAL</span>
+</mark>
+. A muddy color. It is the 
+<mark class="entity" style="background: #c887fb; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Mexican
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">NORP</span>
+</mark>
+ records my father plays on 
+<mark class="entity" style="background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Sunday
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">DATE</span>
+</mark>
+
+<mark class="entity" style="background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    mornings
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">TIME</span>
+</mark>
+ when he is shaving, songs like sobbing.</br></br>It was my great-grandmother’s name and now it is mine. She was a horse woman too, born like me in 
+<mark class="entity" style="background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    the Chinese year
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">DATE</span>
+</mark>
+ of the horse—which is supposed to be bad luck if you’re born female—but I think this is a 
+<mark class="entity" style="background: #c887fb; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Chinese
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">NORP</span>
+</mark>
+ lie because the 
+<mark class="entity" style="background: #c887fb; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Chinese
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">NORP</span>
+</mark>
+, like the 
+<mark class="entity" style="background: #c887fb; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Mexicans
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">NORP</span>
+</mark>
+, don’t like their women strong.</br></br>My great-grandmother. I would’ve liked to have known her, a wild horse of a woman, so wild she wouldn’t marry. Until my great-grandfather threw a sack over her head and carried her off. Just like that, as if she were a fancy chandelier. That’s the way he did it.</br></br>And the story goes she never forgave him. She looked out the window her whole life, the way so many women sit their sadness on an elbow. I wonder if she made the best with what she got or was she sorry because she couldn’t be all the things she wanted to be. Esperanza. I have inherited her name, but I don’t want to inherit her place by the window.</br></br>At school they say my name funny as if the syllables were made out of tin and hurt the roof of your mouth. But in 
+<mark class="entity" style="background: #ff8197; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Spanish
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">LANGUAGE</span>
+</mark>
+ my name is made out of a softer something, like silver, not quite as thick as sister’s name—
+<mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Magdalena
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
+</mark>
+—which is uglier than mine. 
+<mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Magdalena
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
+</mark>
+ who at least can come home and become 
+<mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Nenny
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
+</mark>
+. But I am always 
+<mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    Esperanza
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
+</mark>
+.</br></br>I would like to baptize myself under a new name, a name more like the real me, the one nobody sees. Esperanza as Lisandra or Maritza or Zeze the X. Yes. Something like Zeze the X will do.</div></span></div></div>
+</div>
+</div>
+<div class="section" id="get-named-entities">
+<h2>Get Named Entities<a class="headerlink" href="#get-named-entities" title="Permalink to this headline">¶</a></h2>
+<p>All the named entities in our <code class="docutils literal notranslate"><span class="pre">document</span></code> can be found in the <code class="docutils literal notranslate"><span class="pre">document.ents</span></code> property. If we check out <code class="docutils literal notranslate"><span class="pre">document.ents</span></code>, we can see all the entities from Ada Lovelace’s obituary.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">document</span><span class="o">.</span><span class="n">ents</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(English,
+ Spanish,
+ nine,
+ Mexican,
+ Sunday,
+ mornings,
+ the Chinese year,
+ Chinese,
+ Chinese,
+ Mexicans,
+ Spanish,
+ Magdalena,
+ Magdalena,
+ Nenny,
+ Esperanza)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each of the named entities in <code class="docutils literal notranslate"><span class="pre">document.ents</span></code> contains <a class="reference external" href="https://spacy.io/usage/linguistic-features#accessing">more information about itself</a>, which we can access by iterating through the <code class="docutils literal notranslate"><span class="pre">document.ents</span></code> with a simple <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p>
+<p>For each <code class="docutils literal notranslate"><span class="pre">named_entity</span></code> in <code class="docutils literal notranslate"><span class="pre">document.ents</span></code>, we will extract the <code class="docutils literal notranslate"><span class="pre">named_entity</span></code> and its corresponding <code class="docutils literal notranslate"><span class="pre">named_entity.label_</span></code>.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">named_entity</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">named_entity</span><span class="p">,</span> <span class="n">named_entity</span><span class="o">.</span><span class="n">label_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>English LANGUAGE
+Spanish NORP
+nine CARDINAL
+Mexican NORP
+Sunday DATE
+mornings TIME
+the Chinese year DATE
+Chinese NORP
+Chinese NORP
+Mexicans NORP
+Spanish LANGUAGE
+Magdalena PERSON
+Magdalena PERSON
+Nenny PERSON
+Esperanza PERSON
+</pre></div>
+</div>
+</div>
+</div>
+<p>To extract just the named entities that have been identified as <code class="docutils literal notranslate"><span class="pre">PERSON</span></code>, we can add a simple <code class="docutils literal notranslate"><span class="pre">if</span></code> statement into the mix:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">named_entity</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">named_entity</span><span class="o">.</span><span class="n">label_</span> <span class="o">==</span> <span class="s2">&quot;PERSON&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">named_entity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Magdalena
+Magdalena
+Nenny
+Esperanza
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="your-turn">
+<h2>Your Turn!<a class="headerlink" href="#your-turn" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="ner-with-the-house-on-mango-street">
+<h2>NER with The House on Mango Street<a class="headerlink" href="#ner-with-the-house-on-mango-street" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../texts/literature/The-House-on-Mango-Street-Sandra-Cisneros.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">document</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-people">
+<h2>Get People<a class="headerlink" href="#get-people" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Type Label</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>PERSON</p></td>
+<td class="text-align:center"><p>People, including fictional.</p></td>
+</tr>
+</tbody>
+</table>
+<p>To extract and count the people, we will use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement that will pull out words only if their “ent” label matches “PERSON.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">named_entity</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+    <span class="c1"># Your Code Here</span>
+        <span class="c1">#Your Code Here</span>
+
+<span class="n">people_tally</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">people</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">people_tally</span><span class="o">.</span><span class="n">most_common</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;character&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-places">
+<h2>Get Places<a class="headerlink" href="#get-places" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Type Label</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>GPE</p></td>
+<td class="text-align:center"><p>Countries, cities, states.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>LOC</p></td>
+<td class="text-align:center"><p>Non-GPE locations, mountain ranges, bodies of water.</p></td>
+</tr>
+</tbody>
+</table>
+<p>To extract and count places, we can follow the same model as above, except we will change our <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to check for “ent” labels that match “GPE” or “LOC.” These are the type labels for “counties cities, states” and “locations, mountain ranges, bodies of water.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">places</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">named_entity</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+    <span class="c1"># Your Code Here</span>
+        <span class="c1"># Your Code Here</span>
+
+<span class="n">places_tally</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">places</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">places_tally</span><span class="o">.</span><span class="n">most_common</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;place&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-languages">
+<h2>Get Languages<a class="headerlink" href="#get-languages" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Type Label</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>WORK_OF_ART</p></td>
+<td class="text-align:center"><p>Titles of books, songs, etc.</p></td>
+</tr>
+</tbody>
+</table>
+<p>To extract and count works of art, we can follow a similar-ish model to the examples above. This time, however, we’re going to make our code even more economical and efficient (while still changing our <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to match the “ent” label “WORK_OF_ART”).</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">languages</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">named_entity</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+    <span class="c1"># Your Code Here</span>
+        <span class="c1"># Your Code Here</span>
+
+<span class="n">languages_tally</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">languages</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">languages_tally</span><span class="o">.</span><span class="n">most_common</span><span class="p">(),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-another-entity">
+<h2>Get Another Entity<a class="headerlink" href="#get-another-entity" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Type Label</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>PERSON</p></td>
+<td class="text-align:center"><p>People, including fictional.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>NORP</p></td>
+<td class="text-align:center"><p>Nationalities or religious or political groups.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>FAC</p></td>
+<td class="text-align:center"><p>Buildings, airports, highways, bridges, etc.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>ORG</p></td>
+<td class="text-align:center"><p>Companies, agencies, institutions, etc.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>GPE</p></td>
+<td class="text-align:center"><p>Countries, cities, states.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>LOC</p></td>
+<td class="text-align:center"><p>Non-GPE locations, mountain ranges, bodies of water.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>PRODUCT</p></td>
+<td class="text-align:center"><p>Objects, vehicles, foods, etc. (Not services.)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>EVENT</p></td>
+<td class="text-align:center"><p>Named hurricanes, battles, wars, sports events, etc.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>WORK_OF_ART</p></td>
+<td class="text-align:center"><p>Titles of books, songs, etc.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>LAW</p></td>
+<td class="text-align:center"><p>Named documents made into laws.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>LANGUAGE</p></td>
+<td class="text-align:center"><p>Any named language.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>DATE</p></td>
+<td class="text-align:center"><p>Absolute or relative dates or periods.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>TIME</p></td>
+<td class="text-align:center"><p>Times smaller than a day.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>PERCENT</p></td>
+<td class="text-align:center"><p>Percentage, including ”%“.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>MONEY</p></td>
+<td class="text-align:center"><p>Monetary values, including unit.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>QUANTITY</p></td>
+<td class="text-align:center"><p>Measurements, as of weight or distance.</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>ORDINAL</p></td>
+<td class="text-align:center"><p>“first”, “second”, etc.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>CARDINAL</p></td>
+<td class="text-align:center"><p>Numerals that do not fall under another type.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your Code Here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>What would NER be good for?</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05-Text-Analysis"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://melaniewalsh.org/">Melanie Walsh</a><br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <div>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a>. The code is licensed under a <a href="https://choosealicense.com/licenses/gpl-3.0/#">GNU General Public License v3.0</a>.
+</div>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-86905362-3', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

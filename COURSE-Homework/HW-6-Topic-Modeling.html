@@ -1,0 +1,1075 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HW 6 — Topic Modeling &#8212; Introduction to Cultural Analytics &amp; Python</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/COURSE-Homework/HW-6-Topic-Modeling.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/COURSE-Homework/HW-6-Topic-Modeling.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="HW 6 — Topic Modeling" />
+<meta property="og:description" content="HW 6 — Topic Modeling  Student Name: Your name here&lt;br /&gt; Net ID: Your ID here (Double-click this cell to type)    In this homework assignment, you will be topi" />
+<meta property="og:image"       content="https://melaniewalsh.github.io/Intro-Cultural-Analytics/_static/favicon.ico" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/favicon.ico" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Cultural Analytics & Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  How To
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../How-To-Interact-With-This-Book.html">
+   Interact With This Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Course
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../course-schedule-2021.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../syllabus.html">
+   Course Syllabus
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  The Book
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Command-Line/01-The-Command-Line.html">
+   1. The Command Line
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../02-Python/00-Python.html">
+   2. Python Basics
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/01-Installation.html">
+     Installation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/02-How-to-Use-Jupyter-Notebooks.html">
+     How to Use Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/03-Anatomy-Python-Script.html">
+     Anatomy of a Python Script
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/04-Variables.html">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/05-Data-Types.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/06-String-Methods.html">
+     String Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/07-Files-Character-Encoding.html">
+     Files and Character Encoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/08-Comparisons-Conditionals.html">
+     Comparisons &amp; Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/09-Lists-Loops-Part1.html">
+     Lists &amp; Loops — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/10-Lists-Loops-Part2.html">
+     Lists &amp; Loops — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/11-Dictionaries.html">
+     Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/12-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/13-Common-Python-Errors.html">
+     Common Python Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-Python/14-What-Were-Not-Covering.html">
+     What We’re Not Covering
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../03-Data-Analysis/00-Data-Analysis.html">
+   3. Data Analysis (Pandas)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/01-Pandas-Basics-Part1.html">
+     Pandas Basics — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/02-Pandas-Basics-Part2.html">
+     Pandas Basics — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/03-Pandas-Basics-Part3.html">
+     Pandas Basics — Part 3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-Data-Analysis/04-Pandas-Merge-Datasets.html">
+     Pandas — Merge Datasets
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../04-Data-Collection/00-Data-Collection.html">
+   4. Data Collection (Web Scraping, APIs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/01-User-Ethics-Legal-Concerns.html">
+     User Ethics &amp; Legal Concerns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/02-Web-Scraping-Part1.html">
+     Web Scraping — Part 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/03-Web-Scraping-Part2.html">
+     Web Scraping — Part 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/04-Git-GitHub.html">
+     Git and GitHub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/05-APIs.html">
+     Application Programming Interfaces (APIs)
+    </a>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/06-Song-Genius-Data-Collection.html">
+     Song Genius Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/07-Genius-API.html">
+       Song Genius API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/08-LyricsGenius.html">
+       Song Lyrics Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/09-Song-Lyrics-Analysis.html">
+       Song Lyrics Analysis
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../04-Data-Collection/10-Twitter-Data-Collection-Home.html">
+     Twitter Data Collection
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/11-Twitter-API-Setup.html">
+       Twitter API Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/12-Twitter-Data-Collection.html">
+       Twitter Data Collection
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/13-Twitter-Data-Analysis.html">
+       Twitter Data Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../04-Data-Collection/14-Twitter-Data-Sharing.html">
+       Twitter Data Sharing
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-Data-Collection/15-Reddit-Data-Collection-With-PSAW.html">
+     Reddit Data Collection
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../05-Text-Analysis/00-Text-Analysis.html">
+   5. Text Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/01-TF-IDF.html">
+     TF-IDF
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/02-TF-IDF-HathiTrust.html">
+       TF-IDF with HathiTrust Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/03-TF-IDF-Scikit-Learn.html">
+       TF-IDF with Scikit-Learn
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../05-Text-Analysis/04-Topic-Modeling.html">
+     Topic Modeling
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/05-Topic-Modeling-Overview.html">
+       Topic Modeling — Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/06-Topic-Modeling-Set-Up.html">
+       Topic Modeling — Set Up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/07-Topic-Modeling-Text-Files.html">
+       Topic Modeling — Text Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/08-Topic-Modeling-CSV.html">
+       Topic Modeling — CSV Files
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../05-Text-Analysis/09-Topic-Modeling-Time-Series.html">
+       Topic Modeling — Time Series
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/07-Topic-Modeling-Without-Mallet.html">
+     Topic Modeling — With Tomotopy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/10-Named-Entity-Recognition.html">
+     Named Entity Recognition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html">
+     Part-of-Speech Tagging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-Text-Analysis/11-POS-Keywords.html#keyword-extraction">
+     Keyword Extraction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../06-Network-Analysis/00-Network-Analysis-Home.html">
+   6. Network Analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/01-Network-Analysis.html">
+     Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Network-Analysis/02-Making-Network-Viz-with-Bokeh.html">
+     Make an Interactive Network Visualization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../07-Mapping/01-Mapping-Home.html">
+   7. Mapping
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html">
+     Mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#geocoding-with-geopy">
+     Geocoding with GeoPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/02-Mapping.html#making-interactive-maps">
+     Making Interactive Maps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/03-Custom-Maps.html">
+     Custom Map Backgrounds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-Mapping/04-Publish-Your-Map.html">
+     Publish Your Map on the Web
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Datasets
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00-Datasets/Datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Extra Materials
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Jupyter-Tips-Tricks.html">
+   Jupyter Tips and Tricks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Python/EXTRA-Randomize-Students.html">
+   Make Random Student Groups
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/COURSE-Homework/HW-6-Topic-Modeling.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/INFO1350/Intro-CA-SP21/issues/new?title=Issue%20on%20page%20%2FCOURSE-Homework/HW-6-Topic-Modeling.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/COURSE-Homework/HW-6-Topic-Modeling.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-review">
+   Python Review
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topic-modeling">
+   Topic Modeling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-and-import-packages">
+     Install and Import Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-training-data-from-csv-file">
+     Get Training Data From CSV File
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#process-reddit-posts-and-titles">
+     Process Reddit Posts and Titles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-number-of-topics-and-output-files">
+     Set Number of Topics and Output Files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-topic-model">
+     Train Topic Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-topics-and-top-words">
+     Display Topics and Top Words
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-topic-distributions">
+     Load Topic Distributions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-top-titles-and-documents">
+     Display Top Titles and Documents
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#label-the-topics">
+   Label the Topics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reflection">
+   Reflection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-youre-finished">
+   When You’re Finished
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="hw-6-topic-modeling">
+<h1>HW 6 — Topic Modeling<a class="headerlink" href="#hw-6-topic-modeling" title="Permalink to this headline">¶</a></h1>
+<p>Student Name: Your name here<br />
+Net ID: Your ID here
+(Double-click this cell to type)</p>
+<hr class="docutils" />
+<p>In this homework assignment, you will be topic modeling a collection of Reddit posts to understand 15 of its broad themes and trends. You will choose to analyze either a collection of posts from the subreddit <a class="reference external" href="https://www.reddit.com/r/pettyrevenge/">r/pettyrevenge</a> OR the subreddit <a class="reference external" href="https://www.reddit.com/r/askscience/">r/AskScience</a>.</p>
+<p><em>Note: Posts from r/pettyrevenge may be offensive or inapproriate.</em></p>
+<p>This homework assignment will closely mirror our 05-Text-Analysis/04.5 class workbook from Monday, April 12th. It will also include basic Python and Pandas concepts from the previous weeks. You are encouraged to refer back to your class workbooks and the course textbook.</p>
+<p>When you’re finished, please upload this Jupyer notebook to Gradescope (LAST-NAME-HW-6.ipynb).</p>
+<p><em>Note: If you’re having trouble running Little Mallet Wrapper on your own computer, you can complete this homework assignment in the cloud <a class="reference external" href="https://mybinder.org/v2/gh/INFO1350/Intro-CA-SP21/master?urlpath=lab/tree/book/COURSE-Homework/HW-6-Topic-Modeling.ipynb">via Binder</a> and then download it (File -&gt; Download).</em></p>
+<div class="section" id="python-review">
+<h2>Python Review<a class="headerlink" href="#python-review" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AITA for kicking my cousin off of my sister’s wedding Zoom call?&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;AITA for resenting my family for something that happened over a decade ago?&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;AITA for cutting the power to a little girl’s birthday party?&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;AITA for keeping a $300000 prize to myself when I originally planned to share it with my boyfriend?&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>1.</strong> Transform each title in <code class="docutils literal notranslate"><span class="pre">titles</span></code> to lowercase, and make a new list of the lowercased titles called <code class="docutils literal notranslate"><span class="pre">lowercase_titles</span></code>. To do so, use a <a class="reference external" href="https://www.w3schools.com/python/python_lists_comprehension.asp">list comprehension</a> (that is, just one line of Python code). (3 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lowercase_titles</span> <span class="o">=</span> <span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lowercase_titles</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;aita for kicking my cousin off of my sister’s wedding zoom call?&#39;, &#39;aita for resenting my family for something that happened over a decade ago?&#39;, &#39;aita for cutting the power to a little girl’s birthday party?&#39;, &#39;aita for keeping a $300000 prize to myself when i originally planned to share it with my boyfriend?&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="topic-modeling">
+<h2>Topic Modeling<a class="headerlink" href="#topic-modeling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-and-import-packages">
+<h3>Install and Import Packages<a class="headerlink" href="#install-and-import-packages" title="Permalink to this headline">¶</a></h3>
+<p><strong>2.</strong> Install <code class="docutils literal notranslate"><span class="pre">little_mallet_wrapper</span></code> (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>3.</strong> Import <code class="docutils literal notranslate"><span class="pre">little_mallet_wrapper</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">Path</span></code>  (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Your code here</span>
+<span class="c1">#Your code here</span>
+<span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-training-data-from-csv-file">
+<h3>Get Training Data From CSV File<a class="headerlink" href="#get-training-data-from-csv-file" title="Permalink to this headline">¶</a></h3>
+<p>Below you will read in the CSV file for the subreddit <a class="reference external" href="https://www.reddit.com/r/pettyrevenge/">r/pettyrevenge</a> OR the subreddit <a class="reference external" href="https://www.reddit.com/r/askscience/">r/AskScience</a>. To get the r/AskScience data, you will need to uncomment and run the second line below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/top-reddit-petty-revenge-posts.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#reddit_df = pd.read_csv(&quot;../data/top-reddit-ask-science-posts.csv&quot;, encoding=&#39;utf-8&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How many rows are in this DataFrame?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>4.</strong> Convert the <code class="docutils literal notranslate"><span class="pre">selftext</span></code> column to the datatype <em>string</em> and re-assign it to the same column  (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_df</span><span class="p">[</span><span class="s1">&#39;selftext&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="process-reddit-posts-and-titles">
+<h3>Process Reddit Posts and Titles<a class="headerlink" href="#process-reddit-posts-and-titles" title="Permalink to this headline">¶</a></h3>
+<p><strong>5.</strong> Transform all the Reddit posts to lowercase and remove stopwords, punctuation, and numbers. To do so, you should use a <code class="docutils literal notranslate"><span class="pre">little_mallet_wrapper</span></code> function and a list comprehension (just one line of code)  (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_data</span> <span class="o">=</span> <span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make a list of the original Reddit posts (completed for you below).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">original_texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">reddit_df</span><span class="p">[</span><span class="s1">&#39;selftext&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>5.</strong> Make a list of every title from the DataFrame in the column <code class="docutils literal notranslate"><span class="pre">title</span></code> and assign it to the variable <code class="docutils literal notranslate"><span class="pre">reddit_titles</span></code> (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reddit_titles</span> <span class="o">=</span> <span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="set-number-of-topics-and-output-files">
+<h3>Set Number of Topics and Output Files<a class="headerlink" href="#set-number-of-topics-and-output-files" title="Permalink to this headline">¶</a></h3>
+<p>Make a variable <code class="docutils literal notranslate"><span class="pre">num_topics</span></code> and assign it the number of topics we want returned (completed for you below).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_topics</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tell Little MALLET Wrapper where to output all of your topic modeling results. To do so, run the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#No need to change anything below here</span>
+<span class="n">training_data</span> <span class="o">=</span> <span class="n">training_data</span>
+
+<span class="c1">#Set output directory</span>
+<span class="n">output_directory_path</span> <span class="o">=</span> <span class="s1">&#39;topic-model-output/HW-6&#39;</span>
+
+<span class="c1">#Create output directory</span>
+<span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#Create output files</span>
+<span class="n">path_to_training_data</span>           <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory_path</span><span class="si">}</span><span class="s2">/training.txt&quot;</span>
+<span class="n">path_to_formatted_training_data</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory_path</span><span class="si">}</span><span class="s2">/mallet.training&quot;</span>
+<span class="n">path_to_model</span>                   <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory_path</span><span class="si">}</span><span class="s2">/mallet.model.</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">num_topics</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">path_to_topic_keys</span>              <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory_path</span><span class="si">}</span><span class="s2">/mallet.topic_keys.</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">num_topics</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">path_to_topic_distributions</span>     <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_directory_path</span><span class="si">}</span><span class="s2">/mallet.topic_distributions.</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">num_topics</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-topic-model">
+<h3>Train Topic Model<a class="headerlink" href="#train-topic-model" title="Permalink to this headline">¶</a></h3>
+<p><strong>6.</strong> Set <code class="docutils literal notranslate"><span class="pre">path_to_mallet</span></code> to the file path where Mallet is located on your computer (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_mallet</span> <span class="o">=</span> <span class="s1">&#39;../05-Text-Analysis/mallet-2.0.8/bin/mallet&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note: The file path above should work for Binder, but if you’re working on your own computer, you may need to change the path.</em></p>
+<p>Train the topic model with <code class="docutils literal notranslate"><span class="pre">little_mallet_wrapper.quick_train_topic_model()</span></code>. Remember that this may take a couple of minutes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">little_mallet_wrapper</span><span class="o">.</span><span class="n">quick_train_topic_model</span><span class="p">(</span><span class="n">path_to_mallet</span><span class="p">,</span>
+                                              <span class="n">output_directory_path</span><span class="p">,</span>
+                                              <span class="n">num_topics</span><span class="p">,</span>
+                                              <span class="n">training_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Hint: If you get the error <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory:</span> <span class="pre">'topic-model-output/HW-6/mallet.topic_keys.15</span></code>, then Java/Mallet is likely not configured properly.</em></p>
+</div>
+<div class="section" id="display-topics-and-top-words">
+<h3>Display Topics and Top Words<a class="headerlink" href="#display-topics-and-top-words" title="Permalink to this headline">¶</a></h3>
+<p><strong>7.</strong> Display the 15 topics by running the cell below (1 point)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topics</span> <span class="o">=</span> <span class="n">little_mallet_wrapper</span><span class="o">.</span><span class="n">load_topic_keys</span><span class="p">(</span><span class="n">path_to_topic_keys</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">topic_number</span><span class="p">,</span> <span class="n">topic</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">topics</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✨Topic </span><span class="si">{</span><span class="n">topic_number</span><span class="si">}</span><span class="s2">✨</span><span class="se">\n\n</span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="load-topic-distributions">
+<h3>Load Topic Distributions<a class="headerlink" href="#load-topic-distributions" title="Permalink to this headline">¶</a></h3>
+<p>Load the topic distributions for all the documents (the probability that each document contains each of the topics)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topic_distributions</span> <span class="o">=</span> <span class="n">little_mallet_wrapper</span><span class="o">.</span><span class="n">load_topic_distributions</span><span class="p">(</span><span class="n">path_to_topic_distributions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="display-top-titles-and-documents">
+<h3>Display Top Titles and Documents<a class="headerlink" href="#display-top-titles-and-documents" title="Permalink to this headline">¶</a></h3>
+<p>Run the cell below to create the two functions that will help you examine the top Reddits posts for each topic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Zip together the training data (pre-processed docs) and titles/original texts and make them dictionaries</span>
+<span class="n">training_data_reddit_titles</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">reddit_titles</span><span class="p">))</span>
+<span class="n">training_data_original_text</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">original_texts</span><span class="p">))</span>
+
+<span class="c1">#Create a function for displaying the top titles</span>
+<span class="k">def</span> <span class="nf">display_top_titles_per_topic</span><span class="p">(</span><span class="n">topic_number</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">number_of_documents</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✨Topic </span><span class="si">{</span><span class="n">topic_number</span><span class="si">}</span><span class="s2">✨</span><span class="se">\n\n</span><span class="si">{</span><span class="n">topics</span><span class="p">[</span><span class="n">topic_number</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">probability</span><span class="p">,</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">little_mallet_wrapper</span><span class="o">.</span><span class="n">get_top_docs</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">topic_distributions</span><span class="p">,</span> <span class="n">topic_number</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">number_of_documents</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">probability</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">training_data_reddit_titles</span><span class="p">[</span><span class="n">document</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span>
+
+<span class="c1">#Create a function for displaying topics words in context</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">display_bolded_topic_words_in_context</span><span class="p">(</span><span class="n">topic_number</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">number_of_documents</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✨Topic </span><span class="si">{</span><span class="n">topic_number</span><span class="si">}</span><span class="s2">✨</span><span class="se">\n\n</span><span class="si">{</span><span class="n">topics</span><span class="p">[</span><span class="n">topic_number</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">probability</span><span class="p">,</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">little_mallet_wrapper</span><span class="o">.</span><span class="n">get_top_docs</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">topic_distributions</span><span class="p">,</span> <span class="n">topic_number</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">number_of_documents</span><span class="p">):</span>
+        <span class="n">probability</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;✨✨✨</span><span class="se">\n\n</span><span class="si">{</span><span class="n">probability</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;#### </span><span class="si">{</span><span class="n">training_data_reddit_titles</span><span class="p">[</span><span class="n">document</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">original_text</span> <span class="o">=</span> <span class="n">training_data_original_text</span><span class="p">[</span><span class="n">document</span><span class="p">]</span>
+        <span class="n">topic_words</span> <span class="o">=</span> <span class="n">topics</span><span class="p">[</span><span class="n">topic_number</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">topic_words</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">original_text</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="n">original_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">b</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="se">\\</span><span class="s2">b&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;**</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">**&quot;</span><span class="p">,</span> <span class="n">original_text</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">probability</span><span class="p">)),</span> <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">title</span><span class="p">)),</span> <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">original_text</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> By using one of the functions above, display the top 5 Reddit titles with the highest probability of containing Topic 0 (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>9.</strong> By using one of the functions above, display the top 5 Reddit posts with bolded words in context that have the highest probability of containing Topic 0 (2 points)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="label-the-topics">
+<h2>Label the Topics<a class="headerlink" href="#label-the-topics" title="Permalink to this headline">¶</a></h2>
+<p><strong>10.</strong> By using the functions above and examining the top documents for each topic, come up with your own labels for the 15 topics. (10 points)</p>
+<p><strong>Topic 0</strong>: Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 1</strong>: Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 2</strong>: Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 3</strong>: Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 4</strong>:  Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 5</strong>:  Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 6</strong>:   Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 7</strong>:  Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 8</strong>:  Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 9</strong>:  Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 10</strong>:    Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 11</strong>:  Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 12</strong>: Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 13</strong>:   Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+<p><strong>Topic 14</strong>: Paste top 5 words here<br />
+<strong>Topic Label</strong>: ?</p>
+</div>
+<div class="section" id="reflection">
+<h2>Reflection<a class="headerlink" href="#reflection" title="Permalink to this headline">¶</a></h2>
+<p><strong>11.</strong> What do you think was the most interesting topic from the Reddit posts? Why? (2 points)</p>
+<p>Type your thoughts here (double-click to type)</p>
+<p><strong>12.</strong> What was the most difficult topic to label? Why?  (2 points)</p>
+<p>Type your thoughts here (double-click to type)</p>
+</div>
+<div class="section" id="when-youre-finished">
+<h2>When You’re Finished<a class="headerlink" href="#when-youre-finished" title="Permalink to this headline">¶</a></h2>
+<p>When you’re finished, you should:</p>
+<ol class="simple">
+<li><p>Save your Jupyter notebook with your last name. To save your notebook, you can select File -&gt; Save Notebook or File -&gt; Save Notebook As…</p></li>
+<li><p>Upload the Jupyter notebook file (.ipynb) to Gradescope. You can do so by locating your file on your computer and then dragging and dropping it into Gradescope.</p></li>
+</ol>
+<p><img alt="" src="../_images/submit-hw-gradescope.gif" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./COURSE-Homework"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By <a href="https://melaniewalsh.org/">Melanie Walsh</a><br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <div>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a>. The code is licensed under a <a href="https://choosealicense.com/licenses/gpl-3.0/#">GNU General Public License v3.0</a>.
+</div>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-86905362-3', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>
