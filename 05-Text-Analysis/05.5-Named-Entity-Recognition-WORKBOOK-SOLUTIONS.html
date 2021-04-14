@@ -900,7 +900,7 @@ You can now load the package via spacy.load(&#39;en_core_web_sm&#39;)
 </div>
 <div class="section" id="load-language-model">
 <h3>Load Language Model<a class="headerlink" href="#load-language-model" title="Permalink to this headline">¶</a></h3>
-<p>Once the model is downloaded, we need to load it.</p>
+<p>We need to load the language model and save it as the variable <code class="docutils literal notranslate"><span class="pre">nlp</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlp</span> <span class="o">=</span> <span class="n">en_core_web_sm</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
@@ -912,7 +912,7 @@ You can now load the package via spacy.load(&#39;en_core_web_sm&#39;)
 </div>
 <div class="section" id="process-document">
 <h2>Process Document<a class="headerlink" href="#process-document" title="Permalink to this headline">¶</a></h2>
-<p>In the cell below, we open and read Ada Lovelace’s obituary. Then we run<code class="docutils literal notranslate"><span class="pre">nlp()</span></code> on the text and create our document.</p>
+<p>In the cell below, we open and read a text file. Then we run <code class="docutils literal notranslate"><span class="pre">nlp()</span></code> on the text to create our processed spaCy document.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;../texts/literature/House-on-Mango-Street/04-My-Name.txt&quot;</span>
@@ -1077,7 +1077,7 @@ You can now load the package via spacy.load(&#39;en_core_web_sm&#39;)
 </div>
 <div class="section" id="get-named-entities">
 <h2>Get Named Entities<a class="headerlink" href="#get-named-entities" title="Permalink to this headline">¶</a></h2>
-<p>All the named entities in our <code class="docutils literal notranslate"><span class="pre">document</span></code> can be found in the <code class="docutils literal notranslate"><span class="pre">document.ents</span></code> property. If we check out <code class="docutils literal notranslate"><span class="pre">document.ents</span></code>, we can see all the entities from Ada Lovelace’s obituary.</p>
+<p>All the named entities in our <code class="docutils literal notranslate"><span class="pre">document</span></code> can be found in the <code class="docutils literal notranslate"><span class="pre">document.ents</span></code> property.</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">document</span><span class="o">.</span><span class="n">ents</span>
@@ -1104,8 +1104,7 @@ You can now load the package via spacy.load(&#39;en_core_web_sm&#39;)
 </div>
 </div>
 </div>
-<p>Each of the named entities in <code class="docutils literal notranslate"><span class="pre">document.ents</span></code> contains <a class="reference external" href="https://spacy.io/usage/linguistic-features#accessing">more information about itself</a>, which we can access by iterating through the <code class="docutils literal notranslate"><span class="pre">document.ents</span></code> with a simple <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p>
-<p>For each <code class="docutils literal notranslate"><span class="pre">named_entity</span></code> in <code class="docutils literal notranslate"><span class="pre">document.ents</span></code>, we will extract the <code class="docutils literal notranslate"><span class="pre">named_entity</span></code> and its corresponding <code class="docutils literal notranslate"><span class="pre">named_entity.label_</span></code>.</p>
+<p>Each of the named entities in <code class="docutils literal notranslate"><span class="pre">document.ents</span></code> contains <a class="reference external" href="https://spacy.io/usage/linguistic-features#accessing">more information about itself</a>. To get the entity label, we can use the <code class="docutils literal notranslate"><span class="pre">.label_</span></code> attribute.</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">named_entity</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
@@ -1157,13 +1156,7 @@ Esperanza
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../texts/literature/The-House-on-Mango-Street-Sandra-Cisneros.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">document</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">document</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1183,7 +1176,9 @@ Esperanza
 </tr>
 </tbody>
 </table>
-<p>To extract and count the people, we will use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement that will pull out words only if their “ent” label matches “PERSON.”</p>
+<p>The code below will extract named entitities from <em>The House on Mango Street</em>, count them up with <code class="docutils literal notranslate"><span class="pre">Counter()</span></code>, and then create a DataFrame of the results.</p>
+<p>Your job is to make sure that we only get named entities that are <strong>people</strong>. Insert the approriate Python code below.</p>
+<p><em>Hint: Look at the examples above for guidance.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="p">[]</span>
