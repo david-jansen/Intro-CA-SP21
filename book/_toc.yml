@@ -7,7 +7,7 @@
 
 - part: The Course
   chapters:
-  - file: course-schedule
+  - file: course-schedule-2021
     title: Course Schedule
 
   - file: syllabus
@@ -15,94 +15,95 @@
   
 - part: The Book
   chapters:
-  - file: Command-Line/The-Command-Line
+  - file: 01-Command-Line/01-The-Command-Line
     title: 1. The Command Line
 
-  - file: Python/Python
+  - file: 02-Python/00-Python
     title: 2. Python Basics
     sections:
-      - file: Python/Installation
-      - file: Python/How-to-Use-Jupyter-Notebooks
-      - file: Python/Anatomy-Python-Script
-      - file: Python/Variables
-      - file: Python/Data-Types
-      - file: Python/String-Methods
-      - file: Python/Files-Character-Encoding
+      - file: 02-Python/01-Installation
+      - file: 02-Python/02-How-to-Use-Jupyter-Notebooks
+      - file: 02-Python/03-Anatomy-Python-Script
+      - file: 02-Python/04-Variables
+      - file: 02-Python/05-Data-Types
+      - file: 02-Python/06-String-Methods
+      - file: 02-Python/07-Files-Character-Encoding
         title: Files and Character Encoding
-      - file: Python/Comparisons-Conditionals
-      - file: Python/Lists-Loops-Part1
-      - file: Python/Lists-Loops-Part2
-      - file: Python/Dictionaries
-      - file: Python/Functions
-      - file: Python/Common-Python-Errors
-      - file: Python/What-Were-Not-Covering
+      - file: 02-Python/08-Comparisons-Conditionals
+      - file: 02-Python/09-Lists-Loops-Part1
+      - file: 02-Python/10-Lists-Loops-Part2
+      - file: 02-Python/11-Dictionaries
+      - file: 02-Python/12-Functions
+      - file: 02-Python/13-Common-Python-Errors
+      - file: 02-Python/14-What-Were-Not-Covering
       
-  - file: Data-Analysis/Data-Analysis
+  - file: 03-Data-Analysis/00-Data-Analysis
     title: 3. Data Analysis (Pandas)
     sections:
-      - file: Data-Analysis/Pandas-Basics-Part1
-      - file: Data-Analysis/Pandas-Basics-Part2
-      - file: Data-Analysis/Pandas-Basics-Part3
-      - file: Data-Analysis/Pandas-Merge-Datasets
+      - file: 03-Data-Analysis/01-Pandas-Basics-Part1
+      - file: 03-Data-Analysis/02-Pandas-Basics-Part2
+      - file: 03-Data-Analysis/03-Pandas-Basics-Part3
+      - file: 03-Data-Analysis/04-Pandas-Merge-Datasets
 
-  - file: Data-Collection/Data-Collection
+  - file: 04-Data-Collection/00-Data-Collection
     title: 4. Data Collection (Web Scraping, APIs)
     sections:
-      - file: Data-Collection/User-Ethics-Legal-Concerns
-      - file: Data-Collection/Web-Scraping-Part1
-      - file: Data-Collection/Web-Scraping-Part2
-      - file: Data-Collection/Git-GitHub
-      - file: Data-Collection/APIs
-      - file: Data-Collection/Song-Genius-Data-Collection
+      - file: 04-Data-Collection/01-User-Ethics-Legal-Concerns
+      - file: 04-Data-Collection/02-Web-Scraping-Part1
+      - file: 04-Data-Collection/03-Web-Scraping-Part2
+      - file: 04-Data-Collection/04-Git-GitHub
+      - file: 04-Data-Collection/05-APIs
+      - file: 04-Data-Collection/06-Song-Genius-Data-Collection
         sections:
-          - file: Data-Collection/Genius-API
-          - file: Data-Collection/LyricsGenius
-          - file: Data-Collection/Song-Lyrics-Analysis
-      - file: Data-Collection/Twitter-Data-Collection-Home
+          - file: 04-Data-Collection/07-Genius-API
+          - file: 04-Data-Collection/08-LyricsGenius
+          - file: 04-Data-Collection/09-Song-Lyrics-Analysis
+      - file: 04-Data-Collection/10-Twitter-Data-Collection-Home
         sections:
-          - file: Data-Collection/Twitter-API-Setup
-          - file: Data-Collection/Twitter-Data-Collection
-          - file: Data-Collection/Twitter-Data-Analysis
-          - file: Data-Collection/Twitter-Data-Sharing
-      - file: Data-Collection/Reddit-Data-Collection-With-PSAW
+          - file: 04-Data-Collection/11-Twitter-API-Setup
+          - file: 04-Data-Collection/12-Twitter-Data-Collection
+          - file: 04-Data-Collection/13-Twitter-Data-Analysis
+          - file: 04-Data-Collection/14-Twitter-Data-Sharing
+      - file: 04-Data-Collection/15-Reddit-Data-Collection-With-PSAW
         title: Reddit Data Collection
           
-  - file: Text-Analysis/Text-Analysis
+  - file: 05-Text-Analysis/00-Text-Analysis
     title: 5. Text Analysis
     sections:
-      - file: Text-Analysis/TF-IDF
+      - file: 05-Text-Analysis/01-TF-IDF
         sections:
-          - file: Text-Analysis/TF-IDF-HathiTrust
-          - file: Text-Analysis/TF-IDF-Scikit-Learn
-      - file: Text-Analysis/Topic-Modeling
+          - file: 05-Text-Analysis/02-TF-IDF-HathiTrust
+          - file: 05-Text-Analysis/03-TF-IDF-Scikit-Learn
+      - file: 05-Text-Analysis/04-Topic-Modeling
         sections:
-          - file: Text-Analysis/Topic-Modeling-Overview
-          - file: Text-Analysis/Topic-Modeling-Set-Up
-          - file: Text-Analysis/Topic-Modeling-Text-Files
-          - file: Text-Analysis/Topic-Modeling-CSV
-          - file: Text-Analysis/Topic-Modeling-Time-Series
-      - file: Text-Analysis/Named-Entity-Recognition
-      - file: Text-Analysis/POS-Keywords
+          - file: 05-Text-Analysis/05-Topic-Modeling-Overview
+          - file: 05-Text-Analysis/06-Topic-Modeling-Set-Up
+          - file: 05-Text-Analysis/07-Topic-Modeling-Text-Files
+          - file: 05-Text-Analysis/08-Topic-Modeling-CSV
+          - file: 05-Text-Analysis/09-Topic-Modeling-Time-Series
+      - file: 05-Text-Analysis/10-Named-Entity-Recognition
+      - file: 05-Text-Analysis/11-POS-Keywords
           
-  - file: Network-Analysis/Network-Analysis-Home
+  - file: 06-Network-Analysis/00-Network-Analysis-Home
     title: 6. Network Analysis
     sections:
-      - file: Network-Analysis/Network-Analysis
-      - file: Network-Analysis/Making-Network-Viz-with-Bokeh
-  - file: Mapping/Mapping-Home
+      - file: 06-Network-Analysis/01-Network-Analysis
+      - file: 06-Network-Analysis/02-Making-Network-Viz-with-Bokeh
+  - file: Mapping/00-Mapping-Home
     title: 7. Mapping 
     sections:
-      - file: Mapping/Mapping
-      - file: Mapping/Custom-Maps
-      - file: Mapping/Publish-Your-Map
+      - file: Mapping/01-Mapping
+      - file: Mapping/02-Custom-Maps
+      - file: Mapping/03-Publish-Your-Map
       
-- part: Datasets
+- part: 00-Datasets
   chapters:
-    - file: Datasets/Datasets
+    - file: 00-Datasets/Datasets
 
 - part: Extra Materials
   chapters:
-  - file: Python/Jupyter-Tips-Tricks
-  - file: Python/Randomize-Students
+  - file: 02-Python/EXTRA-Jupyter-Tips-Tricks
+    title: Jupyter Tips and Tricks
+  - file: 02-Python/EXTRA-Randomize-Students
     title: Make Random Student Groups
 

@@ -27,7 +27,18 @@ execute:
 #######################################################################################
 # Parse and render settings
 parse:
-  myst_extended_syntax      : true  # enable MyST extended syntax support (see documents for details)
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - html_admonition
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_image
+    - replacements
+    - smartquotes
+    - substitution
   myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
 
 #######################################################################################
@@ -66,7 +77,7 @@ launch_buttons:
   colab_url                 : false # The URL of Google Colab (e.g., https://colab.research.google.com)
 
 repository:
-  url                       : https://github.com/melaniewalsh/Intro-Cultural-Analytics  # The URL to your book's repository
+  url                       : https://github.com/INFO1350/Intro-CA-SP21  # The URL to your book's repository
   path_to_book              : "book"  # A path to your book's folder, relative to the repository root.
   branch                    : "master"  # Which branch of the repository should be used when creating links
 
@@ -88,7 +99,9 @@ sphinx:
       - replacements
       - smartquotes
       - substitution
-    #redirects:
+      rediraffe_branch: 'master'
+      rediraffe_redirects:
+        Command-Line/The-Command-Line: 01-Command-Line/01-The-Command-Line
       #"features/*": "https://melaniewalsh.github.io/Intro-Cultural-Analytics/$source.html"
       notfound_context:
          body: "<h1>Page not found.</h1>\n\nSorry, this page cannot be found. Try the <a href='index.html'> home page </a> or <a href='search.html'> search page </a> to find what you're looking for.</p>."
